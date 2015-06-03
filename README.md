@@ -3,7 +3,7 @@ Android Library to make a **cool intro** for your app.
 
 [![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#artifactdetails%7Ccom.github.paolorotolo%7Cappintro%7C1.0.0%7C)
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
 
 ##How to use
 Add this to your **build.gradle**:
