@@ -15,7 +15,7 @@ dependencies {
 }
 ```
 
-Create a new Activity that extends AppIntro:
+Create a new **Activity that extends AppIntro**:
 
 ```
 public class MyIntro extends AppIntro {
@@ -25,7 +25,7 @@ public class MyIntro extends AppIntro {
     public void init(Bundle savedInstanceState) {
     
     // Add your slide's fragments here.
-    // AppIntro will automatically make the dots indicator and buttons.
+    // AppIntro will automatically generate the dots indicator and buttons.
     
         addSlide(new FirstSlide(), getApplicationContext());
         addSlide(new SecondSlide(), getApplicationContext());
@@ -61,6 +61,8 @@ If you are using AppIntro in your app and would like to be listed here, please l
 
 ## Real life example
 Do you need inspiration? Check out Numix Hermes' intro.
+
+
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
