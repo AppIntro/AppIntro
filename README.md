@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:1.0.0'
+  compile 'com.github.paolorotolo:appintro:1.1.0'
 }
 ```
 
@@ -36,6 +36,9 @@ public class MyIntro extends AppIntro {
         // You can override bar/separator color if you want.
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
+        
+        // You can also hide Skip button
+        showSkipButton(false);
     }
 
     @Override
