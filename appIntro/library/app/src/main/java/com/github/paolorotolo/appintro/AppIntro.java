@@ -25,9 +25,10 @@ public abstract class AppIntro extends FragmentActivity {
     private List<Fragment> fragments = new Vector<Fragment>();
     private List<ImageView> dots;
     private int slidesNumber;
+    boolean showSkip = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    final protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,6 +79,10 @@ public abstract class AppIntro extends FragmentActivity {
                     skip.setVisibility(View.VISIBLE);
                     done.setVisibility(View.GONE);
                     next.setVisibility(View.VISIBLE);
+                }
+
+                if (!showSkip){
+                    skip.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -132,6 +137,14 @@ public abstract class AppIntro extends FragmentActivity {
     public void setSeparatorColor(final int color){
         TextView separator = (TextView) findViewById(R.id.bottom_separator);
         separator.setBackgroundColor(color);
+    }
+
+    public void showSkipButton(boolean showButton){
+        this.showSkip = showButton;
+        if (!showButton){
+            TextView skip = (TextView) findViewById(R.id.skip);
+            skip.setVisibility(View.INVISIBLE);
+        }
     }
 
     public abstract void init(Bundle savedInstanceState);

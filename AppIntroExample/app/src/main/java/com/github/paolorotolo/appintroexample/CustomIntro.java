@@ -21,6 +21,7 @@ public class CustomIntro extends AppIntro {
 
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
+        showSkipButton(false);
     }
 
     private void loadMainActivity(){
