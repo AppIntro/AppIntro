@@ -25,7 +25,9 @@ public abstract class AppIntro extends FragmentActivity {
     private List<Fragment> fragments = new Vector<Fragment>();
     private List<ImageView> dots;
     private int slidesNumber;
-    boolean showSkip = true;
+    private boolean showSkip = true;
+
+    private static int FIRST_PAGE_NUM = 0;
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
@@ -36,53 +38,55 @@ public abstract class AppIntro extends FragmentActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout);
 
-        final TextView skip = (TextView) findViewById(R.id.skip);
-        final ImageView next = (ImageView) findViewById(R.id.next);
-        final TextView done = (TextView) findViewById(R.id.done);
+        final TextView skipButton = (TextView) findViewById(R.id.skip);
+        final ImageView nextButton = (ImageView) findViewById(R.id.next);
+        final TextView doneButton = (TextView) findViewById(R.id.done);
 
-        skip.setOnClickListener(new View.OnClickListener() {
+        skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onSkipPressed();
             }
         });
 
-        next.setOnClickListener(new View.OnClickListener(){
+        nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 pager.setCurrentItem(pager.getCurrentItem()+1);
             }
         });
 
-        done.setOnClickListener(new View.OnClickListener() {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onDonePressed();
             }
         });
+
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         pager = (ViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                
             }
 
             @Override
             public void onPageSelected(int position) {
                 selectDot(position);
-                if (position == slidesNumber-1){
-                    skip.setVisibility(View.INVISIBLE);
-                    next.setVisibility(View.GONE);
-                    done.setVisibility(View.VISIBLE);
+                if (position == slidesNumber - 1){
+                    skipButton.setVisibility(View.INVISIBLE);
+                    nextButton.setVisibility(View.GONE);
+                    doneButton.setVisibility(View.VISIBLE);
                 } else {
-                    skip.setVisibility(View.VISIBLE);
-                    done.setVisibility(View.GONE);
-                    next.setVisibility(View.VISIBLE);
+                    skipButton.setVisibility(View.VISIBLE);
+                    doneButton.setVisibility(View.GONE);
+                    nextButton.setVisibility(View.VISIBLE);
                 }
 
                 if (!showSkip){
-                    skip.setVisibility(View.INVISIBLE);
+                    skipButton.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -93,7 +97,6 @@ public abstract class AppIntro extends FragmentActivity {
 
         init(savedInstanceState);
         loadDots();
-        selectDot(0);
     }
 
     private void loadDots() {
@@ -113,12 +116,14 @@ public abstract class AppIntro extends FragmentActivity {
 
             dots.add(dot);
         }
+
+        selectDot(FIRST_PAGE_NUM);
     }
 
-    public void selectDot(int idx) {
+    public void selectDot(int index) {
         Resources res = getResources();
         for (int i = 0; i < fragments.size(); i++) {
-            int drawableId = (i == idx) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
+            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
             Drawable drawable = res.getDrawable(drawableId);
             dots.get(i).setImageDrawable(drawable);
         }
