@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/C:/Users/Michele%20Stefanelli/Documents/GitHub/AppIntro/AppIntroExample/lib/src/main/res/values/values.xml -->
-    <eat-comment/>
-    <string name="done_button">Done</string>
-    <string name="skip_button">Skip</string>
-</resources>
