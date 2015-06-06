@@ -68,7 +68,7 @@
                     android:textColor="#ffffff"
                     android:layout_gravity="start"
                     android:layout_weight="0.2"
-                    android:text="@android:string/done_label"/>
+                    android:text="@android:string/action_mode_done"/>
             </LinearLayout>
         </LinearLayout>
 </RelativeLayout>
