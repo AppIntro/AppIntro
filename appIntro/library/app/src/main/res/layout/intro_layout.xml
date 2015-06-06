@@ -37,7 +37,7 @@
                     android:id="@+id/skip"
                     android:textColor="#ffffff"
                     android:layout_weight="0.2"
-                    android:text="@string/skip_button"/>
+                    android:text="@android:string/skip_button_label"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
@@ -68,7 +68,7 @@
                     android:textColor="#ffffff"
                     android:layout_gravity="start"
                     android:layout_weight="0.2"
-                    android:text="@string/done_button"/>
+                    android:text="@android:string/done_label"/>
             </LinearLayout>
         </LinearLayout>
 </RelativeLayout>
