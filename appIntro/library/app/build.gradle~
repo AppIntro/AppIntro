@@ -8,9 +8,9 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 22
-        versionCode 4
+        versionCode 3
         versionName "1.2.1"
     }
     buildTypes {
