@@ -1,10 +1,10 @@
 [![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
 
-# AppIntro
-Android Library to make a **cool intro** for your app.
-
 [![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#artifactdetails%7Ccom.github.paolorotolo%7Cappintro%7C1.0.0%7C)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
+
+# AppIntro
+Android Library to make a **cool intro** for your app.
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> 
 
@@ -36,12 +36,17 @@ public class MyIntro extends AppIntro {
         addSlide(new ThirdSlide(), getApplicationContext());
         addSlide(new FourthSlide(), getApplicationContext());
         
-        // You can override bar/separator color if you want.
+        // OPTIONAL METHODS
+        // Override bar/separator.
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
         
-        // You can also hide Skip button
+        // Hide Skip button
         showSkipButton(false);
+        
+        // Turn vibration on and set intensity
+        setVibrate(true);
+        setVibrateIntensity(30);
     }
 
     @Override
