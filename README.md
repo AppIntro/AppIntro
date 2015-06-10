@@ -45,6 +45,7 @@ public class MyIntro extends AppIntro {
         showSkipButton(false);
         
         // Turn vibration on and set intensity
+        // NOTE: you will probably need to ask VIBRATE permesssion in Manifest
         setVibrate(true);
         setVibrateIntensity(30);
     }
