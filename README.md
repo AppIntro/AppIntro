@@ -1,3 +1,5 @@
+[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
+
 # AppIntro
 Android Library to make a **cool intro** for your app.
 
