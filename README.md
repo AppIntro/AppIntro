@@ -68,7 +68,8 @@ Please, **DO NOT override onCreate**. Just use **init** instead
 See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/raw/master/AppIntroExample/app/app-release.apk).
 
 ## Apps using it
- * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes).
+ * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
+ * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro);
 
 If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)! 
 
