@@ -16,6 +16,13 @@
             android:text="@string/default_intro"/>
 
     <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startSecondLayoutIntro"
+        android:text="@string/second_layout_intro"/>
+
+    <Button
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -27,6 +27,8 @@
             android:name=".CustomIntro"
             android:label="@string/title_activity_custom_intro" >
         </activity>
+        <activity android:name=".SecondLayoutIntro"
+            android:label="@string/title_activity_second_intro"/>
     </application>
 
 </manifest>

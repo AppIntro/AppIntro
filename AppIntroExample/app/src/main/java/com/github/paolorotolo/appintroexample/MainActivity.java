@@ -22,4 +22,9 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, CustomIntro.class);
         startActivity(intent);
     }
+
+    public void startSecondLayoutIntro(View v){
+        Intent intent = new Intent(this, SecondLayoutIntro.class);
+        startActivity(intent);
+    }
 }
