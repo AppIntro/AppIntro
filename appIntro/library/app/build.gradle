@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 4
-        versionName "1.2.1"
+        versionCode 5
+        versionName "1.3.0"
     }
     buildTypes {
         release {
@@ -25,4 +25,3 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:22.2.0'
 }
-
