@@ -7,6 +7,8 @@
 Android Library to make a **cool intro** for your app.
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> 
+
 
 ##How to use
 Add this to your **build.gradle**:
@@ -61,6 +63,17 @@ public class MyIntro extends AppIntro {
     }
 }
 ```
+
+### Layout 2
+If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
+
+```java
+public class MyIntro extends AppIntro2 {
+    [..]
+```
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300"> 
 
 Please, **DO NOT override onCreate**. Just use **init** instead
 
