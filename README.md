@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:1.2.1'
+  compile 'com.github.paolorotolo:appintro:1.3.0'
 }
 ```
 
