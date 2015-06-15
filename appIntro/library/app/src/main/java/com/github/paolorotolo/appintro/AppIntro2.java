@@ -139,6 +139,14 @@ public abstract class AppIntro2 extends FragmentActivity {
         this.vibrateIntensity = intensity;
     }
 
+    public void setFadeAnimation(){
+        pager.setPageTransformer(true, new FadePageTransformer());
+    }
+
+    public void setCustomTransformer(ViewPager.PageTransformer transformer){
+        pager.setPageTransformer(true, transformer);
+    }
+
     public abstract void init(Bundle savedInstanceState);
     public abstract void onDonePressed();
 
@@ -159,6 +167,21 @@ public abstract class AppIntro2 extends FragmentActivity {
         @Override
         public int getCount() {
             return this.fragments.size();
+        }
+    }
+
+    public class FadePageTransformer implements ViewPager.PageTransformer {
+        public void transformPage(View view, float position) {
+            view.setTranslationX(view.getWidth() * -position);
+
+            if(position <= -1.0F || position >= 1.0F) {
+                view.setAlpha(0.0F);
+            } else if( position == 0.0F ) {
+                view.setAlpha(1.0F);
+            } else {
+                // position is between -1.0F & 0.0F OR 0.0F & 1.0F
+                view.setAlpha(1.0F - Math.abs(position));
+            }
         }
     }
 }
