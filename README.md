@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:1.3.0'
+  compile 'com.github.paolorotolo:appintro:1.4.0'
 }
 ```
 
@@ -64,6 +64,8 @@ public class MyIntro extends AppIntro {
 }
 ```
 
+Please, **DO NOT override onCreate**. Just use **init** instead
+
 ### Layout 2
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
@@ -76,10 +78,26 @@ public class MyIntro extends AppIntro2 {
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300"> 
 
-Please, **DO NOT override onCreate**. Just use **init** instead
+### Animations
+AppIntro comes with a Fade animation, that you can activate with:
+```java
+// Put this method in init()
+setFadeAnimation();
+```
+
+If you want to create nice parallax effect or your custom animation, create your own **PageTransformer** and call:
+
+```java
+// Put this method in init()
+setCustomTransformer(transformer);
+```
+
+Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 ## Example
 See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/raw/master/AppIntroExample/app/app-release.apk).
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300"> 
 
 ## Apps using it
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
