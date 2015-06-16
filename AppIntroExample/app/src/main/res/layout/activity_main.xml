@@ -28,4 +28,29 @@
             android:layout_height="wrap_content"
             android:onClick="startCustomIntro"
             android:text="@string/customized_intro"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="#888888"
+        android:text="Animations"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:gravity="center_horizontal"
+        android:text="Animations"/>
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startFadeAnimation"
+        android:text="@string/fade_animation"/>
+
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startCustomAnimation"
+        android:text="@string/custom_animation"/>
 </LinearLayout>

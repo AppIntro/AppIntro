@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".SecondLayoutIntro"
             android:label="@string/title_activity_second_intro"/>
+        <activity android:name=".animations.CustomAnimation" />
+        <activity android:name=".animations.FadeAnimation" />
     </application>
 
 </manifest>
