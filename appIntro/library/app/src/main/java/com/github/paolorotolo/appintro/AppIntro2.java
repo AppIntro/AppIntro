@@ -131,6 +131,10 @@ public abstract class AppIntro2 extends FragmentActivity {
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    public List<Fragment> getSlides() {
+        return mPagerAdapter.getFragments();
+    }
+
     public void setVibrate(boolean vibrate){
         this.isVibrateOn = vibrate;
     }

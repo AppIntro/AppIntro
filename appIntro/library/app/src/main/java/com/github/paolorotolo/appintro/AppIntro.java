@@ -148,6 +148,10 @@ public abstract class AppIntro extends FragmentActivity {
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    public List<Fragment> getSlides() {
+        return mPagerAdapter.getFragments();
+    }
+
     public void setBarColor(final int color){
         LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
@@ -214,6 +218,11 @@ public abstract class AppIntro extends FragmentActivity {
         public int getCount() {
             return this.fragments.size();
         }
+
+        public List<Fragment> getFragments() {
+            return fragments;
+        }
+
     }
 
     public class FadePageTransformer implements ViewPager.PageTransformer {
