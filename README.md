@@ -105,6 +105,7 @@ See example code here on Github. You can also see it live downloading [this apk]
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
  * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro);
  * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp);
+ * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets);
 
 If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)! 
 
@@ -116,3 +117,10 @@ Do you need inspiration? Check out Numix Hermes' intro.
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+ 
+Also Check out Planets' intro:
+ 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot1.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot3.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot4.png" width="300">
