@@ -116,7 +116,7 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets.png">
 
-**Hermes - Material IRC Client **
+**Hermes - Material IRC Client**
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
