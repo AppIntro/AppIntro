@@ -8,8 +8,8 @@ Android Library to make a **cool intro** for your app.
 
 *Watch YouTube video [here](https://www.youtube.com/watch?v=OlAugnH3jFY&feature=youtu.be).*
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
 
 ##How to use
@@ -32,22 +32,22 @@ public class MyIntro extends AppIntro {
     // Please DO NOT override onCreate. Use init
     @Override
     public void init(Bundle savedInstanceState) {
-    
+
         // Add your slide's fragments here
         // AppIntro will automatically generate the dots indicator and buttons.
         addSlide(new FirstSlide(), getApplicationContext());
         addSlide(new SecondSlide(), getApplicationContext());
         addSlide(new ThirdSlide(), getApplicationContext());
         addSlide(new FourthSlide(), getApplicationContext());
-        
+
         // OPTIONAL METHODS
         // Override bar/separator color
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
-        
+
         // Hide Skip button
         showSkipButton(false);
-        
+
         // Turn vibration on and set intensity
         // NOTE: you will probably need to ask VIBRATE permesssion in Manifest
         setVibrate(true);
@@ -77,8 +77,8 @@ public class MyIntro extends AppIntro2 {
 }
 ```
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300"> 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 
 ### Animations
 AppIntro comes with a Fade animation, that you can activate with:
@@ -99,7 +99,7 @@ Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df354
 ## Example
 See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/raw/master/AppIntroExample/app/app-release.apk).
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300"> 
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300">
 
 ## Apps using it
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
@@ -107,20 +107,18 @@ See example code here on Github. You can also see it live downloading [this apk]
  * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp);
  * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets);
 
-If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)! 
+If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)!
 
-## Real life example
-Do you need inspiration? Check out Numix Hermes' intro.
+## Real life examples
+Do you need inspiration? A lot of apps are using AppIntro out there:
 
+**Planets**
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets.png">
+
+**Hermes - Material IRC Client **
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
- 
-Also Check out Planets' intro:
- 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot1.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot2.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot3.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets_screenshot4.png" width="300">
