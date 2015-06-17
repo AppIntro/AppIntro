@@ -126,8 +126,8 @@ public abstract class AppIntro2 extends FragmentActivity {
         }
     }
 
-    public void addSlide(Fragment fragment, Context context) {
-        fragments.add(Fragment.instantiate(context, fragment.getClass().getName()));
+    public void addSlide(Fragment fragment) {
+        fragments.add(fragment);
         mPagerAdapter.notifyDataSetChanged();
     }
 
