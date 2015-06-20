@@ -15,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,6 +170,10 @@ public abstract class AppIntro2 extends FragmentActivity {
         @Override
         public int getCount() {
             return this.fragments.size();
+        }
+
+        public List<Fragment> getFragments() {
+            return fragments;
         }
     }
 
