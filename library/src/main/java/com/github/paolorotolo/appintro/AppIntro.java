@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.Window;
@@ -199,44 +197,4 @@ public abstract class AppIntro extends FragmentActivity {
     public abstract void init(Bundle savedInstanceState);
     public abstract void onSkipPressed();
     public abstract void onDonePressed();
-
-    public class PagerAdapter extends FragmentPagerAdapter {
-
-        private List<Fragment> fragments;
-
-        public PagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-            super(fm);
-            this.fragments = fragments;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return this.fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return this.fragments.size();
-        }
-
-        public List<Fragment> getFragments() {
-            return fragments;
-        }
-
-    }
-
-    public class FadePageTransformer implements ViewPager.PageTransformer {
-        public void transformPage(View view, float position) {
-            view.setTranslationX(view.getWidth() * -position);
-
-            if(position <= -1.0F || position >= 1.0F) {
-                view.setAlpha(0.0F);
-            } else if( position == 0.0F ) {
-                view.setAlpha(1.0F);
-            } else {
-                // position is between -1.0F & 0.0F OR 0.0F & 1.0F
-                view.setAlpha(1.0F - Math.abs(position));
-            }
-        }
-    }
 }
