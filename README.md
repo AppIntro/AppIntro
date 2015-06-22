@@ -97,7 +97,7 @@ setCustomTransformer(transformer);
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 ## Example
-See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/raw/master/AppIntroExample/app/app-release.apk).
+See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/blob/63a9bea2b69efb7ca0ca714949c0b32eb71579f7/AppIntroExample/app/app-release.apk?raw=true).
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300">
 
