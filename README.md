@@ -2,6 +2,10 @@
 
 [![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#browse%7C2137414099)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
+<br><a href="https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
 
 # AppIntro
 Android Library to make a **cool intro** for your app.
@@ -97,7 +101,7 @@ setCustomTransformer(transformer);
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 ## Example
-See example code here on Github. You can also see it live downloading [this apk](https://github.com/PaoloRotolo/AppIntro/blob/63a9bea2b69efb7ca0ca714949c0b32eb71579f7/AppIntroExample/app/app-release.apk?raw=true).
+See example code here on Github. You can also see it live downloading [this app from Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300">
 
