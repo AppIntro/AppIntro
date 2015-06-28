@@ -94,6 +94,10 @@ public abstract class AppIntro2 extends FragmentActivity {
         loadDots();
     }
 
+    public void setOffScreenPageLimit(int limit) {
+        pager.setOffscreenPageLimit(limit);
+    }
+
     private void loadDots() {
         LinearLayout dotLayout = (LinearLayout) findViewById(R.id.dotLayout);
         dots = new ArrayList<>();
