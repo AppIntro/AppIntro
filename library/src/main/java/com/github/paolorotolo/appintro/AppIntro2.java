@@ -94,10 +94,6 @@ public abstract class AppIntro2 extends FragmentActivity {
         loadDots();
     }
 
-    public void setOffScreenPageLimit(int limit) {
-        pager.setOffscreenPageLimit(limit);
-    }
-
     private void loadDots() {
         LinearLayout dotLayout = (LinearLayout) findViewById(R.id.dotLayout);
         dots = new ArrayList<>();
@@ -152,6 +148,10 @@ public abstract class AppIntro2 extends FragmentActivity {
 
     public void setCustomTransformer(@Nullable ViewPager.PageTransformer transformer) {
         pager.setPageTransformer(true, transformer);
+    }
+
+    public void setOffScreenPageLimit(int limit) {
+        pager.setOffscreenPageLimit(limit);
     }
 
     public abstract void init(@Nullable Bundle savedInstanceState);
