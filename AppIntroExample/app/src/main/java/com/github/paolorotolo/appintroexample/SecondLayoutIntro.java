@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintroexample.slides2.FirstSlide2;
-import com.github.paolorotolo.appintroexample.slides2.SecondSlide2;
-import com.github.paolorotolo.appintroexample.slides2.ThirdSlide2;
 
 public class SecondLayoutIntro extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(new FirstSlide2(), getApplicationContext());
-        addSlide(new SecondSlide2(), getApplicationContext());
-        addSlide(new ThirdSlide2(), getApplicationContext());
+        addSlide(SampleSlide.newInstance(R.layout.intro_2));
+        addSlide(SampleSlide.newInstance(R.layout.intro2_2));
+        addSlide(SampleSlide.newInstance(R.layout.intro3_2));
     }
 
     private void loadMainActivity(){
