@@ -29,7 +29,6 @@ public abstract class AppIntro2 extends FragmentActivity {
     private Vibrator mVibrator;
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
-
     private static final int FIRST_PAGE_NUM = 0;
 
     @Override
@@ -68,7 +67,11 @@ public abstract class AppIntro2 extends FragmentActivity {
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         pager = (ViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        /**
+         *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
+         */
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
