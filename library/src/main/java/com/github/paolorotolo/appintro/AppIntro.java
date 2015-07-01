@@ -81,10 +81,15 @@ public abstract class AppIntro extends FragmentActivity {
 
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         pager = (ViewPager) findViewById(R.id.view_pager);
+
         pager.setAdapter(this.mPagerAdapter);
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        /**
+         *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
+         */
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
@@ -107,6 +112,7 @@ public abstract class AppIntro extends FragmentActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
             }
         });
 
