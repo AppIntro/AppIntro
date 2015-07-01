@@ -150,6 +150,10 @@ public abstract class AppIntro2 extends FragmentActivity {
         pager.setPageTransformer(true, transformer);
     }
 
+    public void setOffScreenPageLimit(int limit) {
+        pager.setOffscreenPageLimit(limit);
+    }
+
     public abstract void init(@Nullable Bundle savedInstanceState);
 
     public abstract void onDonePressed();
