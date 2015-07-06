@@ -110,6 +110,7 @@ See example code here on Github. You can also see it live downloading [this app 
  * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro);
  * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp);
  * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets);
+ * [Weather Delta](https://play.google.com/store/apps/details?id=com.felkertech.n.weatherdelta);
 
 If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)!
 
