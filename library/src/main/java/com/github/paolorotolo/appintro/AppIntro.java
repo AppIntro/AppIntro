@@ -213,4 +213,18 @@ public abstract class AppIntro extends FragmentActivity {
     public abstract void onSkipPressed();
 
     public abstract void onDonePressed();
+
+    @Override
+    public boolean onKeyDown(int code, KeyEvent kvent) {
+        if(code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A) {
+            ViewPager vp  = (ViewPager)this.findViewById(R.id.view_pager);
+                if(vp.getCurrentItem() == vp.getAdapter().getCount()-1) {
+                    onDonePressed();
+                } else {
+                    vp.setCurrentItem(vp.getCurrentItem()+1);
+                }
+                return false;
+            }
+            return super.onKeyDown(code, kvent);
+        }
 }
