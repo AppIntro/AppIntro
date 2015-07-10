@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:background="#ffffff"
+    android:background="#222222"
     android:layout_height="wrap_content">
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
