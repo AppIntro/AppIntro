@@ -13,10 +13,10 @@ import com.github.paolorotolo.appintroexample.slides.ThirdSlide;
 public class DefaultIntro extends AppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(new FirstSlide(), getApplicationContext());
-        addSlide(new SecondSlide(), getApplicationContext());
-        addSlide(new ThirdSlide(), getApplicationContext());
-        addSlide(new FourthSlide(), getApplicationContext());
+        addSlide(SampleSlide.newInstance(R.layout.intro));
+        addSlide(SampleSlide.newInstance(R.layout.intro2));
+        addSlide(SampleSlide.newInstance(R.layout.intro3));
+        addSlide(SampleSlide.newInstance(R.layout.intro4));
     }
 
     private void loadMainActivity(){
