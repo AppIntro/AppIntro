@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:2.0.0'
+  compile 'com.github.paolorotolo:appintro:3.0.0'
 }
 ```
 
@@ -39,10 +39,10 @@ public class MyIntro extends AppIntro {
 
         // Add your slide's fragments here
         // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(new FirstSlide(), getApplicationContext());
-        addSlide(new SecondSlide(), getApplicationContext());
-        addSlide(new ThirdSlide(), getApplicationContext());
-        addSlide(new FourthSlide(), getApplicationContext());
+        addSlide(first_fragment);
+        addSlide(second_fragment);
+        addSlide(third_fragment);
+        addSlide(fourth_fragment);
 
         // OPTIONAL METHODS
         // Override bar/separator color
