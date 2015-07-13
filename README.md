@@ -83,6 +83,15 @@ public class MyIntro extends AppIntro2 {
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
+<br><br>
+### Easy implementation of Slide Fragments
+As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add new slides to AppIntro. <br><br>
+For example:
+ * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
+ * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
+ 
+There's no need to create one class for fragment anymore. :)
+
 
 ### Animations
 AppIntro comes with a Fade animation, that you can activate with:
