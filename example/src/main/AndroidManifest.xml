@@ -31,6 +31,8 @@
             android:label="@string/title_activity_second_intro"/>
         <activity android:name=".animations.CustomAnimation" />
         <activity android:name=".animations.FadeAnimation" />
+        <activity android:name=".indicators.ProgressIndicator" />
+        <activity android:name=".indicators.CustomIndicator" />
     </application>
 
 </manifest>
