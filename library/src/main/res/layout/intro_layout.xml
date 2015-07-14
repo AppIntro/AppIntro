@@ -38,15 +38,12 @@
                     android:textColor="#ffffff"
                     android:layout_weight="0.2"
                     android:text="@string/skip_button"/>
-                <LinearLayout
+                <FrameLayout
+                    android:id="@+id/indicator_container"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:id="@+id/dotLayout"
-                    android:gravity="center"
-                    android:orientation="horizontal"
                     android:layout_weight="0.8"
-                    android:layout_gravity="center">
-                </LinearLayout>
+                    android:layout_gravity="center"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
