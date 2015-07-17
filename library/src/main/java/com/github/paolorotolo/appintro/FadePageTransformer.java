@@ -3,6 +3,8 @@ package com.github.paolorotolo.appintro;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.nineoldandroids.view.ViewHelper;
+
 class FadePageTransformer implements ViewPager.PageTransformer {
     @Override
     public void transformPage(View view, float position) {
