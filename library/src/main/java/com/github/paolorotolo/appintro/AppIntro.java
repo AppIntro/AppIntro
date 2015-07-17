@@ -113,6 +113,11 @@ public abstract class AppIntro extends FragmentActivity {
         init(savedInstanceState);
         slidesNumber = fragments.size();
 
+        if ((slidesNumber) == 1){
+            nextButton.setVisibility(View.GONE);
+            doneButton.setVisibility(View.VISIBLE);
+        }
+
         initController();
     }
 
