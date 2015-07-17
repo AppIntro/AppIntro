@@ -28,6 +28,7 @@ public abstract class AppIntro extends FragmentActivity {
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
     private boolean showSkip = true;
+    private boolean showDone = true;
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,11 @@ public abstract class AppIntro extends FragmentActivity {
                 if (position == slidesNumber - 1) {
                     skipButton.setVisibility(View.INVISIBLE);
                     nextButton.setVisibility(View.GONE);
-                    doneButton.setVisibility(View.VISIBLE);
+                    if (showDone) {
+                        doneButton.setVisibility(View.VISIBLE);
+                    } else {
+                        doneButton.setVisibility(View.INVISIBLE);
+                    }
                 } else {
                     skipButton.setVisibility(View.VISIBLE);
                     doneButton.setVisibility(View.GONE);
@@ -166,6 +171,14 @@ public abstract class AppIntro extends FragmentActivity {
         if (!showButton) {
             TextView skip = (TextView) findViewById(R.id.skip);
             skip.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void showDoneButton(boolean showDone) {
+        this.showDone = showDone;
+        if (!showDone) {
+            TextView done = (TextView) findViewById(R.id.done);
+            done.setVisibility(View.GONE);
         }
     }
 

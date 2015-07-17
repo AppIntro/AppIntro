@@ -24,6 +24,7 @@ public abstract class AppIntro2 extends FragmentActivity {
     private IndicatorController mController;
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
+    private boolean showDone = true;
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,11 @@ public abstract class AppIntro2 extends FragmentActivity {
                 mController.selectPosition(position);
                 if (position == slidesNumber - 1) {
                     nextButton.setVisibility(View.GONE);
-                    doneButton.setVisibility(View.VISIBLE);
+                    if (showDone) {
+                        doneButton.setVisibility(View.VISIBLE);
+                    } else {
+                        doneButton.setVisibility(View.INVISIBLE);
+                    }
                 } else {
                     doneButton.setVisibility(View.GONE);
                     nextButton.setVisibility(View.VISIBLE);
@@ -116,6 +121,14 @@ public abstract class AppIntro2 extends FragmentActivity {
     @NonNull
     public List<Fragment> getSlides() {
         return mPagerAdapter.getFragments();
+    }
+
+    public void showDoneButton(boolean showDone) {
+        this.showDone = showDone;
+        if (!showDone) {
+            ImageView done = (ImageView) findViewById(R.id.done);
+            done.setVisibility(View.GONE);
+        }
     }
 
     public void setVibrate(boolean vibrate) {
