@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "paolorotolo.github.com.appintroexample"
-        minSdkVersion 14
+        minSdkVersion 8
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
