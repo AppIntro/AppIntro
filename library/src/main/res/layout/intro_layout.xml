@@ -34,7 +34,7 @@
                     android:layout_gravity="start"
                     android:paddingLeft="16dp"
                     android:id="@+id/skip"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:textColor="#ffffff"
                     android:layout_weight="0.2"
                     android:text="@string/skip_button"/>
@@ -47,7 +47,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:id="@+id/next"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
@@ -56,7 +56,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:visibility="gone"
                     android:id="@+id/done"
                     android:paddingRight="16dp"

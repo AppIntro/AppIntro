@@ -37,7 +37,7 @@
                 android:paddingLeft="16dp"
                 android:id="@+id/skip"
                 android:visibility="invisible"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:textColor="#ffffff"
                 android:layout_weight="0.2"
                 android:text="@string/skip_button"/>
