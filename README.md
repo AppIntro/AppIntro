@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:3.0.0'
+  compile 'com.github.paolorotolo:appintro:3.1.0'
 }
 ```
 
@@ -43,14 +43,19 @@ public class MyIntro extends AppIntro {
         addSlide(second_fragment);
         addSlide(third_fragment);
         addSlide(fourth_fragment);
+        
+        // Instead of fragments, you can also use our default slide
+        // Just set a title, description, background and image. AppIntro will do the rest
+        addSlide(AppIntroFragment.newInstance(title, description, image, background_colour));
 
         // OPTIONAL METHODS
         // Override bar/separator color
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
 
-        // Hide Skip button
+        // Hide Skip/Done button
         showSkipButton(false);
+        showDoneButton(false);
 
         // Turn vibration on and set intensity
         // NOTE: you will probably need to ask VIBRATE permesssion in Manifest
@@ -92,6 +97,12 @@ For example:
  
 There's no need to create one class for fragment anymore. :)
 
+#### I've never used fragments...
+No problem, just use this method and AppIntro will generate a new slide for you.
+
+```java
+addSlide(AppIntroFragment.newInstance(title, description, image, background_colour));
+```
 
 ### Animations
 AppIntro comes with a Fade animation, that you can activate with:
