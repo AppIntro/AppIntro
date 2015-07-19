@@ -2,8 +2,6 @@ package com.github.paolorotolo.appintro;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,7 +32,7 @@ class DefaultIndicatorController implements IndicatorController {
 
         for (int i = 0; i < slideCount; i++) {
             ImageView dot = new ImageView(mContext);
-            dot.setImageDrawable(getDrawable(R.drawable.indicator_dot_grey));
+            dot.setImageDrawable(ResourceUtils.getDrawable(mContext, R.drawable.indicator_dot_grey));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -52,16 +50,8 @@ class DefaultIndicatorController implements IndicatorController {
     public void selectPosition(int index) {
         for (int i = 0; i < mSlideCount; i++) {
             int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
-            Drawable drawable = getDrawable(drawableId);
+            Drawable drawable = ResourceUtils.getDrawable(mContext, drawableId);
             mDots.get(i).setImageDrawable(drawable);
         }
-    }
-
-    private Drawable getDrawable(@DrawableRes int drawableId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            return mContext.getDrawable(drawableId);
-
-        //noinspection deprecation
-        return mContext.getResources().getDrawable(drawableId);
     }
 }

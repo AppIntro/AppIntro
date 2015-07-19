@@ -57,7 +57,7 @@ public class AppIntroFragment extends Fragment {
         LinearLayout m = (LinearLayout) v.findViewById(R.id.main);
         t.setText(title);
         d.setText(description);
-        i.setImageDrawable(getResources().getDrawable(drawable));
+        i.setImageDrawable(ResourceUtils.getDrawable(getActivity(), drawable));
         m.setBackgroundColor(colour);
         return v;
     }
