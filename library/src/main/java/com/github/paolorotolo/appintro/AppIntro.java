@@ -8,7 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.*;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,7 +24,6 @@ public abstract class AppIntro extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
     private ViewPager pager;
     private List<Fragment> fragments = new Vector<>();
-    private List<ImageView> dots;
     private int slidesNumber;
     private Vibrator mVibrator;
     private IndicatorController mController;
@@ -89,7 +91,8 @@ public abstract class AppIntro extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mController.selectPosition(position);
+                if (slidesNumber > 1)
+                    mController.selectPosition(position);
                 if (position == slidesNumber - 1) {
                     skipButton.setVisibility(View.INVISIBLE);
                     nextButton.setVisibility(View.GONE);
@@ -118,12 +121,12 @@ public abstract class AppIntro extends FragmentActivity {
         init(savedInstanceState);
         slidesNumber = fragments.size();
 
-        if ((slidesNumber) == 1){
+        if (slidesNumber == 1) {
             nextButton.setVisibility(View.GONE);
             doneButton.setVisibility(View.VISIBLE);
+        } else {
+            initController();
         }
-
-        initController();
     }
 
     private void initController() {
@@ -228,15 +231,15 @@ public abstract class AppIntro extends FragmentActivity {
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
-        if(code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A) {
-            ViewPager vp  = (ViewPager)this.findViewById(R.id.view_pager);
-                if(vp.getCurrentItem() == vp.getAdapter().getCount()-1) {
-                    onDonePressed();
-                } else {
-                    vp.setCurrentItem(vp.getCurrentItem()+1);
-                }
-                return false;
+        if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A) {
+            ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
+            if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
+                onDonePressed();
+            } else {
+                vp.setCurrentItem(vp.getCurrentItem() + 1);
             }
-            return super.onKeyDown(code, kvent);
+            return false;
         }
+        return super.onKeyDown(code, kvent);
+    }
 }
