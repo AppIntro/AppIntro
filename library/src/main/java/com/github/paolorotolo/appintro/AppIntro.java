@@ -6,8 +6,9 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.*;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class AppIntro extends FragmentActivity {
+public abstract class AppIntro extends AppCompatActivity {
     private PagerAdapter mPagerAdapter;
     private ViewPager pager;
     private List<Fragment> fragments = new Vector<>();
@@ -34,9 +35,10 @@ public abstract class AppIntro extends FragmentActivity {
 
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout);
