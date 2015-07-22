@@ -29,6 +29,14 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private int vibrateIntensity = 20;
     private boolean showDone = true;
 
+    static enum TransformType {
+        FLOW,
+        DEPTH,
+        ZOOM,
+        SLIDE_OVER,
+        FADE
+    }
+
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -145,7 +153,20 @@ public abstract class AppIntro2 extends AppCompatActivity {
     }
 
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new FadePageTransformer());
+        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.FADE));
+    }
+
+    public void setZoomAnimation() {
+        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.ZOOM));
+    }
+    public void setFlowAnimation() {
+        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.FLOW));
+    }
+    public void setSlideOverAnimation() {
+        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.SLIDE_OVER));
+    }
+    public void setDepthAnimation() {
+        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.DEPTH));
     }
 
     public void setCustomTransformer(@Nullable ViewPager.PageTransformer transformer) {

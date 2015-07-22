@@ -16,4 +16,8 @@
     <string name="skip">Y U DO DIS TO ME?</string>
     <string name="header_animations">Animations</string>
     <string name="header_indicators">Indicators</string>
+    <string name="zoom_animation">SET ZOOM ANIMATION</string>
+    <string name="flow_animation">SET FLOW ANIMATION</string>
+    <string name="depth_animation">SET DEPTH ANIMATION</string>
+    <string name="slideover_animation">SET SLIDEOVER ANIMATION</string>
 </resources>
