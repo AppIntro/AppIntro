@@ -134,6 +134,7 @@ See example code here on Github. You can also see it live downloading [this app 
  * [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme);
  * [Circles](https://play.google.com/store/apps/details?id=com.felipejoglar.circles);
  * [Task Master](https://play.google.com/store/apps/details?id=com.cr5315.taskmaster)
+ * [Smoothie Recipes] (https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes)
 
 If you are using AppIntro in your app and would like to be listed here, please let me know via [email](mailto:paolorotolo@ubuntu.com)!
 
