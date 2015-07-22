@@ -131,6 +131,10 @@ public abstract class AppIntro extends AppCompatActivity {
         }
     }
 
+    public ViewPager getPager() {
+        return pager;
+    }
+
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
