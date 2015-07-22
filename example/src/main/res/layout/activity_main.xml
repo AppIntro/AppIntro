@@ -51,11 +51,40 @@
                 android:text="@string/fade_animation"/>
 
         <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startCustomAnimation"
-                android:text="@string/custom_animation"/>
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startZoomAnimation"
+            android:text="@string/zoom_animation" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startFlowAnimation"
+            android:text="@string/flow_animation" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startDepthAnimation"
+            android:text="@string/depth_animation" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startSlideOverAnimation"
+            android:text="@string/slideover_animation" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startCustomAnimation"
+            android:text="@string/custom_animation" />
+
         <View
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"

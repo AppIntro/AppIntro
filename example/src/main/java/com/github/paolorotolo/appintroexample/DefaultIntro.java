@@ -17,6 +17,7 @@ public class DefaultIntro extends AppIntro {
         addSlide(SampleSlide.newInstance(R.layout.intro2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));
         addSlide(SampleSlide.newInstance(R.layout.intro4));
+
     }
 
     private void loadMainActivity(){
