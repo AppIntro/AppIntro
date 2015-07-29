@@ -16,7 +16,7 @@ public class CustomIntro extends AppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(AppIntroFragment.newInstance("Title here", "Description here...\nYeah, I've added this fragment programmatically",
-                R.drawable.ic_slide1, R.color.material_blue_grey_800));
+                R.drawable.ic_slide1, Color.parseColor("#2196F3")));
 
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
