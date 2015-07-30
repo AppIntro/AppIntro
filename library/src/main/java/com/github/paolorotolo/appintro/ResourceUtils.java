@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 
 class ResourceUtils {
     @Nullable
+    @SuppressWarnings("deprecation")
     static Drawable getDrawable(@NonNull Context context, @DrawableRes int drawableId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(drawableId);
