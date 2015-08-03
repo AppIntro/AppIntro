@@ -143,6 +143,7 @@ public abstract class AppIntro extends AppCompatActivity {
         return pager;
     }
 
+
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
@@ -151,6 +152,15 @@ public abstract class AppIntro extends AppCompatActivity {
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
+    }
+    public void selectDot(int index) {
+        Resources res = getResources();
+        for (int i = 0; i < fragments.size(); i++) {
+            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
+            Drawable drawable = res.getDrawable(drawableId);
+            dots.get(i).setImageDrawable(drawable);
+        }
+        onDotSelected(index);
     }
 
     public void addSlide(@NonNull Fragment fragment) {
@@ -255,6 +265,8 @@ public abstract class AppIntro extends AppCompatActivity {
     public abstract void onSkipPressed();
 
     public abstract void onDonePressed();
+    
+    public void onDotSelected(int index) {}
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
