@@ -125,6 +125,7 @@ public abstract class AppIntro2 extends FragmentActivity {
             Drawable drawable = res.getDrawable(drawableId);
             dots.get(i).setImageDrawable(drawable);
         }
+        onDotSelected(index);
     }
 
     public void addSlide(@NonNull Fragment fragment, @NonNull Context context) {
@@ -160,6 +161,8 @@ public abstract class AppIntro2 extends FragmentActivity {
     public abstract void init(@Nullable Bundle savedInstanceState);
 
     public abstract void onDonePressed();
+    
+    public void onDotSelected(int index) {}
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
