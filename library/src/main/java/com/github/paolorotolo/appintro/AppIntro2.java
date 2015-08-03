@@ -129,6 +129,15 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
         mController.initialize(slidesNumber);
     }
+    public void selectDot(int index) {
+        Resources res = getResources();
+        for (int i = 0; i < fragments.size(); i++) {
+            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
+            Drawable drawable = res.getDrawable(drawableId);
+            dots.get(i).setImageDrawable(drawable);
+        }
+        onDotSelected(index);
+    }
 
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
@@ -202,6 +211,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     public abstract void init(@Nullable Bundle savedInstanceState);
 
     public abstract void onDonePressed();
+    
+    public void onDotSelected(int index) {}
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kevent) {
