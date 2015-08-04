@@ -43,6 +43,7 @@
                     android:layout_marginLeft="8dp"
                     android:id="@+id/skip"
                     style="?attr/borderlessButtonStyle"
+                    android:background="@null"
                     android:textColor="#ffffff"
                     android:text="@string/skip_button" />
 
@@ -54,11 +55,13 @@
                     android:layout_gravity="right"
                     android:minWidth="100dp"
                     android:layout_marginRight="8dp"
+                    android:background="@null"
                     android:src="@drawable/ic_navigate_next_white_24dp" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
+                    android:background="@null"
                     style="?attr/borderlessButtonStyle"
                     android:visibility="gone"
                     android:id="@+id/done"
