@@ -1,5 +1,7 @@
 package com.github.paolorotolo.appintro;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -22,6 +24,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private PagerAdapter mPagerAdapter;
     private ViewPager pager;
     private List<Fragment> fragments = new Vector<>();
+    private List<ImageView> dots;
     private int slidesNumber;
     private Vibrator mVibrator;
     private IndicatorController mController;
