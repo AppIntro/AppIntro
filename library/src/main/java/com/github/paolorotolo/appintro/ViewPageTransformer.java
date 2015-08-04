@@ -4,12 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.nineoldandroids.view.ViewHelper;
-
-/**
- * Created by rohit on 22/7/15.
- */
-class ViewPagerTransformer implements ViewPager.PageTransformer {
+class ViewPageTransformer implements ViewPager.PageTransformer {
 
     static enum TransformType {
         FLOW,
@@ -21,7 +16,7 @@ class ViewPagerTransformer implements ViewPager.PageTransformer {
 
     private final TransformType mTransformType;
 
-    ViewPagerTransformer(TransformType transformType) {
+    ViewPageTransformer(TransformType transformType) {
         mTransformType = transformType;
     }
 
@@ -95,14 +90,14 @@ class ViewPagerTransformer implements ViewPager.PageTransformer {
                 break;
             case FADE:
                 if (position <= -1.0F || position >= 1.0F) {
-                    ViewHelper.setAlpha(page, 0.0F);
+                    page.setAlpha(0.0F);
                     page.setClickable(false);
                 } else if (position == 0.0F) {
-                    ViewHelper.setAlpha(page, 1.0F);
+                    page.setAlpha(1.0F);
                     page.setClickable(true);
                 } else {
                     // position is between -1.0F & 0.0F OR 0.0F & 1.0F
-                    ViewHelper.setAlpha(page, 1.0F - Math.abs(position));
+                    page.setAlpha(1.0F - Math.abs(position));
                 }
 
 

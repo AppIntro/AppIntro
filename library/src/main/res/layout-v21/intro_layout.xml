@@ -42,7 +42,7 @@
                     android:minWidth="100dp"
                     android:layout_marginLeft="8dp"
                     android:id="@+id/skip"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:textColor="#ffffff"
                     android:text="@string/skip_button" />
@@ -50,7 +50,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:id="@+id/next"
                     android:layout_gravity="right"
@@ -61,7 +61,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="?attr/borderlessButtonStyle"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:visibility="gone"
                     android:id="@+id/done"

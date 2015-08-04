@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.*;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -221,19 +220,19 @@ public abstract class AppIntro extends AppCompatActivity {
     }
 
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.FADE));
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FADE));
     }
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.ZOOM));
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
     }
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.FLOW));
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
     }
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.SLIDE_OVER));
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
     }
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.DEPTH));
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
     }
 
 
