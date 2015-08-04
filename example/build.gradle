@@ -8,8 +8,8 @@ android {
         applicationId "paolorotolo.github.com.appintroexample"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 3
-        versionName "1.2"
+        versionCode 4
+        versionName "1.2.1"
     }
     buildTypes {
         release {
