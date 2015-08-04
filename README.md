@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:3.1.0'
+  compile 'com.github.paolorotolo:appintro:3.2.0'
 }
 ```
 
@@ -105,10 +105,21 @@ addSlide(AppIntroFragment.newInstance(title, description, image, background_colo
 ```
 
 ### Animations
-AppIntro comes with a Fade animation, that you can activate with:
+AppIntro comes with some pager animations.
+Choose the one you like and then active it with:
+
 ```java
 // Put this method in init()
 setFadeAnimation();
+```
+
+Available animations:
+```java
+    setFadeAnimation()
+    setZoomAnimation()
+    setFlowAnimation()
+    setSlideOverAnimation()
+    setDepthAnimation()
 ```
 
 If you want to create nice parallax effect or your custom animation, create your own **PageTransformer** and call:
@@ -119,6 +130,20 @@ setCustomTransformer(transformer);
 ```
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
+
+### Android M ready
+Android M introduced some exiting updates about permissions. <br>
+Let's say your Slide A talks about using location. As you go to Slide B, the app can actually requests location permission.
+
+How can you do it? Simple, try this method:
+
+```java
+onDotSelected(index) {
+  if (index == 1) {
+    // Code to ask permission here
+  }
+}
+```
 
 ## Example
 See example code here on Github. You can also see it live downloading [this app from Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
