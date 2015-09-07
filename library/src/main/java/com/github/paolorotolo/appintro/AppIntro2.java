@@ -218,7 +218,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kevent) {
-        if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A || KeyEvent.KEYCODE_DPAD_CENTER) {
+        if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A || code == KeyEvent.KEYCODE_DPAD_CENTER) {
             ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
             if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
                 onDonePressed();
