@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -193,6 +194,23 @@ public abstract class AppIntro extends AppCompatActivity {
     public void setDoneText(@Nullable final String text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
+    }
+
+
+    public void setColorDoneText(@ColorInt final int colorDoneText) {
+        TextView doneText = (TextView) findViewById(R.id.done);
+        doneText.setTextColor(colorDoneText);
+    }
+
+    public void setColorSkipButton(@ColorInt final int colorSkipButton) {
+        TextView skip = (TextView) findViewById(R.id.skip);
+        skip.setTextColor(colorSkipButton);
+    }
+
+    public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
+        final ImageView nextButton = (ImageView) findViewById(R.id.next);
+        nextButton.setImageDrawable(imageNextButton);
+
     }
 
     public void showSkipButton(boolean showButton) {
