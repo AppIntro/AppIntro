@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class DefaultIndicatorController implements IndicatorController {
+
     private Context mContext;
     private LinearLayout mDotLayout;
     private List<ImageView> mDots;

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Vector;
 
 public abstract class AppIntro2 extends AppCompatActivity {
+
     private PagerAdapter mPagerAdapter;
     private ViewPager pager;
     private List<Fragment> fragments = new Vector<>();
@@ -131,6 +132,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
         mController.initialize(slidesNumber);
     }
+
     public void selectDot(int index) {
         Resources res = getResources();
         for (int i = 0; i < fragments.size(); i++) {
@@ -174,12 +176,15 @@ public abstract class AppIntro2 extends AppCompatActivity {
     public void setZoomAnimation() {
         pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
     }
+
     public void setFlowAnimation() {
         pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
     }
+
     public void setSlideOverAnimation() {
         pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
     }
+
     public void setDepthAnimation() {
         pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
     }
@@ -213,8 +218,9 @@ public abstract class AppIntro2 extends AppCompatActivity {
     public abstract void init(@Nullable Bundle savedInstanceState);
 
     public abstract void onDonePressed();
-    
-    public void onDotSelected(int index) {}
+
+    public void onDotSelected(int index) {
+    }
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kevent) {
