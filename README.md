@@ -8,7 +8,7 @@
 </a>
 
 # AppIntro
-Android Library to make a **cool intro** for your app.
+AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
 *Watch YouTube video [here](https://www.youtube.com/watch?v=OlAugnH3jFY&feature=youtu.be).*
 
