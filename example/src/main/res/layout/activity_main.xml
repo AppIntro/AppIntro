@@ -108,5 +108,11 @@
                 android:layout_height="wrap_content"
                 android:onClick="startCustomIndicator"
                 android:text="@string/custom_indicator"/>
+        <Button
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="startCustomColorIndicator"
+                android:text="@string/custom_color_indicator"/>
     </LinearLayout>
 </ScrollView>
