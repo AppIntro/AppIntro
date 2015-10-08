@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Vector;
 
 public abstract class AppIntro extends AppCompatActivity {
+    public final static int DEFAULT_COLOR = 1;
 
     private PagerAdapter mPagerAdapter;
     private ViewPager pager;
@@ -36,6 +37,8 @@ public abstract class AppIntro extends AppCompatActivity {
     private int vibrateIntensity = 20;
     private boolean showSkip = true;
     private boolean showDone = true;
+    private int selectedIndicatorColor = DEFAULT_COLOR;
+    private int unselectedIndicatorColor = DEFAULT_COLOR;
 
     static enum TransformType {
         FLOW,
@@ -156,6 +159,10 @@ public abstract class AppIntro extends AppCompatActivity {
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
+        if(selectedIndicatorColor != DEFAULT_COLOR)
+            mController.setSelectedIndicatorColor(selectedIndicatorColor);
+        if(unselectedIndicatorColor != DEFAULT_COLOR)
+            mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
     }
 
     public void selectDot(int index) {
@@ -307,5 +314,18 @@ public abstract class AppIntro extends AppCompatActivity {
             return false;
         }
         return super.onKeyDown(code, kvent);
+    }
+
+    /** Set DEFAULT_COLOR for color value if you don't want to change it */
+    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor){
+        this.selectedIndicatorColor = selectedIndicatorColor;
+        this.unselectedIndicatorColor = unselectedIndicatorColor;
+
+        if(mController != null){
+            if(selectedIndicatorColor != DEFAULT_COLOR)
+                mController.setSelectedIndicatorColor(selectedIndicatorColor);
+            if(unselectedIndicatorColor != DEFAULT_COLOR)
+                mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
+        }
     }
 }

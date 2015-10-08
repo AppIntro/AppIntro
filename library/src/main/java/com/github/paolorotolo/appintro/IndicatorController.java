@@ -39,4 +39,8 @@ public interface IndicatorController {
      * @param index The index of the page that became selected
      */
     void selectPosition(int index);
+
+    void setSelectedIndicatorColor(int color);
+
+    void setUnselectedIndicatorColor(int color);
 }

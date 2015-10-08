@@ -66,5 +66,15 @@ public class CustomIndicator extends AppIntro {
         public void selectPosition(int index) {
             mTextView.setText(String.format("%d/%d", index + 1, mSlideCount));
         }
+
+        @Override
+        public void setSelectedIndicatorColor(int color) {
+
+        }
+
+        @Override
+        public void setUnselectedIndicatorColor(int color) {
+
+        }
     }
 }

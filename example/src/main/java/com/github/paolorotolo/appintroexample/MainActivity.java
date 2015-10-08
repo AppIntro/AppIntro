@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
 
 import com.github.paolorotolo.appintroexample.animations.CustomAnimation;
 import com.github.paolorotolo.appintroexample.animations.DepthAnimation;
@@ -12,6 +11,7 @@ import com.github.paolorotolo.appintroexample.animations.FadeAnimation;
 import com.github.paolorotolo.appintroexample.animations.FlowAnimation;
 import com.github.paolorotolo.appintroexample.animations.SlideOverAnimation;
 import com.github.paolorotolo.appintroexample.animations.ZoomAnimation;
+import com.github.paolorotolo.appintroexample.indicators.CustomColorIndicator;
 import com.github.paolorotolo.appintroexample.indicators.CustomIndicator;
 import com.github.paolorotolo.appintroexample.indicators.ProgressIndicator;
 
@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startCustomIndicator(View v){
         Intent intent = new Intent(this, CustomIndicator.class);
+        startActivity(intent);
+    }
+
+    public void startCustomColorIndicator(View v){
+        Intent intent = new Intent(this, CustomColorIndicator.class);
         startActivity(intent);
     }
 }

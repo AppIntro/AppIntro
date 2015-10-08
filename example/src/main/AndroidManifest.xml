@@ -40,6 +40,7 @@
         <activity android:name=".animations.SlideOverAnimation" />
         <activity android:name=".indicators.ProgressIndicator" />
         <activity android:name=".indicators.CustomIndicator" />
+        <activity android:name=".indicators.CustomColorIndicator" />
     </application>
 
 </manifest>

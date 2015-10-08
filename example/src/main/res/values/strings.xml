@@ -9,6 +9,8 @@
     <string name="custom_animation">Set custom Transformer</string>
     <string name="progress_indicator">Set progress indicator</string>
     <string name="custom_indicator">Set custom indicator</string>
+    <string name="custom_color_indicator">Set custom color indicator</string>
+    <string name="custom_color_progress_indicator">Set custom color progress indicator</string>
     <string name="second_layout_intro">Start Intro with Layout 2</string>
     <string name="title_activity_default_intro">DefaultIntro</string>
     <string name="title_activity_custom_intro">CustomIntro</string>
