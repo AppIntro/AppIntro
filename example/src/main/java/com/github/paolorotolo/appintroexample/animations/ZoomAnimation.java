@@ -13,7 +13,7 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
 /**
  * Created by rohit on 22/7/15.
  */
-public class ZoomAnimation extends AppIntro {
+public class ZoomAnimation extends BaseAppIntro {
 
     @Override
     public void init(Bundle savedInstanceState) {

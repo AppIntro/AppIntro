@@ -16,6 +16,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.github.paolorotolo.appintro.widgets.ViewCustomPagerDuration;
+
 import java.util.List;
 import java.util.Vector;
 
@@ -23,7 +25,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
 
     private PagerAdapter mPagerAdapter;
-    private ViewPager pager;
+    private ViewCustomPagerDuration pager;
     private List<Fragment> fragments = new Vector<>();
     private List<ImageView> dots;
     private int slidesNumber;
@@ -78,7 +80,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
         });
 
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        pager = (ViewPager) findViewById(R.id.view_pager);
+        pager = (ViewCustomPagerDuration) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
         /**
@@ -120,6 +122,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
         } else {
             initController();
         }
+        pager.setScrollDurationFactor(getScrollDurationFactor());
     }
 
     public ViewPager getPager() {
@@ -255,5 +258,9 @@ public abstract class AppIntro2 extends AppCompatActivity {
             if(unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
+    }
+
+    public int getScrollDurationFactor() {
+        return 1;
     }
 }

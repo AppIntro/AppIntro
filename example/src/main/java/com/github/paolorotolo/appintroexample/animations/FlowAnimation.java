@@ -13,7 +13,7 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
 /**
  * Created by rohit on 22/7/15.
  */
-public class FlowAnimation extends AppIntro {
+public class FlowAnimation extends BaseAppIntro {
 
 
     @Override

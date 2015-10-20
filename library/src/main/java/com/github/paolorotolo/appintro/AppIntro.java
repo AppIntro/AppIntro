@@ -20,14 +20,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.widgets.ViewCustomPagerDuration;
+
 import java.util.List;
 import java.util.Vector;
 
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
+    private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
 
     private PagerAdapter mPagerAdapter;
-    private ViewPager pager;
+    private ViewCustomPagerDuration pager;
     private List<Fragment> fragments = new Vector<>();
     private List<ImageView> dots;
     private int slidesNumber;
@@ -40,7 +43,7 @@ public abstract class AppIntro extends AppCompatActivity {
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
 
-    static enum TransformType {
+    enum TransformType {
         FLOW,
         DEPTH,
         ZOOM,
@@ -93,8 +96,8 @@ public abstract class AppIntro extends AppCompatActivity {
             }
         });
 
-        mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        pager = (ViewPager) findViewById(R.id.view_pager);
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        pager = (ViewCustomPagerDuration) findViewById(R.id.view_pager);
 
         pager.setAdapter(this.mPagerAdapter);
         /**
@@ -144,6 +147,11 @@ public abstract class AppIntro extends AppCompatActivity {
         } else {
             initController();
         }
+        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+    }
+
+    protected void setScrollDurationFactor(int factor) {
+        pager.setScrollDurationFactor(factor);
     }
 
     public ViewPager getPager() {
@@ -159,9 +167,9 @@ public abstract class AppIntro extends AppCompatActivity {
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
-        if(selectedIndicatorColor != DEFAULT_COLOR)
+        if (selectedIndicatorColor != DEFAULT_COLOR)
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
-        if(unselectedIndicatorColor != DEFAULT_COLOR)
+        if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
     }
 
@@ -316,15 +324,17 @@ public abstract class AppIntro extends AppCompatActivity {
         return super.onKeyDown(code, kvent);
     }
 
-    /** Set DEFAULT_COLOR for color value if you don't want to change it */
-    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor){
+    /**
+     * Set DEFAULT_COLOR for color value if you don't want to change it
+     */
+    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor) {
         this.selectedIndicatorColor = selectedIndicatorColor;
         this.unselectedIndicatorColor = unselectedIndicatorColor;
 
-        if(mController != null){
-            if(selectedIndicatorColor != DEFAULT_COLOR)
+        if (mController != null) {
+            if (selectedIndicatorColor != DEFAULT_COLOR)
                 mController.setSelectedIndicatorColor(selectedIndicatorColor);
-            if(unselectedIndicatorColor != DEFAULT_COLOR)
+            if (unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
     }

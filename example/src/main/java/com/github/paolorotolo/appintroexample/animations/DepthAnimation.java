@@ -13,7 +13,7 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
 /**
  * Created by rohit on 22/7/15.
  */
-public class DepthAnimation extends AppIntro {
+public class DepthAnimation extends BaseAppIntro {
 
     @Override
     public void init(Bundle savedInstanceState) {

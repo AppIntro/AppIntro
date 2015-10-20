@@ -3,11 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#222222">
-        <android.support.v4.view.ViewPager
+        <com.github.paolorotolo.appintro.widgets.ViewCustomPagerDuration
             android:id="@+id/view_pager"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-        </android.support.v4.view.ViewPager>
+        </com.github.paolorotolo.appintro.widgets.ViewCustomPagerDuration>
         <LinearLayout
             android:id="@+id/bottom"
             android:background="#00000000"
