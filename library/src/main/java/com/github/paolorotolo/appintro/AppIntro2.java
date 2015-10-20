@@ -23,7 +23,8 @@ import java.util.Vector;
 
 public abstract class AppIntro2 extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
-
+    private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
+    
     private PagerAdapter mPagerAdapter;
     private ViewCustomPagerDuration pager;
     private List<Fragment> fragments = new Vector<>();
@@ -122,7 +123,11 @@ public abstract class AppIntro2 extends AppCompatActivity {
         } else {
             initController();
         }
-        pager.setScrollDurationFactor(getScrollDurationFactor());
+        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+    }
+
+    protected void setScrollDurationFactor(int factor) {
+        pager.setScrollDurationFactor(factor);
     }
 
     public ViewPager getPager() {
@@ -258,9 +263,5 @@ public abstract class AppIntro2 extends AppCompatActivity {
             if(unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
-    }
-
-    public int getScrollDurationFactor() {
-        return 1;
     }
 }
