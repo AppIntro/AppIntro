@@ -138,6 +138,8 @@ public abstract class AppIntro extends AppCompatActivity {
             }
         });
 
+        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+
         init(savedInstanceState);
         slidesNumber = fragments.size();
 
@@ -147,7 +149,6 @@ public abstract class AppIntro extends AppCompatActivity {
         } else {
             initController();
         }
-        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
     }
 
     protected void setScrollDurationFactor(int factor) {
