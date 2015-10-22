@@ -14,7 +14,7 @@ import com.github.paolorotolo.appintroexample.slides.FourthSlide;
 import com.github.paolorotolo.appintroexample.slides.SecondSlide;
 import com.github.paolorotolo.appintroexample.slides.ThirdSlide;
 
-public class FadeAnimation extends AppIntro {
+public class FadeAnimation extends BaseAppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(SampleSlide.newInstance(R.layout.intro));

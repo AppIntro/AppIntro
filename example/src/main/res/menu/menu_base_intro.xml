@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_factor1"
+        android:orderInCategory="100"
+        android:title="1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_factor2"
+        android:orderInCategory="100"
+        android:title="2"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_factor4"
+        android:orderInCategory="100"
+        android:title="4"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_factor6"
+        android:orderInCategory="100"
+        android:title="6"
+        app:showAsAction="never" />
+</menu>
