@@ -15,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Vector;
@@ -32,10 +31,11 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private IndicatorController mController;
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
-    private boolean showDone = true;
+    private boolean progressButtonEnabled = true;
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
-    private boolean showNext = true;
+    private ImageView nextButton;
+    private ImageView doneButton;
 
     static enum TransformType {
         FLOW,
@@ -55,8 +55,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout2);
 
-        final ImageView nextButton = (ImageView) findViewById(R.id.next);
-        final ImageView doneButton = (ImageView) findViewById(R.id.done);
+        nextButton = (ImageView) findViewById(R.id.next);
+        doneButton = (ImageView) findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -95,17 +95,10 @@ public abstract class AppIntro2 extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if (slidesNumber > 1)
                     mController.selectPosition(position);
-                if (position == slidesNumber - 1) {
-                    nextButton.setVisibility(View.GONE);
-                    if (showDone) {
-                        doneButton.setVisibility(View.VISIBLE);
-                    } else {
-                        doneButton.setVisibility(View.INVISIBLE);
-                    }
-                } else {
-                    doneButton.setVisibility(View.GONE);
-                    nextButton.setVisibility(View.VISIBLE);
-                }
+
+                // Whenever a new slide is swiped to, the button visibility state is reset
+                // This allows the button to be redisplayed if a user swipes to a previous slide.
+                setProgressButtonEnabled(true);
             }
 
             @Override
@@ -117,14 +110,13 @@ public abstract class AppIntro2 extends AppCompatActivity {
         slidesNumber = fragments.size();
 
         if (slidesNumber == 1) {
-            nextButton.setVisibility(View.GONE);
-            doneButton.setVisibility(View.VISIBLE);
+            setProgressButtonEnabled(progressButtonEnabled);
         } else {
             initController();
         }
     }
 
-    public ViewPager getPager() {
+    public AppIntroViewPager getPager() {
         return pager;
     }
 
@@ -136,9 +128,9 @@ public abstract class AppIntro2 extends AppCompatActivity {
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
-        if(selectedIndicatorColor != DEFAULT_COLOR)
+        if (selectedIndicatorColor != DEFAULT_COLOR)
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
-        if(unselectedIndicatorColor != DEFAULT_COLOR)
+        if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
     }
 
@@ -162,22 +154,38 @@ public abstract class AppIntro2 extends AppCompatActivity {
         return mPagerAdapter.getFragments();
     }
 
-    public void showDoneButton(boolean showDone) {
-        this.showDone = showDone;
-        if (!showDone) {
-            ImageView done = (ImageView) findViewById(R.id.done);
-            done.setVisibility(View.GONE);
+    /**
+     * Setting to to display or hide the Next or Done button. This is a one-shot setting and
+     * should be set on each slide, and will be reset to true if the user leaves a slide by swiping.
+     * Recommend using {@link #onDotSelected(int)} (when working) to set visibility upon access to page.
+     *
+     * @param progressButtonEnabled Set true to display Next/Done. False to hide.
+     */
+    public void setProgressButtonEnabled(boolean progressButtonEnabled) {
+        this.progressButtonEnabled = progressButtonEnabled;
+        if (progressButtonEnabled) {
+            if (pager.getCurrentItem() == slidesNumber - 1) {
+                setButtonState(nextButton, false);
+                setButtonState(doneButton, true);
+            } else {
+                setButtonState(nextButton, true);
+                setButtonState(doneButton, false);
+            }
+        } else {
+            setButtonState(nextButton, false);
+            setButtonState(doneButton, false);
         }
     }
 
-    public void showNextButton(boolean showNext) {
-        this.showNext = showNext;
-        ImageView next = (ImageView) findViewById(R.id.next);
+    public boolean isProgressButtonEnabled() {
+        return progressButtonEnabled;
+    }
 
-        if (!showNext) {
-            next.setVisibility(View.INVISIBLE);
+    private void setButtonState(ImageView button, boolean show) {
+        if (show) {
+            button.setVisibility(View.VISIBLE);
         } else {
-            next.setVisibility(View.VISIBLE);
+            button.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -256,34 +264,41 @@ public abstract class AppIntro2 extends AppCompatActivity {
         return super.onKeyDown(code, kevent);
     }
 
-    /** Set DEFAULT_COLOR for color value if you don't want to change it */
-    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor){
+    /**
+     * Set DEFAULT_COLOR for color value if you don't want to change it
+     */
+    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor) {
         this.selectedIndicatorColor = selectedIndicatorColor;
         this.unselectedIndicatorColor = unselectedIndicatorColor;
 
-        if(mController != null){
-            if(selectedIndicatorColor != DEFAULT_COLOR)
+        if (mController != null) {
+            if (selectedIndicatorColor != DEFAULT_COLOR)
                 mController.setSelectedIndicatorColor(selectedIndicatorColor);
-            if(unselectedIndicatorColor != DEFAULT_COLOR)
+            if (unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
-
-    public void toggleNextPageSwipeLock(View v) {
-        // call this method to disable forward swiping (this is a one shot swipe disable)
-        boolean pagingState = pager.getNextPagingEnabled();
-        pagingState = !pagingState;
-        pager.setNextPagingEnabled(pagingState);
-        showNextButton(pagingState);
-        Toast.makeText(this, "nextPagingState is: " + pagingState, Toast.LENGTH_SHORT).show();
     }
 
-    public void toggleSwipeLock(View v) {
-        // call this method to disable forward swiping (this is a one shot swipe disable)
-        boolean pagingState = pager.getPagingEnabled();
-        pagingState = !pagingState;
+    /**
+     * Setting to disable forward swiping right on current page and allow swiping left. If a swipe
+     * left occurs, the lock state is reset and swiping is re-enabled. (one shot disable) This also
+     * hides/shows the Next and Done buttons accordingly.
+     *
+     * @param pagingState Set true to disable forward swiping. False to enable.
+     */
+    public void setNextPageSwipeLock(boolean pagingState) {
+        pager.setNextPagingEnabled(pagingState);
+        setProgressButtonEnabled(pagingState);
+    }
+
+    /**
+     * Setting to disable swiping left and right on current page. This also
+     * hides/shows the Next and Done buttons accordingly.
+     *
+     * @param pagingState Set true to disable forward swiping. False to enable.
+     */
+    public void setSwipeLock(boolean pagingState) {
         pager.setPagingEnabled(pagingState);
-        showNextButton(pagingState);
-        showDoneButton(pagingState);
-        Toast.makeText(this, "pagingState is: " + pagingState, Toast.LENGTH_SHORT).show();
+        setProgressButtonEnabled(pagingState);
     }
 }

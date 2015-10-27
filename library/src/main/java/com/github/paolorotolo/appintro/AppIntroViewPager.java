@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 /**
  * Created by dluong on 10/27/2015.
  */
-class AppIntroViewPager extends ViewPager {
+public class AppIntroViewPager extends ViewPager {
 
     private boolean pagingEnabled;
     private boolean nextPagingEnabled;
@@ -26,7 +26,7 @@ class AppIntroViewPager extends ViewPager {
         if(!pagingEnabled){
             return false;
         }
-        // skip lock page logic if moved to a previous page
+        // disable lock page logic if swiped to a previous page
         if (!nextPagingEnabled && (lockPage != getCurrentItem())) {
             nextPagingEnabled = true;
         }
@@ -46,24 +46,23 @@ class AppIntroViewPager extends ViewPager {
     }
 
     // To enable/disable swipe
-    public void setNextPagingEnabled(boolean enabled) {
-        nextPagingEnabled = enabled;
+    public void setNextPagingEnabled(boolean nextPagingEnabled) {
+        this.nextPagingEnabled = nextPagingEnabled;
         if (!nextPagingEnabled) {
             lockPage = getCurrentItem();
         }
     }
 
-    public boolean getNextPagingEnabled() {
+    public boolean isNextPagingEnabled() {
         return nextPagingEnabled;
     }
 
-    // To enable/disable swipe
-    public void setPagingEnabled(boolean enabled) {
-        pagingEnabled = enabled;
+    public boolean isPagingEnabled() {
+        return pagingEnabled;
     }
 
-    public boolean getPagingEnabled() {
-        return pagingEnabled;
+    public void setPagingEnabled(boolean pagingEnabled) {
+        this.pagingEnabled = pagingEnabled;
     }
 
     // Detects the direction of swipe. Right or left.
