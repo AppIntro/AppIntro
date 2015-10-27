@@ -34,8 +34,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private boolean progressButtonEnabled = true;
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
-    private ImageView nextButton;
-    private ImageView doneButton;
+    private View nextButton;
+    private View doneButton;
 
     static enum TransformType {
         FLOW,
@@ -55,8 +55,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout2);
 
-        nextButton = (ImageView) findViewById(R.id.next);
-        doneButton = (ImageView) findViewById(R.id.done);
+        nextButton = findViewById(R.id.next);
+        doneButton = findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +181,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
         return progressButtonEnabled;
     }
 
-    private void setButtonState(ImageView button, boolean show) {
+    private void setButtonState(View button, boolean show) {
         if (show) {
             button.setVisibility(View.VISIBLE);
         } else {
