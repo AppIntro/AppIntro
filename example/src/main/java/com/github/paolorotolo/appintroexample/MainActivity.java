@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void disableSwipeIntro(View v){
+        Intent intent = new Intent(this, DisableSwipeIntro.class);
+        startActivity(intent);
+    }
+
     public void startSecondLayoutIntro(View v){
         Intent intent = new Intent(this, SecondLayoutIntro.class);
         startActivity(intent);

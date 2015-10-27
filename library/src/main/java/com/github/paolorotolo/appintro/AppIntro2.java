@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Vector;
@@ -23,7 +24,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
 
     private PagerAdapter mPagerAdapter;
-    private ViewPager pager;
+    private AppIntroViewPager pager;
     private List<Fragment> fragments = new Vector<>();
     private List<ImageView> dots;
     private int slidesNumber;
@@ -34,6 +35,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private boolean showDone = true;
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
+    private boolean showNext = true;
 
     static enum TransformType {
         FLOW,
@@ -78,7 +80,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
         });
 
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        pager = (ViewPager) findViewById(R.id.view_pager);
+        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
         /**
@@ -168,6 +170,17 @@ public abstract class AppIntro2 extends AppCompatActivity {
         }
     }
 
+    public void showNextButton(boolean showNext) {
+        this.showNext = showNext;
+        ImageView next = (ImageView) findViewById(R.id.next);
+
+        if (!showNext) {
+            next.setVisibility(View.INVISIBLE);
+        } else {
+            next.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void setVibrate(boolean vibrate) {
         this.isVibrateOn = vibrate;
     }
@@ -226,7 +239,6 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
     public abstract void onDonePressed();
 
-
     public void onDotSelected(int index) {
     }
 
@@ -255,5 +267,23 @@ public abstract class AppIntro2 extends AppCompatActivity {
             if(unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
+
+    public void toggleNextPageSwipeLock(View v) {
+        // call this method to disable forward swiping (this is a one shot swipe disable)
+        boolean pagingState = pager.getNextPagingEnabled();
+        pagingState = !pagingState;
+        pager.setNextPagingEnabled(pagingState);
+        showNextButton(pagingState);
+        Toast.makeText(this, "nextPagingState is: " + pagingState, Toast.LENGTH_SHORT).show();
+    }
+
+    public void toggleSwipeLock(View v) {
+        // call this method to disable forward swiping (this is a one shot swipe disable)
+        boolean pagingState = pager.getPagingEnabled();
+        pagingState = !pagingState;
+        pager.setPagingEnabled(pagingState);
+        showNextButton(pagingState);
+        showDoneButton(pagingState);
+        Toast.makeText(this, "pagingState is: " + pagingState, Toast.LENGTH_SHORT).show();
     }
 }

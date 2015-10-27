@@ -4,6 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="customized_intro">Start custom Intro</string>
+    <string name="disable_swipe_intro">Disable swipe Intro</string>
     <string name="default_intro">Start default Intro</string>
     <string name="fade_animation">Set Fade animation</string>
     <string name="custom_animation">Set custom Transformer</string>
@@ -15,6 +16,7 @@
     <string name="title_activity_default_intro">DefaultIntro</string>
     <string name="title_activity_custom_intro">CustomIntro</string>
     <string name="title_activity_second_intro">SecondLayoutIntro</string>
+    <string name="title_activity_disable_swipe_intro">DisableSwipeIntro</string>
     <string name="skip">Y U DO DIS TO ME?</string>
     <string name="header_animations">Animations</string>
     <string name="header_indicators">Indicators</string>
