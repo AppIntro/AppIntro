@@ -5,9 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-/**
- * Created by dluong on 10/27/2015.
- */
 public class AppIntroViewPager extends ViewPager {
 
     private boolean pagingEnabled;
