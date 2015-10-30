@@ -31,11 +31,13 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private IndicatorController mController;
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
+    private boolean baseProgressButtonEnabled = true;
     private boolean progressButtonEnabled = true;
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
     private View nextButton;
     private View doneButton;
+    private int savedCurrentItem;
 
     static enum TransformType {
         FLOW,
@@ -58,6 +60,13 @@ public abstract class AppIntro2 extends AppCompatActivity {
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
+        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
+        pager.setAdapter(this.mPagerAdapter);
+
+        if (savedInstanceState != null) {
+            restoreLockingState(savedInstanceState);
+        }
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +88,6 @@ public abstract class AppIntro2 extends AppCompatActivity {
             }
         });
 
-        mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
-        pager.setAdapter(this.mPagerAdapter);
-
         /**
          *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
          */
@@ -91,20 +96,31 @@ public abstract class AppIntro2 extends AppCompatActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
+
             @Override
             public void onPageSelected(int position) {
                 if (slidesNumber > 1)
                     mController.selectPosition(position);
 
-                // Whenever a new slide is swiped to, the button visibility state is reset
-                // This allows the button to be redisplayed if a user swipes to a previous slide.
-                setProgressButtonEnabled(true);
+                // Allow the swipe to be re-enabled if a user swipes to a previous slide. Restore
+                // state of progress button depending on global progress button setting
+                if (!pager.isNextPagingEnabled()) {
+                    if (pager.getCurrentItem() != pager.getLockPage()) {
+                        setProgressButtonEnabled(baseProgressButtonEnabled);
+                        pager.setNextPagingEnabled(true);
+                    } else {
+                        setProgressButtonEnabled(progressButtonEnabled);
+                    }
+                } else {
+                    setProgressButtonEnabled(progressButtonEnabled);
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
+        pager.setCurrentItem(savedCurrentItem); //required for triggering onPageSelected for first page
 
         init(savedInstanceState);
         slidesNumber = fragments.size();
@@ -114,6 +130,28 @@ public abstract class AppIntro2 extends AppCompatActivity {
         } else {
             initController();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("baseProgressButtonEnabled", baseProgressButtonEnabled);
+        outState.putBoolean("progressButtonEnabled", progressButtonEnabled);
+        outState.putBoolean("nextEnabled", pager.isPagingEnabled());
+        outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
+        outState.putInt("lockPage", pager.getLockPage());
+        outState.putInt("currentItem", pager.getCurrentItem());
+    }
+
+
+    protected void restoreLockingState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
+        this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
+        this.savedCurrentItem = savedInstanceState.getInt("currentItem");
+        pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
+        pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
+        pager.setLockPage(savedInstanceState.getInt("lockPage"));
     }
 
     public AppIntroViewPager getPager() {
@@ -155,11 +193,10 @@ public abstract class AppIntro2 extends AppCompatActivity {
     }
 
     /**
-     * Setting to to display or hide the Next or Done button. This is a one-shot setting and
-     * should be set on each slide, and will be reset to true if the user leaves a slide by swiping.
-     * Recommend using {@link #onDotSelected(int)} (when working) to set visibility upon access to page.
+     * Setting to to display or hide the Next or Done button. This is a static setting and
+     * button state is maintained on each slide until explicitly changed.
      *
-     * @param progressButtonEnabled Set true to display Next/Done. False to hide.
+     * @param progressButtonEnabled Set true to display. False to hide.
      */
     public void setProgressButtonEnabled(boolean progressButtonEnabled) {
         this.progressButtonEnabled = progressButtonEnabled;
@@ -287,6 +324,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
      * @param pagingState Set true to disable forward swiping. False to enable.
      */
     public void setNextPageSwipeLock(boolean pagingState) {
+        baseProgressButtonEnabled = progressButtonEnabled;
         pager.setNextPagingEnabled(pagingState);
         setProgressButtonEnabled(pagingState);
     }

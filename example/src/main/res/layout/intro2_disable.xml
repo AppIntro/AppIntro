@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50"
+    android:background="#00BCD4"
     android:layout_weight="10"
     android:id="@+id/main">
 
@@ -17,7 +17,7 @@
         android:textColor="#ffffff"
         android:paddingRight="32dp"
         android:textSize="28sp"
-        android:text="Slide 4 title"/>
+        android:text="Slide 2 title"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +62,6 @@
         android:layout_gravity="center_horizontal"
         android:onClick="toggleSkipButton"
         android:text="Toggle Skip Button" />
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="64dp" />

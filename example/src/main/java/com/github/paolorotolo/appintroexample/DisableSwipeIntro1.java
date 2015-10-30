@@ -11,10 +11,9 @@ import com.github.paolorotolo.appintro.AppIntroViewPager;
 public class DisableSwipeIntro1 extends AppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(SampleSlide.newInstance(R.layout.intro));
-        addSlide(SampleSlide.newInstance(R.layout.intro2));
+        addSlide(SampleSlide.newInstance(R.layout.intro_disable));
+        addSlide(SampleSlide.newInstance(R.layout.intro2_disable));
         addSlide(SampleSlide.newInstance(R.layout.intro3_disable));
-        addSlide(SampleSlide.newInstance(R.layout.intro4_disable));
 
     }
 
