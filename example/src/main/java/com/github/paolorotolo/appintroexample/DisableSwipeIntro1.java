@@ -3,21 +3,30 @@ package com.github.paolorotolo.appintroexample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroViewPager;
 
-public class DisableSwipeIntro extends AppIntro2 {
+public class DisableSwipeIntro1 extends AppIntro {
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(SampleSlide.newInstance(R.layout.intro_2_disable));
-        addSlide(SampleSlide.newInstance(R.layout.intro2_2_disable));
-        addSlide(SampleSlide.newInstance(R.layout.intro3_2_disable));
+        addSlide(SampleSlide.newInstance(R.layout.intro));
+        addSlide(SampleSlide.newInstance(R.layout.intro2));
+        addSlide(SampleSlide.newInstance(R.layout.intro3_disable));
+        addSlide(SampleSlide.newInstance(R.layout.intro4_disable));
+
     }
 
-    private void loadMainActivity() {
+    private void loadMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onSkipPressed() {
+        loadMainActivity();
+        Toast.makeText(getApplicationContext(),getString(R.string.skip),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -25,7 +34,7 @@ public class DisableSwipeIntro extends AppIntro2 {
         loadMainActivity();
     }
 
-    public void getStarted(View v) {
+    public void getStarted(View v){
         loadMainActivity();
     }
 
@@ -47,5 +56,11 @@ public class DisableSwipeIntro extends AppIntro2 {
         boolean progressButtonState = isProgressButtonEnabled();
         progressButtonState = !progressButtonState;
         setProgressButtonEnabled(progressButtonState);
+    }
+
+    public void toggleSkipButton(View v) {
+        boolean skipButtonState = isSkipButtonEnabled();
+        skipButtonState = !skipButtonState;
+        setSkipButtonEnabled(skipButtonState);
     }
 }

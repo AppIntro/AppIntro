@@ -32,8 +32,11 @@
         <activity android:name=".SecondLayoutIntro"
             android:label="@string/title_activity_second_intro"
             android:theme="@style/FullscreenTheme"/>
-        <activity android:name=".DisableSwipeIntro"
-            android:label="@string/title_activity_second_intro"
+        <activity android:name=".DisableSwipeIntro1"
+            android:label="@string/title_activity_default_intro_disable"
+            android:theme="@style/FullscreenTheme"/>
+        <activity android:name=".DisableSwipeIntro2"
+            android:label="@string/title_activity_second_intro_disable"
             android:theme="@style/FullscreenTheme"/>
         <activity android:name=".animations.CustomAnimation" />
         <activity android:name=".animations.FadeAnimation" />

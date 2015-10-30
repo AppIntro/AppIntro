@@ -37,8 +37,15 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="disableSwipeIntro"
-                android:text="@string/disable_swipe_intro"/>
+                android:onClick="disableSwipeIntro1"
+                android:text="@string/disable_swipe_intro_1"/>
+
+        <Button
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="disableSwipeIntro2"
+                android:text="@string/disable_swipe_intro_2"/>
         <View
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"

@@ -27,8 +27,7 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="The first button disables swiping to the next slide, but you can still swipe back to previous slides. Swiping is re-enabled after moving to a previous slide \n\n The second button disables swiping completely. \n\n The third button disables the Next/Done button, independent of locking swiping."
-        android:textColor="#ffffff"
+        android:text="@string/disable_swiping_slide_text"         android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <Button

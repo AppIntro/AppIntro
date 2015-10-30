@@ -27,7 +27,7 @@ public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
 
     private PagerAdapter mPagerAdapter;
-    private ViewPager pager;
+    private AppIntroViewPager pager;
     private List<Fragment> fragments = new Vector<>();
     private List<ImageView> dots;
     private int slidesNumber;
@@ -35,10 +35,13 @@ public abstract class AppIntro extends AppCompatActivity {
     private IndicatorController mController;
     private boolean isVibrateOn = false;
     private int vibrateIntensity = 20;
-    private boolean showSkip = true;
-    private boolean showDone = true;
+    private boolean skipButtonEnabled = true;
+    private boolean progressButtonEnabled = true;
     private int selectedIndicatorColor = DEFAULT_COLOR;
     private int unselectedIndicatorColor = DEFAULT_COLOR;
+    private View skipButton;
+    private View nextButton;
+    private View doneButton;
 
     static enum TransformType {
         FLOW,
@@ -58,9 +61,9 @@ public abstract class AppIntro extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout);
 
-        final TextView skipButton = (TextView) findViewById(R.id.skip);
-        final ImageView nextButton = (ImageView) findViewById(R.id.next);
-        final TextView doneButton = (TextView) findViewById(R.id.done);
+        skipButton = findViewById(R.id.skip);
+        nextButton = findViewById(R.id.next);
+        doneButton = findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         skipButton.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +97,7 @@ public abstract class AppIntro extends AppCompatActivity {
         });
 
         mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        pager = (ViewPager) findViewById(R.id.view_pager);
+        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
 
         pager.setAdapter(this.mPagerAdapter);
         /**
@@ -110,23 +113,12 @@ public abstract class AppIntro extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if (slidesNumber > 1)
                     mController.selectPosition(position);
-                if (position == slidesNumber - 1) {
-                    skipButton.setVisibility(View.INVISIBLE);
-                    nextButton.setVisibility(View.GONE);
-                    if (showDone) {
-                        doneButton.setVisibility(View.VISIBLE);
-                    } else {
-                        doneButton.setVisibility(View.INVISIBLE);
-                    }
-                } else {
-                    skipButton.setVisibility(View.VISIBLE);
-                    doneButton.setVisibility(View.GONE);
-                    nextButton.setVisibility(View.VISIBLE);
-                }
 
-                if (!showSkip) {
-                    skipButton.setVisibility(View.INVISIBLE);
-                }
+                // Whenever a new slide is swiped to, the button visibility state is reset
+                // This allows the button to be redisplayed if a user swipes to a previous slide.
+                setProgressButtonEnabled(true);
+
+                setButtonState(skipButton, skipButtonEnabled);
             }
 
             @Override
@@ -139,14 +131,13 @@ public abstract class AppIntro extends AppCompatActivity {
         slidesNumber = fragments.size();
 
         if (slidesNumber == 1) {
-            nextButton.setVisibility(View.GONE);
-            doneButton.setVisibility(View.VISIBLE);
+            setProgressButtonEnabled(progressButtonEnabled);
         } else {
             initController();
         }
     }
 
-    public ViewPager getPager() {
+    public AppIntroViewPager getPager() {
         return pager;
     }
 
@@ -183,6 +174,50 @@ public abstract class AppIntro extends AppCompatActivity {
     @NonNull
     public List<Fragment> getSlides() {
         return mPagerAdapter.getFragments();
+    }
+
+    /**
+     * Setting to to display or hide the Next or Done button. This is a one-shot setting and
+     * should be set on each slide, and will be reset to true if the user leaves a slide by swiping.
+     * Recommend using {@link #onDotSelected(int)} (when working) to set visibility upon access to page.
+     *
+     * @param progressButtonEnabled Set true to display Next/Done. False to hide.
+     */
+    public void setProgressButtonEnabled(boolean progressButtonEnabled) {
+        this.progressButtonEnabled = progressButtonEnabled;
+        if (progressButtonEnabled) {
+            if (pager.getCurrentItem() == slidesNumber - 1) {
+                setButtonState(nextButton, false);
+                setButtonState(doneButton, true);
+            } else {
+                setButtonState(nextButton, true);
+                setButtonState(doneButton, false);
+            }
+        } else {
+            setButtonState(nextButton, false);
+            setButtonState(doneButton, false);
+        }
+    }
+
+    public boolean isProgressButtonEnabled() {
+        return progressButtonEnabled;
+    }
+
+    public boolean isSkipButtonEnabled() {
+        return skipButtonEnabled;
+    }
+
+    public void setSkipButtonEnabled(boolean skipButtonEnabled) {
+        this.skipButtonEnabled = skipButtonEnabled;
+        setButtonState(skipButton, skipButtonEnabled);
+    }
+
+    private void setButtonState(View button, boolean show) {
+        if (show) {
+            button.setVisibility(View.VISIBLE);
+        } else {
+            button.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setBarColor(@ColorInt final int color) {
@@ -223,19 +258,8 @@ public abstract class AppIntro extends AppCompatActivity {
     }
 
     public void showSkipButton(boolean showButton) {
-        this.showSkip = showButton;
-        if (!showButton) {
-            TextView skip = (TextView) findViewById(R.id.skip);
-            skip.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void showDoneButton(boolean showDone) {
-        this.showDone = showDone;
-        if (!showDone) {
-            TextView done = (TextView) findViewById(R.id.done);
-            done.setVisibility(View.GONE);
-        }
+        this.skipButtonEnabled = showButton;
+        setButtonState(skipButton, showButton);
     }
 
     public void setVibrate(boolean vibrate) {
@@ -327,5 +351,28 @@ public abstract class AppIntro extends AppCompatActivity {
             if(unselectedIndicatorColor != DEFAULT_COLOR)
                 mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
         }
+    }
+
+    /**
+     * Setting to disable forward swiping right on current page and allow swiping left. If a swipe
+     * left occurs, the lock state is reset and swiping is re-enabled. (one shot disable) This also
+     * hides/shows the Next and Done buttons accordingly.
+     *
+     * @param pagingState Set true to disable forward swiping. False to enable.
+     */
+    public void setNextPageSwipeLock(boolean pagingState) {
+        pager.setNextPagingEnabled(pagingState);
+        setProgressButtonEnabled(pagingState);
+    }
+
+    /**
+     * Setting to disable swiping left and right on current page. This also
+     * hides/shows the Next and Done buttons accordingly.
+     *
+     * @param pagingState Set true to disable forward swiping. False to enable.
+     */
+    public void setSwipeLock(boolean pagingState) {
+        pager.setPagingEnabled(pagingState);
+        setProgressButtonEnabled(pagingState);
     }
 }

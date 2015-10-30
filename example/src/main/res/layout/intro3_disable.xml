@@ -16,7 +16,7 @@
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:text="Slide 1 title"
+        android:text="Slide 3 title"
         android:textColor="#ffffff"
         android:textSize="28sp" />
 
@@ -55,6 +55,14 @@
         android:layout_gravity="center_horizontal"
         android:onClick="toggleProgressButton"
         android:text="Toggle Progress Button" />
+
+    <Button
+        android:id="@+id/button_disable_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="toggleSkipButton"
+        android:text="Toggle Skip Button" />
 
     <TextView
         android:layout_width="fill_parent"
