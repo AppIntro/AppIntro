@@ -4,6 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="customized_intro">Start custom Intro</string>
+    <string name="disable_swipe_intro_1">Disable swipe</string>
+    <string name="disable_swipe_intro_2">Disable swipe Layout 2</string>
     <string name="default_intro">Start default Intro</string>
     <string name="fade_animation">Set Fade animation</string>
     <string name="custom_animation">Set custom Transformer</string>
@@ -15,6 +17,9 @@
     <string name="title_activity_default_intro">DefaultIntro</string>
     <string name="title_activity_custom_intro">CustomIntro</string>
     <string name="title_activity_second_intro">SecondLayoutIntro</string>
+    <string name="title_activity_default_intro_disable">DisableSwipeDefaultLayoutIntro</string>
+    <string name="title_activity_second_intro_disable">DisableSwipeSecondLayoutIntro</string>
+    <string name="title_activity_disable_swipe_intro">DisableSwipeIntro</string>
     <string name="skip">Y U DO DIS TO ME?</string>
     <string name="header_animations">Animations</string>
     <string name="header_indicators">Indicators</string>
@@ -22,4 +27,5 @@
     <string name="flow_animation">SET FLOW ANIMATION</string>
     <string name="depth_animation">SET DEPTH ANIMATION</string>
     <string name="slideover_animation">SET SLIDEOVER ANIMATION</string>
+    <string name="disable_swiping_slide_text">The first button disables swiping to the next slide, but you can still swipe back to previous slides. Swiping is re-enabled after moving to a previous slide \n\n The second button disables swiping completely. \n\n The third button disables the Next/Done button, independent of locking swiping.</string>
 </resources>
