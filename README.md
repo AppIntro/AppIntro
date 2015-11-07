@@ -163,6 +163,7 @@ See example code here on Github. You can also see it live downloading [this app 
  * [SideBar Notes](https://play.google.com/store/apps/details?id=com.app.floating.notes);
  * [Just food](https://play.google.com/store/apps/details?id=scientist.jobless.foodmana);
  * [AlarmSMS] (https://play.google.com/store/apps/details?id=com.qhutch.alarmsms);
+ * [Aware] (https://play.google.com/store/apps/details?id=com.bunemekyakilika.aware);
 
 If you are using AppIntro in your app and would like to be listed here, please let us know opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
 
