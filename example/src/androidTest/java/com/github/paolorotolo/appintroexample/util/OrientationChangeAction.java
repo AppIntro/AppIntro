@@ -64,6 +64,12 @@ public class OrientationChangeAction implements ViewAction {
         final Activity activity = (Activity) view.getContext();
         activity.setRequestedOrientation(orientation);
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Collection<Activity> resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
         if (resumedActivities.isEmpty()) {
             throw new RuntimeException("Could not change orientation");

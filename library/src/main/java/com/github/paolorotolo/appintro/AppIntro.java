@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Vector;
@@ -216,7 +217,7 @@ public abstract class AppIntro extends AppCompatActivity {
 
     /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
-     * button state is maintained on each slide until explicitly changed.
+     * button state is maintained across slides until explicitly changed.
      *
      * @param progressButtonEnabled Set true to display. False to hide.
      */
@@ -242,17 +243,6 @@ public abstract class AppIntro extends AppCompatActivity {
 
     public boolean isSkipButtonEnabled() {
         return skipButtonEnabled;
-    }
-
-    /**
-     * Setting to to display or hide the Skip button. This is a static setting and
-     * button state is maintained on each slide until explicitly changed.
-     *
-     * @param skipButtonEnabled Set true to display. False to hide.
-     */
-    public void setSkipButtonEnabled(boolean skipButtonEnabled) {
-        this.skipButtonEnabled = skipButtonEnabled;
-        setButtonState(skipButton, skipButtonEnabled);
     }
 
     private void setButtonState(View button, boolean show) {
@@ -300,9 +290,25 @@ public abstract class AppIntro extends AppCompatActivity {
 
     }
 
+    /**
+     * Setting to to display or hide the Skip button. This is a static setting and
+     * button state is maintained across slides until explicitly changed.
+     *
+     * @param showButton Set true to display. False to hide.
+     */
     public void showSkipButton(boolean showButton) {
         this.skipButtonEnabled = showButton;
         setButtonState(skipButton, showButton);
+    }
+
+    /**
+     * Shows or hides Done button, replaced with setProgressButtonEnabled
+     *
+     * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
+     */
+    @Deprecated
+    public void showDoneButton(boolean showDone) {
+        setProgressButtonEnabled(showDone);
     }
 
     public void setVibrate(boolean vibrate) {
@@ -403,22 +409,35 @@ public abstract class AppIntro extends AppCompatActivity {
      * left occurs, the lock state is reset and swiping is re-enabled. (one shot disable) This also
      * hides/shows the Next and Done buttons accordingly.
      *
-     * @param pagingState Set true to disable forward swiping. False to enable.
+     * @param lockEnable Set true to disable forward swiping. False to enable.
      */
-    public void setNextPageSwipeLock(boolean pagingState) {
-        baseProgressButtonEnabled = progressButtonEnabled;
-        pager.setNextPagingEnabled(pagingState);
-        setProgressButtonEnabled(pagingState);
+    public void setNextPageSwipeLock(boolean lockEnable) {
+        if (lockEnable) {
+            // if locking, save current progress button visibility
+            baseProgressButtonEnabled = progressButtonEnabled;
+            setProgressButtonEnabled(!lockEnable);
+        } else {
+            // if unlocking, restore original button visibility
+            setProgressButtonEnabled(baseProgressButtonEnabled);
+        }
+        pager.setNextPagingEnabled(!lockEnable);
     }
 
     /**
      * Setting to disable swiping left and right on current page. This also
      * hides/shows the Next and Done buttons accordingly.
      *
-     * @param pagingState Set true to disable forward swiping. False to enable.
+     * @param lockEnable Set true to disable forward swiping. False to enable.
      */
-    public void setSwipeLock(boolean pagingState) {
-        pager.setPagingEnabled(pagingState);
-        setProgressButtonEnabled(pagingState);
+    public void setSwipeLock(boolean lockEnable) {
+        if (lockEnable) {
+            // if locking, save current progress button visibility
+            baseProgressButtonEnabled = progressButtonEnabled;
+            setProgressButtonEnabled(!lockEnable);
+        } else {
+            // if unlocking, restore original button visibility
+            setProgressButtonEnabled(baseProgressButtonEnabled);
+        }
+        pager.setPagingEnabled(!lockEnable);
     }
 }

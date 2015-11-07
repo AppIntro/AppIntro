@@ -87,6 +87,14 @@ public class SwipeLockTest {
         checkButtonVisibilityOnPageSwipe(viewPagerResId, btnNextResId, Visibility.INVISIBLE);
         checkButtonVisibilityOnRotation(btnNextResId, Visibility.INVISIBLE);
 
+        // check that prior progress button visibility state is maintained when toggling swipe locking
+        onView(allOf(withId(R.id.button_disable_swipe), isDisplayed())).perform(click());
+        onView(allOf(withId(R.id.button_disable_swipe), isDisplayed())).perform(click());
+        checkButtonVisibility(btnNextResId, Visibility.INVISIBLE);
+        onView(allOf(withId(R.id.button_disable_next_swipe), isDisplayed())).perform(click());
+        onView(allOf(withId(R.id.button_disable_next_swipe), isDisplayed())).perform(click());
+        checkButtonVisibility(btnNextResId, Visibility.INVISIBLE);
+
         // show button
         onView(allOf(withId(R.id.button_disable_progress), isDisplayed())).perform(click());
         checkButtonVisibilityOnPageSwipe(viewPagerResId, btnNextResId, Visibility.VISIBLE);

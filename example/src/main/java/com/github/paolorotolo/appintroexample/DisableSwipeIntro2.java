@@ -32,14 +32,12 @@ public class DisableSwipeIntro2 extends AppIntro2 {
     public void toggleNextPageSwipeLock(View v) {
         AppIntroViewPager pager = getPager();
         boolean pagingState = pager.isNextPagingEnabled();
-        pagingState = !pagingState;
         setNextPageSwipeLock(pagingState);
     }
 
     public void toggleSwipeLock(View v) {
         AppIntroViewPager pager = getPager();
         boolean pagingState = pager.isPagingEnabled();
-        pagingState = !pagingState;
         setSwipeLock(pagingState);
     }
 

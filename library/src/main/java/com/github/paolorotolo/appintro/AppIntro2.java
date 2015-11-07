@@ -193,8 +193,18 @@ public abstract class AppIntro2 extends AppCompatActivity {
     }
 
     /**
+     * Shows or hides Done button, replaced with setProgressButtonEnabled
+     *
+     * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
+     */
+    @Deprecated
+    public void showDoneButton(boolean showDone) {
+        setProgressButtonEnabled(showDone);
+    }
+
+    /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
-     * button state is maintained on each slide until explicitly changed.
+     * button state is maintained across slides until explicitly changed.
      *
      * @param progressButtonEnabled Set true to display. False to hide.
      */
@@ -321,22 +331,35 @@ public abstract class AppIntro2 extends AppCompatActivity {
      * left occurs, the lock state is reset and swiping is re-enabled. (one shot disable) This also
      * hides/shows the Next and Done buttons accordingly.
      *
-     * @param pagingState Set true to disable forward swiping. False to enable.
+     * @param lockEnable Set true to disable forward swiping. False to enable.
      */
-    public void setNextPageSwipeLock(boolean pagingState) {
-        baseProgressButtonEnabled = progressButtonEnabled;
-        pager.setNextPagingEnabled(pagingState);
-        setProgressButtonEnabled(pagingState);
+    public void setNextPageSwipeLock(boolean lockEnable) {
+        if (lockEnable) {
+            // if locking, save current progress button visibility
+            baseProgressButtonEnabled = progressButtonEnabled;
+            setProgressButtonEnabled(!lockEnable);
+        } else {
+            // if unlocking, restore original button visibility
+            setProgressButtonEnabled(baseProgressButtonEnabled);
+        }
+        pager.setNextPagingEnabled(!lockEnable);
     }
 
     /**
      * Setting to disable swiping left and right on current page. This also
      * hides/shows the Next and Done buttons accordingly.
      *
-     * @param pagingState Set true to disable forward swiping. False to enable.
+     * @param lockEnable Set true to disable forward swiping. False to enable.
      */
-    public void setSwipeLock(boolean pagingState) {
-        pager.setPagingEnabled(pagingState);
-        setProgressButtonEnabled(pagingState);
+    public void setSwipeLock(boolean lockEnable) {
+        if (lockEnable) {
+            // if locking, save current progress button visibility
+            baseProgressButtonEnabled = progressButtonEnabled;
+            setProgressButtonEnabled(!lockEnable);
+        } else {
+            // if unlocking, restore original button visibility
+            setProgressButtonEnabled(baseProgressButtonEnabled);
+        }
+        pager.setPagingEnabled(!lockEnable);
     }
 }

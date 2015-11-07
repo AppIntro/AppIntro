@@ -40,14 +40,12 @@ public class DisableSwipeIntro1 extends AppIntro {
     public void toggleNextPageSwipeLock(View v) {
         AppIntroViewPager pager = getPager();
         boolean pagingState = pager.isNextPagingEnabled();
-        pagingState = !pagingState;
         setNextPageSwipeLock(pagingState);
     }
 
     public void toggleSwipeLock(View v) {
         AppIntroViewPager pager = getPager();
         boolean pagingState = pager.isPagingEnabled();
-        pagingState = !pagingState;
         setSwipeLock(pagingState);
     }
 
@@ -60,6 +58,6 @@ public class DisableSwipeIntro1 extends AppIntro {
     public void toggleSkipButton(View v) {
         boolean skipButtonState = isSkipButtonEnabled();
         skipButtonState = !skipButtonState;
-        setSkipButtonEnabled(skipButtonState);
+        showSkipButton(skipButtonState);
     }
 }
