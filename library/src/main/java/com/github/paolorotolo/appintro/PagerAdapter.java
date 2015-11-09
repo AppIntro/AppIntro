@@ -29,4 +29,6 @@ class PagerAdapter extends FragmentPagerAdapter {
     public List<Fragment> getFragments() {
         return fragments;
     }
+
+
 }

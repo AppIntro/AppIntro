@@ -1,4 +1,4 @@
-package com.github.paolorotolo.appintro.widgets;
+package com.github.paolorotolo.appintro;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
