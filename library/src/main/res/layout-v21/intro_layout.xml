@@ -7,7 +7,7 @@
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"></com.github.paolorotolo.appintro.AppIntroViewPager>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/bottom"
@@ -22,7 +22,7 @@
             android:id="@+id/bottom_separator"
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#55000000"></TextView>
+            android:background="#55000000" />
 
         <FrameLayout
             android:layout_width="fill_parent"

@@ -27,7 +27,6 @@ import java.util.Vector;
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
-    private boolean STATUS_BAR_VISIBLE;
 
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
@@ -63,8 +62,6 @@ public abstract class AppIntro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.intro_layout);
-
-        //Toast.makeText(getApplicationContext(), "Boolean 2: " + STATUS_BAR_VISIBLE, Toast.LENGTH_LONG).show();
 
         skipButton = findViewById(R.id.skip);
         nextButton = findViewById(R.id.next);
@@ -229,6 +226,53 @@ public abstract class AppIntro extends AppCompatActivity {
         return mPagerAdapter.getFragments();
     }
 
+    public boolean isProgressButtonEnabled() {
+        return progressButtonEnabled;
+    }
+
+    public boolean isSkipButtonEnabled() {
+        return skipButtonEnabled;
+    }
+
+    private void setButtonState(View button, boolean show) {
+        if (show) {
+            button.setVisibility(View.VISIBLE);
+        } else {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setOffScreenPageLimit(int limit) {
+        pager.setOffscreenPageLimit(limit);
+    }
+
+    public abstract void init(@Nullable Bundle savedInstanceState);
+
+    public abstract void onSkipPressed();
+
+    public abstract void onDonePressed();
+
+    public void onDotSelected(int index) {
+    }
+
+    ;
+
+    //public abstract void onDotSelected();
+
+    @Override
+    public boolean onKeyDown(int code, KeyEvent kvent) {
+        if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A || code == KeyEvent.KEYCODE_DPAD_CENTER) {
+            ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
+            if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
+                onDonePressed();
+            } else {
+                vp.setCurrentItem(vp.getCurrentItem() + 1);
+            }
+            return false;
+        }
+        return super.onKeyDown(code, kvent);
+    }
+
     /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
      * button state is maintained across slides until explicitly changed.
@@ -251,73 +295,110 @@ public abstract class AppIntro extends AppCompatActivity {
         }
     }
 
-    public boolean isProgressButtonEnabled() {
-        return progressButtonEnabled;
-    }
-
-    public boolean isSkipButtonEnabled() {
-        return skipButtonEnabled;
-    }
-
-    private void setButtonState(View button, boolean show) {
-        if (show) {
-            button.setVisibility(View.VISIBLE);
-        } else {
-            button.setVisibility(View.INVISIBLE);
-        }
-    }
-
+    /**
+     * Override viewpager bar color
+     *
+     * @param color your color resource
+     */
     public void setBarColor(@ColorInt final int color) {
         LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
     }
 
+    /**
+     * Override separator color
+     *
+     * @param color your color resource
+     */
     public void setSeparatorColor(@ColorInt final int color) {
         TextView separator = (TextView) findViewById(R.id.bottom_separator);
         separator.setBackgroundColor(color);
     }
 
+    /**
+     * Override skip text
+     *
+     * @param text your text
+     */
     public void setSkipText(@Nullable final String text) {
         TextView skipText = (TextView) findViewById(R.id.skip);
         skipText.setText(text);
     }
 
+    /**
+     * Override done text
+     *
+     * @param text your text
+     */
     public void setDoneText(@Nullable final String text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
     }
 
-
+    /**
+     * Override done button text color
+     *
+     * @param colorDoneText your color resource
+     */
     public void setColorDoneText(@ColorInt final int colorDoneText) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setTextColor(colorDoneText);
     }
 
+    /**
+     * Override skip button color
+     *
+     * @param colorSkipButton your color resource
+     */
     public void setColorSkipButton(@ColorInt final int colorSkipButton) {
         TextView skip = (TextView) findViewById(R.id.skip);
         skip.setTextColor(colorSkipButton);
     }
 
+    /**
+     * Override Next button
+     *
+     * @param imageNextButton your drawable resource
+     */
     public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
 
     }
 
+    /**
+     * Allows the user to set the nav bar color of their app intro
+     *
+     * @param Color string form of color in 3 or 6 digit hex form (#ffffff)
+     */
     public void setNavBarColor(String Color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(android.graphics.Color.parseColor(Color));
         }
     }
 
-    public void showStatusBar(boolean isVisible) {
-        this.STATUS_BAR_VISIBLE = isVisible;
+    /**
+     * Allows the user to set the nav bar color of their app intro
+     *
+     * @param color int form of color. pass your color resource to here (R.color.your_color)
+     */
+    public void setNavBarColor(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(color));
+        }
+    }
 
-        if (STATUS_BAR_VISIBLE) {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else {
+    /**
+     * Allows for setting statusbar visibility (true by default)
+     *
+     * @param isVisible put true to show status bar, and false to hide it
+     */
+    public void showStatusBar(boolean isVisible) {
+        if (!isVisible) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
     }
 
@@ -342,41 +423,22 @@ public abstract class AppIntro extends AppCompatActivity {
         setProgressButtonEnabled(showDone);
     }
 
-    public void setVibrate(boolean vibrate) {
-        this.isVibrateOn = vibrate;
+    /**
+     * sets vibration when buttons are pressed
+     *
+     * @param vibrationEnabled on/off
+     */
+    public void setVibrate(boolean vibrationEnabled) {
+        this.isVibrateOn = vibrationEnabled;
     }
 
+    /**
+     * sets vibration intensity
+     *
+     * @param intensity desired intensity
+     */
     public void setVibrateIntensity(int intensity) {
         this.vibrateIntensity = intensity;
-    }
-
-    public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FADE));
-    }
-
-    public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
-    }
-
-    public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
-    }
-
-    public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
-    }
-
-    public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
-    }
-
-
-    public void setCustomTransformer(@Nullable ViewPager.PageTransformer transformer) {
-        pager.setPageTransformer(true, transformer);
-    }
-
-    public void setOffScreenPageLimit(int limit) {
-        pager.setOffscreenPageLimit(limit);
     }
 
     /**
@@ -397,31 +459,57 @@ public abstract class AppIntro extends AppCompatActivity {
         mController = controller;
     }
 
-    public abstract void init(@Nullable Bundle savedInstanceState);
-
-    public abstract void onSkipPressed();
-
-    public abstract void onDonePressed();
-
-    public void onDotSelected(int index) {
-    }
-
-    @Override
-    public boolean onKeyDown(int code, KeyEvent kvent) {
-        if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A || code == KeyEvent.KEYCODE_DPAD_CENTER) {
-            ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
-            if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
-                onDonePressed();
-            } else {
-                vp.setCurrentItem(vp.getCurrentItem() + 1);
-            }
-            return false;
-        }
-        return super.onKeyDown(code, kvent);
+    /**
+     * Sets the animation of the intro to a fade animation
+     */
+    public void setFadeAnimation() {
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FADE));
     }
 
     /**
+     * Sets the animation of the intro to a zoom animation
+     */
+    public void setZoomAnimation() {
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
+    }
+
+    /**
+     * Sets the animation of the intro to a flow animation
+     */
+    public void setFlowAnimation() {
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
+    }
+
+    /**
+     * Sets the animation of the intro to a Slide Over animation
+     */
+    public void setSlideOverAnimation() {
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
+    }
+
+    /**
+     * Sets the animation of the intro to a Depth animation
+     */
+    public void setDepthAnimation() {
+        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
+    }
+
+    /**
+     * Overrides viewpager transformer
+     *
+     * @param transformer your custom transformer
+     */
+    public void setCustomTransformer(@Nullable ViewPager.PageTransformer transformer) {
+        pager.setPageTransformer(true, transformer);
+    }
+
+    /**
+     * Overrides color of selected and unselected indicator colors
+     *
      * Set DEFAULT_COLOR for color value if you don't want to change it
+     *
+     * @param selectedIndicatorColor your selected color
+     * @param unselectedIndicatorColor your unselected color
      */
     public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor) {
         this.selectedIndicatorColor = selectedIndicatorColor;
