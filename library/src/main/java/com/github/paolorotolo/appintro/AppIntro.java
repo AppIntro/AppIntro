@@ -27,27 +27,26 @@ import java.util.Vector;
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
-
     private boolean STATUS_BAR_VISIBLE;
 
-    private PagerAdapter mPagerAdapter;
-    private AppIntroViewPager pager;
-    private List<Fragment> fragments = new Vector<>();
-    private List<ImageView> dots;
-    private int slidesNumber;
-    private Vibrator mVibrator;
-    private IndicatorController mController;
-    private boolean isVibrateOn = false;
-    private int vibrateIntensity = 20;
-    private boolean skipButtonEnabled = true;
-    private boolean baseProgressButtonEnabled = true;
-    private boolean progressButtonEnabled = true;
-    private int selectedIndicatorColor = DEFAULT_COLOR;
-    private int unselectedIndicatorColor = DEFAULT_COLOR;
-    private View skipButton;
-    private View nextButton;
-    private View doneButton;
-    private int savedCurrentItem;
+    protected PagerAdapter mPagerAdapter;
+    protected AppIntroViewPager pager;
+    protected List<Fragment> fragments = new Vector<>();
+    protected List<ImageView> dots;
+    protected int slidesNumber;
+    protected Vibrator mVibrator;
+    protected IndicatorController mController;
+    protected boolean isVibrateOn = false;
+    protected int vibrateIntensity = 20;
+    protected boolean skipButtonEnabled = true;
+    protected boolean baseProgressButtonEnabled = true;
+    protected boolean progressButtonEnabled = true;
+    protected int selectedIndicatorColor = DEFAULT_COLOR;
+    protected int unselectedIndicatorColor = DEFAULT_COLOR;
+    protected View skipButton;
+    protected View nextButton;
+    protected View doneButton;
+    protected int savedCurrentItem;
 
     enum TransformType {
         FLOW,

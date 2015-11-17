@@ -23,25 +23,24 @@ import java.util.Vector;
 public abstract class AppIntro2 extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
-    
-    private PagerAdapter mPagerAdapter;
-    private AppIntroViewPager pager;
-    private List<Fragment> fragments = new Vector<>();
-    private List<ImageView> dots;
-    private int slidesNumber;
-    private Vibrator mVibrator;
-    private IndicatorController mController;
-    private boolean isVibrateOn = false;
-    private int vibrateIntensity = 20;
-    private boolean baseProgressButtonEnabled = true;
-    private boolean progressButtonEnabled = true;
-    private int selectedIndicatorColor = DEFAULT_COLOR;
-    private int unselectedIndicatorColor = DEFAULT_COLOR;
-    private View nextButton;
-    private View doneButton;
-    private int savedCurrentItem;
-
     private boolean STATUS_BAR_VISIBLE = false;
+
+    protected PagerAdapter mPagerAdapter;
+    protected AppIntroViewPager pager;
+    protected List<Fragment> fragments = new Vector<>();
+    protected List<ImageView> dots;
+    protected int slidesNumber;
+    protected Vibrator mVibrator;
+    protected IndicatorController mController;
+    protected boolean isVibrateOn = false;
+    protected int vibrateIntensity = 20;
+    protected boolean baseProgressButtonEnabled = true;
+    protected boolean progressButtonEnabled = true;
+    protected int selectedIndicatorColor = DEFAULT_COLOR;
+    protected int unselectedIndicatorColor = DEFAULT_COLOR;
+    protected View nextButton;
+    protected View doneButton;
+    protected int savedCurrentItem;
 
     static enum TransformType {
         FLOW,
