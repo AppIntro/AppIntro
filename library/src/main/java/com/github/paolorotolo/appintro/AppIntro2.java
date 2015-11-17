@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -40,6 +41,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     private View doneButton;
     private int savedCurrentItem;
 
+    private boolean STATUS_BAR_VISIBLE = false;
+
     static enum TransformType {
         FLOW,
         DEPTH,
@@ -52,9 +55,6 @@ public abstract class AppIntro2 extends AppCompatActivity {
     final protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout2);
 
         nextButton = findViewById(R.id.next);
@@ -244,6 +244,23 @@ public abstract class AppIntro2 extends AppCompatActivity {
             button.setVisibility(View.VISIBLE);
         } else {
             button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setNavBarColor(String Color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(android.graphics.Color.parseColor(Color));
+        }
+    }
+
+    public void showStatusBar(boolean isVisible) {
+        this.STATUS_BAR_VISIBLE = isVisible;
+
+        if (STATUS_BAR_VISIBLE) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
     }
 

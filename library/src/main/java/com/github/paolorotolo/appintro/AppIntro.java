@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.ColorInt;
@@ -26,6 +27,8 @@ import java.util.Vector;
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
+
+    private boolean STATUS_BAR_VISIBLE;
 
     private PagerAdapter mPagerAdapter;
     private AppIntroViewPager pager;
@@ -60,9 +63,9 @@ public abstract class AppIntro extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.intro_layout);
+
+        //Toast.makeText(getApplicationContext(), "Boolean 2: " + STATUS_BAR_VISIBLE, Toast.LENGTH_LONG).show();
 
         skipButton = findViewById(R.id.skip);
         nextButton = findViewById(R.id.next);
@@ -300,6 +303,23 @@ public abstract class AppIntro extends AppCompatActivity {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
 
+    }
+
+    public void setNavBarColor(String Color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(android.graphics.Color.parseColor(Color));
+        }
+    }
+
+    public void showStatusBar(boolean isVisible) {
+        this.STATUS_BAR_VISIBLE = isVisible;
+
+        if (STATUS_BAR_VISIBLE) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
     }
 
     /**
