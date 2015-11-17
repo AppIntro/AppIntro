@@ -13,7 +13,7 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
 /**
  * Created by rohit on 22/7/15.
  */
-public class SlideOverAnimation extends AppIntro {
+public class SlideOverAnimation extends BaseAppIntro {
 
     @Override
     public void init(Bundle savedInstanceState) {

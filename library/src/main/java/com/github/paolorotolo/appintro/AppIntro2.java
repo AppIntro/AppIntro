@@ -21,7 +21,8 @@ import java.util.Vector;
 
 public abstract class AppIntro2 extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
-
+    private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
+    
     private PagerAdapter mPagerAdapter;
     private AppIntroViewPager pager;
     private List<Fragment> fragments = new Vector<>();
@@ -50,7 +51,6 @@ public abstract class AppIntro2 extends AppCompatActivity {
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -88,6 +88,10 @@ public abstract class AppIntro2 extends AppCompatActivity {
             }
         });
 
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
+        pager.setAdapter(mPagerAdapter);
+
         /**
          *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
          */
@@ -120,6 +124,9 @@ public abstract class AppIntro2 extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+
         pager.setCurrentItem(savedCurrentItem); //required for triggering onPageSelected for first page
 
         init(savedInstanceState);
@@ -130,6 +137,10 @@ public abstract class AppIntro2 extends AppCompatActivity {
         } else {
             initController();
         }
+    }
+
+    protected void setScrollDurationFactor(int factor) {
+        pager.setScrollDurationFactor(factor);
     }
 
     @Override

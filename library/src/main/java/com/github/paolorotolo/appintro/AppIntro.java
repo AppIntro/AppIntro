@@ -19,13 +19,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Vector;
 
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
+    private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
 
     private PagerAdapter mPagerAdapter;
     private AppIntroViewPager pager;
@@ -46,7 +46,7 @@ public abstract class AppIntro extends AppCompatActivity {
     private View doneButton;
     private int savedCurrentItem;
 
-    static enum TransformType {
+    enum TransformType {
         FLOW,
         DEPTH,
         ZOOM,
@@ -106,6 +106,11 @@ public abstract class AppIntro extends AppCompatActivity {
             }
         });
 
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
+
+        pager.setAdapter(this.mPagerAdapter);
+
         /**
          *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
          */
@@ -142,6 +147,8 @@ public abstract class AppIntro extends AppCompatActivity {
         });
         pager.setCurrentItem(savedCurrentItem); //required for triggering onPageSelected for first page
 
+        setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+
         init(savedInstanceState);
         slidesNumber = fragments.size();
 
@@ -150,6 +157,11 @@ public abstract class AppIntro extends AppCompatActivity {
         } else {
             initController();
         }
+    }
+
+
+    protected void setScrollDurationFactor(int factor) {
+        pager.setScrollDurationFactor(factor);
     }
 
     @Override
