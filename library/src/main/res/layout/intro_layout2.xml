@@ -39,7 +39,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:background="@null"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/next"
                 android:layout_gravity="right"
                 android:layout_marginRight="16dp"
@@ -48,7 +48,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:background="@null"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/done"
                 android:layout_gravity="right"
                 android:layout_marginRight="16dp"
