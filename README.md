@@ -1,8 +1,9 @@
-[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
-
 [![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#browse%7C2137414099)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
-<br><a href="https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample">
+[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
+
+<p>Sample App:</p>
+<a href="https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample">
   <img alt="Get it on Google Play"
        src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
 </a>
@@ -115,14 +116,14 @@ setFadeAnimation();
 
 Available animations:
 ```java
-    setFadeAnimation()
-    setZoomAnimation()
-    setFlowAnimation()
-    setSlideOverAnimation()
-    setDepthAnimation()
+setFadeAnimation()
+setZoomAnimation()
+setFlowAnimation()
+setSlideOverAnimation()
+setDepthAnimation()
 ```
 
-If you want to create nice parallax effect or your custom animation, create your own **PageTransformer** and call:
+If you want to create nice parallax effect or your own custom animation, create your own **PageTransformer** and call:
 
 ```java
 // Put this method in init()
@@ -135,7 +136,7 @@ Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df354
 Android M introduced some exiting updates about permissions. <br>
 Let's say your Slide A talks about using location. As you go to Slide B, the app can actually requests location permission.
 
-How can you do it? Simple, try this method:
+How can you do it? Like this:
 
 ```java
 onDotSelected(index) {
@@ -150,7 +151,23 @@ See example code here on Github. You can also see it live downloading [this app 
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300">
 
+## Real life examples
+Do you need inspiration? A lot of apps are using AppIntro out there:
+
+**Planets**
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets.png">
+
+**Hermes - Material IRC Client**
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+
 ## Apps using it
+If you are using AppIntro in your app and would like to be listed here, please let us know opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
+
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
  * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro);
  * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp);
@@ -168,19 +185,3 @@ See example code here on Github. You can also see it live downloading [this app 
  * [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote&hl=en);
  * [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette);
  * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity);
-
-If you are using AppIntro in your app and would like to be listed here, please let us know opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
-
-## Real life examples
-Do you need inspiration? A lot of apps are using AppIntro out there:
-
-**Planets**
-
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets.png">
-
-**Hermes - Material IRC Client**
-
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
