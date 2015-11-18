@@ -27,4 +27,7 @@ proguard/
 *.iml
 .idea/
 
-gradle.properties
+# Gradle prop files
+*.properties
+
+info.txt
