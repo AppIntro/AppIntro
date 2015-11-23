@@ -185,3 +185,4 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote&hl=en);
  * [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette);
  * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity);
+ * [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary);
