@@ -25,6 +25,16 @@ public class DisableSwipeIntro2 extends AppIntro2 {
         loadMainActivity();
     }
 
+    @Override
+    public void onNextPressed() {
+
+    }
+
+    @Override
+    public void onSlideChanged() {
+
+    }
+
     public void getStarted(View v) {
         loadMainActivity();
     }

@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class PermissionsIntro extends AppIntro {
+public class PermissionsIntro extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
@@ -33,12 +32,6 @@ public class PermissionsIntro extends AppIntro {
     private void loadMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onSkipPressed() {
-        loadMainActivity();
-        Toast.makeText(getApplicationContext(),getString(R.string.skip),Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.github.paolorotolo.appintro;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -10,13 +8,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -41,6 +42,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     protected View nextButton;
     protected View doneButton;
     protected int savedCurrentItem;
+    protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
+    private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     static enum TransformType {
         FLOW,
@@ -73,7 +76,28 @@ public abstract class AppIntro2 extends AppCompatActivity {
                 if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
+
+                boolean requestPermission = false;
+                int position = 0;
+
+                for (int i = 0; i < permissionsArray.size(); i++) {
+                    requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                    position = i;
+                    break;
+                }
+
+                if (requestPermission) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                        permissionsArray.remove(position);
+                    } else {
+                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        onNextPressed();
+                    }
+                } else {
+                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                    onNextPressed();
+                }
             }
         });
 
@@ -117,6 +141,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
                 } else {
                     setProgressButtonEnabled(progressButtonEnabled);
                 }
+                onSlideChanged();
             }
 
             @Override
@@ -180,16 +205,6 @@ public abstract class AppIntro2 extends AppCompatActivity {
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
         if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
-    }
-
-    public void selectDot(int index) {
-        Resources res = getResources();
-        for (int i = 0; i < fragments.size(); i++) {
-            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
-            Drawable drawable = res.getDrawable(drawableId);
-            dots.get(i).setImageDrawable(drawable);
-        }
-        onDotSelected(index);
     }
 
     public void addSlide(@NonNull Fragment fragment) {
@@ -321,8 +336,9 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
     public abstract void onDonePressed();
 
-    public void onDotSelected(int index) {
-    }
+    public abstract void onNextPressed();
+
+    public abstract void onSlideChanged();
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kevent) {
@@ -382,11 +398,37 @@ public abstract class AppIntro2 extends AppCompatActivity {
         if (lockEnable) {
             // if locking, save current progress button visibility
             baseProgressButtonEnabled = progressButtonEnabled;
-            setProgressButtonEnabled(!lockEnable);
+            //setProgressButtonEnabled(!lockEnable);
         } else {
             // if unlocking, restore original button visibility
             setProgressButtonEnabled(baseProgressButtonEnabled);
         }
         pager.setPagingEnabled(!lockEnable);
+    }
+
+    private static String TAG = "AppIntro1";
+
+    public void askForPermissions(String[] permissions, int slidesNumber) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (slidesNumber == 0) {
+                Toast.makeText(getBaseContext(), "Invalid Slide Number", Toast.LENGTH_SHORT).show();
+            } else {
+                PermissionObject permission = new PermissionObject(permissions, slidesNumber);
+                permissionsArray.add(permission);
+                setSwipeLock(true);
+            }
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
+                pager.setCurrentItem(pager.getCurrentItem() + 1);
+                break;
+            default:
+                Log.e(TAG, "Unexpected request code");
+        }
+
     }
 }

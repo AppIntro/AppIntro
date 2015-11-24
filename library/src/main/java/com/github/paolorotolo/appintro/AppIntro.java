@@ -99,13 +99,13 @@ public abstract class AppIntro extends AppCompatActivity {
                 boolean requestPermission = false;
                 int position = 0;
 
-                for (int i=0; i<permissionsArray.size(); i++){
+                for (int i = 0; i < permissionsArray.size(); i++) {
                     requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
                     position = i;
                     break;
                 }
 
-                if (requestPermission){
+                if (requestPermission) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                         permissionsArray.remove(position);
@@ -270,26 +270,6 @@ public abstract class AppIntro extends AppCompatActivity {
     public abstract void onDonePressed();
 
     public abstract void onSlideChanged();
-
-    private int currentPosition = 1;
-
-    private class PageListener extends ViewPager.SimpleOnPageChangeListener {
-        public void onPageSelected(int position) {
-            currentPosition = position + 1;
-            slideSelected();
-        }
-    }
-
-    public int slideSelected() {
-        PageListener pl = new PageListener();
-
-        ViewPager vp = (ViewPager) findViewById(R.id.view_pager);
-        vp.addOnPageChangeListener(pl);
-
-        Log.d(TAG, "Position is: " + currentPosition);
-
-        return currentPosition;
-    }
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
@@ -537,10 +517,10 @@ public abstract class AppIntro extends AppCompatActivity {
 
     /**
      * Overrides color of selected and unselected indicator colors
-     *
+     * <p/>
      * Set DEFAULT_COLOR for color value if you don't want to change it
      *
-     * @param selectedIndicatorColor your selected color
+     * @param selectedIndicatorColor   your selected color
      * @param unselectedIndicatorColor your unselected color
      */
     public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor) {
@@ -593,17 +573,6 @@ public abstract class AppIntro extends AppCompatActivity {
     }
 
     private static String TAG = "AppIntro1";
-
-    /*static private boolean needPermissions(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return activity.checkSelfPermission(Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED
-                    || activity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED;
-        } else {
-            return false;
-        }
-    }*/
 
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
