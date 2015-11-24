@@ -28,4 +28,6 @@
     <string name="depth_animation">SET DEPTH ANIMATION</string>
     <string name="slideover_animation">SET SLIDEOVER ANIMATION</string>
     <string name="disable_swiping_slide_text">The first button disables swiping to the next slide, but you can still swipe back to previous slides. Swiping is re-enabled after moving to a previous slide \n\n The second button disables swiping completely. \n\n The third button disables the Next/Done button, independent of locking swiping.</string>
+    <string name="permission_intro">ASK FOR PERMISSIONS</string>
+    <string name="title_activity_permissions_intro">Permissions Intro</string>
 </resources>

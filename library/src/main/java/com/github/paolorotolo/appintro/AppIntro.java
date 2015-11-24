@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -48,6 +49,7 @@ public abstract class AppIntro extends AppCompatActivity {
     protected View nextButton;
     protected View doneButton;
     protected int savedCurrentItem;
+    protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     enum TransformType {
@@ -94,8 +96,28 @@ public abstract class AppIntro extends AppCompatActivity {
                 if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
-                onNextPressed();
+
+                boolean requestPermission = false;
+                int position = 0;
+
+                for (int i=0; i<permissionsArray.size(); i++){
+                    requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                    position = i;
+                    break;
+                }
+
+                if (requestPermission){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                        permissionsArray.remove(position);
+                    } else {
+                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        onNextPressed();
+                    }
+                } else {
+                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                    onNextPressed();
+                }
             }
         });
 
@@ -584,9 +606,10 @@ public abstract class AppIntro extends AppCompatActivity {
         }
     }*/
 
-    public void askForPermissions(String[] permissions) {
+    public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(permissions, PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+            PermissionObject permission = new PermissionObject(permissions, slidesNumber);
+            permissionsArray.add(permission);
         }
     }
 
@@ -595,15 +618,17 @@ public abstract class AppIntro extends AppCompatActivity {
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
                 boolean hasAllPermissions = true;
-                for (int i = 0; i < grantResults.length; ++i) {
-                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                for (int grantResult : grantResults) {
+                    if (grantResult != PackageManager.PERMISSION_GRANTED) {
                         hasAllPermissions = false;
                         Toast.makeText(getBaseContext(), "Note: app may not function properly.", Toast.LENGTH_LONG).show();
+                        pager.setCurrentItem(pager.getCurrentItem() + 1);
                     }
                 }
                 if (hasAllPermissions) {
                     //finish();
                     //Toast.makeText(getBaseContext(), "Not all permissions granted.", Toast.LENGTH_SHORT).show();
+                    pager.setCurrentItem(pager.getCurrentItem() + 1);
                 } else {
                     Toast.makeText(this,
                             "Unable to get all required permissions", Toast.LENGTH_SHORT).show();
@@ -614,5 +639,6 @@ public abstract class AppIntro extends AppCompatActivity {
             default:
                 Log.e(TAG, "Unexpected request code");
         }
+
     }
 }

@@ -92,4 +92,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CustomColorIndicator.class);
         startActivity(intent);
     }
+
+    public void startPermissionsIntro(View view) {
+        Intent intent = new Intent(this, PermissionsIntro.class);
+        startActivity(intent);
+    }
 }
