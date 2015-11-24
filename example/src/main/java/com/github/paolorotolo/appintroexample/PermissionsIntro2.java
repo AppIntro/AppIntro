@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Andrew Quebe 2015 .
+ */
+
 package com.github.paolorotolo.appintroexample;
 
 import android.Manifest;
@@ -5,12 +9,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class PermissionsIntro extends AppIntro {
+public class PermissionsIntro2 extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
@@ -30,15 +33,9 @@ public class PermissionsIntro extends AppIntro {
         askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onSkipPressed() {
-        loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -55,7 +52,7 @@ public class PermissionsIntro extends AppIntro {
 
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }
