@@ -1,5 +1,6 @@
 package com.github.paolorotolo.appintroexample;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +29,30 @@ public class DefaultIntro extends AppIntro {
     }
 
     @Override
+    public void onNextPressed() {
+        String[] myFirstPerm = new String[]{
+                Manifest.permission.CAMERA
+        };
+
+        String[] mySecondPerm = new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+
+        if (slideSelected() == 3) {
+            askForPermissions(myFirstPerm);
+        } else if (slideSelected() == 4) {
+            askForPermissions(mySecondPerm);
+        }
+    }
+
+    @Override
     public void onDonePressed() {
         loadMainActivity();
+    }
+
+    @Override
+    public void onSlideChanged() {
+
     }
 
     public void getStarted(View v){

@@ -1,6 +1,6 @@
 package com.github.paolorotolo.appintro;
 
-import android.content.res.Resources;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Vector;
@@ -46,6 +48,7 @@ public abstract class AppIntro extends AppCompatActivity {
     protected View nextButton;
     protected View doneButton;
     protected int savedCurrentItem;
+    private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     enum TransformType {
         FLOW,
@@ -92,6 +95,7 @@ public abstract class AppIntro extends AppCompatActivity {
                     mVibrator.vibrate(vibrateIntensity);
                 }
                 pager.setCurrentItem(pager.getCurrentItem() + 1);
+                onNextPressed();
             }
         });
 
@@ -137,6 +141,7 @@ public abstract class AppIntro extends AppCompatActivity {
                     setProgressButtonEnabled(progressButtonEnabled);
                 }
                 setButtonState(skipButton, skipButtonEnabled);
+                onSlideChanged();
             }
 
             @Override
@@ -191,7 +196,6 @@ public abstract class AppIntro extends AppCompatActivity {
         return pager;
     }
 
-
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
@@ -204,16 +208,6 @@ public abstract class AppIntro extends AppCompatActivity {
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
         if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
-    }
-
-    public void selectDot(int index) {
-        Resources res = getResources();
-        for (int i = 0; i < fragments.size(); i++) {
-            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
-            Drawable drawable = res.getDrawable(drawableId);
-            dots.get(i).setImageDrawable(drawable);
-        }
-        onDotSelected(index);
     }
 
     public void addSlide(@NonNull Fragment fragment) {
@@ -250,14 +244,31 @@ public abstract class AppIntro extends AppCompatActivity {
 
     public abstract void onSkipPressed();
 
+    public abstract void onNextPressed();
+
     public abstract void onDonePressed();
 
-    public void onDotSelected(int index) {
+    public abstract void onSlideChanged();
+
+    private int currentPosition = 1;
+
+    private class PageListener extends ViewPager.SimpleOnPageChangeListener {
+        public void onPageSelected(int position) {
+            currentPosition = position + 1;
+            slideSelected();
+        }
     }
 
-    ;
+    public int slideSelected() {
+        PageListener pl = new PageListener();
 
-    //public abstract void onDotSelected();
+        ViewPager vp = (ViewPager) findViewById(R.id.view_pager);
+        vp.addOnPageChangeListener(pl);
+
+        Log.d(TAG, "Position is: " + currentPosition);
+
+        return currentPosition;
+    }
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
@@ -558,5 +569,50 @@ public abstract class AppIntro extends AppCompatActivity {
             setProgressButtonEnabled(baseProgressButtonEnabled);
         }
         pager.setPagingEnabled(!lockEnable);
+    }
+
+    private static String TAG = "AppIntro1";
+
+    /*static private boolean needPermissions(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return activity.checkSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED
+                    || activity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED;
+        } else {
+            return false;
+        }
+    }*/
+
+    public void askForPermissions(String[] permissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
+                boolean hasAllPermissions = true;
+                for (int i = 0; i < grantResults.length; ++i) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        hasAllPermissions = false;
+                        Toast.makeText(getBaseContext(), "Note: app may not function properly.", Toast.LENGTH_LONG).show();
+                    }
+                }
+                if (hasAllPermissions) {
+                    //finish();
+                    //Toast.makeText(getBaseContext(), "Not all permissions granted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this,
+                            "Unable to get all required permissions", Toast.LENGTH_SHORT).show();
+                    //finish();
+                    return;
+                }
+                break;
+            default:
+                Log.e(TAG, "Unexpected request code");
+        }
     }
 }

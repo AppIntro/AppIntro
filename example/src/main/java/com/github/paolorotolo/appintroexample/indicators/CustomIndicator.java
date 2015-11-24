@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.IndicatorController;
 import com.github.paolorotolo.appintroexample.MainActivity;
@@ -36,8 +37,18 @@ public class CustomIndicator extends AppIntro {
     }
 
     @Override
+    public void onNextPressed() {
+
+    }
+
+    @Override
     public void onDonePressed() {
         loadMainActivity();
+    }
+
+    @Override
+    public void onSlideChanged() {
+
     }
 
     public void getStarted(View v) {

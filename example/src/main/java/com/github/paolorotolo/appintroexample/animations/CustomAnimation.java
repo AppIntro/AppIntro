@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
-import com.github.paolorotolo.appintro.AppIntro;
+
 import com.github.paolorotolo.appintroexample.MainActivity;
 import com.github.paolorotolo.appintroexample.R;
 import com.github.paolorotolo.appintroexample.SampleSlide;
@@ -33,8 +33,18 @@ public class CustomAnimation extends BaseAppIntro {
     }
 
     @Override
+    public void onNextPressed() {
+
+    }
+
+    @Override
     public void onDonePressed() {
         loadMainActivity();
+    }
+
+    @Override
+    public void onSlideChanged() {
+
     }
 
     public void getStarted(View v){

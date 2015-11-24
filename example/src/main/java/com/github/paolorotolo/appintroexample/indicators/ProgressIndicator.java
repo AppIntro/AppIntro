@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintroexample.MainActivity;
 import com.github.paolorotolo.appintroexample.R;
@@ -32,8 +33,18 @@ public class ProgressIndicator extends AppIntro {
     }
 
     @Override
+    public void onNextPressed() {
+
+    }
+
+    @Override
     public void onDonePressed() {
         loadMainActivity();
+    }
+
+    @Override
+    public void onSlideChanged() {
+
     }
 
     public void getStarted(View v){
