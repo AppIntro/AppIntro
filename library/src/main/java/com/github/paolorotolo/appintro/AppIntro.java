@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintro;
 
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -585,7 +584,7 @@ public abstract class AppIntro extends AppCompatActivity {
         if (lockEnable) {
             // if locking, save current progress button visibility
             baseProgressButtonEnabled = progressButtonEnabled;
-            setProgressButtonEnabled(!lockEnable);
+            //setProgressButtonEnabled(!lockEnable);
         } else {
             // if unlocking, restore original button visibility
             setProgressButtonEnabled(baseProgressButtonEnabled);
@@ -608,8 +607,13 @@ public abstract class AppIntro extends AppCompatActivity {
 
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PermissionObject permission = new PermissionObject(permissions, slidesNumber);
-            permissionsArray.add(permission);
+            if (slidesNumber == 0) {
+                Toast.makeText(getBaseContext(), "Invalid Slide Number", Toast.LENGTH_SHORT).show();
+            } else {
+                PermissionObject permission = new PermissionObject(permissions, slidesNumber);
+                permissionsArray.add(permission);
+                setSwipeLock(true);
+            }
         }
     }
 
@@ -617,24 +621,7 @@ public abstract class AppIntro extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                boolean hasAllPermissions = true;
-                for (int grantResult : grantResults) {
-                    if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                        hasAllPermissions = false;
-                        Toast.makeText(getBaseContext(), "Note: app may not function properly.", Toast.LENGTH_LONG).show();
-                        pager.setCurrentItem(pager.getCurrentItem() + 1);
-                    }
-                }
-                if (hasAllPermissions) {
-                    //finish();
-                    //Toast.makeText(getBaseContext(), "Not all permissions granted.", Toast.LENGTH_SHORT).show();
-                    pager.setCurrentItem(pager.getCurrentItem() + 1);
-                } else {
-                    Toast.makeText(this,
-                            "Unable to get all required permissions", Toast.LENGTH_SHORT).show();
-                    //finish();
-                    return;
-                }
+                pager.setCurrentItem(pager.getCurrentItem() + 1);
                 break;
             default:
                 Log.e(TAG, "Unexpected request code");

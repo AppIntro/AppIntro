@@ -47,12 +47,6 @@
                 android:onClick="disableSwipeIntro2"
                 android:text="@string/disable_swipe_intro_2"/>
 
-        <Button
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="startPermissionsIntro"
-            android:text="@string/permission_intro"/>
         <View
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"
