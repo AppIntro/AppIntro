@@ -38,7 +38,8 @@ public class PermissionsIntro extends AppIntro {
     @Override
     public void onSkipPressed() {
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
