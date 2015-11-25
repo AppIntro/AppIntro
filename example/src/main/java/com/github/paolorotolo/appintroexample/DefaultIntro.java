@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintroexample;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,13 +22,14 @@ public class DefaultIntro extends AppIntro {
     }
 
     @Override
-    public void onSkipPressed() {
-        loadMainActivity();
-        Toast.makeText(getApplicationContext(),getString(R.string.skip),Toast.LENGTH_SHORT).show();
+    public void onNextPressed() {
     }
 
     @Override
-    public void onNextPressed() {
+    public void onSkipPressed() {
+        loadMainActivity();
+        Toast.makeText(getApplicationContext(),
+                getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
