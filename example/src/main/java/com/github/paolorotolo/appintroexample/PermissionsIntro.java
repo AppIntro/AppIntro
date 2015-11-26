@@ -53,7 +53,7 @@ public class PermissionsIntro extends AppIntro {
 
     @Override
     public void onSlideChanged() {
-
+        Toast.makeText(getBaseContext(), "Hi!", Toast.LENGTH_SHORT).show();
     }
 
     public void getStarted(View v){

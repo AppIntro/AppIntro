@@ -16,7 +16,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 public class PermissionsIntro2 extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start. (This is only as an example...this app doesn't utilize any of the perms.)\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
         addSlide(AppIntroFragment.newInstance("Camera", "We need to use the camera.\n", R.drawable.ic_slide2, Color.parseColor("#2196F3")));
         addSlide(AppIntroFragment.newInstance("Storage", "We need to save stuff on your device. \n", R.drawable.ic_slide3, Color.parseColor("#2196F3")));
         addSlide(AppIntroFragment.newInstance("All Set!", "Enjoy our app! \n", R.drawable.ic_slide4, Color.parseColor("#2196F3")));
