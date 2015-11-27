@@ -132,19 +132,18 @@ setCustomTransformer(transformer);
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
-### Android M ready
-Android M introduced some exiting updates about permissions. <br>
-Let's say your Slide A talks about using location. As you go to Slide B, the app can actually requests location permission.
+### Android 6.0 ready
+Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. <br>
+Let's say your Slide B talks about using the camera. As you go to Slide C, the app will request the location permission.
 
-How can you do it? Like this:
+How can you do it? Here's a simple one line solution!
 
 ```java
-onDotSelected(index) {
-  if (index == 1) {
-    // Code to ask permission here
-  }
-}
+// Put this in init()
+askForPermissions(new String[]{Manifest.permssion.CAMERA}, 2);
 ```
+
+NOTE: It is advised that you only put one permission in the String array unless you want the app to ask for multiple perms on the same slide. 
 
 ## Example
 See example code here on Github. You can also see it live downloading [this app from Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
