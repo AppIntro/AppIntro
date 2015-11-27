@@ -146,9 +146,7 @@ askForPermissions(new String[]{Manifest.permssion.CAMERA}, 2);
 NOTE: It is advised that you only put one permission in the String array unless you want the app to ask for multiple perms on the same slide. 
 
 ## Example
-See example code here on Github. You can also see it live downloading [this app from Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
-
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/example.png" width="300">
+See example code here on Github. You can also see it live. Download [this app from Google Play.](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 ## Real life examples
 Do you need inspiration? A lot of apps are using AppIntro out there:
