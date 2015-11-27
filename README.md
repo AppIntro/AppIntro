@@ -133,10 +133,9 @@ setCustomTransformer(transformer);
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 ### Android 6.0 ready
-Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. <br>
-Let's say your Slide B talks about using the camera. As you go to Slide C, the app will request the location permission.
+Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. 
 
-How can you do it? Here's a simple one line solution!
+However, AppIntro simplifies this down to one single line of code!
 
 ```java
 // Put this in init()
