@@ -140,8 +140,9 @@ However, AppIntro simplifies this down to one single line of code!
 ```java
 // Put this in init()
 askForPermissions(new String[]{Manifest.permssion.CAMERA}, 2); // OR
-askForPermissions(new String[]{Manifest.permision.CAMERA, Manifest.permission.READ_CONTACTS}, 2); 
+
 // This will ask for the camera permission AND the contacts permission on the same slide. Ensure your slide talks about both so as not to confuse the user.
+askForPermissions(new String[]{Manifest.permision.CAMERA, Manifest.permission.READ_CONTACTS}, 2); 
 ```
 
 NOTE: It is advised that you only put one permission in the String array unless you want the app to ask for multiple perms on the same slide. 
