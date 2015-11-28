@@ -133,6 +133,9 @@ setCustomTransformer(transformer);
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 ### Android 6.0 ready
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
+
 Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. 
 
 However, AppIntro simplifies this down to one single line of code!
