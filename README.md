@@ -134,8 +134,6 @@ Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df354
 
 ### Android 6.0 ready
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
-
 Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. 
 
 However, AppIntro simplifies this down to one single line of code!
@@ -150,6 +148,10 @@ askForPermissions(new String[]{Manifest.permision.CAMERA, Manifest.permission.RE
 ```
 
 NOTE: It is advised that you only put one permission in the String array unless you want the app to ask for multiple perms on the same slide. 
+
+ANOTHER NOTE: The intro does not do anything based on the users acceptance or denying of requested permissions. This is intentional and support for this will probably not become available. The reason is that an app should request permissions and, regardless of the user's input, continue flowing along. Someone suggested it would be proper for the intro to stop until permissions were granted. This is annoying and would probably result in the user uninstalling your app. If a permission is not granted, briefly alert the user and continue on. There's no need to lock up the UI simply because they don't want their location shared.
+
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
 
 ## Example
 See example code here on Github. You can also see it live. Download [this app from Google Play.](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
