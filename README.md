@@ -78,6 +78,15 @@ public class MyIntro extends AppIntro {
 
 Please, **DO NOT override onCreate**. Just use **init** instead
 
+Finally, declare the activity in your Manifest like so:
+
+``` xml
+<activity android:name="com.example.example.intro"
+    android:label="@string/app_intro" />
+```
+
+Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer below for how to launch the intro once from your main activity.
+
 ### Layout 2
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
