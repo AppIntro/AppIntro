@@ -85,7 +85,7 @@ Finally, declare the activity in your Manifest like so:
     android:label="@string/app_intro" />
 ```
 
-Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer below for how to launch the intro once from your main activity.
+Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
 
 ### Layout 2
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
