@@ -422,6 +422,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
                 pager.setCurrentItem(pager.getCurrentItem() + 1);
