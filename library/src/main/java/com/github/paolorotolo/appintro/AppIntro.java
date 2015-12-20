@@ -71,7 +71,7 @@ public abstract class AppIntro extends AppCompatActivity {
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
@@ -129,11 +129,6 @@ public abstract class AppIntro extends AppCompatActivity {
                 onDonePressed();
             }
         });
-
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
-        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
-
-        pager.setAdapter(this.mPagerAdapter);
 
         /**
          *  ViewPager.setOnPageChangeListener is now deprecated. Use addOnPageChangeListener() instead of it.
