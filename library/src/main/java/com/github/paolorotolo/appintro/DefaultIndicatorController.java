@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +41,7 @@ class DefaultIndicatorController implements IndicatorController {
 
         for (int i = 0; i < slideCount; i++) {
             ImageView dot = new ImageView(mContext);
-            dot.setImageDrawable(ResourceUtils.getDrawable(mContext, R.drawable.indicator_dot_grey));
+            dot.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.indicator_dot_grey));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -59,7 +60,7 @@ class DefaultIndicatorController implements IndicatorController {
         mCurrentposition = index;
         for (int i = 0; i < mSlideCount; i++) {
             int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
-            Drawable drawable = ResourceUtils.getDrawable(mContext, drawableId);
+            Drawable drawable = ContextCompat.getDrawable(mContext, drawableId);
             if (selectedDotColor != DEFAULT_COLOR && i == index)
                 drawable.mutate().setColorFilter(selectedDotColor, PorterDuff.Mode.SRC_IN);
             if (unselectedDotColor != DEFAULT_COLOR && i != index)
