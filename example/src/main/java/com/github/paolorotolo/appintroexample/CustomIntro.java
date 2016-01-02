@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintroexample;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,9 @@ public class CustomIntro extends AppIntro {
     public void init(Bundle savedInstanceState) {
         addSlide(AppIntroFragment.newInstance("Title here", "Description here...\nYeah, I've added this fragment programmatically",
                 R.drawable.ic_slide1, Color.parseColor("#2196F3")));
+
+        addSlide(AppIntroFragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
+            R.drawable.ic_slide1, Color.parseColor("#2196F3")));
 
         setBarColor(Color.parseColor("#3F51B5"));
         setSeparatorColor(Color.parseColor("#2196F3"));
