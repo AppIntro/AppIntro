@@ -332,7 +332,7 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param text your text
      */
-    public void setSkipText(@Nullable final String text) {
+    public void setSkipText(@Nullable final CharSequence text) {
         TextView skipText = (TextView) findViewById(R.id.skip);
         skipText.setText(text);
     }
@@ -342,7 +342,7 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param text your text
      */
-    public void setDoneText(@Nullable final String text) {
+    public void setDoneText(@Nullable final CharSequence text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
     }
