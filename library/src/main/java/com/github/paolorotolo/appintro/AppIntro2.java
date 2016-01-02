@@ -402,7 +402,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
         pager.setPagingEnabled(!lockEnable);
     }
 
-    private static String TAG = "AppIntro1";
+    private static String TAG = "AppIntro2";
 
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -19,12 +19,12 @@ public class AppIntroFragment extends Fragment {
     private static final String ARG_TITLE_COLOR = "title_color";
     private static final String ARG_DESC_COLOR = "desc_color";
 
-    public static AppIntroFragment newInstance(String title, String description, int imageDrawable, int bgColor) {
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor) {
         AppIntroFragment sampleSlide = new AppIntroFragment();
 
         Bundle args = new Bundle();
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, description);
+        args.putCharSequence(ARG_TITLE, title);
+        args.putCharSequence(ARG_DESC, description);
         args.putInt(ARG_DRAWABLE, imageDrawable);
         args.putInt(ARG_BG_COLOR, bgColor);
         sampleSlide.setArguments(args);
@@ -32,11 +32,11 @@ public class AppIntroFragment extends Fragment {
         return sampleSlide;
     }
 
-    public static AppIntroFragment newInstance(String title, String description, int imageDrawable, int bgColor, int titleColor, int descColor) {
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor, int titleColor, int descColor) {
         AppIntroFragment sampleSlide = new AppIntroFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, description);
+        args.putCharSequence(ARG_TITLE, title);
+        args.putCharSequence(ARG_DESC, description);
         args.putInt(ARG_DRAWABLE, imageDrawable);
         args.putInt(ARG_BG_COLOR, bgColor);
         args.putInt(ARG_TITLE_COLOR, titleColor);
@@ -47,7 +47,7 @@ public class AppIntroFragment extends Fragment {
     }
 
     private int drawable, bgColor, titleColor, descColor;
-    private String title, description;
+    private CharSequence title, description;
 
     public AppIntroFragment() {
     }
@@ -58,8 +58,8 @@ public class AppIntroFragment extends Fragment {
 
         if (getArguments() != null && getArguments().size() != 0) {
             drawable = getArguments().getInt(ARG_DRAWABLE);
-            title = getArguments().getString(ARG_TITLE);
-            description = getArguments().getString(ARG_DESC);
+            title = getArguments().getCharSequence(ARG_TITLE);
+            description = getArguments().getCharSequence(ARG_DESC);
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ? getArguments().getInt(ARG_TITLE_COLOR) : 0;
             descColor = getArguments().containsKey(ARG_DESC_COLOR) ? getArguments().getInt(ARG_DESC_COLOR) : 0;
