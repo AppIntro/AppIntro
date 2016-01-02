@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -133,7 +132,7 @@ public class AppIntroFragment extends Fragment {
 
         i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
 
-        i.setImageDrawable(ResourceUtils.getDrawable(getActivity(), drawable));
+        i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
         m.setBackgroundColor(bgColor);
 
         return v;
