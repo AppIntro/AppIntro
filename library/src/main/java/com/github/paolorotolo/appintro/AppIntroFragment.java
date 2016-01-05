@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.Html;
-import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 public class AppIntroFragment extends Fragment {
 
-    private static final String ARG_SPANNED = "spanned";
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESC = "desc";
     private static final String ARG_DRAWABLE = "drawable";
@@ -23,42 +20,17 @@ public class AppIntroFragment extends Fragment {
     private static final String ARG_TITLE_COLOR = "title_color";
     private static final String ARG_DESC_COLOR = "desc_color";
 
-    public static AppIntroFragment newInstance(String title, String description, int imageDrawable, int bgColor) {
-        AppIntroFragment sampleSlide = new AppIntroFragment();
-
-        Bundle args = new Bundle();
-        args.putBoolean(ARG_SPANNED, false);
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, description);
-        args.putInt(ARG_DRAWABLE, imageDrawable);
-        args.putInt(ARG_BG_COLOR, bgColor);
-        sampleSlide.setArguments(args);
-
-        return sampleSlide;
-    }
-
-    public static AppIntroFragment newInstance(String title, Spanned description, int imageDrawable, int bgColor) {
-        AppIntroFragment sampleSlide = new AppIntroFragment();
-
-        Bundle args = new Bundle();
-        args.putBoolean(ARG_SPANNED, true);
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, Html.toHtml(description));
-        args.putInt(ARG_DRAWABLE, imageDrawable);
-        args.putInt(ARG_BG_COLOR, bgColor);
-        sampleSlide.setArguments(args);
-
-        return sampleSlide;
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor) {
+        return newInstance(title, description, imageDrawable, bgColor, 0, 0);
     }
 
 
-    public static AppIntroFragment newInstance(String title, String description, int imageDrawable, int bgColor, int titleColor, int descColor) {
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor, int titleColor, int descColor) {
         AppIntroFragment sampleSlide = new AppIntroFragment();
 
         Bundle args = new Bundle();
-        args.putBoolean(ARG_SPANNED, false);
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, description);
+        args.putCharSequence(ARG_TITLE, title);
+        args.putCharSequence(ARG_DESC, description);
         args.putInt(ARG_DRAWABLE, imageDrawable);
         args.putInt(ARG_BG_COLOR, bgColor);
         args.putInt(ARG_TITLE_COLOR, titleColor);
@@ -68,25 +40,8 @@ public class AppIntroFragment extends Fragment {
         return sampleSlide;
     }
 
-    public static AppIntroFragment newInstance(String title, Spanned description, int imageDrawable, int bgColor, int titleColor, int descColor) {
-        AppIntroFragment sampleSlide = new AppIntroFragment();
-
-        Bundle args = new Bundle();
-        args.putBoolean(ARG_SPANNED, true);
-        args.putString(ARG_TITLE, title);
-        args.putString(ARG_DESC, Html.toHtml(description));
-        args.putInt(ARG_DRAWABLE, imageDrawable);
-        args.putInt(ARG_BG_COLOR, bgColor);
-        args.putInt(ARG_TITLE_COLOR, titleColor);
-        args.putInt(ARG_DESC_COLOR, descColor);
-        sampleSlide.setArguments(args);
-
-        return sampleSlide;
-    }
-
-    private boolean spanned;
     private int drawable, bgColor, titleColor, descColor;
-    private String title, description;
+    private CharSequence title, description;
 
     public AppIntroFragment() {
     }
@@ -96,10 +51,9 @@ public class AppIntroFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null && getArguments().size() != 0) {
-            spanned = getArguments().getBoolean(ARG_SPANNED);
             drawable = getArguments().getInt(ARG_DRAWABLE);
-            title = getArguments().getString(ARG_TITLE);
-            description = getArguments().getString(ARG_DESC);
+            title = getArguments().getCharSequence(ARG_TITLE);
+            description = getArguments().getCharSequence(ARG_DESC);
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ? getArguments().getInt(ARG_TITLE_COLOR) : 0;
             descColor = getArguments().containsKey(ARG_DESC_COLOR) ? getArguments().getInt(ARG_DESC_COLOR) : 0;
@@ -121,17 +75,11 @@ public class AppIntroFragment extends Fragment {
             t.setTextColor(titleColor);
         }
 
-        if (spanned) {
-            d.setText(Html.fromHtml(description));
-        } else {
-            d.setText(description);
-        }
+        d.setText(description);
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-
-        i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
-
+        
         i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
         m.setBackgroundColor(bgColor);
 

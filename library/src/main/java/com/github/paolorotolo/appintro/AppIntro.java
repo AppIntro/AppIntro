@@ -5,10 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -327,7 +329,7 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param text your text
      */
-    public void setSkipText(@Nullable final String text) {
+    public void setSkipText(@Nullable final CharSequence text) {
         TextView skipText = (TextView) findViewById(R.id.skip);
         skipText.setText(text);
     }
@@ -337,7 +339,7 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param text your text
      */
-    public void setDoneText(@Nullable final String text) {
+    public void setDoneText(@Nullable final CharSequence text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
     }
@@ -389,9 +391,9 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param color int form of color. pass your color resource to here (R.color.your_color)
      */
-    public void setNavBarColor(int color) {
+    public void setNavBarColor(@ColorRes int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(color));
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, color));
         }
     }
 
