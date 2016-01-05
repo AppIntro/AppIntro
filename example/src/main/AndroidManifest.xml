@@ -57,6 +57,9 @@
         <activity android:name=".indicators.ProgressIndicator" />
         <activity android:name=".indicators.CustomIndicator" />
         <activity android:name=".indicators.CustomColorIndicator" />
+        <activity android:name=".IntroWithBackground"
+            android:label="Intro with background"
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>
