@@ -3,6 +3,10 @@
     android:layout_width="fill_parent"
     android:background="#222222"
     android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/background"
+        android:layout_height="match_parent"/>
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="fill_parent"

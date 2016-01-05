@@ -41,6 +41,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     protected int unselectedIndicatorColor = DEFAULT_COLOR;
     protected View nextButton;
     protected View doneButton;
+    protected View customBackgroundView;
+    protected FrameLayout backgroundFrame;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
@@ -61,6 +63,7 @@ public abstract class AppIntro2 extends AppCompatActivity {
 
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
+        backgroundFrame = (FrameLayout) findViewById(R.id.background);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
@@ -271,6 +274,12 @@ public abstract class AppIntro2 extends AppCompatActivity {
         } else {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+    }
+    public void setBackgroundView(View view){
+        customBackgroundView = view;
+        if (customBackgroundView!=null){
+            backgroundFrame.addView(customBackgroundView);
         }
     }
 
