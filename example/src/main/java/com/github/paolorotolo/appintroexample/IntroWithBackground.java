@@ -1,9 +1,5 @@
 package com.github.paolorotolo.appintroexample;
 
-import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroWithBackground extends AppIntro2 {
     @Override

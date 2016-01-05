@@ -59,6 +59,7 @@
                 android:layout_height="0.5dp"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:background="#888888"/>
+
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
