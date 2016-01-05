@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DefaultIntro.class);
         startActivity(intent);
     }
+    public void customBackgroundView(View v){
+        Intent intent = new Intent(this, IntroWithBackground.class);
+        startActivity(intent);
+    }
 
     public void startCustomIntro(View v){
         Intent intent = new Intent(this, CustomIntro.class);
