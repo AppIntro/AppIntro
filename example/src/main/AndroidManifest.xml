@@ -54,6 +54,7 @@
         <activity android:name=".animations.DepthAnimation" />
         <activity android:name=".animations.FlowAnimation" />
         <activity android:name=".animations.SlideOverAnimation" />
+        <activity android:name=".animations.ColorAnimation" />
         <activity android:name=".indicators.ProgressIndicator" />
         <activity android:name=".indicators.CustomIndicator" />
         <activity android:name=".indicators.CustomColorIndicator" />

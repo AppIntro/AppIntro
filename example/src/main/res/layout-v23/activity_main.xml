@@ -86,6 +86,13 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="startColorAnimation"
+            android:text="@string/color_animation" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="startFadeAnimation"
             android:text="@string/fade_animation" />
 

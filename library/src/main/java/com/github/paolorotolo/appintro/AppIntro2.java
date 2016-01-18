@@ -1,8 +1,10 @@
 package com.github.paolorotolo.appintro;
 
+import android.animation.ArgbEvaluator;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,6 +48,8 @@ public abstract class AppIntro2 extends AppCompatActivity {
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
+    private ArrayList<Integer> transitionColors;
+    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     static enum TransformType {
         FLOW,
@@ -120,6 +124,14 @@ public abstract class AppIntro2 extends AppCompatActivity {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                if (transitionColors != null) {
+                    if(position < (pager.getAdapter().getCount() -1) && position < (transitionColors.size() - 1)) {
+                        pager.setBackgroundColor((Integer) argbEvaluator.evaluate(positionOffset, transitionColors.get(position), transitionColors.get(position + 1)));
+                    } else {
+                        pager.setBackgroundColor(transitionColors.get(transitionColors.size() - 1));
+                    }
+                }
             }
 
 
@@ -409,6 +421,15 @@ public abstract class AppIntro2 extends AppCompatActivity {
             setProgressButtonEnabled(baseProgressButtonEnabled);
         }
         pager.setPagingEnabled(!lockEnable);
+    }
+
+    /**
+     * For color transition, will be shown only if color values are properly set and
+     * Size of the color array must be equal to the number of slides added
+     * @param colors Set color values
+     * */
+    public void setAnimationColors(@ColorInt ArrayList<Integer> colors) {
+        transitionColors = colors;
     }
 
     private static String TAG = "AppIntro2";
