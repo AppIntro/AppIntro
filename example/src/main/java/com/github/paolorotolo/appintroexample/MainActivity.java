@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.github.paolorotolo.appintroexample.animations.ColorAnimation;
 import com.github.paolorotolo.appintroexample.animations.CustomAnimation;
 import com.github.paolorotolo.appintroexample.animations.DepthAnimation;
 import com.github.paolorotolo.appintroexample.animations.FadeAnimation;
@@ -104,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startPermissionsIntro2(View view) {
         Intent intent = new Intent(this, PermissionsIntro2.class);
+        startActivity(intent);
+    }
+
+    public void startColorAnimation(View view) {
+        Intent intent = new Intent(this, ColorAnimation.class);
         startActivity(intent);
     }
 }
