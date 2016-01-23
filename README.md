@@ -210,3 +210,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity);
  * [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary);
  * [Sifter: the Insta of Timehop](https://play.google.com/store/apps/details?id=sifter.social.network.archaeologist);
+ * [Ludus](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus);
+ * [Snipit](https://play.google.com/store/apps/details?id=com.om.snipit);
