@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:3.3.0'
+  compile 'com.github.paolorotolo:appintro:3.4.0'
 }
 ```
 
