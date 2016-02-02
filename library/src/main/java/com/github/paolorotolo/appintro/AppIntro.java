@@ -1,5 +1,11 @@
 package com.github.paolorotolo.appintro;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import com.github.paolorotolo.appintro.MyViewPager.MyFragment;
+import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,17 +30,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
+@TargetApi(Build.VERSION_CODES.DONUT)
 public abstract class AppIntro extends AppCompatActivity {
     public final static int DEFAULT_COLOR = 1;
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
 
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
-    protected List<Fragment> fragments = new Vector<>();
+    protected List<MyFragment> fragments = new Vector<>();
     protected List<ImageView> dots;
     protected int slidesNumber;
     protected Vibrator mVibrator;
@@ -92,7 +95,8 @@ public abstract class AppIntro extends AppCompatActivity {
         });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+            @TargetApi(23)
+			@Override
             public void onClick(@NonNull View v) {
                 if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
@@ -228,13 +232,13 @@ public abstract class AppIntro extends AppCompatActivity {
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
     }
 
-    public void addSlide(@NonNull Fragment fragment) {
+    public void addSlide(@NonNull MyFragment fragment) {
         fragments.add(fragment);
         mPagerAdapter.notifyDataSetChanged();
     }
 
     @NonNull
-    public List<Fragment> getSlides() {
+    public List<MyFragment> getSlides() {
         return mPagerAdapter.getFragments();
     }
 
@@ -380,7 +384,8 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param Color string form of color in 3 or 6 digit hex form (#ffffff)
      */
-    public void setNavBarColor(String Color) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public void setNavBarColor(String Color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(android.graphics.Color.parseColor(Color));
         }
@@ -391,7 +396,8 @@ public abstract class AppIntro extends AppCompatActivity {
      *
      * @param color int form of color. pass your color resource to here (R.color.your_color)
      */
-    public void setNavBarColor(@ColorRes int color) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public void setNavBarColor(@ColorRes int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, color));
         }
@@ -583,7 +589,8 @@ public abstract class AppIntro extends AppCompatActivity {
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+    @TargetApi(23)
+	public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
     	super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
