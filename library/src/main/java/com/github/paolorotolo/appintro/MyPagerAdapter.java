@@ -13,10 +13,9 @@ import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
 /**
  * @author sumeet.kumar
- */
+ * */
 public abstract class MyPagerAdapter extends PagerAdapter {
 
 	private final FragmentManager fManager;
@@ -45,6 +44,12 @@ public abstract class MyPagerAdapter extends PagerAdapter {
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
+		if (fragmentList.size() > position) {
+			Fragment f = fragmentList.get(position);
+			if (f != null) {
+				return f;
+			}
+		}
 
 		if (fTransaction == null) {
 			fTransaction = fManager.beginTransaction();
@@ -73,12 +78,17 @@ public abstract class MyPagerAdapter extends PagerAdapter {
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		Fragment fragment = (Fragment) object;
 
+		if (fTransaction == null) {
+			fTransaction = fManager.beginTransaction();
+		}
 		Log.v("MyPagerAdapter", "Removing item #" + position + ": f=" + object + " v=" + ((Fragment) object).getView());
 		while (State.size() <= position) {
 			State.add(null);
 		}
 		State.set(position, fManager.saveFragmentInstanceState(fragment));
 		fragmentList.set(position, null);
+
+		fTransaction.remove(fragment);
 	}
 
 	@Override
@@ -93,6 +103,7 @@ public abstract class MyPagerAdapter extends PagerAdapter {
 				fragment.setMenuVisibility(true);
 				fragment.setUserVisibleHint(true);
 			}
+			currentFragment = fragment;
 		}
 	}
 
