@@ -7,16 +7,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-class PagerAdapter extends FragmentPagerAdapter {
-    private List<Fragment> fragments;
+import com.github.paolorotolo.appintro.MyViewPager.MyFragment;
 
-    public PagerAdapter(FragmentManager fm, @NonNull List<Fragment> fragments) {
+class PagerAdapter extends MyPagerAdapter {
+    private List<MyFragment> fragments;
+
+    public PagerAdapter(FragmentManager fm, @NonNull List<MyFragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public MyFragment getItem(int position) {
         return this.fragments.get(position);
     }
 
@@ -26,7 +28,7 @@ class PagerAdapter extends FragmentPagerAdapter {
     }
 
     @NonNull
-    public List<Fragment> getFragments() {
+    public List<MyFragment> getFragments() {
         return fragments;
     }
 
