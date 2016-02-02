@@ -8,7 +8,7 @@ import android.view.animation.Interpolator;
 
 import java.lang.reflect.Field;
 
-public class AppIntroViewPager extends ViewPager {
+public class AppIntroViewPager extends MyViewPager {
 
     private boolean pagingEnabled;
     private boolean nextPagingEnabled;
