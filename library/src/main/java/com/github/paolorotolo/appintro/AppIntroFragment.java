@@ -92,11 +92,16 @@ public class AppIntroFragment extends MyFragment {
 
 	@Override
 	public void transformPage(View view, float offset) {
-		if (view != null) {
-			header.setTranslationY((float) ((1 - offset) * 0.3 * view.getWidth()) * offset);
-			image.setRotation(360 * offset);
-			desc.setTranslationY((float) ((1 - offset) * 0.2 * view.getWidth()) * offset);
-			view.setAlpha(1 - offset);
+	if (view != null) {
+			View v = ((ViewGroup) view).getChildAt(0);
+			int width = view.getWidth();
+			header.setTranslationY(offset * (width / 2));
+			image.setRotation(offset * 360);
+			image.setTranslationY(-(offset * (width / 2)));
+			if (v != null)
+				v.setRotation(offset * 360);
+			desc.setTranslationX(offset * (width / 2));
+			// desc.setTranslationX((float) ((1 - offset) * 0.5 * width));
 		}
 	}
 }
