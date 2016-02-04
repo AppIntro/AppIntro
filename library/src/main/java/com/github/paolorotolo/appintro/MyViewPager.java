@@ -10,8 +10,12 @@ import android.view.View;
  * */
 public class MyViewPager extends ViewPager {
 
+ArgbEvaluator evaluator = new ArgbEvaluator();
+
 	public MyViewPager(Context context) {
 		super(context);
+		if (evaluator == null)
+			evaluator = new ArgbEvaluator();
 	}
 
 	public MyViewPager(Context context, AttributeSet attrs) {
@@ -32,17 +36,35 @@ public class MyViewPager extends ViewPager {
 			MyPagerAdapter adapter = (MyPagerAdapter) getAdapter();
 			if (adapter != null) {
 				final MyFragment fragment = adapter.getFragment(position, i);
-				if (fragment != null)
-					fragment.transformPage(child, i == 0 ? offset : 1 - offset);
-				else fragment.transformPage(null, offsetPixels);
+				// int color = adapter.getFragment(position + 1, i).getColor();
+				if (fragment != null) {
+					Log.d("MyViewPager", "Color " + adapter.getColor(position) + ", Color2 "
+							+ adapter.getColor(position + 1) + ", p-i " + position + "-" + i);
+					fragment.transformPage(child, i == 0 ? offset : 1 - offset, offsetPixels);
+					if (child != null) {
+						child.setBackgroundColor((int) evaluator.evaluate(offset, adapter.getColor(position),
+								adapter.getColor(position + 1)));
+					}
+				}
 			}
 		}
 	}
 
 	public static abstract class MyFragment extends Fragment {
+		static int color;
 
 		// public abstract void transformFragment(View view, float offset);
-		public abstract void transformPage(View view, float offset);
+		public abstract void transformPage(View view, float offset, int pixels);
+		// public abstract void setColor(int color);
+		// public abstract int getColor();
+
+		public static void setColor(int color) {
+			MyFragment.color = color;
+		}
+
+		public int getColor() {
+			return color;
+		}
 	}
 
 	// abstract class MyPageTransformenr implements ViewPager.PageTransformer {
