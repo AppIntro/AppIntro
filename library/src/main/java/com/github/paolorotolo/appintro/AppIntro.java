@@ -38,6 +38,7 @@ public abstract class AppIntro extends AppCompatActivity {
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
     protected List<MyFragment> fragments = new Vector<>();
+    protected ArrayList<Integer> colors = new ArrayList<Integer>();
     protected List<ImageView> dots;
     protected int slidesNumber;
     protected Vibrator mVibrator;
@@ -76,7 +77,7 @@ public abstract class AppIntro extends AppCompatActivity {
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments, colors);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
@@ -236,6 +237,12 @@ public abstract class AppIntro extends AppCompatActivity {
         fragments.add(fragment);
         mPagerAdapter.notifyDataSetChanged();
     }
+    
+    public void addSlide(MyFragment fragment, @ColorRes int color) {
+		fragments.add(fragment);
+		colors.add(getResources().getColor(color));
+		mPagerAdapter.notifyDataSetChanged();
+	}
 
     @NonNull
     public List<MyFragment> getSlides() {
