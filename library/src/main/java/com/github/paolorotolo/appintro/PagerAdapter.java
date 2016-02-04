@@ -10,12 +10,14 @@ import java.util.List;
 import com.github.paolorotolo.appintro.MyViewPager.MyFragment;
 
 class PagerAdapter extends MyPagerAdapter {
-    private List<MyFragment> fragments;
+   private List<MyFragment> fragments;
+	private List<Integer> colors;
 
-    public PagerAdapter(FragmentManager fm, @NonNull List<MyFragment> fragments) {
-        super(fm);
-        this.fragments = fragments;
-    }
+	public PagerAdapter(FragmentManager fm, @NonNull List<MyFragment> fragments, ArrayList<Integer> colors) {
+		super(fm, colors);
+		this.fragments = fragments;
+		this.colors = colors;
+	}
 
     @Override
     public MyFragment getItem(int position) {
