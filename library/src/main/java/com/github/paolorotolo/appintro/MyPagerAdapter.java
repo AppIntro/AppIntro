@@ -18,15 +18,22 @@ import android.view.ViewGroup;
  * */
 public abstract class MyPagerAdapter extends PagerAdapter {
 
-	private final FragmentManager fManager;
+private final FragmentManager fManager;
 	private FragmentTransaction fTransaction = null;
 
 	private ArrayList<Fragment.SavedState> State = new ArrayList<Fragment.SavedState>();
 	private ArrayList<MyFragment> fragmentList = new ArrayList<MyFragment>();
+	private ArrayList<Integer> colors = new ArrayList<Integer>();
+
 	private Fragment currentFragment = null;
 
 	public MyPagerAdapter(FragmentManager fm) {
 		fManager = fm;
+	}
+
+	public MyPagerAdapter(FragmentManager fm, ArrayList<Integer> colors) {
+		fManager = fm;
+		this.colors = colors;
 	}
 
 	public abstract MyFragment getItem(int position);
@@ -38,8 +45,16 @@ public abstract class MyPagerAdapter extends PagerAdapter {
 		return null;
 	}
 
+	int getColor(int position) {
+		if (colors.size() > position) {
+			return colors.get(position);
+		}
+		return 0;
+	}
+
 	@Override
 	public void startUpdate(ViewGroup container) {
+
 	}
 
 	@Override
