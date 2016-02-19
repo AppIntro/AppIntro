@@ -25,11 +25,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //noinspection GradleDependency
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':library')
-
 
     // test dependencies
     androidTestCompile 'com.android.support:appcompat-v7:23.3.0'
