@@ -210,3 +210,9 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Ludus](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus);
  * [Snipit](https://play.google.com/store/apps/details?id=com.om.snipit);
  * [Service Notes](https://play.google.com/store/apps/details?id=notes.service.com.servicenotes);
+ * [Salary Barometer](https://play.google.com/store/apps/details?id=anaware.salarybarometer);
+ * [Best Business Idea](https://play.google.com/store/apps/details?id=anaware.bestidea);
+ * [Wi-Fi Password Reminder](https://play.google.com/store/apps/details?id=com.rusdelphi.wifipassword);
+ * [Safe Notes](https://play.google.com/store/apps/details?id=software.codeplus.safenotes);
+ * [Xpaper](https://play.google.com/store/apps/details?id=com.dunrite.xpaper&hl=en)
+ * 
