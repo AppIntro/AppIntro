@@ -159,7 +159,7 @@ However, AppIntro simplifies this down to one single line of code!
 
 ```java
 // Put this in init()
-askForPermissions(new String[]{Manifest.permssion.CAMERA}, 2); // OR
+askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
 
 // This will ask for the camera permission AND the contacts permission on the same slide. 
 // Ensure your slide talks about both so as not to confuse the user.
