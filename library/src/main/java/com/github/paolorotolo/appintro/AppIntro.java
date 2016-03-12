@@ -313,6 +313,17 @@ public abstract class AppIntro extends AppCompatActivity {
         LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
     }
+    
+    /**
+     * Override next button arrow color
+     * 
+     * @param color your color 
+     * 
+     */
+    public void setNextArrowColor(@ColorInt final int color) {
+        ImageButton nextButton = (ImageButton) findViewById(R.id.next);
+        nextButton.setColorFilter(color);
+    }
 
     /**
      * Override separator color
