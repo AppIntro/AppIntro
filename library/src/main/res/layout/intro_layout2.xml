@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:background="#222222"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
     <FrameLayout
         android:layout_width="match_parent"
         android:id="@+id/background"
@@ -19,7 +21,9 @@
         android:layout_height="80dp"
         android:gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false">
         <TextView
             android:layout_width="fill_parent"
             android:id="@+id/bottom_separator"
@@ -31,7 +35,9 @@
             android:background="#00000000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <FrameLayout
                 android:id="@+id/indicator_container"

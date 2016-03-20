@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#222222">
+    android:background="#222222"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
@@ -16,7 +18,9 @@
         android:layout_alignParentBottom="true"
         android:background="#00000000"
         android:gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <TextView
             android:id="@+id/bottom_separator"
@@ -27,7 +31,9 @@
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#00000000">
+            android:background="#00000000"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <FrameLayout
                 android:id="@+id/indicator_container"
