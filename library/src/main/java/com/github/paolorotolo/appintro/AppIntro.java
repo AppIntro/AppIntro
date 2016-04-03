@@ -111,8 +111,6 @@ public abstract class AppIntro extends AppCompatActivity {
                     break;
                 }
 
-                Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
-
                 if (requestPermission) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
