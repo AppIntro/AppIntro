@@ -52,6 +52,9 @@ public abstract class AppIntro extends AppCompatActivity {
     protected View doneButton;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
+
+    private int currentlySelectedItem = -1;
+
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     enum TransformType {
@@ -88,7 +91,7 @@ public abstract class AppIntro extends AppCompatActivity {
                 if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                onSkipPressed();
+                onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
             }
         });
 
@@ -129,7 +132,7 @@ public abstract class AppIntro extends AppCompatActivity {
                 if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                onDonePressed();
+                onDonePressed(mPagerAdapter.getItem(pager.getCurrentItem()));
             }
         });
 
@@ -160,7 +163,17 @@ public abstract class AppIntro extends AppCompatActivity {
                     setProgressButtonEnabled(progressButtonEnabled);
                 }
                 setButtonState(skipButton, skipButtonEnabled);
-                onSlideChanged();
+
+                if(slidesNumber > 0) {
+                    if(currentlySelectedItem == -1) {
+                        onSlideChanged(null, mPagerAdapter.getItem(position));
+                    } else
+                    {
+                        onSlideChanged(mPagerAdapter.getItem(currentlySelectedItem), mPagerAdapter.getItem(pager.getCurrentItem()));
+                    }
+                }
+
+                currentlySelectedItem = position;
             }
 
             @Override
@@ -261,20 +274,76 @@ public abstract class AppIntro extends AppCompatActivity {
 
     public abstract void init(@Nullable Bundle savedInstanceState);
 
-    public abstract void onSkipPressed();
+    /**
+     * Called when the user clicked the skip button
+     * @deprecated Override {@link #onSkipPressed(Fragment)} instead
+     */
+    public void onSkipPressed()
+    {
 
-    public abstract void onNextPressed();
+    }
 
-    public abstract void onDonePressed();
+    /**
+     * Called when the user clicked the next button which triggered a fragment change
+     * @deprecated Obsolete, use {@link #onSlideChanged(Fragment, Fragment)} instead
+     */
+    public void onNextPressed()
+    {
 
-    public abstract void onSlideChanged();
+    }
+
+    /**
+     * Called when the user clicked the done button
+     * @deprecated Override {@link #onDonePressed(Fragment)} instead
+     */
+    public void onDonePressed()
+    {
+
+    }
+
+    /**
+     * Called when the selected fragment changed
+     * @deprecated Override {@link #onSlideChanged(Fragment, Fragment)} instead
+     */
+    public void onSlideChanged()
+    {
+
+    }
+
+    /**
+     * Called when the user clicked the skip button
+     * @param currentFragment Instance of the currently displayed fragment
+     */
+    public void onSkipPressed(Fragment currentFragment)
+    {
+        onSkipPressed();
+    }
+
+    /**
+     * Called when the user clicked the done button
+     * @param currentFragment Instance of the currently displayed fragment
+     */
+    public void onDonePressed(Fragment currentFragment)
+    {
+        onDonePressed();
+    }
+
+    /**
+     * Called when the selected fragment changed
+     * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro has just started.
+     * @param newFragment Instance of the fragment which is displayed now
+     */
+    public void onSlideChanged(Fragment oldFragment, Fragment newFragment)
+    {
+        onSlideChanged();
+    }
 
     @Override
     public boolean onKeyDown(int code, KeyEvent kvent) {
         if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A || code == KeyEvent.KEYCODE_DPAD_CENTER) {
             ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
             if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
-                onDonePressed();
+                onDonePressed(fragments.get(vp.getCurrentItem()));
             } else {
                 vp.setCurrentItem(vp.getCurrentItem() + 1);
             }
@@ -314,12 +383,12 @@ public abstract class AppIntro extends AppCompatActivity {
         LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
     }
-    
+
     /**
      * Override next button arrow color
-     * 
-     * @param color your color 
-     * 
+     *
+     * @param color your color
+     *
      */
     public void setNextArrowColor(@ColorInt final int color) {
         ImageButton nextButton = (ImageButton) findViewById(R.id.next);
