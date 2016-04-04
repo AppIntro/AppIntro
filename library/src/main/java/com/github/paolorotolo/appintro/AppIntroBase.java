@@ -55,7 +55,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
 
     private int currentlySelectedItem = -1;
-    private int layoutId;
 
     enum TransformType {
         FLOW,
@@ -65,11 +64,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         FADE
     }
 
-    public AppIntroBase(int layoutId)
-    {
-        this.layoutId = layoutId;
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -77,7 +71,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(layoutId);
+        setContentView(getLayoutId());
 
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
@@ -126,6 +120,12 @@ public abstract class AppIntroBase extends AppCompatActivity {
             initController();
         }
     }
+
+    /**
+     * Gets the layout id of the layout used by the current activity
+     * @return Layout to use
+     */
+    protected abstract int getLayoutId();
 
     /**
      * Called after a new slide has been selected

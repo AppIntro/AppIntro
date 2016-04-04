@@ -21,10 +21,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     protected View skipButton;
 
-    public AppIntro() {
-        super(R.layout.intro_layout);
-    }
-
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +39,11 @@ public abstract class AppIntro extends AppIntroBase {
                 onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
             }
         });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.intro_layout;
     }
 
     @Override

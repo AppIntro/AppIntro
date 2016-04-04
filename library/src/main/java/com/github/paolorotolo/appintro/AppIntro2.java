@@ -17,14 +17,15 @@ public abstract class AppIntro2 extends AppIntroBase {
     private ArrayList<Integer> transitionColors;
     private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-    public AppIntro2() {
-        super(R.layout.intro_layout2);
-    }
-
     @Override
     final protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         backgroundFrame = (FrameLayout) findViewById(R.id.background);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.intro_layout2;
     }
 
     /**
