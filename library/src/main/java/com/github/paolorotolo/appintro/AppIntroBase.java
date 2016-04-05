@@ -43,16 +43,19 @@ public abstract class AppIntroBase extends AppCompatActivity {
     protected int slidesNumber;
     protected Vibrator mVibrator;
     protected IndicatorController mController;
-    protected boolean isVibrateOn = false;
+
     protected int vibrateIntensity = 20;
-    protected boolean baseProgressButtonEnabled = true;
-    protected boolean progressButtonEnabled = true;
     protected int selectedIndicatorColor = DEFAULT_COLOR;
     protected int unselectedIndicatorColor = DEFAULT_COLOR;
     protected View nextButton;
     protected View doneButton;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
+
+    protected boolean isVibrateOn = false;
+    protected boolean baseProgressButtonEnabled = true;
+    protected boolean progressButtonEnabled = true;
+    private boolean isGoBackLockEnabled = false;
 
     private int currentlySelectedItem = -1;
 
@@ -118,6 +121,15 @@ public abstract class AppIntroBase extends AppCompatActivity {
             setProgressButtonEnabled(progressButtonEnabled);
         } else {
             initController();
+        }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        // Do nothing if goBack lock is enabled
+        if(!isGoBackLockEnabled) {
+            super.onBackPressed();
         }
     }
 
@@ -455,6 +467,15 @@ public abstract class AppIntroBase extends AppCompatActivity {
             setProgressButtonEnabled(baseProgressButtonEnabled);
         }
         pager.setPagingEnabled(!lockEnable);
+    }
+
+    /**
+     * Enables/Disables leaving the intro via the device's software/hardware back button.
+     * Note, that does does NOT lock swiping back through the slides.
+     * @param lockEnabled Whether leaving the intro via the phone's back button is locked.
+     */
+    public void setGoBackLock(boolean lockEnabled) {
+        isGoBackLockEnabled = lockEnabled;
     }
 
     public void askForPermissions(String[] permissions, int slidesNumber) {
