@@ -39,7 +39,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
     protected List<Fragment> fragments = new Vector<>();
-    protected List<ImageView> dots;
     protected int slidesNumber;
     protected Vibrator mVibrator;
     protected IndicatorController mController;
@@ -58,14 +57,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
     private boolean isGoBackLockEnabled = false;
 
     private int currentlySelectedItem = -1;
-
-    enum TransformType {
-        FLOW,
-        DEPTH,
-        ZOOM,
-        SLIDE_OVER,
-        FADE
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
