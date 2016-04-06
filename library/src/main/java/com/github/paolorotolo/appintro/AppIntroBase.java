@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,10 +37,11 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
-    protected List<Fragment> fragments = new Vector<>();
-    protected int slidesNumber;
     protected Vibrator mVibrator;
     protected IndicatorController mController;
+
+    protected final List<Fragment> fragments = new Vector<>();
+    protected int slidesNumber;
 
     protected int vibrateIntensity = 20;
     protected int selectedIndicatorColor = DEFAULT_COLOR;
@@ -67,17 +67,14 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
         setContentView(getLayoutId());
 
+        nextButton = findViewById(R.id.next);
+        doneButton = findViewById(R.id.done);
+
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
-        if (savedInstanceState != null) {
-            restoreLockingState(savedInstanceState);
-        }
-
-        nextButton = findViewById(R.id.next);
-        doneButton = findViewById(R.id.done);
 
         doneButton.setOnClickListener(new View.OnClickListener()
         {
@@ -100,12 +97,17 @@ public abstract class AppIntroBase extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState)
+    protected void onStart()
     {
-        super.onPostCreate(savedInstanceState);
-        pager.setCurrentItem(savedCurrentItem); //required for triggering onPageSelected for first page
+        super.onStart();
 
-        init(savedInstanceState);
+        // Call deprecated init method only if no fragments have been added trough onCreate(), onPostCreate() or onStart()
+        if(fragments.size() == 0) {
+            init(null);
+        }
+
+        pager.setCurrentItem(savedCurrentItem); // required for triggering onPageSelected for first page
+
         slidesNumber = fragments.size();
 
         if (slidesNumber == 1) {
@@ -153,9 +155,11 @@ public abstract class AppIntroBase extends AppCompatActivity {
         outState.putInt("currentItem", pager.getCurrentItem());
     }
 
-
-    protected void restoreLockingState(Bundle savedInstanceState) {
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
         super.onRestoreInstanceState(savedInstanceState);
+
         this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
         this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
         this.savedCurrentItem = savedInstanceState.getInt("currentItem");
@@ -184,6 +188,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
+
         mPagerAdapter.notifyDataSetChanged();
     }
 
@@ -230,7 +235,13 @@ public abstract class AppIntroBase extends AppCompatActivity {
         pager.setOffscreenPageLimit(limit);
     }
 
-    public abstract void init(@Nullable Bundle savedInstanceState);
+    /**
+     * @deprecated Override {@link #onCreate(Bundle)} instead. Be sure calling super.onCreate() in your method.
+     * @param savedInstanceState
+     */
+    public void init(@Nullable Bundle savedInstanceState) {
+
+    }
 
     /**
      * Called when the user clicked the next button which triggered a fragment change

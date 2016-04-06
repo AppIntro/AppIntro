@@ -22,7 +22,7 @@ public abstract class AppIntro extends AppIntroBase {
     protected View skipButton;
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         skipButton = findViewById(R.id.skip);
@@ -55,14 +55,18 @@ public abstract class AppIntro extends AppIntroBase {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
         super.onSaveInstanceState(outState);
+
+        outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
     }
 
     @Override
-    protected void restoreLockingState(Bundle savedInstanceState) {
-        this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
         super.onRestoreInstanceState(savedInstanceState);
+
+
+        this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
     }
 
     public boolean isSkipButtonEnabled() {

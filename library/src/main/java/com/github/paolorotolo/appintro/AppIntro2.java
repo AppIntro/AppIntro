@@ -18,8 +18,9 @@ public abstract class AppIntro2 extends AppIntroBase {
     private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     @Override
-    final protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         backgroundFrame = (FrameLayout) findViewById(R.id.background);
     }
 
