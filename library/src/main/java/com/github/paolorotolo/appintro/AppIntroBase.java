@@ -10,12 +10,16 @@ import android.os.Vibrator;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,10 +39,14 @@ public abstract class AppIntroBase extends AppCompatActivity {
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
+    private static final String INSTANCE_DATA_IMMERSIVE_MODE_ENABLED = "com.github.paolorotolo.appintro_immersive_mode_enabled";
+    private static final String INSTANCE_DATA_IMMERSIVE_MODE_STICKY = "com.github.paolorotolo.appintro_immersive_mode_sticky";
+
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
     protected Vibrator mVibrator;
     protected IndicatorController mController;
+    private GestureDetectorCompat gestureDetector;
 
     protected final List<Fragment> fragments = new Vector<>();
     protected int slidesNumber;
@@ -55,6 +63,8 @@ public abstract class AppIntroBase extends AppCompatActivity {
     protected boolean baseProgressButtonEnabled = true;
     protected boolean progressButtonEnabled = true;
     private boolean isGoBackLockEnabled = false;
+    private boolean isImmersiveModeEnabled = false;
+    private boolean isImmersiveModeSticky = false;
 
     private int currentlySelectedItem = -1;
 
@@ -66,6 +76,8 @@ public abstract class AppIntroBase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
+
+        gestureDetector = new GestureDetectorCompat(this, new WindowGestureListener());
 
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
@@ -126,6 +138,25 @@ public abstract class AppIntroBase extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus)
+    {
+        super.onWindowFocusChanged(hasFocus);
+
+        if(hasFocus && isImmersiveModeEnabled) {
+            setImmersiveMode(true, isImmersiveModeSticky);
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event)
+    {
+        if(isImmersiveModeEnabled) {
+            gestureDetector.onTouchEvent(event);
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
     /**
      * Gets the layout id of the layout used by the current activity
      * @return Layout to use
@@ -153,6 +184,9 @@ public abstract class AppIntroBase extends AppCompatActivity {
         outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
         outState.putInt("lockPage", pager.getLockPage());
         outState.putInt("currentItem", pager.getCurrentItem());
+
+        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED, isImmersiveModeEnabled);
+        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY, isImmersiveModeSticky);
     }
 
     @Override
@@ -166,6 +200,9 @@ public abstract class AppIntroBase extends AppCompatActivity {
         pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
         pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
         pager.setLockPage(savedInstanceState.getInt("lockPage"));
+
+        isImmersiveModeEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED);
+        isImmersiveModeSticky = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY);
     }
 
     public AppIntroViewPager getPager() {
@@ -480,6 +517,56 @@ public abstract class AppIntroBase extends AppCompatActivity {
         isGoBackLockEnabled = lockEnabled;
     }
 
+    /**
+     * Specifies whether to enable the non-sticky immersive mode.
+     * This is a shorthand method for {@link #setImmersiveMode(true, false)}.
+     * If you want to enable the sticky immersive mode (transcluent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
+     * Note that immersive mode is only supported on Kitkat and newer.
+     * @param isEnabled Whether the immersive mode (non-sticky) should be enabled or not.
+     */
+    public void setImmersiveMode(boolean isEnabled) {
+        setImmersiveMode(isEnabled, false);
+    }
+
+    /**
+     * Specifies whether to enable the immersive mode.
+     * Note that immersive mode is only supported on Kitkat and newer.
+     * @param isEnabled Whether the immersive mode should be enabled or not.
+     * @param isSticky Whether to use the sticky immersive mode or not
+     */
+    public void setImmersiveMode(boolean isEnabled, boolean isSticky) {
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if(!isEnabled && isImmersiveModeEnabled) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+                isImmersiveModeEnabled = false;
+            } else if(isEnabled) {
+
+                int flags =  View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
+
+                if(isSticky) {
+                    flags |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                    isImmersiveModeSticky = true;
+                } else {
+                    flags |= View.SYSTEM_UI_FLAG_IMMERSIVE;
+                    isImmersiveModeSticky = false;
+                }
+
+                getWindow().getDecorView().setSystemUiVisibility(flags);
+
+                isImmersiveModeEnabled = true;
+            }
+        }
+    }
+
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
@@ -578,6 +665,16 @@ public abstract class AppIntroBase extends AppCompatActivity {
         @Override
         public void onPageScrollStateChanged(int state) {
 
+        }
+    }
+
+    private final class WindowGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            if(isImmersiveModeEnabled && !isImmersiveModeSticky) {
+                setImmersiveMode(true, isImmersiveModeSticky);
+            }
+            return false;
         }
     }
 }
