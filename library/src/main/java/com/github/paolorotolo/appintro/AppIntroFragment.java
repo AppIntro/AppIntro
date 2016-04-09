@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AppIntroFragment extends Fragment implements ISlideSelectionListener {
+    private static final String TAG = "AppIntroFragment";
 
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESC = "desc";
@@ -28,10 +30,9 @@ public class AppIntroFragment extends Fragment implements ISlideSelectionListene
 
     public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor, int titleColor, int descColor) {
         AppIntroFragment sampleSlide = new AppIntroFragment();
-
         Bundle args = new Bundle();
-        args.putCharSequence(ARG_TITLE, title);
-        args.putCharSequence(ARG_DESC, description);
+        args.putString(ARG_TITLE, title.toString());
+        args.putString(ARG_DESC, description.toString());
         args.putInt(ARG_DRAWABLE, imageDrawable);
         args.putInt(ARG_BG_COLOR, bgColor);
         args.putInt(ARG_TITLE_COLOR, titleColor);
@@ -42,7 +43,7 @@ public class AppIntroFragment extends Fragment implements ISlideSelectionListene
     }
 
     private int drawable, bgColor, titleColor, descColor;
-    private CharSequence title, description;
+    private String title, description;
 
     public AppIntroFragment() {
     }
@@ -51,13 +52,31 @@ public class AppIntroFragment extends Fragment implements ISlideSelectionListene
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setRetainInstance(true);
+
         if (getArguments() != null && getArguments().size() != 0) {
             drawable = getArguments().getInt(ARG_DRAWABLE);
-            title = getArguments().getCharSequence(ARG_TITLE);
-            description = getArguments().getCharSequence(ARG_DESC);
+            title = getArguments().getString(ARG_TITLE);
+            description = getArguments().getString(ARG_DESC);
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ? getArguments().getInt(ARG_TITLE_COLOR) : 0;
             descColor = getArguments().containsKey(ARG_DESC_COLOR) ? getArguments().getInt(ARG_DESC_COLOR) : 0;
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        if(savedInstanceState != null) {
+            drawable = savedInstanceState.getInt(ARG_DRAWABLE);
+            title = savedInstanceState.getString(ARG_TITLE);
+            description = savedInstanceState.getString(ARG_DESC);
+
+            bgColor = savedInstanceState.getInt(ARG_BG_COLOR);
+            titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR);
+            descColor = savedInstanceState.getInt(ARG_DESC_COLOR);
         }
     }
 
@@ -88,10 +107,26 @@ public class AppIntroFragment extends Fragment implements ISlideSelectionListene
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        outState.putInt(ARG_DRAWABLE, drawable);
+
+        outState.putString(ARG_TITLE, title);
+        outState.putString(ARG_DESC, description);
+
+        outState.putInt(ARG_BG_COLOR, bgColor);
+        outState.putInt(ARG_TITLE_COLOR, titleColor);
+        outState.putInt(ARG_DESC_COLOR, descColor);
+    }
+
+    @Override
     public void onSlideDeselected() {
+        Log.d(TAG, String.format("Slide %s has been deselected.", title));
     }
 
     @Override
     public void onSlideSelected() {
+        Log.d(TAG, String.format("Slide %s has been selected.", title));
     }
 }

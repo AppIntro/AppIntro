@@ -86,7 +86,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
         pager.setAdapter(this.mPagerAdapter);
 
-
         doneButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -107,11 +106,11 @@ public abstract class AppIntroBase extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart()
+    protected void onPostCreate(@Nullable Bundle savedInstanceState)
     {
-        super.onStart();
+        super.onPostCreate(savedInstanceState);
 
-        // Call deprecated init method only if no fragments have been added trough onCreate(), onPostCreate() or onStart()
+        // Call deprecated init method only if no fragments have been added trough onCreate() or onStart()
         if(fragments.size() == 0) {
             init(null);
         }
@@ -122,17 +121,14 @@ public abstract class AppIntroBase extends AppCompatActivity {
         {
             @Override
             public void run() {
-                handleSlideChanged(null, fragments.get(pager.getCurrentItem()));
+                handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
             }
         });
 
         slidesNumber = fragments.size();
 
-        if (slidesNumber == 1) {
-            setProgressButtonEnabled(progressButtonEnabled);
-        } else {
-            initController();
-        }
+        setProgressButtonEnabled(progressButtonEnabled);
+        initController();
     }
 
     @Override
@@ -205,6 +201,8 @@ public abstract class AppIntroBase extends AppCompatActivity {
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
         if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
+
+        mController.selectPosition(currentlySelectedItem);
     }
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
@@ -309,8 +307,10 @@ public abstract class AppIntroBase extends AppCompatActivity {
     }
 
     /**
-     * @deprecated Override {@link #onCreate(Bundle)} instead. Be sure calling super.onCreate() in your method.
-     * @param savedInstanceState
+     * @deprecated It is strongly recommended to use {@link #onCreate(Bundle)} instead. Be sure calling super.onCreate() in your method.
+     * Please note that this method WILL NOT be called when the activity gets recreated i.e. the fragment instances get restored.
+     * The method will only be called when there are no fragments registered to the intro at all.
+     * @param savedInstanceState Null
      */
     public void init(@Nullable Bundle savedInstanceState) {
 
