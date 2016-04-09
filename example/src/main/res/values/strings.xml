@@ -32,4 +32,10 @@
     <string name="permission_intro">Intro with Permissions</string>
     <string name="permission_intro2">Intro with Permissions 2</string>
     <string name="title_activity_permissions_intro">Permissions Intro</string>
+
+
+    <string name="slide_input_title">Slide: Input Demo</string>
+    <string name="slide_input_description">This slide demonstrates how input is saved over orientation and slide changes.</string>
+    <string name="slide_input_edittext">Type something here.</string>
+    <string name="slide_input_checkbox">Check something</string>
 </resources>

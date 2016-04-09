@@ -1,11 +1,6 @@
-/*
- * Copyright (c) 2013-2016 Maximilian Narr <maxe@devmx.de>
- */
-
 package com.github.paolorotolo.appintro;
 
-public interface ISlideSelectionListener
-{
+public interface ISlideSelectionListener {
     /**
      * Called when this slide becomes selected
      */

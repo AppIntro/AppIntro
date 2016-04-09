@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintroexample.slides.InputDemoSlide;
 
 public class DefaultIntro extends AppIntro {
     @Override
@@ -14,6 +15,7 @@ public class DefaultIntro extends AppIntro {
         addSlide(SampleSlide.newInstance(R.layout.intro2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));
         addSlide(SampleSlide.newInstance(R.layout.intro4));
+        addSlide(new InputDemoSlide());
     }
 
     private void loadMainActivity(){

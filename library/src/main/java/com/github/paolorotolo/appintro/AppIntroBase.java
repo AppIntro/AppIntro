@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2013-2016 Maximilian Narr <maxe@devmx.de>
- */
-
 package com.github.paolorotolo.appintro;
 
 import android.os.Build;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/main"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#00BCD4"
+              android:orientation="vertical"
+              android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="@string/slide_input_title"
+        android:textColor="#ffffff"
+        android:textSize="28sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp"
+        android:text="@string/slide_input_description"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/slide_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/slide_input_edittext"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/slide_input_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/slide_input_checkbox"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"/>
+</LinearLayout>
