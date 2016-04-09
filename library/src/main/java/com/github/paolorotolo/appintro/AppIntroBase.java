@@ -157,24 +157,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         return super.dispatchTouchEvent(event);
     }
 
-    /**
-     * Gets the layout id of the layout used by the current activity
-     * @return Layout to use
-     */
-    protected abstract int getLayoutId();
-
-    /**
-     * Called after a new slide has been selected
-     * @param position Position of the new selected slide
-     */
-    protected void onPageSelected(int position) {
-
-    }
-
-    protected void setScrollDurationFactor(int factor) {
-        pager.setScrollDurationFactor(factor);
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -205,10 +187,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         isImmersiveModeSticky = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY);
     }
 
-    public AppIntroViewPager getPager() {
-        return pager;
-    }
-
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
@@ -223,15 +201,61 @@ public abstract class AppIntroBase extends AppCompatActivity {
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
     }
 
-    public void addSlide(@NonNull Fragment fragment) {
-        fragments.add(fragment);
+    /**
+     * Gets the layout id of the layout used by the current activity
+     * @return Layout to use
+     */
+    protected abstract int getLayoutId();
 
-        mPagerAdapter.notifyDataSetChanged();
+    /**
+     * Called after a new slide has been selected
+     * @param position Position of the new selected slide
+     */
+    protected void onPageSelected(int position) {
+
     }
 
+    protected void setScrollDurationFactor(int factor) {
+        pager.setScrollDurationFactor(factor);
+    }
+
+    /**
+     * Helper method for displaying a view
+     * @param button View which visibility should be changed
+     * @param show Whether the view should be visible or not
+     */
+    protected void setButtonState(View button, boolean show) {
+        if (show) {
+            button.setVisibility(View.VISIBLE);
+        } else {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Returns the used ViewPager instance
+     * @return Instance of the used ViewPager
+     */
+    public AppIntroViewPager getPager() {
+        return pager;
+    }
+
+    /**
+     * Returns all current slides.
+     * @return List of the current slides
+     */
     @NonNull
     public List<Fragment> getSlides() {
         return mPagerAdapter.getFragments();
+    }
+
+    /**
+     * Adds a new slide
+     * @param fragment Instance of Fragment which should be added as slide
+     */
+    public void addSlide(@NonNull Fragment fragment) {
+        fragments.add(fragment);
+        mPagerAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -258,14 +282,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     public boolean isProgressButtonEnabled() {
         return progressButtonEnabled;
-    }
-
-    protected void setButtonState(View button, boolean show) {
-        if (show) {
-            button.setVisibility(View.VISIBLE);
-        } else {
-            button.setVisibility(View.INVISIBLE);
-        }
     }
 
     public void setOffScreenPageLimit(int limit) {
@@ -519,7 +535,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     /**
      * Specifies whether to enable the non-sticky immersive mode.
-     * This is a shorthand method for {@link #setImmersiveMode(true, false)}.
+     * This is a shorthand method for {@link #setImmersiveMode(boolean, boolean)} the second parameter set to false.
      * If you want to enable the sticky immersive mode (transcluent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
      * Note that immersive mode is only supported on Kitkat and newer.
      * @param isEnabled Whether the immersive mode (non-sticky) should be enabled or not.
@@ -591,7 +607,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     }
 
-    protected final class NextButtonOnClickListener implements View.OnClickListener {
+    private final class NextButtonOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -623,7 +639,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
         }
     }
 
-    protected final class PagerOnPageChangeListener implements ViewPager.OnPageChangeListener {
+    private final class PagerOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
