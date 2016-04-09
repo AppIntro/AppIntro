@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class AppIntroFragment extends Fragment {
+public class AppIntroFragment extends Fragment implements ISlideSelectionListener {
 
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESC = "desc";
@@ -86,4 +87,11 @@ public class AppIntroFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onSlideDeselected() {
+    }
+
+    @Override
+    public void onSlideSelected() {
+    }
 }

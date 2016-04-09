@@ -10,7 +10,6 @@ import android.os.Vibrator;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
@@ -104,7 +103,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         nextButton.setOnClickListener(new NextButtonOnClickListener());
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
 
-
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
     }
 
@@ -118,7 +116,15 @@ public abstract class AppIntroBase extends AppCompatActivity {
             init(null);
         }
 
-        pager.setCurrentItem(savedCurrentItem); // required for triggering onPageSelected for first page
+        // required for triggering onPageSelected and onSlideChanged for first page
+        pager.setCurrentItem(savedCurrentItem);
+        pager.post(new Runnable()
+        {
+            @Override
+            public void run() {
+                handleSlideChanged(null, fragments.get(pager.getCurrentItem()));
+            }
+        });
 
         slidesNumber = fragments.size();
 
@@ -199,6 +205,20 @@ public abstract class AppIntroBase extends AppCompatActivity {
             mController.setSelectedIndicatorColor(selectedIndicatorColor);
         if (unselectedIndicatorColor != DEFAULT_COLOR)
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
+    }
+
+    private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
+        // Check if oldFragment implements ISlideSelectionListener
+        if(oldFragment != null && oldFragment instanceof ISlideSelectionListener) {
+            ((ISlideSelectionListener)oldFragment).onSlideDeselected();
+        }
+
+        // Check if newFragment implements ISlideSelectionListener
+        if(newFragment != null && newFragment instanceof ISlideSelectionListener) {
+            ((ISlideSelectionListener)newFragment).onSlideSelected();
+        }
+
+        onSlideChanged(oldFragment, newFragment);
     }
 
     /**
@@ -668,10 +688,9 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
             if(slidesNumber > 0) {
                 if(currentlySelectedItem == -1) {
-                    onSlideChanged(null, mPagerAdapter.getItem(position));
-                } else
-                {
-                    onSlideChanged(mPagerAdapter.getItem(currentlySelectedItem), mPagerAdapter.getItem(pager.getCurrentItem()));
+                    handleSlideChanged(null, mPagerAdapter.getItem(position));
+                } else {
+                    handleSlideChanged(mPagerAdapter.getItem(currentlySelectedItem), mPagerAdapter.getItem(pager.getCurrentItem()));
                 }
             }
 
