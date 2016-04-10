@@ -7,13 +7,12 @@
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    </com.github.paolorotolo.appintro.AppIntroViewPager>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/appIntroBottomBarHeight"
         android:layout_alignParentBottom="true"
         android:background="@android:color/transparent"
         android:gravity="bottom"

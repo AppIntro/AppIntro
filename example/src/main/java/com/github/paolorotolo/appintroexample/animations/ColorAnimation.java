@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintroexample.MainActivity;
 import com.github.paolorotolo.appintroexample.R;
@@ -22,13 +23,13 @@ public class ColorAnimation extends AppIntro2 {
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
 
-        addSlide(AppIntroFragment.newInstance("Title 1", "Description here...\nYeah, I've added this fragment programmatically",
+        addSlide(AppIntro2Fragment.newInstance("Title 1", "Description here...\nYeah, I've added this fragment programmatically",
                 R.drawable.ic_slide1, Color.TRANSPARENT));
 
-        addSlide(AppIntroFragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
+        addSlide(AppIntro2Fragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
                 R.drawable.ic_slide1, Color.TRANSPARENT));
 
-        addSlide(AppIntroFragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
+        addSlide(AppIntro2Fragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
                 R.drawable.ic_slide1, Color.TRANSPARENT));
 
         ArrayList<Integer> colors = new ArrayList<>();

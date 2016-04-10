@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:paddingBottom="@dimen/appIntroBottomBarHeight">
+              android:paddingBottom="@dimen/appIntro2BottomBarHeight">
 
     <include layout="@layout/fragment_intro_content"/>
 </LinearLayout>

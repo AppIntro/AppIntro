@@ -10,16 +10,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroWithBackground extends AppIntro2 {
     @Override
     public void init(Bundle savedInstanceState) {
 
-        addSlide(AppIntroFragment.newInstance("Title here", "Description here...\nYeah, I've added this fragment programmatically",
+        addSlide(AppIntro2Fragment.newInstance("Title here", "Description here...\nYeah, I've added this fragment programmatically",
                 R.drawable.ic_slide1, Color.TRANSPARENT));
 
-        addSlide(AppIntroFragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
+        addSlide(AppIntro2Fragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
             R.drawable.ic_slide1, Color.TRANSPARENT));
 
         ImageView imageView = new ImageView(this);
