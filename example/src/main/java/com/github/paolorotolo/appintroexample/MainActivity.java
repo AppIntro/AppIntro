@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startSecondLayoutIntro(View v){
-        Intent intent = new Intent(this, SecondLayoutIntro.class);
+        Intent intent = new Intent(this, DefaultIntro2.class);
         startActivity(intent);
     }
 

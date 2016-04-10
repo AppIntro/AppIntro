@@ -8,15 +8,19 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class PermissionsIntro2 extends AppIntro2 {
+public final class PermissionsIntro2 extends AppIntro2 {
+
     @Override
-    public void init(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         addSlide(AppIntro2Fragment.newInstance("Welcome!", "We just need some permissions to start. (This is only as an example...this app doesn't utilize any of the perms.)\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
         addSlide(AppIntro2Fragment.newInstance("Camera", "We need to use the camera.\n", R.drawable.ic_slide2, Color.parseColor("#2196F3")));
         addSlide(AppIntro2Fragment.newInstance("Storage", "We need to save stuff on your device. \n", R.drawable.ic_slide3, Color.parseColor("#2196F3")));
@@ -40,17 +44,10 @@ public class PermissionsIntro2 extends AppIntro2 {
     }
 
     @Override
-    public void onNextPressed() {
-    }
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
 
-    @Override
-    public void onDonePressed() {
         loadMainActivity();
-    }
-
-    @Override
-    public void onSlideChanged() {
-
     }
 
     public void getStarted(View v) {

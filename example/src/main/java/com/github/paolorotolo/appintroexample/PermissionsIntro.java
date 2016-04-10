@@ -4,15 +4,19 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public class PermissionsIntro extends AppIntro {
+public final class PermissionsIntro extends AppIntro {
+
     @Override
-    public void init(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start. (This is only as an example...this app doesn't utilize any of the perms.)\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
         addSlide(AppIntroFragment.newInstance("Camera", "We need to use the camera.\n", R.drawable.ic_slide2, Color.parseColor("#2196F3")));
         addSlide(AppIntroFragment.newInstance("Storage", "We need to save stuff on your device. \n", R.drawable.ic_slide3, Color.parseColor("#2196F3")));
@@ -36,23 +40,18 @@ public class PermissionsIntro extends AppIntro {
     }
 
     @Override
-    public void onSkipPressed() {
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+
         loadMainActivity();
         Toast.makeText(getApplicationContext(),
                 getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onNextPressed() {
-    }
+    public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
 
-    @Override
-    public void onDonePressed() {
-        loadMainActivity();
-    }
-
-    @Override
-    public void onSlideChanged() {
         Toast.makeText(getBaseContext(), "Hi!", Toast.LENGTH_SHORT).show();
     }
 
