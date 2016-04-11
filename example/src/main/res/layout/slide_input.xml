@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:id="@+id/main"
+              style="@style/AppIntroDefaultPadding.Intro1"
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#00BCD4"
-              android:orientation="vertical"
-              android:padding="24dp">
+              android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-thin"
+        style="@style/AppIntroDefaultHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:text="@string/slide_input_title"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:layout_height="wrap_content"/>
+        android:text="@string/slide_input_title"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
+        style="@style/AppIntroDefaultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingLeft="64dp"
-        android:paddingRight="64dp"
-        android:text="@string/slide_input_description"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:layout_height="wrap_content"/>
+        android:text="@string/slide_input_description"/>
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/slide_input_edittext"
@@ -43,8 +34,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="@string/slide_input_checkbox"/>
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="64dp"/>
 </LinearLayout>

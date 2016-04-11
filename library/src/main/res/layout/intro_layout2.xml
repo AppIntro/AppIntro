@@ -43,7 +43,7 @@
 
             <ImageButton
                 android:id="@+id/next"
-                style="@style/buttonStyleCompat"
+                style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_gravity="right"
@@ -52,7 +52,7 @@
 
             <ImageButton
                 android:id="@+id/done"
-                style="@style/buttonStyleCompat"
+                style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_gravity="right"
