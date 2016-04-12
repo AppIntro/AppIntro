@@ -451,7 +451,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
      * Please note, that all slides have to implement ISlideBackgroundColorHolder.
      * @param colorTransitionsEnabled Whether color transitions should be enabled
      */
-    public void setColorTransitions(boolean colorTransitionsEnabled) {
+    public void setColorTransitionsEnabled(boolean colorTransitionsEnabled) {
         areColorTransitionsEnabled = colorTransitionsEnabled;
     }
 
