@@ -2,6 +2,7 @@
 package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener {
+abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener, ISlideBackgroundColorHolder {
     private static final String TAG = "AppIntroBaseFragment";
 
     protected static final String ARG_TITLE = "title";
@@ -27,6 +28,8 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
 
     private int drawable, bgColor, titleColor, descColor, layoutId;
     private String title, description;
+
+    private LinearLayout mainLayout;
 
     public AppIntroBaseFragment() {
     }
@@ -70,7 +73,7 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
         TextView t = (TextView) v.findViewById(R.id.title);
         TextView d = (TextView) v.findViewById(R.id.description);
         ImageView i = (ImageView) v.findViewById(R.id.image);
-        LinearLayout m = (LinearLayout) v.findViewById(R.id.main);
+        mainLayout = (LinearLayout) v.findViewById(R.id.main);
 
 
         t.setText(title);
@@ -84,7 +87,7 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
         }
 
         i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
-        m.setBackgroundColor(bgColor);
+        mainLayout.setBackgroundColor(bgColor);
 
         return v;
     }
@@ -110,6 +113,17 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
     @Override
     public void onSlideSelected() {
         Log.d(TAG, String.format("Slide %s has been selected.", title));
+    }
+
+
+    @Override
+    public int getDefaultBackgroundColor() {
+        return bgColor;
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        mainLayout.setBackgroundColor(backgroundColor);
     }
 
     @LayoutRes

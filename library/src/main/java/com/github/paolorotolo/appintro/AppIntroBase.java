@@ -1,5 +1,6 @@
 package com.github.paolorotolo.appintro;
 
+import android.animation.ArgbEvaluator;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -36,6 +37,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
     private static final String INSTANCE_DATA_IMMERSIVE_MODE_ENABLED = "com.github.paolorotolo.appintro_immersive_mode_enabled";
     private static final String INSTANCE_DATA_IMMERSIVE_MODE_STICKY = "com.github.paolorotolo.appintro_immersive_mode_sticky";
+    private static final String INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED = "com.github.paolorotolo.appintro_color_transitions_enabled";
 
     protected PagerAdapter mPagerAdapter;
     protected AppIntroViewPager pager;
@@ -54,12 +56,15 @@ public abstract class AppIntroBase extends AppCompatActivity {
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
 
+    private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+
     protected boolean isVibrateOn = false;
     protected boolean baseProgressButtonEnabled = true;
     protected boolean progressButtonEnabled = true;
     private boolean isGoBackLockEnabled = false;
     private boolean isImmersiveModeEnabled = false;
     private boolean isImmersiveModeSticky = false;
+    private boolean areColorTransitionsEnabled = false;
 
     private int currentlySelectedItem = -1;
 
@@ -167,6 +172,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
         outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED, isImmersiveModeEnabled);
         outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY, isImmersiveModeSticky);
+        outState.putBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED, areColorTransitionsEnabled);
     }
 
     @Override
@@ -183,6 +189,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
         isImmersiveModeEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED);
         isImmersiveModeSticky = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY);
+        areColorTransitionsEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED);
     }
 
     private void initController() {
@@ -440,6 +447,15 @@ public abstract class AppIntroBase extends AppCompatActivity {
     }
 
     /**
+     * Sets whether color transitions between slides should be enabled.
+     * Please note, that all slides have to implement ISlideBackgroundColorHolder.
+     * @param colorTransitionsEnabled Whether color transitions should be enabled
+     */
+    public void setColorTransitions(boolean colorTransitionsEnabled) {
+        areColorTransitionsEnabled = colorTransitionsEnabled;
+    }
+
+    /**
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
@@ -659,7 +675,22 @@ public abstract class AppIntroBase extends AppCompatActivity {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            if (areColorTransitionsEnabled) {
+                if (position < mPagerAdapter.getCount() - 1) {
+                    if (mPagerAdapter.getItem(position) instanceof ISlideBackgroundColorHolder && mPagerAdapter.getItem(position + 1) instanceof ISlideBackgroundColorHolder) {
+                        ISlideBackgroundColorHolder currentSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position);
+                        ISlideBackgroundColorHolder nextSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position + 1);
 
+                        int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlide.getDefaultBackgroundColor(), nextSlide.getDefaultBackgroundColor());
+
+                        currentSlide.setBackgroundColor(newColor);
+                        nextSlide.setBackgroundColor(newColor);
+                    }
+                    else {
+                        throw new IllegalStateException("Color transitions are only available if all slides implement ISlideBackgroundColorHolder.");
+                    }
+                }
+            }
         }
 
         @Override
