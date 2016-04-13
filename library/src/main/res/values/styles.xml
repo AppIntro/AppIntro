@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppIntroDefaultPadding">
+        <item name="android:paddingTop">@dimen/appIntroDefaultPaddingTop</item>
+        <item name="android:paddingLeft">@dimen/appIntroDefaultPaddingLeft</item>
+        <item name="android:paddingRight">@dimen/appIntroDefaultPaddingRight</item>
+        <item name="android:paddingBottom">@dimen/appIntroDefaultPaddingBottom</item>
+    </style>
+
+    <style name="AppIntroDefaultPadding.Intro1">
+        <item name="android:paddingBottom">@dimen/appIntroDefaultPaddingBottomIntro1</item>
+    </style>
+
+    <style name="AppIntroDefaultPadding.Intro2">
+        <item name="android:paddingBottom">@dimen/appIntroDefaultPaddingBottomIntro2</item>
+    </style>
+
+    <style name="AppIntroDefaultHeading" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/appIntroHeadingTextSize</item>
+    </style>
+
+    <style name="AppIntroDefaultText" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>

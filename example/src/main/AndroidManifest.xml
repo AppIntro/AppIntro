@@ -39,7 +39,7 @@
             android:name=".PermissionsIntro2"
             android:label="@string/title_activity_permissions_intro"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".SecondLayoutIntro"
+        <activity android:name=".DefaultIntro2"
             android:label="@string/title_activity_second_intro"
             android:theme="@style/FullscreenTheme"/>
         <activity android:name=".DisableSwipeIntro1"

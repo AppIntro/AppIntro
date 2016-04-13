@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="appIntroBottomBarHeight">64dp</dimen>
+    <dimen name="appIntro2BottomBarHeight">80dp</dimen>
+
+    <dimen name="appIntroDefaultPaddingTop">40dp</dimen>
+    <dimen name="appIntroDefaultPaddingLeft">16dp</dimen>
+    <dimen name="appIntroDefaultPaddingRight">16dp</dimen>
+    <dimen name="appIntroDefaultPaddingBottom">16dp</dimen>
+
+    <dimen name="appIntroDefaultPaddingBottomIntro1">80dp</dimen>
+    <dimen name="appIntroDefaultPaddingBottomIntro2">96dp</dimen>
+
+    <dimen name="appIntroHeadingTextSize">28dp</dimen>
+</resources>

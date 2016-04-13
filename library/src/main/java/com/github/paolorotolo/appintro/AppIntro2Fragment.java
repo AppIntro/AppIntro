@@ -1,19 +1,9 @@
+
 package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-public final class AppIntroFragment extends AppIntroBaseFragment {
+public final class AppIntro2Fragment extends AppIntroBaseFragment {
     public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor) {
         return newInstance(title, description, imageDrawable, bgColor, 0, 0);
     }
@@ -33,6 +23,6 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_intro;
+        return R.layout.fragment_intro2;
     }
 }

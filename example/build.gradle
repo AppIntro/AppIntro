@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "paolorotolo.github.com.appintroexample"
@@ -27,12 +27,12 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleDependency
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':library')
 
 
     // test dependencies
-    androidTestCompile 'com.android.support:appcompat-v7:23.1.1'
+    androidTestCompile 'com.android.support:appcompat-v7:23.3.0'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/main"
+              style="@style/AppIntroDefaultPadding.Intro1"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#00BCD4"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/AppIntroDefaultHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/slide_input_title"/>
+
+    <TextView
+        style="@style/AppIntroDefaultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/slide_input_description"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/slide_input_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/slide_input_edittext"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/slide_input_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/slide_input_checkbox"/>
+</LinearLayout>
