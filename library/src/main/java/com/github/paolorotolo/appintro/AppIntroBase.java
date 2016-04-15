@@ -101,6 +101,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
                 if(isSlideChangingAllowed) {
+                    handleSlideChanged(currentFragment, null);
                     onDonePressed(currentFragment);
                 }
                 else {
@@ -413,11 +414,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     /**
-     * Called when the selected fragment changed
+     * Called when the selected fragment changed. This will be called automatically if the into starts or is finished via the done button.
      * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro has just started.
-     * @param newFragment Instance of the fragment which is displayed now
+     * @param newFragment Instance of the fragment which is displayed now. This might be null if the intro has finished
      */
-    public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+    public void onSlideChanged(@Nullable Fragment oldFragment,@Nullable Fragment newFragment) {
         onSlideChanged();
     }
 
