@@ -103,6 +103,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 if(isSlideChangingAllowed) {
                     onDonePressed(currentFragment);
                 }
+                else {
+                    handleIllegalSlideChangeAttempt();
+                }
             }
         });
 
@@ -202,8 +205,14 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     @Override
-    public boolean onNextPageRequested() {
+    public boolean onCanRequestNextPage() {
         return handleBeforeSlideChanged();
+    }
+
+    @Override
+    public void onIllegallyRequestedNextPage()
+    {
+        handleIllegalSlideChangeAttempt();
     }
 
     private void initController() {
@@ -222,15 +231,26 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         mController.selectPosition(currentlySelectedItem);
     }
 
+    private void handleIllegalSlideChangeAttempt() {
+        Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+        if(currentFragment != null && currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+
+            if(!slide.isPolicyRespected()) {
+                slide.onUserIllegallyRequestedNextPage();
+            }
+        }
+    }
+
     /**
      * Called before a slide change happens. By returning false, one can disallow the slide change.
      * @return true, if the slide change should be allowed, else false
      */
     private boolean handleBeforeSlideChanged() {
-
         Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-        Log.d(TAG, String.format("User wants so move away from slide: %s. Checking if this should be allowed...", currentFragment));
+        Log.d(TAG, String.format("User wants to move away from slide: %s. Checking if this should be allowed...", currentFragment));
 
         // Check if the current fragment implements ISlidePolicy, else a change is always allowed
         if(currentFragment instanceof ISlidePolicy) {
@@ -241,7 +261,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
             // Check if policy is fulfilled
             if(!slide.isPolicyRespected()) {
                 Log.d(TAG, "Slide policy not respected, denying change request.");
-                slide.onUserIllegallyRequestedNextPage();
                 return false;
             }
         }
@@ -715,6 +734,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
                     onNextPressed();
                 }
+            }
+            else {
+                handleIllegalSlideChangeAttempt();
             }
         }
     }
