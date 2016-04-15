@@ -2,7 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.support.annotation.ColorInt;
 
-interface ISlideBackgroundColorHolder {
+public interface ISlideBackgroundColorHolder {
     /**
      * Returns the default background color of the slide
      *
