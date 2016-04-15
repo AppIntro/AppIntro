@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class AppIntroBase extends AppCompatActivity {
+public abstract class AppIntroBase extends AppCompatActivity implements AppIntroViewPager.OnNextPageRequestedListener{
 
     public final static int DEFAULT_COLOR = 1;
 
@@ -96,7 +96,14 @@ public abstract class AppIntroBase extends AppCompatActivity {
                 {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                onDonePressed(mPagerAdapter.getItem(pager.getCurrentItem()));
+
+                Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+                boolean isSlideChangingAllowed = handleBeforeSlideChanged(currentFragment);
+
+                if(isSlideChangingAllowed) {
+                    onDonePressed(currentFragment);
+                }
             }
         });
 
@@ -135,8 +142,12 @@ public abstract class AppIntroBase extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        // Do nothing if goBack lock is enabled
-        if(!isGoBackLockEnabled) {
+        Fragment fragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+        boolean isSlideChangeAllowed = handleBeforeSlideChanged(fragment);
+
+        // Do nothing if go back lock is enabled or slide has custom policy.
+        if(!isGoBackLockEnabled && isSlideChangeAllowed) {
             super.onBackPressed();
         }
     }
@@ -192,6 +203,11 @@ public abstract class AppIntroBase extends AppCompatActivity {
         areColorTransitionsEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED);
     }
 
+    @Override
+    public boolean onNextPageRequested() {
+        return handleBeforeSlideChanged(mPagerAdapter.getItem(pager.getCurrentItem()));
+    }
+
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
@@ -206,6 +222,26 @@ public abstract class AppIntroBase extends AppCompatActivity {
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
 
         mController.selectPosition(currentlySelectedItem);
+    }
+
+    /**
+     * Called before a slide change happens. By returning false, one can disallow the slide change.
+     * @param currentFragment Instance of the slide currently displayed
+     * @return true, if the slide change should be allowed, else false
+     */
+    private boolean handleBeforeSlideChanged(Fragment currentFragment) {
+
+        // Check if the current fragment implements ISlidePolicy, else a change is always allowed
+        if(currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+
+            // Check if policy is fulfilled
+            if(!slide.isPolicyRespected()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
@@ -647,26 +683,32 @@ public abstract class AppIntroBase extends AppCompatActivity {
                 mVibrator.vibrate(vibrateIntensity);
             }
 
-            boolean requestPermission = false;
-            int position = 0;
+            boolean isSlideChangingAllowed = handleBeforeSlideChanged(mPagerAdapter.getItem(pager.getCurrentItem()));
 
-            for (int i = 0; i < permissionsArray.size(); i++) {
-                requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
-                position = i;
-                break;
-            }
+            // Check if changing to the next slide is allowed
+            if(isSlideChangingAllowed) {
 
-            if (requestPermission) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
-                    permissionsArray.remove(position);
+                boolean requestPermission = false;
+                int position = 0;
+
+                for (int i = 0; i < permissionsArray.size(); i++) {
+                    requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                    position = i;
+                    break;
+                }
+
+                if (requestPermission) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                        permissionsArray.remove(position);
+                    } else {
+                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        onNextPressed();
+                    }
                 } else {
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
                     onNextPressed();
                 }
-            } else {
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
-                onNextPressed();
             }
         }
     }
