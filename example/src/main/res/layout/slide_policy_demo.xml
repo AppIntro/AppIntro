@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/slide_policy_demo_container"
+              style="@style/AppIntroDefaultPadding.Intro1"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#222222"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/AppIntroDefaultHeading"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/slide_policy_demo_title"/>
+
+    <TextView
+        style="@style/AppIntroDefaultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/slide_policy_demo_description"/>
+
+    <CheckBox
+        android:id="@+id/slide_policy_demo_checkbox"
+        style="@style/AppIntroDefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="@string/slide_policy_demo_cb"/>
+
+</LinearLayout>
