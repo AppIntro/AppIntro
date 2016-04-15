@@ -749,13 +749,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
             if (areColorTransitionsEnabled) {
                 if (position < mPagerAdapter.getCount() - 1) {
                     if (mPagerAdapter.getItem(position) instanceof ISlideBackgroundColorHolder && mPagerAdapter.getItem(position + 1) instanceof ISlideBackgroundColorHolder) {
-                        ISlideBackgroundColorHolder currentSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position);
-                        ISlideBackgroundColorHolder nextSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position + 1);
+                        Fragment currentSlide = mPagerAdapter.getItem(position);
+                        Fragment nextSlide =  mPagerAdapter.getItem(position + 1);
 
-                        int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlide.getDefaultBackgroundColor(), nextSlide.getDefaultBackgroundColor());
+                        ISlideBackgroundColorHolder currentSlideCasted = (ISlideBackgroundColorHolder) currentSlide;
+                        ISlideBackgroundColorHolder nextSlideCasted = (ISlideBackgroundColorHolder) nextSlide;
 
-                        currentSlide.setBackgroundColor(newColor);
-                        nextSlide.setBackgroundColor(newColor);
+                        // Check if both fragments are attached to an activity, otherwise getDefaultBackgroundColor may fail.
+                        if(currentSlide.isAdded() && nextSlide.isAdded()) {
+                            int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlideCasted.getDefaultBackgroundColor(), nextSlideCasted.getDefaultBackgroundColor());
+
+                            currentSlideCasted.setBackgroundColor(newColor);
+                            nextSlideCasted.setBackgroundColor(newColor);
+                        }
                     }
                     else {
                         throw new IllegalStateException("Color transitions are only available if all slides implement ISlideBackgroundColorHolder.");
