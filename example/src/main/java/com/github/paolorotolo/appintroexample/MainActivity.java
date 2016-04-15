@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void slidePolicyDemo(View v) {
+        Intent intent = new Intent(this, IntroDemoPolicy.class);
+        startActivity(intent);
+    }
+
     public void startSecondLayoutIntro(View v){
         Intent intent = new Intent(this, DefaultIntro2.class);
         startActivity(intent);

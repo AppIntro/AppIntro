@@ -85,7 +85,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
-        pager.setAdapter(this.mPagerAdapter);
 
         doneButton.setOnClickListener(new View.OnClickListener()
         {
@@ -99,7 +98,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
                 Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-                boolean isSlideChangingAllowed = handleBeforeSlideChanged(currentFragment);
+                boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
                 if(isSlideChangingAllowed) {
                     onDonePressed(currentFragment);
@@ -108,7 +107,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         });
 
         nextButton.setOnClickListener(new NextButtonOnClickListener());
+
+        pager.setAdapter(this.mPagerAdapter);
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
+        pager.setOnNextPageRequestedListener(this);
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
     }
@@ -142,12 +144,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     @Override
     public void onBackPressed()
     {
-        Fragment fragment = mPagerAdapter.getItem(pager.getCurrentItem());
-
-        boolean isSlideChangeAllowed = handleBeforeSlideChanged(fragment);
-
         // Do nothing if go back lock is enabled or slide has custom policy.
-        if(!isGoBackLockEnabled && isSlideChangeAllowed) {
+        if(!isGoBackLockEnabled) {
             super.onBackPressed();
         }
     }
@@ -205,7 +203,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     @Override
     public boolean onNextPageRequested() {
-        return handleBeforeSlideChanged(mPagerAdapter.getItem(pager.getCurrentItem()));
+        return handleBeforeSlideChanged();
     }
 
     private void initController() {
@@ -226,21 +224,29 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called before a slide change happens. By returning false, one can disallow the slide change.
-     * @param currentFragment Instance of the slide currently displayed
      * @return true, if the slide change should be allowed, else false
      */
-    private boolean handleBeforeSlideChanged(Fragment currentFragment) {
+    private boolean handleBeforeSlideChanged() {
+
+        Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+        Log.d(TAG, String.format("User wants so move away from slide: %s. Checking if this should be allowed...", currentFragment));
 
         // Check if the current fragment implements ISlidePolicy, else a change is always allowed
         if(currentFragment instanceof ISlidePolicy) {
             ISlidePolicy slide = (ISlidePolicy)currentFragment;
 
+            Log.d(TAG, "Current fragment implements ISlidePolicy.");
+
             // Check if policy is fulfilled
             if(!slide.isPolicyRespected()) {
+                Log.d(TAG, "Slide policy not respected, denying change request.");
+                slide.onUserIllegallyRequestedNextPage();
                 return false;
             }
         }
 
+        Log.d(TAG, "Change request will be allowed.");
         return true;
     }
 
@@ -683,7 +689,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 mVibrator.vibrate(vibrateIntensity);
             }
 
-            boolean isSlideChangingAllowed = handleBeforeSlideChanged(mPagerAdapter.getItem(pager.getCurrentItem()));
+            boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
             // Check if changing to the next slide is allowed
             if(isSlideChangingAllowed) {

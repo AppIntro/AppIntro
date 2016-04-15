@@ -16,7 +16,9 @@ public final class AppIntroViewPager extends ViewPager {
 
     private boolean pagingEnabled;
     private boolean nextPagingEnabled;
-    private float initialXValue;
+    private float pagingEvaluatorXValue;
+    private long lastNextPageEvaluationTime;
+    private boolean lastNextPageEvaluation;
     private int lockPage;
 
     private ScrollerCustomDuration mScroller = null;
@@ -29,6 +31,9 @@ public final class AppIntroViewPager extends ViewPager {
         pagingEnabled = true;
         nextPagingEnabled = true;
         lockPage = 0;
+
+        lastNextPageEvaluation = false;
+
         initViewPagerScroller();
     }
 
@@ -59,7 +64,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (checkPagingState(event) || (nextPageRequestedListener != null && !nextPageRequestedListener.onNextPageRequested())) {
+        if (checkPagingState(event) || checkNextPageRequestListener(event)) {
             return false;
         }
 
@@ -68,7 +73,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (checkPagingState(event) || (nextPageRequestedListener != null && !nextPageRequestedListener.onNextPageRequested())) {
+        if (checkPagingState(event) || checkNextPageRequestListener(event)) {
             return false;
         }
 
@@ -82,12 +87,29 @@ public final class AppIntroViewPager extends ViewPager {
 
         if (!nextPagingEnabled) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                initialXValue = event.getX();
+                pagingEvaluatorXValue = event.getX();
             }
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 if (detectSwipeToRight(event)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkNextPageRequestListener(MotionEvent event) {
+        int threshold = 1500;
+
+        if(nextPageRequestedListener != null && event.getAction() == MotionEvent.ACTION_MOVE) {
+            // Store evaluations for 1500 ms, to prevent each touch event being dispatched to the OnNextPageRequestedListener.
+            if(System.currentTimeMillis() - lastNextPageEvaluationTime <= threshold) {
+                return !lastNextPageEvaluation;
+            }
+            else {
+                lastNextPageEvaluationTime = System.currentTimeMillis();
+                lastNextPageEvaluation = nextPageRequestedListener.onNextPageRequested();
+                return !lastNextPageEvaluation;
             }
         }
         return false;
@@ -119,7 +141,7 @@ public final class AppIntroViewPager extends ViewPager {
         boolean result = false;
 
         try {
-            float diffX = event.getX() - initialXValue;
+            float diffX = event.getX() - pagingEvaluatorXValue;
             if (Math.abs(diffX) > SWIPE_THRESHOLD) {
                 if (diffX < 0) {
                     // swipe from right to left detected ie.SwipeLeft
