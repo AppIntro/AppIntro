@@ -1,14 +1,9 @@
 package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,76 +12,9 @@ import android.widget.TextView;
 public abstract class AppIntro extends AppIntroBase {
     private static final String TAG = "AppIntro";
 
-    protected boolean skipButtonEnabled = true;
-
-    protected View skipButton;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        skipButton = findViewById(R.id.skip);
-
-        skipButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(@NonNull View v)
-            {
-                if (isVibrateOn)
-                {
-                    mVibrator.vibrate(vibrateIntensity);
-                }
-                onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
-            }
-        });
-    }
-
     @Override
     protected int getLayoutId() {
         return R.layout.intro_layout;
-    }
-
-    @Override
-    protected void onPageSelected(int position)
-    {
-        super.onPageSelected(position);
-        setButtonState(skipButton, skipButtonEnabled);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        super.onRestoreInstanceState(savedInstanceState);
-
-
-        this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
-    }
-
-    public boolean isSkipButtonEnabled() {
-        return skipButtonEnabled;
-    }
-
-    /**
-     * Called when the user clicked the skip button
-     * @deprecated Override {@link #onSkipPressed(Fragment)} instead
-     */
-    public void onSkipPressed() {
-
-    }
-
-    /**
-     * Called when the user clicked the skip button
-     * @param currentFragment Instance of the currently displayed fragment
-     */
-    public void onSkipPressed(Fragment currentFragment) {
-        onSkipPressed();
     }
 
     /**
