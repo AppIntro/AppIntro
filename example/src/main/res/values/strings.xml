@@ -33,9 +33,15 @@
     <string name="permission_intro2">Intro with Permissions 2</string>
     <string name="title_activity_permissions_intro">Permissions Intro</string>
 
-
+    <!-- Input demo slide -->
     <string name="slide_input_title">Slide: Input Demo</string>
     <string name="slide_input_description">This slide demonstrates how input is saved over orientation and slide changes.</string>
     <string name="slide_input_edittext">Type something here.</string>
     <string name="slide_input_checkbox">Check something</string>
+
+    <!-- PolicyDemoSlide -->
+    <string name="slide_policy_demo_title">Slide policy demo</string>
+    <string name="slide_policy_demo_description">One may only continue to the next slide if the checkbox has been checked.</string>
+    <string name="slide_policy_demo_cb">Check me!</string>
+    <string name="slide_policy_demo_error">Please check the checkbox in order to continue.</string>
 </resources>

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class AppIntroBase extends AppCompatActivity {
+public abstract class AppIntroBase extends AppCompatActivity implements AppIntroViewPager.OnNextPageRequestedListener{
 
     public final static int DEFAULT_COLOR = 1;
 
@@ -85,7 +85,6 @@ public abstract class AppIntroBase extends AppCompatActivity {
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
-        pager.setAdapter(this.mPagerAdapter);
 
         doneButton.setOnClickListener(new View.OnClickListener()
         {
@@ -96,12 +95,26 @@ public abstract class AppIntroBase extends AppCompatActivity {
                 {
                     mVibrator.vibrate(vibrateIntensity);
                 }
-                onDonePressed(mPagerAdapter.getItem(pager.getCurrentItem()));
+
+                Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+                boolean isSlideChangingAllowed = handleBeforeSlideChanged();
+
+                if(isSlideChangingAllowed) {
+                    handleSlideChanged(currentFragment, null);
+                    onDonePressed(currentFragment);
+                }
+                else {
+                    handleIllegalSlideChangeAttempt();
+                }
             }
         });
 
         nextButton.setOnClickListener(new NextButtonOnClickListener());
+
+        pager.setAdapter(this.mPagerAdapter);
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
+        pager.setOnNextPageRequestedListener(this);
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
     }
@@ -135,7 +148,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        // Do nothing if goBack lock is enabled
+        // Do nothing if go back lock is enabled or slide has custom policy.
         if(!isGoBackLockEnabled) {
             super.onBackPressed();
         }
@@ -192,6 +205,17 @@ public abstract class AppIntroBase extends AppCompatActivity {
         areColorTransitionsEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED);
     }
 
+    @Override
+    public boolean onCanRequestNextPage() {
+        return handleBeforeSlideChanged();
+    }
+
+    @Override
+    public void onIllegallyRequestedNextPage()
+    {
+        handleIllegalSlideChangeAttempt();
+    }
+
     private void initController() {
         if (mController == null)
             mController = new DefaultIndicatorController();
@@ -206,6 +230,44 @@ public abstract class AppIntroBase extends AppCompatActivity {
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
 
         mController.selectPosition(currentlySelectedItem);
+    }
+
+    private void handleIllegalSlideChangeAttempt() {
+        Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+        if(currentFragment != null && currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+
+            if(!slide.isPolicyRespected()) {
+                slide.onUserIllegallyRequestedNextPage();
+            }
+        }
+    }
+
+    /**
+     * Called before a slide change happens. By returning false, one can disallow the slide change.
+     * @return true, if the slide change should be allowed, else false
+     */
+    private boolean handleBeforeSlideChanged() {
+        Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+        Log.d(TAG, String.format("User wants to move away from slide: %s. Checking if this should be allowed...", currentFragment));
+
+        // Check if the current fragment implements ISlidePolicy, else a change is always allowed
+        if(currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+
+            Log.d(TAG, "Current fragment implements ISlidePolicy.");
+
+            // Check if policy is fulfilled
+            if(!slide.isPolicyRespected()) {
+                Log.d(TAG, "Slide policy not respected, denying change request.");
+                return false;
+            }
+        }
+
+        Log.d(TAG, "Change request will be allowed.");
+        return true;
     }
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
@@ -352,11 +414,11 @@ public abstract class AppIntroBase extends AppCompatActivity {
     }
 
     /**
-     * Called when the selected fragment changed
+     * Called when the selected fragment changed. This will be called automatically if the into starts or is finished via the done button.
      * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro has just started.
-     * @param newFragment Instance of the fragment which is displayed now
+     * @param newFragment Instance of the fragment which is displayed now. This might be null if the intro has finished
      */
-    public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+    public void onSlideChanged(@Nullable Fragment oldFragment,@Nullable Fragment newFragment) {
         onSlideChanged();
     }
 
@@ -647,26 +709,35 @@ public abstract class AppIntroBase extends AppCompatActivity {
                 mVibrator.vibrate(vibrateIntensity);
             }
 
-            boolean requestPermission = false;
-            int position = 0;
+            boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
-            for (int i = 0; i < permissionsArray.size(); i++) {
-                requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
-                position = i;
-                break;
-            }
+            // Check if changing to the next slide is allowed
+            if(isSlideChangingAllowed) {
 
-            if (requestPermission) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
-                    permissionsArray.remove(position);
+                boolean requestPermission = false;
+                int position = 0;
+
+                for (int i = 0; i < permissionsArray.size(); i++) {
+                    requestPermission = pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                    position = i;
+                    break;
+                }
+
+                if (requestPermission) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(permissionsArray.get(position).getPermission(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                        permissionsArray.remove(position);
+                    } else {
+                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        onNextPressed();
+                    }
                 } else {
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
                     onNextPressed();
                 }
-            } else {
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
-                onNextPressed();
+            }
+            else {
+                handleIllegalSlideChangeAttempt();
             }
         }
     }
@@ -678,13 +749,19 @@ public abstract class AppIntroBase extends AppCompatActivity {
             if (areColorTransitionsEnabled) {
                 if (position < mPagerAdapter.getCount() - 1) {
                     if (mPagerAdapter.getItem(position) instanceof ISlideBackgroundColorHolder && mPagerAdapter.getItem(position + 1) instanceof ISlideBackgroundColorHolder) {
-                        ISlideBackgroundColorHolder currentSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position);
-                        ISlideBackgroundColorHolder nextSlide = (ISlideBackgroundColorHolder) mPagerAdapter.getItem(position + 1);
+                        Fragment currentSlide = mPagerAdapter.getItem(position);
+                        Fragment nextSlide =  mPagerAdapter.getItem(position + 1);
 
-                        int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlide.getDefaultBackgroundColor(), nextSlide.getDefaultBackgroundColor());
+                        ISlideBackgroundColorHolder currentSlideCasted = (ISlideBackgroundColorHolder) currentSlide;
+                        ISlideBackgroundColorHolder nextSlideCasted = (ISlideBackgroundColorHolder) nextSlide;
 
-                        currentSlide.setBackgroundColor(newColor);
-                        nextSlide.setBackgroundColor(newColor);
+                        // Check if both fragments are attached to an activity, otherwise getDefaultBackgroundColor may fail.
+                        if(currentSlide.isAdded() && nextSlide.isAdded()) {
+                            int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlideCasted.getDefaultBackgroundColor(), nextSlideCasted.getDefaultBackgroundColor());
+
+                            currentSlideCasted.setBackgroundColor(newColor);
+                            nextSlideCasted.setBackgroundColor(newColor);
+                        }
                     }
                     else {
                         throw new IllegalStateException("Color transitions are only available if all slides implement ISlideBackgroundColorHolder.");

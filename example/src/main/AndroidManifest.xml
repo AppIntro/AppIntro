@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.paolorotolo.appintroexample" >
+<manifest package="com.github.paolorotolo.appintroexample"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -32,35 +32,48 @@
             android:label="@string/title_activity_custom_intro"
             android:theme="@style/FullscreenTheme">
         </activity>
-        <activity android:name=".PermissionsIntro"
+        <activity
+            android:name=".PermissionsIntro"
             android:label="@string/title_activity_permissions_intro"
             android:theme="@style/FullscreenTheme"/>
         <activity
             android:name=".PermissionsIntro2"
             android:label="@string/title_activity_permissions_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".DefaultIntro2"
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".DefaultIntro2"
             android:label="@string/title_activity_second_intro"
             android:theme="@style/FullscreenTheme"/>
-        <activity android:name=".DisableSwipeIntro1"
+        <activity
+            android:name=".DisableSwipeIntro1"
             android:label="@string/title_activity_default_intro_disable"
             android:theme="@style/FullscreenTheme"/>
-        <activity android:name=".DisableSwipeIntro2"
+        <activity
+            android:name=".DisableSwipeIntro2"
             android:label="@string/title_activity_second_intro_disable"
             android:theme="@style/FullscreenTheme"/>
-        <activity android:name=".animations.CustomAnimation" />
-        <activity android:name=".animations.FadeAnimation" />
-        <activity android:name=".animations.ZoomAnimation" />
-        <activity android:name=".animations.DepthAnimation" />
-        <activity android:name=".animations.FlowAnimation" />
-        <activity android:name=".animations.SlideOverAnimation" />
-        <activity android:name=".animations.ColorAnimation" />
-        <activity android:name=".indicators.ProgressIndicator" />
-        <activity android:name=".indicators.CustomIndicator" />
-        <activity android:name=".indicators.CustomColorIndicator" />
-        <activity android:name=".IntroWithBackground"
+        <activity android:name=".animations.CustomAnimation"/>
+        <activity android:name=".animations.FadeAnimation"/>
+        <activity android:name=".animations.ZoomAnimation"/>
+        <activity android:name=".animations.DepthAnimation"/>
+        <activity android:name=".animations.FlowAnimation"/>
+        <activity android:name=".animations.SlideOverAnimation"/>
+        <activity android:name=".animations.ColorAnimation"/>
+        <activity android:name=".indicators.ProgressIndicator"/>
+        <activity android:name=".indicators.CustomIndicator"/>
+        <activity android:name=".indicators.CustomColorIndicator"/>
+        <activity
+            android:name=".IntroWithBackground"
             android:label="Intro with background"
             android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".IntroDemoPolicy"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
