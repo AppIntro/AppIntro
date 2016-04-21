@@ -84,7 +84,7 @@ public class MyIntro extends AppIntro {
 }
 ```
 
-Please, **DO NOT override onCreate**. Just use **init** instead
+Please, **DO NOT override onCreate**. Use **init** instead.
 
 Finally, declare the activity in your Manifest like so:
 
@@ -106,9 +106,9 @@ public class MyIntro extends AppIntro2 {
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
-<br><br>
+<br>
 ### Easy implementation of Slide Fragments
-As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add new slides to AppIntro. <br><br>
+As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add new slides to AppIntro. <br>
 For example:
  * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
  * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
@@ -153,7 +153,7 @@ Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df354
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
 
-Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tetious thing to implement. 
+Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tedious thing to implement.
 
 However, AppIntro simplifies this down to one single line of code!
 
@@ -166,7 +166,7 @@ askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
 askForPermissions(new String[]{Manifest.permision.CAMERA, Manifest.permission.READ_CONTACTS}, 2); 
 ```
 
-NOTE: It is advised that you only put one permission in the String array unless you want the app to ask for multiple perms on the same slide.
+**NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
 ## Example
 See example code here on Github. You can also see it live. Download [this app from Google Play.](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
@@ -185,34 +185,38 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
-## Apps using it
-If you are using AppIntro in your app and would like to be listed here, please let us know opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
+## Apps using AppIntro
+If you are using AppIntro in your app and would like to be listed here, please let us know by opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
 
- * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes);
- * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro);
- * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp);
- * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets);
- * [Weather Delta](https://play.google.com/store/apps/details?id=com.felkertech.n.weatherdelta);
- * [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme);
- * [Circles](https://play.google.com/store/apps/details?id=com.felipejoglar.circles);
- * [Task Master](https://play.google.com/store/apps/details?id=com.cr5315.taskmaster);
- * [Smoothie Recipes](https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes);
- * [SideBar Notes](https://play.google.com/store/apps/details?id=com.app.floating.notes);
- * [Just food](https://play.google.com/store/apps/details?id=scientist.jobless.foodmana);
- * [AlarmSMS] (https://play.google.com/store/apps/details?id=com.qhutch.alarmsms);
- * [Aware] (https://play.google.com/store/apps/details?id=com.bunemekyakilika.aware);
- * [neutriNote](https://play.google.com/store/apps/details?id=com.appmindlab.nano);
- * [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote&hl=en);
- * [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette);
- * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity);
- * [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary);
- * [Sifter: the Insta of Timehop](https://play.google.com/store/apps/details?id=sifter.social.network.archaeologist);
- * [Ludus](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus);
- * [Snipit](https://play.google.com/store/apps/details?id=com.om.snipit);
- * [Service Notes](https://play.google.com/store/apps/details?id=notes.service.com.servicenotes);
- * [Salary Barometer](https://play.google.com/store/apps/details?id=anaware.salarybarometer);
- * [Best Business Idea](https://play.google.com/store/apps/details?id=anaware.bestidea);
- * [Wi-Fi Password Reminder](https://play.google.com/store/apps/details?id=com.rusdelphi.wifipassword);
- * [Safe Notes](https://play.google.com/store/apps/details?id=software.codeplus.safenotes);
+ * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes)
+ * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)
+ * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp)
+ * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets)
+ * [Weather Delta](https://play.google.com/store/apps/details?id=com.felkertech.n.weatherdelta)
+ * [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme)
+ * [Circles](https://play.google.com/store/apps/details?id=com.felipejoglar.circles)
+ * [Task Master](https://play.google.com/store/apps/details?id=com.cr5315.taskmaster)
+ * [Smoothie Recipes](https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes)
+ * [SideBar Notes](https://play.google.com/store/apps/details?id=com.app.floating.notes)
+ * [Just food](https://play.google.com/store/apps/details?id=scientist.jobless.foodmana)
+ * [AlarmSMS](https://play.google.com/store/apps/details?id=com.qhutch.alarmsms)
+ * [Aware](https://play.google.com/store/apps/details?id=com.bunemekyakilika.aware)
+ * [neutriNote](https://play.google.com/store/apps/details?id=com.appmindlab.nano)
+ * [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote&hl=en)
+ * [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette)
+ * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity)
+ * [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary)
+ * [Sifter: the Insta of Timehop](https://play.google.com/store/apps/details?id=sifter.social.network.archaeologist)
+ * [Ludus](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus)
+ * [Snipit](https://play.google.com/store/apps/details?id=com.om.snipit)
+ * [Service Notes](https://play.google.com/store/apps/details?id=notes.service.com.servicenotes)
+ * [Salary Barometer](https://play.google.com/store/apps/details?id=anaware.salarybarometer)
+ * [Best Business Idea](https://play.google.com/store/apps/details?id=anaware.bestidea)
+ * [Wi-Fi Password Reminder](https://play.google.com/store/apps/details?id=com.rusdelphi.wifipassword)
+ * [Safe Notes](https://play.google.com/store/apps/details?id=software.codeplus.safenotes)
  * [Xpaper](https://play.google.com/store/apps/details?id=com.dunrite.xpaper&hl=en)
  * [Find My Parked Car](https://play.google.com/store/apps/details?id=com.ofirmiron.findmycarandroidwear)
+ * [BoxPlay Music Player](https://play.google.com/store/apps/details?id=de.luckyworks.boxplay)
+ * [Vape Tool Pro](https://play.google.com/store/apps/details?id=com.stasbar.vapetoolpro)
+ * [NebelNiek Soundboard](https://play.google.com/store/apps/details?id=de.logtainment.nebelnieksoundboard)
+ * [sdiwi](https://play.google.com/store/apps/details?id=com.sdiwi.app)
