@@ -251,7 +251,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
      * @param position Position of the new selected slide
      */
     protected void onPageSelected(int position) {
-        setButtonState(skipButton, skipButtonEnabled);
+        // ;
     }
 
     public boolean isSkipButtonEnabled() {
@@ -325,7 +325,7 @@ public abstract class AppIntroBase extends AppCompatActivity {
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
-                setButtonState(skipButton, true);
+                setButtonState(skipButton, skipButtonEnabled ? true : false);
             }
         } else {
             setButtonState(nextButton, false);
