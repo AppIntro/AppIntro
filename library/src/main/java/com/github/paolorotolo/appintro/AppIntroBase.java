@@ -321,13 +321,16 @@ public abstract class AppIntroBase extends AppCompatActivity {
             if (pager.getCurrentItem() == slidesNumber - 1) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
+                setButtonState(skipButton, false);
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
+                setButtonState(skipButton, true);
             }
         } else {
             setButtonState(nextButton, false);
             setButtonState(doneButton, false);
+            setButtonState(skipButton, false);
         }
     }
 
