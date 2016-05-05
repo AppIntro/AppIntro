@@ -53,6 +53,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     protected int unselectedIndicatorColor = DEFAULT_COLOR;
     protected View nextButton;
     protected View doneButton;
+    protected View skipButton;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
 
@@ -65,6 +66,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private boolean isImmersiveModeEnabled = false;
     private boolean isImmersiveModeSticky = false;
     private boolean areColorTransitionsEnabled = false;
+    protected boolean skipButtonEnabled = true;
 
     private int currentlySelectedItem = -1;
 
@@ -81,6 +83,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
+        skipButton = findViewById(R.id.skip);
 
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
@@ -107,6 +110,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 else {
                     handleIllegalSlideChangeAttempt();
                 }
+            }
+        });
+
+        skipButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(@NonNull View v)
+            {
+                if (isVibrateOn)
+                {
+                    mVibrator.vibrate(vibrateIntensity);
+                }
+                onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
             }
         });
 
@@ -180,6 +196,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         outState.putBoolean("progressButtonEnabled", progressButtonEnabled);
         outState.putBoolean("nextEnabled", pager.isPagingEnabled());
         outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
+        outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
         outState.putInt("lockPage", pager.getLockPage());
         outState.putInt("currentItem", pager.getCurrentItem());
 
@@ -195,6 +212,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
         this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
         this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
+        this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
         this.savedCurrentItem = savedInstanceState.getInt("currentItem");
         pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
         pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
@@ -295,7 +313,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      * @param position Position of the new selected slide
      */
     protected void onPageSelected(int position) {
+        // ;
+    }
 
+    public boolean isSkipButtonEnabled() {
+        return skipButtonEnabled;
+    }
+
+    /**
+     * Called when the user clicked the skip button
+     * @param currentFragment Instance of the currently displayed fragment
+     */
+    public void onSkipPressed(Fragment currentFragment) {
+        onSkipPressed();
     }
 
     protected void setScrollDurationFactor(int factor) {
@@ -353,13 +383,16 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
             if (pager.getCurrentItem() == slidesNumber - 1) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
+                setButtonState(skipButton, false);
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
+                setButtonState(skipButton, skipButtonEnabled ? true : false);
             }
         } else {
             setButtonState(nextButton, false);
             setButtonState(doneButton, false);
+            setButtonState(skipButton, false);
         }
     }
 
@@ -394,6 +427,14 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      * @deprecated Override {@link #onDonePressed(Fragment)} instead
      */
     public void onDonePressed() {
+
+    }
+
+    /**
+     * Called when the user clicked the skip button
+     * @deprecated Override {@link #onSkipPressed(Fragment)} instead
+     */
+    public void onSkipPressed() {
 
     }
 

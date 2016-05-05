@@ -42,6 +42,15 @@
                 android:layout_gravity="center"/>
 
             <ImageButton
+                android:id="@+id/skip"
+                style="@style/AppIntroButtonStyleCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_skip_white_24px"/>
+
+            <ImageButton
                 android:id="@+id/next"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"

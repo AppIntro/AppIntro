@@ -1,10 +1,13 @@
 package com.github.paolorotolo.appintro;
 
 import android.animation.ArgbEvaluator;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 public abstract class AppIntro2 extends AppIntroBase {
@@ -37,6 +40,17 @@ public abstract class AppIntro2 extends AppIntroBase {
     @Deprecated
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
+    }
+
+    /**
+     * Override Next button
+     *
+     * @param imageSkipButton your drawable resource
+     */
+    public void setImageSkipButton(@DrawableRes final Drawable imageSkipButton) {
+        final ImageButton nextButton = (ImageButton) findViewById(R.id.skip);
+        nextButton.setImageDrawable(imageSkipButton);
+
     }
 
     public void setBackgroundView(View view){
