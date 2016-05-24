@@ -222,3 +222,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [sdiwi](https://play.google.com/store/apps/details?id=com.sdiwi.app)
  * [Helal ve Sağlıklı Yaşam](https://play.google.com/store/apps/details?id=org.yasam.hsy.helalvesaglikliyasam)
  * [HipCar](https://play.google.com/store/apps/details?id=com.hipcar.android)
+ * [Schematiskt](https://play.google.com/store/apps/details?id=se.zinokader.schematiskt)
+ * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
