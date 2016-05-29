@@ -8,8 +8,8 @@ android {
         applicationId "paolorotolo.github.com.appintroexample"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 6
-        versionName "3.4.0"
+        versionCode 7
+        versionName "4.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
