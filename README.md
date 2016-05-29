@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:3.4.0'
+  compile 'com.github.paolorotolo:appintro:4.0.0'
 }
 ```
 
@@ -33,6 +33,7 @@ public class MyIntro extends AppIntro {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // Add your slide's fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
@@ -61,23 +62,25 @@ public class MyIntro extends AppIntro {
     }
 
     @Override
-    public void onSkipPressed() {
-    // Do something when users tap on Skip button.
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        // Do something when users tap on Skip button.
     }
 
     @Override
-    public void onDonePressed() {
-    // Do something when users tap on Done button.
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
+        // Do something when users tap on Done button.
     }
     
         @Override
     public void onSlideChanged() {
-    // Do something when the slide changes.
+        // Do something when the slide changes.
     }
 
     @Override
     public void onNextPressed() {
-    // Do something when users tap on Next button.
+        // Do something when users tap on Next button.
     }
 
 }
