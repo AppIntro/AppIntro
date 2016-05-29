@@ -31,9 +31,8 @@ Create a new **Activity that extends AppIntro**:
 ```java
 public class MyIntro extends AppIntro {
 
-    // Please DO NOT override onCreate. Use init.
     @Override
-    public void init(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         // Add your slide's fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
@@ -83,8 +82,6 @@ public class MyIntro extends AppIntro {
 
 }
 ```
-
-Please, **DO NOT override onCreate**. Use **init** instead.
 
 Finally, declare the activity in your Manifest like so:
 
