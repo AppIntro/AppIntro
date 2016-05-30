@@ -73,16 +73,11 @@ public class MyIntro extends AppIntro {
         // Do something when users tap on Done button.
     }
     
-        @Override
-    public void onSlideChanged() {
+    @Override
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
         // Do something when the slide changes.
     }
-
-    @Override
-    public void onNextPressed() {
-        // Do something when users tap on Next button.
-    }
-
 }
 ```
 
