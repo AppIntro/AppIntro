@@ -100,17 +100,6 @@ public abstract class AppIntro extends AppIntroBase {
     }
 
     /**
-     * Setting to to display or hide the Skip button. This is a static setting and
-     * button state is maintained across slides until explicitly changed.
-     *
-     * @param showButton Set true to display. False to hide.
-     */
-    public void showSkipButton(boolean showButton) {
-        this.skipButtonEnabled = showButton;
-        setButtonState(skipButton, showButton);
-    }
-
-    /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
      *
      * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
