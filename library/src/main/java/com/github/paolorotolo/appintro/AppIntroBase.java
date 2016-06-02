@@ -316,6 +316,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         // ;
     }
 
+    public void setSkipButtonEnabled(boolean skipButtonEnabled) {
+        this.skipButtonEnabled = skipButtonEnabled;
+    }
+
     public boolean isSkipButtonEnabled() {
         return skipButtonEnabled;
     }
