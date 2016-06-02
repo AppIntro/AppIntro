@@ -316,8 +316,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         // ;
     }
 
-    public void setSkipButtonEnabled(boolean skipButtonEnabled) {
-        this.skipButtonEnabled = skipButtonEnabled;
+    /**
+     * Setting this to display or hide the Skip button. This is a static setting and
+     * button state is maintained across slides until explicitly changed.
+     *
+     * @param showButton Set true to display. false to hide.
+    */
+    public void showSkipButton(boolean showButton) {
+        this.skipButtonEnabled = showButton;
+        setButtonState(skipButton, showButton);
     }
 
     public boolean isSkipButtonEnabled() {
