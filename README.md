@@ -41,7 +41,7 @@ public class MyIntro extends AppIntro {
         addSlide(second_fragment);
         addSlide(third_fragment);
         addSlide(fourth_fragment);
-        
+
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
         addSlide(AppIntroFragment.newInstance(title, description, image, background_colour));
@@ -72,7 +72,7 @@ public class MyIntro extends AppIntro {
         super.onDonePressed(currentFragment);
         // Do something when users tap on Done button.
     }
-    
+
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
@@ -107,7 +107,7 @@ As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add n
 For example:
  * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
  * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
- 
+
 There's no need to create one class for fragment anymore. :)
 
 #### I've never used fragments...
@@ -156,9 +156,9 @@ However, AppIntro simplifies this down to one single line of code!
 // Put this in init()
 askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
 
-// This will ask for the camera permission AND the contacts permission on the same slide. 
+// This will ask for the camera permission AND the contacts permission on the same slide.
 // Ensure your slide talks about both so as not to confuse the user.
-askForPermissions(new String[]{Manifest.permision.CAMERA, Manifest.permission.READ_CONTACTS}, 2); 
+askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
 ```
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
