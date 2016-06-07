@@ -4,11 +4,11 @@ package com.github.paolorotolo.appintro;
 import android.os.Bundle;
 
 public final class AppIntro2Fragment extends AppIntroBaseFragment {
-    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor) {
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, @ColorInt int bgColor) {
         return newInstance(title, description, imageDrawable, bgColor, 0, 0);
     }
 
-    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, int bgColor, int titleColor, int descColor) {
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description, int imageDrawable, @ColorInt int bgColor, @ColorInt int titleColor, @ColorInt int descColor) {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title.toString());
