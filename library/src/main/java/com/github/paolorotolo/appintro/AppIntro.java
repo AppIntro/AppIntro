@@ -1,5 +1,6 @@
 package com.github.paolorotolo.appintro;
 
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -59,6 +60,17 @@ public abstract class AppIntro extends AppIntroBase {
     }
 
     /**
+     * Override skip text typeface
+     *
+     * @param texttf URL of font file located in Assets folder
+     */
+    public void setSkipTextTypeface(@Nullable final String texttf) {
+        TextView skipText = (TextView) findViewById(R.id.skip);
+        skipText.setTypeface(CustomFontCache.get(texttf,this));
+
+    }
+
+    /**
      * Override done text
      *
      * @param text your text
@@ -66,6 +78,16 @@ public abstract class AppIntro extends AppIntroBase {
     public void setDoneText(@Nullable final CharSequence text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
+    }
+
+    /**
+     * Override done text typeface
+     *
+     * @param texttf your text
+     */
+    public void setDoneTextTypeface(@Nullable final String texttf) {
+        TextView doneText = (TextView) findViewById(R.id.done);
+        doneText.setTypeface(CustomFontCache.get(texttf,this));
     }
 
     /**
@@ -99,6 +121,8 @@ public abstract class AppIntro extends AppIntroBase {
 
     }
 
+
+
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
      *
@@ -108,4 +132,5 @@ public abstract class AppIntro extends AppIntroBase {
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
     }
+
 }

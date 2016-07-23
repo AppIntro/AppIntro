@@ -12,7 +12,9 @@ public final class AppIntro2Fragment extends AppIntroBaseFragment {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title.toString());
+        args.putString(ARG_TITLE_TYPEFACE,"");
         args.putString(ARG_DESC, description.toString());
+        args.putString(ARG_DESC_TYPEFACE,"");
         args.putInt(ARG_DRAWABLE, imageDrawable);
         args.putInt(ARG_BG_COLOR, bgColor);
         args.putInt(ARG_TITLE_COLOR, titleColor);
@@ -20,7 +22,24 @@ public final class AppIntro2Fragment extends AppIntroBaseFragment {
         slide.setArguments(args);
         return slide;
     }
+    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface, CharSequence description, String descTypeface, int imageDrawable, int bgColor) {
+        return newInstance(title, titleTypeface ,description, descTypeface, imageDrawable, bgColor, 0, 0);
+    }
 
+    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface, CharSequence description, String descTypeface, int imageDrawable, int bgColor, int titleColor, int descColor) {
+        AppIntroFragment slide = new AppIntroFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_TITLE, title.toString());
+        args.putString(ARG_TITLE_TYPEFACE,titleTypeface);
+        args.putString(ARG_DESC, description.toString());
+        args.putString(ARG_DESC_TYPEFACE,descTypeface);
+        args.putInt(ARG_DRAWABLE, imageDrawable);
+        args.putInt(ARG_BG_COLOR, bgColor);
+        args.putInt(ARG_TITLE_COLOR, titleColor);
+        args.putInt(ARG_DESC_COLOR, descColor);
+        slide.setArguments(args);
+        return slide;
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_intro2;
