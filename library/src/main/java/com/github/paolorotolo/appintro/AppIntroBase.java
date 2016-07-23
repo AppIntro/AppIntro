@@ -70,6 +70,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private boolean areColorTransitionsEnabled = false;
     protected boolean skipButtonEnabled = true;
     protected boolean isWizardMode = false;
+    protected boolean showBackButtonWithDone = false;
     private int currentlySelectedItem = -1;
 
     @Override
@@ -414,7 +415,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 if (isWizardMode){
-                    setButtonState(backButton, true);
+                    setButtonState(backButton, showBackButtonWithDone);
                 }else {
                     setButtonState(skipButton, false);
                 }
@@ -586,6 +587,23 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      *
      */
     public boolean getWizardMode() {
+        return isWizardMode;
+    }
+
+    /**
+     * sets wizard mode
+     *
+     * @param show on/off
+     */
+    public void setBackButtonVisibilityWithDone(boolean show) {
+        this.showBackButtonWithDone = show;
+    }
+
+    /**
+     * get the state of wizard mode
+     *
+     */
+    public boolean getBackButtonVisibilityWithDone() {
         return isWizardMode;
     }
 
