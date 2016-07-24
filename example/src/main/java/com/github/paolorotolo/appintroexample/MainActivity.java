@@ -117,4 +117,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ColorAnimation.class);
         startActivity(intent);
     }
+
+    public void simpleCustomTypeface(View view){
+        Intent intent = new Intent(this, CustomTypefaceActivity.class);
+        startActivity(intent);
+    }
+
+    public void simpleCustomTypefaceTwo(View view){
+        Intent intent = new Intent(this, CustomTypefaceTwoActivity.class);
+        startActivity(intent);
+    }
+
+    public void wizardMode(View view){
+        Intent intent = new Intent(this, WizardActivity.class);
+        startActivity(intent);
+    }
+
+    public void wizardModeTwo(View view){
+        Intent intent = new Intent(this, WizardTwoActivity.class);
+        startActivity(intent);
+    }
 }
