@@ -397,6 +397,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      */
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
+        if (isWizardMode){
+            setOffScreenPageLimit(fragments.size());
+        }
         mPagerAdapter.notifyDataSetChanged();
     }
 
