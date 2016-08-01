@@ -219,4 +219,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [HipCar](https://play.google.com/store/apps/details?id=com.hipcar.android)
  * [Schematiskt](https://play.google.com/store/apps/details?id=se.zinokader.schematiskt)
  * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
- * [Crypton)[https://play.google.com/store/apps/details?id=mindstorm.crypton]
+ * [Crypton](https://play.google.com/store/apps/details?id=mindstorm.crypton)
+ * [Web Video Caster](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
