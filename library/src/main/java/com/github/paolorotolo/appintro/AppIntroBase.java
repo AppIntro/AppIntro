@@ -51,6 +51,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     protected int vibrateIntensity = 20;
     protected int selectedIndicatorColor = DEFAULT_COLOR;
     protected int unselectedIndicatorColor = DEFAULT_COLOR;
+    protected View previousButton;
     protected View nextButton;
     protected View doneButton;
     protected View skipButton;
@@ -67,6 +68,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private boolean isImmersiveModeSticky = false;
     private boolean areColorTransitionsEnabled = false;
     protected boolean skipButtonEnabled = true;
+    protected boolean previousButtonEnabled = false;
 
     private int currentlySelectedItem = -1;
 
@@ -81,6 +83,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
         gestureDetector = new GestureDetectorCompat(this, new WindowGestureListener());
 
+        previousButton = findViewById(R.id.previous);
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
@@ -112,6 +115,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 }
             }
         });
+        previousButton.setOnClickListener(new PreviousButtonOnClickListener());
 
         skipButton.setOnClickListener(new View.OnClickListener()
         {
@@ -197,6 +201,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         outState.putBoolean("nextEnabled", pager.isPagingEnabled());
         outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
         outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
+        outState.putBoolean("previousButtonEnabled", previousButtonEnabled);
         outState.putInt("lockPage", pager.getLockPage());
         outState.putInt("currentItem", pager.getCurrentItem());
 
@@ -213,6 +218,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
         this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
         this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
+        this.previousButtonEnabled = savedInstanceState.getBoolean("previousButtonEnabled");
         this.savedCurrentItem = savedInstanceState.getInt("currentItem");
         pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
         pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
@@ -323,8 +329,25 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      * @param showButton Set true to display. false to hide.
     */
     public void showSkipButton(boolean showButton) {
+    	this.previousButtonEnabled = true;
+        setButtonState(previousButton, true);
+        
         this.skipButtonEnabled = showButton;
         setButtonState(skipButton, showButton);
+    }
+
+    /**
+     * Setting this to display or hide the Previous button. This is a static setting and
+     * button state is maintained across slides until explicitly changed.
+     *
+     * @param showButton Set true to display. false to hide.
+    */
+    public void showPreviousButton(boolean showButton) {
+    	this.skipButtonEnabled = false;
+        setButtonState(skipButton, false);
+    	
+    	this.previousButtonEnabled = showButton;
+        setButtonState(previousButton, pager.getCurrentItem() > 0);
     }
 
     public boolean isSkipButtonEnabled() {
@@ -395,12 +418,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 setButtonState(skipButton, false);
+                setButtonState(previousButton, previousButtonEnabled && pager.getCurrentItem() > 0 ? true : false);
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
                 setButtonState(skipButton, skipButtonEnabled ? true : false);
+                setButtonState(previousButton, previousButtonEnabled && pager.getCurrentItem() > 0 ? true : false);
             }
         } else {
+            setButtonState(previousButton, false);
             setButtonState(nextButton, false);
             setButtonState(doneButton, false);
             setButtonState(skipButton, false);
@@ -752,6 +778,30 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         }
 
     }
+
+    private final class PreviousButtonOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            if (isVibrateOn) {
+                mVibrator.vibrate(vibrateIntensity);
+            }
+
+            boolean isSlideChangingAllowed = handleBeforeSlideChanged();
+
+            // Check if changing to the next slide is allowed
+            if(isSlideChangingAllowed) {
+        		if(pager.getCurrentItem() > 0)
+        		{
+        			pager.setCurrentItem(pager.getCurrentItem() - 1);
+        		}
+            }
+            else {
+                handleIllegalSlideChangeAttempt();
+            }
+        }
+    }
+
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
 
