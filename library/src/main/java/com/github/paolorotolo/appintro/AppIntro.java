@@ -20,7 +20,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override viewpager bar color
-     *
      * @param color your color resource
      */
     public void setBarColor(@ColorInt final int color) {
@@ -30,7 +29,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override next button arrow color
-     *
      * @param color your color
      *
      */
@@ -41,7 +39,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override separator color
-     *
      * @param color your color resource
      */
     public void setSeparatorColor(@ColorInt final int color) {
@@ -51,7 +48,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override skip text
-     *
      * @param text your text
      */
     public void setSkipText(@Nullable final CharSequence text) {
@@ -72,7 +68,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override done text
-     *
      * @param text your text
      */
     public void setDoneText(@Nullable final CharSequence text) {
@@ -82,7 +77,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override done text typeface
-     *
      * @param texttf your text
      */
     public void setDoneTextTypeface(@Nullable final String texttf) {
@@ -92,7 +86,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override done button text color
-     *
      * @param colorDoneText your color resource
      */
     public void setColorDoneText(@ColorInt final int colorDoneText) {
@@ -112,7 +105,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override Next button
-     *
      * @param imageNextButton your drawable resource
      */
     public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
@@ -121,11 +113,8 @@ public abstract class AppIntro extends AppIntroBase {
 
     }
 
-
-
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
-     *
      * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
      */
     @Deprecated

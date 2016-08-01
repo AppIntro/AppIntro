@@ -368,13 +368,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     /**
-     * Set typeface to only title
-     * @param tf_string URL of font file location in the Assets folder.
-     */
-    protected void setTitleTypeface(String tf_string){
-
-    }
-    /**
      * Returns the used ViewPager instance
      * @return Instance of the used ViewPager
      */
@@ -406,7 +399,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
      * button state is maintained across slides until explicitly changed.
-     *
      * @param progressButtonEnabled Set true to display. False to hide.
      */
     public void setProgressButtonEnabled(boolean progressButtonEnabled) {
@@ -552,7 +544,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Allows for setting statusbar visibility (true by default)
-     *
      * @param isVisible put true to show status bar, and false to hide it
      */
     public void showStatusBar(boolean isVisible) {
@@ -566,7 +557,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * sets vibration when buttons are pressed
-     *
      * @param vibrationEnabled on/off
      */
     public void setVibrate(boolean vibrationEnabled) {
@@ -575,7 +565,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * sets wizard mode
-     *
      * @param wizardMode on/off
      */
     public void setWizardMode(boolean wizardMode) {
@@ -587,7 +576,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * get the state of wizard mode
-     *
      */
     public boolean getWizardMode() {
         return isWizardMode;
@@ -595,7 +583,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * sets wizard mode
-     *
      * @param show on/off
      */
     public void setBackButtonVisibilityWithDone(boolean show) {
@@ -604,7 +591,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * get the state of wizard mode
-     *
      */
     public boolean getBackButtonVisibilityWithDone() {
         return isWizardMode;

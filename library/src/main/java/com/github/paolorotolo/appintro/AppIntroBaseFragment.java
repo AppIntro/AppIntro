@@ -85,7 +85,6 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
         if (titleColor != 0) {
             t.setTextColor(titleColor);
         }
-        //Log.i("title tf",titleTypeface);
         if (titleTypeface!=""&&titleTypeface!=null){
             t.setTypeface(CustomFontCache.get(titleTypeface,getContext()));
         }
@@ -93,7 +92,6 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-        //Log.i("desc tf",descTypeface);
         if (descTypeface!=""&&descTypeface!=null){
             d.setTypeface(CustomFontCache.get(descTypeface,getContext()));
         }

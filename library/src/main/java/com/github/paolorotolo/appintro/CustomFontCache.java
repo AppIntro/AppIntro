@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 
 import java.util.Hashtable;
 
@@ -10,11 +11,10 @@ import java.util.Hashtable;
  */
 public class CustomFontCache {
     private static Hashtable<String, Typeface> fCache = new Hashtable<String, Typeface>();
-
+    private static final String TAG = "AppIntro2";
     public static Typeface get(String tfn, Context ctx) {
         Typeface tf = fCache.get(tfn);
         if (tf == null) {
-            //Log.i("font add","Adding new font -> "+tfn);
             try {
                 tf = Typeface.createFromAsset(ctx.getAssets(), tfn);
                 if (tf != null) {
@@ -23,11 +23,11 @@ public class CustomFontCache {
 
                 return tf;
             } catch (Exception e) {
+                Log.w(TAG,e.toString());
                 return null;
             }
 
         } else {
-            //Log.i("font exist","Getting cached font -> "+tfn);
             return tf;
         }
 
