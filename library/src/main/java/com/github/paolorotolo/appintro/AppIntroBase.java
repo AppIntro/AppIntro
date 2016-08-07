@@ -22,6 +22,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.github.paolorotolo.appintro.util.LogHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -30,7 +32,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     public final static int DEFAULT_COLOR = 1;
 
-    private static final String TAG = "AppIntroBase";
+    private static final String TAG = LogHelper.makeLogTag(AppIntroBase.class);
 
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
@@ -269,22 +271,22 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private boolean handleBeforeSlideChanged() {
         Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-        Log.d(TAG, String.format("User wants to move away from slide: %s. Checking if this should be allowed...", currentFragment));
+        LogHelper.d(TAG, String.format("User wants to move away from slide: %s. Checking if this should be allowed...", currentFragment));
 
         // Check if the current fragment implements ISlidePolicy, else a change is always allowed
         if(currentFragment instanceof ISlidePolicy) {
             ISlidePolicy slide = (ISlidePolicy)currentFragment;
 
-            Log.d(TAG, "Current fragment implements ISlidePolicy.");
+            LogHelper.d(TAG, "Current fragment implements ISlidePolicy.");
 
             // Check if policy is fulfilled
             if(!slide.isPolicyRespected()) {
-                Log.d(TAG, "Slide policy not respected, denying change request.");
+                LogHelper.d(TAG, "Slide policy not respected, denying change request.");
                 return false;
             }
         }
 
-        Log.d(TAG, "Change request will be allowed.");
+        LogHelper.d(TAG, "Change request will be allowed.");
         return true;
     }
 
@@ -748,7 +750,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 pager.setCurrentItem(pager.getCurrentItem() + 1);
                 break;
             default:
-                Log.e(TAG, "Unexpected request code");
+                LogHelper.e(TAG, "Unexpected request code");
         }
 
     }
