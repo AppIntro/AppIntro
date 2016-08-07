@@ -86,14 +86,20 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
             t.setTextColor(titleColor);
         }
         if (titleTypeface!=""&&titleTypeface!=null){
-            t.setTypeface(CustomFontCache.get(titleTypeface,getContext()));
+            if (CustomFontCache.get(titleTypeface,getContext())!=null){
+                t.setTypeface(CustomFontCache.get(titleTypeface,getContext()));
+            }
+
         }
         d.setText(description);
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
         if (descTypeface!=""&&descTypeface!=null){
-            d.setTypeface(CustomFontCache.get(descTypeface,getContext()));
+            if (CustomFontCache.get(descTypeface,getContext())!=null){
+                d.setTypeface(CustomFontCache.get(descTypeface,getContext()));
+            }
+
         }
         i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
         mainLayout.setBackgroundColor(bgColor);
