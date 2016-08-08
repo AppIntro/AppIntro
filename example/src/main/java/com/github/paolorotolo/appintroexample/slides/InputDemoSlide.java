@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import com.github.paolorotolo.appintroexample.R;
 
 public final class InputDemoSlide extends Fragment {
-
-    private static final String DATA_TEXT = "com.github.paolorotolo.appintroexample.slides.InputDemoSlide_text";
-    private static final String DATA_CHECKBOX = "com.github.paolorotolo.appintroexample.slides.InputDemoSlide_checkbox";
+    private static final String DATA_TEXT =
+            "com.github.paolorotolo.appintroexample.slides.InputDemoSlide_text";
+    private static final String DATA_CHECKBOX =
+            "com.github.paolorotolo.appintroexample.slides.InputDemoSlide_checkbox";
 
     private AppCompatEditText editText;
     private AppCompatCheckBox checkBox;
@@ -25,6 +26,7 @@ public final class InputDemoSlide extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setRetainInstance(true);
     }
 
@@ -32,7 +34,7 @@ public final class InputDemoSlide extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             text = savedInstanceState.getString(DATA_TEXT);
             isCheckboxChecked = savedInstanceState.getBoolean(DATA_CHECKBOX);
         }
@@ -50,7 +52,7 @@ public final class InputDemoSlide extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.slide_input, container, false);
 
-        editText = (AppCompatEditText)view.findViewById(R.id.slide_input_edittext);
+        editText = (AppCompatEditText) view.findViewById(R.id.slide_input_edittext);
         checkBox = (AppCompatCheckBox) view.findViewById(R.id.slide_input_checkbox);
 
         return view;

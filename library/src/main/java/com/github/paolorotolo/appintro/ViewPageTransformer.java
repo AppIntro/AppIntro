@@ -5,26 +5,16 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 class ViewPageTransformer implements ViewPager.PageTransformer {
-
-    static enum TransformType {
-        FLOW,
-        DEPTH,
-        ZOOM,
-        SLIDE_OVER,
-        FADE
-    }
-
-    private final TransformType mTransformType;
-
-    ViewPageTransformer(TransformType transformType) {
-        mTransformType = transformType;
-    }
-
     private static final float MIN_SCALE_DEPTH = 0.75f;
     private static final float MIN_SCALE_ZOOM = 0.85f;
     private static final float MIN_ALPHA_ZOOM = 0.5f;
     private static final float SCALE_FACTOR_SLIDE = 0.85f;
     private static final float MIN_ALPHA_SLIDE = 0.35f;
+    private final TransformType mTransformType;
+
+    ViewPageTransformer(TransformType transformType) {
+        mTransformType = transformType;
+    }
 
     @SuppressLint("NewApi")
     public void transformPage(View page, float position) {
@@ -40,7 +30,8 @@ class ViewPageTransformer implements ViewPager.PageTransformer {
             case SLIDE_OVER:
                 if (position < 0 && position > -1) {
                     // this is the page to the left
-                    scale = Math.abs(Math.abs(position) - 1) * (1.0f - SCALE_FACTOR_SLIDE) + SCALE_FACTOR_SLIDE;
+                    scale = Math.abs(Math.abs(position) - 1) * (1.0f - SCALE_FACTOR_SLIDE) +
+                            SCALE_FACTOR_SLIDE;
                     alpha = Math.max(MIN_ALPHA_SLIDE, 1 - Math.abs(position));
                     int pageWidth = page.getWidth();
                     float translateValue = position * -pageWidth;
@@ -100,8 +91,6 @@ class ViewPageTransformer implements ViewPager.PageTransformer {
                     page.setAlpha(1.0F - Math.abs(position));
                 }
 
-
-
             default:
                 return;
         }
@@ -110,5 +99,13 @@ class ViewPageTransformer implements ViewPager.PageTransformer {
         page.setTranslationX(translationX);
         page.setScaleX(scale);
         page.setScaleY(scale);
+    }
+
+    enum TransformType {
+        FLOW,
+        DEPTH,
+        ZOOM,
+        SLIDE_OVER,
+        FADE
     }
 }
