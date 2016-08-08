@@ -15,8 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.util.LogHelper;
+
 abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener, ISlideBackgroundColorHolder {
-    private static final String TAG = "AppIntroBaseFragment";
+    private static final String TAG = LogHelper.makeLogTag(AppIntroBaseFragment.class);
 
     protected static final String ARG_TITLE = "title";
     protected static final String ARG_TITLE_TYPEFACE = "title_typeface";
@@ -122,12 +124,12 @@ abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionL
 
     @Override
     public void onSlideDeselected() {
-        Log.d(TAG, String.format("Slide %s has been deselected.", title));
+        LogHelper.d(TAG, String.format("Slide %s has been deselected.", title));
     }
 
     @Override
     public void onSlideSelected() {
-        Log.d(TAG, String.format("Slide %s has been selected.", title));
+        LogHelper.d(TAG, String.format("Slide %s has been selected.", title));
     }
 
 
