@@ -152,5 +152,52 @@
                 android:layout_height="wrap_content"
                 android:onClick="startCustomColorIndicator"
                 android:text="@string/custom_color_indicator"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#888888"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:text="@string/header_custom_typeface"/>
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="simpleCustomTypeface"
+            android:text="@string/simple_custom"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="simpleCustomTypefaceTwo"
+            android:text="@string/simple_custom_two"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#888888"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:text="@string/header_wizard_mode"/>
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="wizardMode"
+            android:text="@string/wizard_one"/>
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="wizardModeTwo"
+            android:text="@string/wizard_two"/>
     </LinearLayout>
 </ScrollView>

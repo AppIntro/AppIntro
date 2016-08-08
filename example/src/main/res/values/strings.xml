@@ -23,6 +23,7 @@
     <string name="skip">Y U DO DIS TO ME?</string>
     <string name="header_animations">Animations</string>
     <string name="header_indicators">Indicators</string>
+
     <string name="zoom_animation">SET ZOOM ANIMATION</string>
     <string name="color_animation">SET COLOR ANIMATION</string>
     <string name="flow_animation">SET FLOW ANIMATION</string>
@@ -44,4 +45,17 @@
     <string name="slide_policy_demo_description">One may only continue to the next slide if the checkbox has been checked.</string>
     <string name="slide_policy_demo_cb">Check me!</string>
     <string name="slide_policy_demo_error">Please check the checkbox in order to continue.</string>
+
+    <!-- CustomTypefaceDemoSlide -->
+    <string name="header_custom_typeface">With Custom Typeface</string>
+    <string name="simple_custom">Simple Typeface example</string>
+    <string name="skip_done_typeface">Skip/Done typeface example</string>
+    <string name="simple_custom_two">Simple Typeface example 2</string>
+    <string name="title_font">nemoy_medium.ttf</string>
+    <string name="desc_font">OpenSans-Light.ttf</string>
+
+    <!-- WizardModeDemoSlide -->
+    <string name="header_wizard_mode">Wizard Mode</string>
+    <string name="wizard_one">Wizard Example</string>
+    <string name="wizard_two">Wizard Example 2</string>
 </resources>

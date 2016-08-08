@@ -1,5 +1,6 @@
 package com.github.paolorotolo.appintro;
 
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -19,7 +20,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override viewpager bar color
-     *
      * @param color your color resource
      */
     public void setBarColor(@ColorInt final int color) {
@@ -29,7 +29,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override next button arrow color
-     *
      * @param color your color
      *
      */
@@ -40,7 +39,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override separator color
-     *
      * @param color your color resource
      */
     public void setSeparatorColor(@ColorInt final int color) {
@@ -50,7 +48,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override skip text
-     *
      * @param text your text
      */
     public void setSkipText(@Nullable final CharSequence text) {
@@ -59,8 +56,21 @@ public abstract class AppIntro extends AppIntroBase {
     }
 
     /**
-     * Override done text
+     * Override skip text typeface
      *
+     * @param texttf URL of font file located in Assets folder
+     */
+    public void setSkipTextTypeface(@Nullable final String texttf) {
+        TextView skipText = (TextView) findViewById(R.id.skip);
+        if (CustomFontCache.get(texttf,this) != null){
+            skipText.setTypeface(CustomFontCache.get(texttf,this));
+        }
+
+
+    }
+
+    /**
+     * Override done text
      * @param text your text
      */
     public void setDoneText(@Nullable final CharSequence text) {
@@ -69,8 +79,19 @@ public abstract class AppIntro extends AppIntroBase {
     }
 
     /**
+     * Override done text typeface
+     * @param texttf your text
+     */
+    public void setDoneTextTypeface(@Nullable final String texttf) {
+        TextView doneText = (TextView) findViewById(R.id.done);
+        if (CustomFontCache.get(texttf,this) != null){
+            doneText.setTypeface(CustomFontCache.get(texttf,this));
+        }
+
+    }
+
+    /**
      * Override done button text color
-     *
      * @param colorDoneText your color resource
      */
     public void setColorDoneText(@ColorInt final int colorDoneText) {
@@ -90,7 +111,6 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override Next button
-     *
      * @param imageNextButton your drawable resource
      */
     public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
@@ -101,11 +121,11 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
-     *
      * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
      */
     @Deprecated
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
     }
+
 }
