@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     protected View nextButton;
     protected View doneButton;
     protected View skipButton;
+    protected View backButton;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
 
@@ -67,7 +69,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private boolean isImmersiveModeSticky = false;
     private boolean areColorTransitionsEnabled = false;
     protected boolean skipButtonEnabled = true;
-
+    protected boolean isWizardMode = false;
+    protected boolean showBackButtonWithDone = false;
     private int currentlySelectedItem = -1;
 
     @Override
@@ -84,7 +87,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
-
+        backButton = findViewById(R.id.back);
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
@@ -127,7 +130,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         });
 
         nextButton.setOnClickListener(new NextButtonOnClickListener());
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pager.getCurrentItem()>0){
+                    pager.setCurrentItem(pager.getCurrentItem()-1);
+                }
 
+            }
+        });
         pager.setAdapter(this.mPagerAdapter);
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
         pager.setOnNextPageRequestedListener(this);
@@ -379,31 +390,52 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
      */
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
+        if (isWizardMode){
+            setOffScreenPageLimit(fragments.size());
+        }
         mPagerAdapter.notifyDataSetChanged();
     }
 
     /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
      * button state is maintained across slides until explicitly changed.
-     *
      * @param progressButtonEnabled Set true to display. False to hide.
      */
     public void setProgressButtonEnabled(boolean progressButtonEnabled) {
+
         this.progressButtonEnabled = progressButtonEnabled;
         if (progressButtonEnabled) {
+
             if (pager.getCurrentItem() == slidesNumber - 1) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
-                setButtonState(skipButton, false);
+                if (isWizardMode){
+                    setButtonState(backButton, showBackButtonWithDone);
+                }else {
+                    setButtonState(skipButton, false);
+                }
+
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
-                setButtonState(skipButton, skipButtonEnabled ? true : false);
+                if (isWizardMode){
+                    if (pager.getCurrentItem()==0){
+                        setButtonState(backButton, false);
+                    }else {
+                        setButtonState(backButton, isWizardMode ? true : false);
+                    }
+                }else {
+                    //setButtonState(skipButton, skipButtonEnabled ? true : false);
+                    setButtonState(skipButton, !isWizardMode ? true : false);
+                }
+
             }
         } else {
             setButtonState(nextButton, false);
             setButtonState(doneButton, false);
+            setButtonState(backButton, false);
             setButtonState(skipButton, false);
+
         }
     }
 
@@ -512,7 +544,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Allows for setting statusbar visibility (true by default)
-     *
      * @param isVisible put true to show status bar, and false to hide it
      */
     public void showStatusBar(boolean isVisible) {
@@ -526,11 +557,43 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * sets vibration when buttons are pressed
-     *
      * @param vibrationEnabled on/off
      */
     public void setVibrate(boolean vibrationEnabled) {
         this.isVibrateOn = vibrationEnabled;
+    }
+
+    /**
+     * sets wizard mode
+     * @param wizardMode on/off
+     */
+    public void setWizardMode(boolean wizardMode) {
+        this.isWizardMode = wizardMode;
+        this.skipButtonEnabled = false;
+        setButtonState(skipButton, !wizardMode);
+        //setButtonState(backButton,wizardMode);
+    }
+
+    /**
+     * get the state of wizard mode
+     */
+    public boolean getWizardMode() {
+        return isWizardMode;
+    }
+
+    /**
+     * sets wizard mode
+     * @param show on/off
+     */
+    public void setBackButtonVisibilityWithDone(boolean show) {
+        this.showBackButtonWithDone = show;
+    }
+
+    /**
+     * get the state of wizard mode
+     */
+    public boolean getBackButtonVisibilityWithDone() {
+        return isWizardMode;
     }
 
     /**
