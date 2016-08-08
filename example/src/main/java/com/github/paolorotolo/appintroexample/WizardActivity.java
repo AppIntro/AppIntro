@@ -22,4 +22,26 @@ public class WizardActivity extends AppIntro {
         //show back with done button
         //setBackButtonVisibilityWithDone(false);
     }
+    
+    @Override
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        loadMainActivity();
+    }
+    
+    @Override
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+        
+    }
+    
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
+        loadMainActivity();
+    }
+    
+    private void loadMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

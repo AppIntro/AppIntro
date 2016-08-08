@@ -62,7 +62,7 @@ public abstract class AppIntro extends AppIntroBase {
      */
     public void setSkipTextTypeface(@Nullable final String texttf) {
         TextView skipText = (TextView) findViewById(R.id.skip);
-        if (CustomFontCache.get(texttf,this)!=null){
+        if (CustomFontCache.get(texttf,this) != null){
             skipText.setTypeface(CustomFontCache.get(texttf,this));
         }
 
@@ -84,7 +84,7 @@ public abstract class AppIntro extends AppIntroBase {
      */
     public void setDoneTextTypeface(@Nullable final String texttf) {
         TextView doneText = (TextView) findViewById(R.id.done);
-        if (CustomFontCache.get(texttf,this)!=null){
+        if (CustomFontCache.get(texttf,this) != null){
             doneText.setTypeface(CustomFontCache.get(texttf,this));
         }
 
