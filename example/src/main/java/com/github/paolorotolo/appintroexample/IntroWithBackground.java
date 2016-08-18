@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintroexample;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntro2Fragment;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public final class IntroWithBackground extends AppIntro2 {
+public final class IntroWithBackground extends BaseIntro2 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +31,7 @@ public final class IntroWithBackground extends AppIntro2 {
 
         setVibrate(true);
         setVibrateIntensity(30);
-    }
-
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        showSkipButton(false);
     }
 
     @Override
@@ -48,7 +41,7 @@ public final class IntroWithBackground extends AppIntro2 {
         loadMainActivity();
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

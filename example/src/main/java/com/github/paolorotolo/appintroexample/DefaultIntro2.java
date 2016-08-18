@@ -1,14 +1,11 @@
 package com.github.paolorotolo.appintroexample;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro2;
-
-public final class DefaultIntro2 extends AppIntro2 {
+public final class DefaultIntro2 extends BaseIntro2 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +14,6 @@ public final class DefaultIntro2 extends AppIntro2 {
         addSlide(SampleSlide.newInstance(R.layout.intro_2));
         addSlide(SampleSlide.newInstance(R.layout.intro2_2));
         addSlide(SampleSlide.newInstance(R.layout.intro3_2));
-    }
-
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -38,7 +30,7 @@ public final class DefaultIntro2 extends AppIntro2 {
         loadMainActivity();
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

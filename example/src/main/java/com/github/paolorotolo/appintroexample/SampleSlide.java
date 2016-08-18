@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class SampleSlide extends Fragment {
 
     private static final String ARG_LAYOUT_RES_ID = "layoutResId";
+    private int layoutResId;
 
     public static SampleSlide newInstance(int layoutResId) {
         SampleSlide sampleSlide = new SampleSlide();
@@ -21,22 +22,19 @@ public class SampleSlide extends Fragment {
         return sampleSlide;
     }
 
-    private int layoutResId;
-
-    public SampleSlide() {}
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID))
+        if (getArguments() != null && getArguments().containsKey(ARG_LAYOUT_RES_ID)) {
             layoutResId = getArguments().getInt(ARG_LAYOUT_RES_ID);
+        }
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(layoutResId, container, false);
     }
-
 }

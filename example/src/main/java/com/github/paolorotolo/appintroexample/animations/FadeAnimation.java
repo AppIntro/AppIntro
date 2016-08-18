@@ -10,6 +10,7 @@ import com.github.paolorotolo.appintroexample.R;
 import com.github.paolorotolo.appintroexample.SampleSlide;
 
 public class FadeAnimation extends BaseAppIntro {
+
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(SampleSlide.newInstance(R.layout.intro));
@@ -20,7 +21,7 @@ public class FadeAnimation extends BaseAppIntro {
         setFadeAnimation();
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -46,7 +47,7 @@ public class FadeAnimation extends BaseAppIntro {
 
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

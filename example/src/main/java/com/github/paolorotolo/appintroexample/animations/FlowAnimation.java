@@ -14,7 +14,6 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
  */
 public class FlowAnimation extends BaseAppIntro {
 
-
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(SampleSlide.newInstance(R.layout.intro));
@@ -25,7 +24,7 @@ public class FlowAnimation extends BaseAppIntro {
         setFlowAnimation();
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -51,7 +50,7 @@ public class FlowAnimation extends BaseAppIntro {
 
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 

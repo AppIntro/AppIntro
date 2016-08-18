@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintro;
 
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -10,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.util.LogHelper;
+
 public abstract class AppIntro extends AppIntroBase {
-    private static final String TAG = "AppIntro";
+    private static final String TAG = LogHelper.makeLogTag(AppIntro.class);
 
     @Override
     protected int getLayoutId() {
@@ -20,6 +21,7 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override viewpager bar color
+     *
      * @param color your color resource
      */
     public void setBarColor(@ColorInt final int color) {
@@ -29,8 +31,8 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override next button arrow color
-     * @param color your color
      *
+     * @param color your color
      */
     public void setNextArrowColor(@ColorInt final int color) {
         ImageButton nextButton = (ImageButton) findViewById(R.id.next);
@@ -39,6 +41,7 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override separator color
+     *
      * @param color your color resource
      */
     public void setSeparatorColor(@ColorInt final int color) {
@@ -48,6 +51,7 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override skip text
+     *
      * @param text your text
      */
     public void setSkipText(@Nullable final CharSequence text) {
@@ -58,19 +62,18 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override skip text typeface
      *
-     * @param texttf URL of font file located in Assets folder
+     * @param typeURL URL of font file located in Assets folder
      */
-    public void setSkipTextTypeface(@Nullable final String texttf) {
+    public void setSkipTextTypeface(@Nullable final String typeURL) {
         TextView skipText = (TextView) findViewById(R.id.skip);
-        if (CustomFontCache.get(texttf,this) != null){
-            skipText.setTypeface(CustomFontCache.get(texttf,this));
+        if (CustomFontCache.get(typeURL, this) != null) {
+            skipText.setTypeface(CustomFontCache.get(typeURL, this));
         }
-
-
     }
 
     /**
      * Override done text
+     *
      * @param text your text
      */
     public void setDoneText(@Nullable final CharSequence text) {
@@ -80,18 +83,19 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override done text typeface
-     * @param texttf your text
+     *
+     * @param typeURL your text
      */
-    public void setDoneTextTypeface(@Nullable final String texttf) {
+    public void setDoneTextTypeface(@Nullable final String typeURL) {
         TextView doneText = (TextView) findViewById(R.id.done);
-        if (CustomFontCache.get(texttf,this) != null){
-            doneText.setTypeface(CustomFontCache.get(texttf,this));
+        if (CustomFontCache.get(typeURL, this) != null) {
+            doneText.setTypeface(CustomFontCache.get(typeURL, this));
         }
-
     }
 
     /**
      * Override done button text color
+     *
      * @param colorDoneText your color resource
      */
     public void setColorDoneText(@ColorInt final int colorDoneText) {
@@ -111,21 +115,21 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override Next button
+     *
      * @param imageNextButton your drawable resource
      */
     public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
-
     }
 
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
+     *
      * @deprecated use {@link #setProgressButtonEnabled(boolean)} instead.
      */
     @Deprecated
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
     }
-
 }

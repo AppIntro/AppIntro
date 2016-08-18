@@ -20,7 +20,7 @@ public abstract class BaseAppIntro extends AppIntro {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_factor1:
                 mScrollDurationFactor = 1;
                 break;

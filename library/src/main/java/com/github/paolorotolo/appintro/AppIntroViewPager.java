@@ -3,35 +3,25 @@ package com.github.paolorotolo.appintro;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 
 import java.lang.reflect.Field;
 
 public final class AppIntroViewPager extends ViewPager {
-
-    public interface OnNextPageRequestedListener {
-        boolean onCanRequestNextPage();
-        void onIllegallyRequestedNextPage();
-    }
-
     private static final int ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000;
-
     private boolean pagingEnabled;
     private boolean nextPagingEnabled;
     private float currentTouchDownX;
-
     private long illegallyRequestedNextPageLastCalled;
     private int lockPage;
-
     private ScrollerCustomDuration mScroller = null;
-
     private OnNextPageRequestedListener nextPageRequestedListener;
     private OnPageChangeListener pageChangeListener;
 
     public AppIntroViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         pagingEnabled = true;
         nextPagingEnabled = true;
         lockPage = 0;
@@ -42,6 +32,7 @@ public final class AppIntroViewPager extends ViewPager {
     @Override
     public void addOnPageChangeListener(OnPageChangeListener listener) {
         super.addOnPageChangeListener(listener);
+
         this.pageChangeListener = listener;
     }
 
@@ -66,12 +57,10 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onInterceptTouchEvent(event);
-        }
-        else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        } else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
@@ -82,8 +71,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onTouchEvent(event);
         }
@@ -96,8 +84,6 @@ public final class AppIntroViewPager extends ViewPager {
 
         return super.onTouchEvent(event);
     }
-
-
 
     private boolean checkPagingState(MotionEvent event) {
         if (!pagingEnabled) {
@@ -114,6 +100,7 @@ public final class AppIntroViewPager extends ViewPager {
                 }
             }
         }
+
         return false;
     }
 
@@ -124,11 +111,13 @@ public final class AppIntroViewPager extends ViewPager {
     private void checkIllegallyRequestedNextPage(MotionEvent event) {
         int swipeThreshold = 25;
 
-        if (event.getAction() == MotionEvent.ACTION_MOVE && Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) {
-            if(System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
+        if (event.getAction() == MotionEvent.ACTION_MOVE &&
+                Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) {
+            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
+                    ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
                 illegallyRequestedNextPageLastCalled = System.currentTimeMillis();
 
-                if(nextPageRequestedListener != null) {
+                if (nextPageRequestedListener != null) {
                     nextPageRequestedListener.onIllegallyRequestedNextPage();
                 }
             }
@@ -177,21 +166,11 @@ public final class AppIntroViewPager extends ViewPager {
     /**
      * Register an instance of OnNextPageRequestedListener.
      * Before the user swipes to the next page, this listener will be called and can interrupt swiping by returning false.
+     *
      * @param nextPageRequestedListener Instance of OnNextPageRequestedListener
      */
     public void setOnNextPageRequestedListener(OnNextPageRequestedListener nextPageRequestedListener) {
         this.nextPageRequestedListener = nextPageRequestedListener;
-    }
-
-    /**
-     * Enable or disable swiping to the next page
-     * @param nextPagingEnabled Whether swiping to the next page should be enabled or not
-     */
-    public void setNextPagingEnabled(boolean nextPagingEnabled) {
-        this.nextPagingEnabled = nextPagingEnabled;
-        if (!nextPagingEnabled) {
-            lockPage = getCurrentItem();
-        }
     }
 
     /**
@@ -203,6 +182,18 @@ public final class AppIntroViewPager extends ViewPager {
 
     public boolean isNextPagingEnabled() {
         return nextPagingEnabled;
+    }
+
+    /**
+     * Enable or disable swiping to the next page
+     *
+     * @param nextPagingEnabled Whether swiping to the next page should be enabled or not
+     */
+    public void setNextPagingEnabled(boolean nextPagingEnabled) {
+        this.nextPagingEnabled = nextPagingEnabled;
+        if (!nextPagingEnabled) {
+            lockPage = getCurrentItem();
+        }
     }
 
     public boolean isPagingEnabled() {
@@ -219,5 +210,11 @@ public final class AppIntroViewPager extends ViewPager {
 
     public void setLockPage(int lockPage) {
         this.lockPage = lockPage;
+    }
+
+    public interface OnNextPageRequestedListener {
+        boolean onCanRequestNextPage();
+
+        void onIllegallyRequestedNextPage();
     }
 }

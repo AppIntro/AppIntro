@@ -6,7 +6,6 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 public class ScrollerCustomDuration extends Scroller {
-
     private double mScrollFactor = 6;
 
     public ScrollerCustomDuration(Context context) {

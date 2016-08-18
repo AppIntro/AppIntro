@@ -2,16 +2,21 @@ package com.github.paolorotolo.appintro;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
+
+import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.Hashtable;
 
 /**
  * Created by ameykshirsagar on 23/07/16.
+ * Custom Font Cache Implementation
+ * Prevent(s) memory leaks due to Typeface objects
  */
 public class CustomFontCache {
-    private static Hashtable<String, Typeface> fCache = new Hashtable<String, Typeface>();
-    private static final String TAG = "AppIntro2";
+    private static final String TAG = LogHelper.makeLogTag(CustomFontCache.class);
+
+    private static final Hashtable<String, Typeface> fCache = new Hashtable<>();
+
     public static Typeface get(String tfn, Context ctx) {
         Typeface tf = fCache.get(tfn);
         if (tf == null) {
@@ -23,10 +28,9 @@ public class CustomFontCache {
 
                 return tf;
             } catch (Exception e) {
-                Log.w(TAG,e.toString());
+                LogHelper.w(TAG, e.toString());
                 return null;
             }
-
         } else {
             return tf;
         }

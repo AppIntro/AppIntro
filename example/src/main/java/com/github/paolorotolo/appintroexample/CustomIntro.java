@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintroexample;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +7,9 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public final class CustomIntro extends AppIntro {
+public final class CustomIntro extends BaseIntro {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +29,12 @@ public final class CustomIntro extends AppIntro {
         setVibrateIntensity(30);
     }
 
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
 
         loadMainActivity();
-        Toast.makeText(getApplicationContext(),getString(R.string.skip),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -51,7 +44,7 @@ public final class CustomIntro extends AppIntro {
         loadMainActivity();
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }
