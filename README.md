@@ -223,7 +223,7 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
  * [Crypton](https://play.google.com/store/apps/details?id=mindstorm.crypton)
  * [Web Video Caster](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
- * [Sask. Geo-Memorial](https://play.google.com/apps/testing/com.github.dstaflund.geomemorial)
+ * [Sask. Geo-Memorial](https://play.google.com/store/apps/details?id=com.github.dstaflund.geomemorial)
  * [SchoolBox](https://play.google.com/store/apps/details?id=com.deenysoft.schoolbox)
  * [Fitness Challenge](https://play.google.com/store/apps/details?id=com.isidroid.fitchallenge)
  * [ICE: Emergency Button](https://play.google.com/store/apps/details?id=com.figsandolives.ice.free)
