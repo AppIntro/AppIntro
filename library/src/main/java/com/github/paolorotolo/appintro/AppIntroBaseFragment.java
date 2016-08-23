@@ -100,7 +100,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
                 d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
             }
         }
-        i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
+        i.setImageResource(drawable);
         mainLayout.setBackgroundColor(bgColor);
 
         return v;
