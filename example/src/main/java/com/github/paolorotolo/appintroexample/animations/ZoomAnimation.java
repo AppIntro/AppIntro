@@ -24,7 +24,7 @@ public class ZoomAnimation extends BaseAppIntro {
         setZoomAnimation();
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -50,7 +50,7 @@ public class ZoomAnimation extends BaseAppIntro {
 
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.util.LogHelper;
+
 public abstract class AppIntro extends AppIntroBase {
-    private static final String TAG = "AppIntro";
+    private static final String TAG = LogHelper.makeLogTag(AppIntro.class);
 
     @Override
     protected int getLayoutId() {
@@ -31,7 +33,6 @@ public abstract class AppIntro extends AppIntroBase {
      * Override next button arrow color
      *
      * @param color your color
-     *
      */
     public void setNextArrowColor(@ColorInt final int color) {
         ImageButton nextButton = (ImageButton) findViewById(R.id.next);
@@ -59,6 +60,18 @@ public abstract class AppIntro extends AppIntroBase {
     }
 
     /**
+     * Override skip text typeface
+     *
+     * @param typeURL URL of font file located in Assets folder
+     */
+    public void setSkipTextTypeface(@Nullable final String typeURL) {
+        TextView skipText = (TextView) findViewById(R.id.skip);
+        if (CustomFontCache.get(typeURL, this) != null) {
+            skipText.setTypeface(CustomFontCache.get(typeURL, this));
+        }
+    }
+
+    /**
      * Override done text
      *
      * @param text your text
@@ -66,6 +79,18 @@ public abstract class AppIntro extends AppIntroBase {
     public void setDoneText(@Nullable final CharSequence text) {
         TextView doneText = (TextView) findViewById(R.id.done);
         doneText.setText(text);
+    }
+
+    /**
+     * Override done text typeface
+     *
+     * @param typeURL your text
+     */
+    public void setDoneTextTypeface(@Nullable final String typeURL) {
+        TextView doneText = (TextView) findViewById(R.id.done);
+        if (CustomFontCache.get(typeURL, this) != null) {
+            doneText.setTypeface(CustomFontCache.get(typeURL, this));
+        }
     }
 
     /**
@@ -96,7 +121,6 @@ public abstract class AppIntro extends AppIntroBase {
     public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
-
     }
 
     /**

@@ -161,6 +161,8 @@ askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
 askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
 ```
 
+We are using icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
 ## Example
@@ -221,3 +223,7 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
  * [Crypton](https://play.google.com/store/apps/details?id=mindstorm.crypton)
  * [Web Video Caster](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
+ * [Sask. Geo-Memorial](https://play.google.com/store/apps/details?id=com.github.dstaflund.geomemorial)
+ * [SchoolBox](https://play.google.com/store/apps/details?id=com.deenysoft.schoolbox)
+ * [Fitness Challenge](https://play.google.com/store/apps/details?id=com.isidroid.fitchallenge)
+ * [ICE: Emergency Button](https://play.google.com/store/apps/details?id=com.figsandolives.ice.free)

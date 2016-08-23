@@ -1,4 +1,3 @@
-
 package com.github.paolorotolo.appintroexample.slides.policyDemo;
 
 import android.graphics.Color;
@@ -17,9 +16,7 @@ import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
 import com.github.paolorotolo.appintro.ISlidePolicy;
 import com.github.paolorotolo.appintroexample.R;
 
-public class PolicyDemoSlide1 extends Fragment implements ISlidePolicy, ISlideBackgroundColorHolder
-{
-
+public class PolicyDemoSlide1 extends Fragment implements ISlidePolicy, ISlideBackgroundColorHolder {
     private LinearLayout layoutContainer;
     private CheckBox checkBox;
 
@@ -37,10 +34,7 @@ public class PolicyDemoSlide1 extends Fragment implements ISlidePolicy, ISlideBa
 
     @Override
     public boolean isPolicyRespected() {
-        if(checkBox != null) {
-            return checkBox.isChecked();
-        }
-        return true;
+        return checkBox == null || checkBox.isChecked();
     }
 
     @Override
@@ -55,7 +49,7 @@ public class PolicyDemoSlide1 extends Fragment implements ISlidePolicy, ISlideBa
 
     @Override
     public void setBackgroundColor(@ColorInt int backgroundColor) {
-        if(layoutContainer != null) {
+        if (layoutContainer != null) {
             layoutContainer.setBackgroundColor(backgroundColor);
         }
     }

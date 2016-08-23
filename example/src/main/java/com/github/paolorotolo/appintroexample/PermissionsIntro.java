@@ -1,17 +1,15 @@
 package com.github.paolorotolo.appintroexample;
 
 import android.Manifest;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public final class PermissionsIntro extends AppIntro {
+public final class PermissionsIntro extends BaseIntro {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +32,12 @@ public final class PermissionsIntro extends AppIntro {
         askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
     }
 
-    private void loadMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
 
         loadMainActivity();
-        Toast.makeText(getApplicationContext(),
-                getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -55,7 +47,7 @@ public final class PermissionsIntro extends AppIntro {
         Toast.makeText(getBaseContext(), "Hi!", Toast.LENGTH_SHORT).show();
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

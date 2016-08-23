@@ -13,22 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 class DefaultIndicatorController implements IndicatorController {
-    public final static int DEFAULT_COLOR = 1;
-
+    public static final int DEFAULT_COLOR = 1;
+    private static final int FIRST_PAGE_NUM = 0;
+    int selectedDotColor = DEFAULT_COLOR;
+    int unselectedDotColor = DEFAULT_COLOR;
+    int mCurrentPosition;
     private Context mContext;
     private LinearLayout mDotLayout;
     private List<ImageView> mDots;
     private int mSlideCount;
-    int selectedDotColor = DEFAULT_COLOR;
-    int unselectedDotColor = DEFAULT_COLOR;
-    int mCurrentposition;
-
-    private static final int FIRST_PAGE_NUM = 0;
 
     @Override
     public View newInstance(@NonNull Context context) {
         mContext = context;
         mDotLayout = (LinearLayout) View.inflate(context, R.layout.default_indicator, null);
+
         return mDotLayout;
     }
 
@@ -47,19 +46,18 @@ class DefaultIndicatorController implements IndicatorController {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-
             mDotLayout.addView(dot, params);
             mDots.add(dot);
         }
-
         selectPosition(FIRST_PAGE_NUM);
     }
 
     @Override
     public void selectPosition(int index) {
-        mCurrentposition = index;
+        mCurrentPosition = index;
         for (int i = 0; i < mSlideCount; i++) {
-            int drawableId = (i == index) ? (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
+            int drawableId = (i == index) ?
+                    (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
             Drawable drawable = ContextCompat.getDrawable(mContext, drawableId);
             if (selectedDotColor != DEFAULT_COLOR && i == index)
                 drawable.mutate().setColorFilter(selectedDotColor, PorterDuff.Mode.SRC_IN);
@@ -72,12 +70,12 @@ class DefaultIndicatorController implements IndicatorController {
     @Override
     public void setSelectedIndicatorColor(int color) {
         selectedDotColor = color;
-        selectPosition(mCurrentposition);
+        selectPosition(mCurrentPosition);
     }
 
     @Override
     public void setUnselectedIndicatorColor(int color) {
         unselectedDotColor = color;
-        selectPosition(mCurrentposition);
+        selectPosition(mCurrentPosition);
     }
 }

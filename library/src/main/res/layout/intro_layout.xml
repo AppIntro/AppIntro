@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#222222">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#222222">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/bottom"
@@ -22,8 +22,7 @@
             android:id="@+id/bottom_separator"
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#55000000">
-        </TextView>
+            android:background="#55000000"/>
 
         <FrameLayout
             android:layout_width="fill_parent"
@@ -33,7 +32,7 @@
                 android:id="@+id/indicator_container"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/skip"
@@ -44,7 +43,18 @@
                 android:layout_marginLeft="8dp"
                 android:minWidth="100dp"
                 android:text="@string/skip_button"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/back"
+                style="@style/AppIntroButtonStyleCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="8dp"
+                android:minWidth="100dp"
+                android:src="@drawable/ic_navigate_before_white"
+                android:visibility="invisible" />
 
             <ImageButton
                 android:id="@+id/next"
@@ -54,7 +64,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
-                android:src="@drawable/ic_navigate_next_white_24dp"/>
+                android:src="@drawable/ic_navigate_next_white" />
 
             <Button
                 android:id="@+id/done"
@@ -67,7 +77,7 @@
                 android:paddingRight="16dp"
                 android:text="@string/done_button"
                 android:textColor="@android:color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>

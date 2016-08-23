@@ -27,7 +27,6 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile project(':library')
-
     // test dependencies
     androidTestCompile('com.android.support.test:runner:0.5') {
         exclude group: 'com.android.support', module: 'support-annotations'

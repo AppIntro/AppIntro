@@ -11,6 +11,7 @@ import com.github.paolorotolo.appintroexample.R;
 import com.github.paolorotolo.appintroexample.SampleSlide;
 
 public class CustomAnimation extends BaseAppIntro {
+
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(SampleSlide.newInstance(R.layout.intro));
@@ -21,7 +22,7 @@ public class CustomAnimation extends BaseAppIntro {
         setCustomTransformer(new ZoomOutPageTransformer());
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -47,7 +48,7 @@ public class CustomAnimation extends BaseAppIntro {
 
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 
