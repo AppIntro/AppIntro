@@ -7,4 +7,9 @@
     android:paddingBottom="@dimen/appIntroBottomBarHeight">
 
     <include layout="@layout/fragment_intro_content" />
+     <TextView
+        android:id="@+id/title"
+        style="@style/CardHeader"
+        android:text="@string/history"/>
+
 </LinearLayout>
