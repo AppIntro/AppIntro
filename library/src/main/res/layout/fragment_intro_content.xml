@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/title"
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            android:paddingRight="16dp"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,5 +52,4 @@
             android:textSize="16sp" />
 
     </LinearLayout>
-
 </merge>

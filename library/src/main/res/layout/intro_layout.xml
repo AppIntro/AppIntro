@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#222222">
@@ -22,7 +23,7 @@
             android:id="@+id/bottom_separator"
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#55000000"/>
+            android:background="#55000000" />
 
         <FrameLayout
             android:layout_width="fill_parent"
@@ -39,8 +40,9 @@
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:minWidth="100dp"
                 android:text="@string/skip_button"
                 android:textColor="@android:color/white" />
@@ -50,34 +52,41 @@
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:minWidth="100dp"
                 android:src="@drawable/ic_navigate_before_white"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/next"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
-                android:src="@drawable/ic_navigate_next_white" />
+                android:src="@drawable/ic_navigate_next_white"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/done"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
+                android:paddingEnd="16dp"
                 android:paddingRight="16dp"
                 android:text="@string/done_button"
                 android:textColor="@android:color/white"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="RtlSymmetry" />
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>

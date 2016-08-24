@@ -227,3 +227,4 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [SchoolBox](https://play.google.com/store/apps/details?id=com.deenysoft.schoolbox)
  * [Fitness Challenge](https://play.google.com/store/apps/details?id=com.isidroid.fitchallenge)
  * [ICE: Emergency Button](https://play.google.com/store/apps/details?id=com.figsandolives.ice.free)
+ * [Filmy - Your Movie Guide](https://play.google.com/store/apps/details?id=tech.salroid.filmy)
