@@ -13,6 +13,7 @@ android {
         versionCode 12
         versionName "4.0.0"
         consumerProguardFiles 'proguard-project.txt'
+        vectorDrawables.useSupportLibrary = true
     }
 }
 
