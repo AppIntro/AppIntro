@@ -22,29 +22,28 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.paolorotolo:appintro:4.0.0'
+    compile 'com.github.paolorotolo:appintro:4.0.0'
 }
 ```
 
 Create a new **Activity that extends AppIntro**:
 
 ```java
-public class MyIntro extends AppIntro {
-
+public class IntroActivity extends AppIntro {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Add your slide's fragments here.
+        // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(first_fragment);
-        addSlide(second_fragment);
-        addSlide(third_fragment);
-        addSlide(fourth_fragment);
+        addSlide(firstFragment);
+        addSlide(secondFragment);
+        addSlide(thirdFragment);
+        addSlide(fourthFragment);
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, description, image, background_colour));
+        addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
@@ -56,7 +55,7 @@ public class MyIntro extends AppIntro {
         setProgressButtonEnabled(false);
 
         // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permisssion in Manifest.
+        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
         setVibrate(true);
         setVibrateIntensity(30);
     }
@@ -94,8 +93,8 @@ Do not declare the intro as your main app launcher unless you want the intro to 
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
 ```java
-public class MyIntro extends AppIntro2 {
-    [...]
+public class IntroActivity extends AppIntro2 {
+    // ...
 }
 ```
 
@@ -114,7 +113,12 @@ There's no need to create one class for fragment anymore. :)
 No problem, just use this method and AppIntro will generate a new slide for you.
 
 ```java
-addSlide(AppIntroFragment.newInstance(title, description, image, background_colour));
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+    // ...
+
+    addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+}
 ```
 
 ### Animations
@@ -122,8 +126,12 @@ AppIntro comes with some pager animations.
 Choose the one you like and then active it with:
 
 ```java
-// Put this method in init()
-setFadeAnimation();
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+    // ...
+
+    setFadeAnimation();
+}
 ```
 
 Available animations:
@@ -138,8 +146,12 @@ setDepthAnimation()
 If you want to create nice parallax effect or your own custom animation, create your own **PageTransformer** and call:
 
 ```java
-// Put this method in init()
-setCustomTransformer(transformer);
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+    // ...
+
+    setCustomTransformer(transformer);
+}
 ```
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
@@ -153,12 +165,17 @@ Android 6.0 introduced a new permissions model for developers. Now all your apps
 However, AppIntro simplifies this down to one single line of code!
 
 ```java
-// Put this in init()
-askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+    // ...
 
-// This will ask for the camera permission AND the contacts permission on the same slide.
-// Ensure your slide talks about both so as not to confuse the user.
-askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
+    // Ask for CAMERA permission on the second slide
+    askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
+
+    // This will ask for the camera permission AND the contacts permission on the same slide.
+    // Ensure your slide talks about both so as not to confuse the user.
+    askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
+}
 ```
 
 We are using icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
@@ -166,7 +183,7 @@ We are using icons made by <a href="http://www.flaticon.com/authors/freepik" tit
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
 ## Example
-See example code here on Github. You can also see it live. Download [this app from Google Play.](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
+See example code here on GitHub. You can also see it live. Download [this app on Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 ## Real life examples
 Do you need inspiration? A lot of apps are using AppIntro out there:
