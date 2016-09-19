@@ -213,7 +213,7 @@ public final class MySlide extends Fragment implements ISlidePolicy {
 The interface contains two methods:
 
 - `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
-- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide altough `isPolicyRespected` returns false. One may show some error message here.
+- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide alhtough `isPolicyRespected` returned false. One may show some error message here.
 
 
 
