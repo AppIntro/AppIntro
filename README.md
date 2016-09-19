@@ -192,6 +192,32 @@ We are using icons made by <a href="http://www.flaticon.com/authors/freepik" tit
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
+#### Slide Policies 
+
+If you want to restrict navigation between your slides (i.e. the user has to check a checkbox in order being able to continue), our **Slide Policy** feature might help you.
+
+All you have to do is to implement `ISlidePolicy` in your slides: 
+```java
+public final class MySlide extends Fragment implements ISlidePolicy {
+    @Override
+    public boolean isPolicyRespected() {
+        return // If user should be allowed to leave this slide
+    }
+
+    @Override
+    public void onUserIllegallyRequestedNextPage() {
+        // User illegally requested next slide
+    }
+}
+```
+The interface contains two methods:
+
+- `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
+- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide altough `isPolicyRespected` returns false. One may show some error message here.
+
+
+
+
 ## Example App
 See example code here on GitHub. You can also see it live. Download [this app on Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
