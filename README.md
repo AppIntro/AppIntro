@@ -83,7 +83,7 @@ public class IntroActivity extends AppIntro {
 }
 ```
 
-Finally, declare the activity in your Manifest like that:
+Finally, declare the activity in your Manifest like so:
 
 ``` xml
 <activity android:name="com.example.example.intro"
@@ -124,7 +124,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 One may also define custom slides as seen in the example project:
  * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
- * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
+ * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
 
 There's no need to create one class for fragment anymore. :)
 
@@ -133,7 +133,7 @@ There's no need to create one class for fragment anymore. :)
 
 #### Animations
 AppIntro comes with some pager animations.
-Choose the one you like and then active it with:
+Choose the one you like and then activate it with:
 
 ```java
 @Override
@@ -213,7 +213,7 @@ public final class MySlide extends Fragment implements ISlidePolicy {
 The interface contains two methods:
 
 - `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
-- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide alhtough `isPolicyRespected` returned false. One may show some error message here.
+- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide although `isPolicyRespected` returned false. One may show some error message here.
 
 
 
