@@ -14,7 +14,10 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
 
-##How to use
+## Usage
+
+### Basic usage
+
 Add this to your **build.gradle**:
 ```java
 repositories {
@@ -80,7 +83,7 @@ public class IntroActivity extends AppIntro {
 }
 ```
 
-Finally, declare the activity in your Manifest like so:
+Finally, declare the activity in your Manifest like that:
 
 ``` xml
 <activity android:name="com.example.example.intro"
@@ -89,7 +92,7 @@ Finally, declare the activity in your Manifest like so:
 
 Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
 
-### Layout 2
+#### Alternative layout
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
 ```java
@@ -101,16 +104,12 @@ public class IntroActivity extends AppIntro2 {
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
-### Easy implementation of Slide Fragments
-As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add new slides to AppIntro. <br>
-For example:
- * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
- * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
 
-There's no need to create one class for fragment anymore. :)
+#### Slides
 
-#### I've never used fragments...
-No problem, just use this method and AppIntro will generate a new slide for you.
+##### Basic slides
+
+AppIntro provides two simple classes, `AppIntroFragment` and `AppIntro2Fragment` which one can use to build simple slides.
 
 ```java
 @Override
@@ -121,7 +120,18 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-### Animations
+##### Custom slides example
+
+One may also define custom slides as seen in the example project:
+ * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
+ * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
+
+There's no need to create one class for fragment anymore. :)
+
+
+### Extended usage
+
+#### Animations
 AppIntro comes with some pager animations.
 Choose the one you like and then active it with:
 
@@ -156,7 +166,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
-### Android 6.0 ready
+#### Runtime Permissions (Android 6.0+)
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
 
@@ -182,7 +192,7 @@ We are using icons made by <a href="http://www.flaticon.com/authors/freepik" tit
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
-## Example
+## Example App
 See example code here on GitHub. You can also see it live. Download [this app on Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 ## Real life examples
