@@ -14,7 +14,10 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
 
-##How to use
+## Usage
+
+### Basic usage
+
 Add this to your **build.gradle**:
 ```java
 repositories {
@@ -89,7 +92,7 @@ Finally, declare the activity in your Manifest like so:
 
 Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
 
-### Layout 2
+#### Alternative layout
 If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
 ```java
@@ -101,16 +104,12 @@ public class IntroActivity extends AppIntro2 {
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
-### Easy implementation of Slide Fragments
-As you can see, things have changed in AppIntro 3.0.0. Now it's so easy to add new slides to AppIntro. <br>
-For example:
- * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
- * Add a new slide with ```addSlide(SampleSlide.newInstance(R.layout.your_slide_here));```
 
-There's no need to create one class for fragment anymore. :)
+#### Slides
 
-#### I've never used fragments...
-No problem, just use this method and AppIntro will generate a new slide for you.
+##### Basic slides
+
+AppIntro provides two simple classes, `AppIntroFragment` and `AppIntro2Fragment` which one can use to build simple slides.
 
 ```java
 @Override
@@ -121,9 +120,20 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-### Animations
+##### Custom slides example
+
+One may also define custom slides as seen in the example project:
+ * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/SampleSlide.java).
+ * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
+
+There's no need to create one class for fragment anymore. :)
+
+
+### Extended usage
+
+#### Animations
 AppIntro comes with some pager animations.
-Choose the one you like and then active it with:
+Choose the one you like and then activate it with:
 
 ```java
 @Override
@@ -156,7 +166,38 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
-### Android 6.0 ready
+#### Background color transitions
+
+AppIntro supports background color transitions:
+
+<img src="art/background_color_transition.gif" style="width: 250px">
+
+In order to setup the transitions, simply implement `ISlideBackgroundColorHolder`:
+```java
+public final class MySlide extends Fragment implements ISlideBackgroundColorHolder {
+    @Override
+    public int getDefaultBackgroundColor() {
+        // Return the default background color of the slide.
+        return Color.parseColor("#000000");
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        // Set the background color of the view within your slide to which the transition should be applied.
+        if (layoutContainer != null) {
+            layoutContainer.setBackgroundColor(backgroundColor);
+        }
+    }
+}
+```
+
+The API is quite low-level but therefore highly customizeable. The interface contains two methods:
+
+- `getDefaultBackgroundColor`: Return the default background color (i.e. the background color the slide has in non-sliding state) of the slide here.
+- `setBackgroundColor(int)`: This method will be called while swiping between two slides. Update the background color of the view to which the transition should be applied.
+This is normally the root view of your Fragment's layout. But one may also apply the color transition to some other view only (i.e. a Button).
+
+#### Runtime Permissions (Android 6.0+)
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
 
@@ -182,7 +223,33 @@ We are using icons made by <a href="http://www.flaticon.com/authors/freepik" tit
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
-## Example
+#### Slide Policies 
+
+If you want to restrict navigation between your slides (i.e. the user has to check a checkbox in order being able to continue), our **Slide Policy** feature might help you.
+
+All you have to do is to implement `ISlidePolicy` in your slides: 
+```java
+public final class MySlide extends Fragment implements ISlidePolicy {
+    @Override
+    public boolean isPolicyRespected() {
+        return // If user should be allowed to leave this slide
+    }
+
+    @Override
+    public void onUserIllegallyRequestedNextPage() {
+        // User illegally requested next slide
+    }
+}
+```
+The interface contains two methods:
+
+- `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
+- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide although `isPolicyRespected` returned false. One may show some error message here.
+
+
+
+
+## Example App
 See example code here on GitHub. You can also see it live. Download [this app on Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 ## Real life examples
