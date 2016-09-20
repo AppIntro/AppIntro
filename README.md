@@ -13,12 +13,12 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
-
 ## Usage
 
 ### Basic usage
 
 Add this to your **build.gradle**:
+
 ```java
 repositories {
     mavenCentral()
@@ -90,10 +90,11 @@ Finally, declare the activity in your Manifest like so:
     android:label="@string/app_intro" />
 ```
 
-Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts. Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
+Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts.
+Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
 
 #### Alternative layout
-If you want to try new layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
+If you want to try an alternative layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
 
 ```java
 public class IntroActivity extends AppIntro2 {
@@ -127,7 +128,6 @@ One may also define custom slides as seen in the example project:
  * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
 
 There's no need to create one class for fragment anymore. :)
-
 
 ### Extended usage
 
@@ -191,7 +191,7 @@ public final class MySlide extends Fragment implements ISlideBackgroundColorHold
 }
 ```
 
-The API is quite low-level but therefore highly customizeable. The interface contains two methods:
+The API is quite low-level, therefore highly customizable. The interface contains two methods:
 
 - `getDefaultBackgroundColor`: Return the default background color (i.e. the background color the slide has in non-sliding state) of the slide here.
 - `setBackgroundColor(int)`: This method will be called while swiping between two slides. Update the background color of the view to which the transition should be applied.
@@ -219,15 +219,13 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-We are using icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
-#### Slide Policies 
+#### Slide Policies
 
-If you want to restrict navigation between your slides (i.e. the user has to check a checkbox in order being able to continue), our **Slide Policy** feature might help you.
+If you want to restrict navigation between your slides (i.e. the user has to toggle a checkbox in order to continue), our **Slide Policy** feature might help you.
 
-All you have to do is to implement `ISlidePolicy` in your slides: 
+All you have to do is implement `ISlidePolicy` in your slides:
 ```java
 public final class MySlide extends Fragment implements ISlidePolicy {
     @Override
@@ -246,11 +244,8 @@ The interface contains two methods:
 - `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
 - `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide although `isPolicyRespected` returned false. One may show some error message here.
 
-
-
-
 ## Example App
-See example code here on GitHub. You can also see it live. Download [this app on Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
+See example code [here](https://github.com/PaoloRotolo/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=paolorotolo.github.com.appintroexample).
 
 ## Real life examples
 Do you need inspiration? A lot of apps are using AppIntro out there:
@@ -314,3 +309,7 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Filmy - Your Movie Guide](https://play.google.com/store/apps/details?id=tech.salroid.filmy)
  * [HEBF Optimizer ▪ Root](https://play.google.com/store/apps/details?id=com.androidvip.hebf)
  * [Wifi Captive Login](https://play.google.com/store/apps/details?id=com.anantharam.wificaptivelogin)
+
+
+
+##### We are using icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> which is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
