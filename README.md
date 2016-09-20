@@ -309,7 +309,3 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Filmy - Your Movie Guide](https://play.google.com/store/apps/details?id=tech.salroid.filmy)
  * [HEBF Optimizer ▪ Root](https://play.google.com/store/apps/details?id=com.androidvip.hebf)
  * [Wifi Captive Login](https://play.google.com/store/apps/details?id=com.anantharam.wificaptivelogin)
-
-
-
-##### We are using icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> which is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
