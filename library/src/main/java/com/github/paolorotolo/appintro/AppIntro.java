@@ -2,7 +2,6 @@ package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -118,7 +117,7 @@ public abstract class AppIntro extends AppIntroBase {
      *
      * @param imageNextButton your drawable resource
      */
-    public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
+    public void setImageNextButton(final Drawable imageNextButton) {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
     }
