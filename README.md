@@ -166,6 +166,40 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
+#### Background color transitions
+
+<div>
+<img src="art/background_color_transition.gif" style="float: right; width: 250px">
+AppIntro supports background color transitions:
+
+In order to setup the transitions, simply implement `ISlideBackgroundColorHolder`:
+```java
+public final class MySlide extends Fragment implements ISlideBackgroundColorHolder {
+    @Override
+    public int getDefaultBackgroundColor() {
+        // Return the default background color of the slide.
+        return Color.parseColor("#000000");
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        // Set the background color of the view within your slide to which the transition should be applied.
+        if (layoutContainer != null) {
+            layoutContainer.setBackgroundColor(backgroundColor);
+        }
+    }
+}
+```
+
+The API is quite low-level but therefore highly customizeable. The interface contains two methods:
+
+- `getDefaultBackgroundColor`: Return the default background color (i.e. the background color the slide has in non-sliding state) of the slide here.
+- `setBackgroundColor(int)`: This method will be called while swiping between two slides. Update the background color of the view to which the transition should be applied.
+This is normally the root view of your Fragment's layout. But one may also apply the color transition to some other view only (i.e. a Button).
+
+<div style="clear: both"></div>
+</div>
+
 #### Runtime Permissions (Android 6.0+)
 
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
