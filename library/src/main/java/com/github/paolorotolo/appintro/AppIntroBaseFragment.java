@@ -1,11 +1,13 @@
 package com.github.paolorotolo.appintro;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.util.LogHelper;
+import com.squareup.picasso.Picasso;
 
 public abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener,
         ISlideBackgroundColorHolder {
@@ -25,11 +28,12 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
     protected static final String ARG_BG_COLOR = "bg_color";
     protected static final String ARG_TITLE_COLOR = "title_color";
     protected static final String ARG_DESC_COLOR = "desc_color";
+    protected static final String ARG_DRAWABLE_URI = "drawableUri";
 
     private static final String TAG = LogHelper.makeLogTag(AppIntroBaseFragment.class);
 
     private int drawable, bgColor, titleColor, descColor, layoutId;
-    private String title, titleTypeface, description, descTypeface;
+    private String title, titleTypeface, description, descTypeface, drawableUri;
 
     private LinearLayout mainLayout;
 
@@ -52,6 +56,8 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
                     getArguments().getInt(ARG_TITLE_COLOR) : 0;
             descColor = getArguments().containsKey(ARG_DESC_COLOR) ?
                     getArguments().getInt(ARG_DESC_COLOR) : 0;
+            drawableUri = getArguments().containsKey(ARG_DRAWABLE_URI) ?
+                    getArguments().getString(ARG_DRAWABLE_URI) : "";
         }
     }
 
@@ -68,6 +74,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
             bgColor = savedInstanceState.getInt(ARG_BG_COLOR);
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR);
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR);
+            drawableUri = savedInstanceState.getString(ARG_DRAWABLE_URI);
         }
     }
 
@@ -79,6 +86,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         View v = inflater.inflate(getLayoutId(), container, false);
         TextView t = (TextView) v.findViewById(R.id.title);
         TextView d = (TextView) v.findViewById(R.id.description);
+        d.setMovementMethod(new ScrollingMovementMethod());
         ImageView i = (ImageView) v.findViewById(R.id.image);
         mainLayout = (LinearLayout) v.findViewById(R.id.main);
 
@@ -100,7 +108,21 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
                 d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
             }
         }
-        i.setImageResource(drawable);
+        if(drawable == 0) {
+            LogHelper.d("Picasso in Appintro", "attempting to download image: " + drawableUri);
+            Picasso.Builder builder = new Picasso.Builder(getContext());
+            builder.listener(new Picasso.Listener()
+            {
+                @Override
+                public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
+                {
+                    exception.printStackTrace();
+                }
+            });
+            builder.build().load(drawableUri).into(i);
+        }
+        else
+            i.setImageResource(drawable);
         mainLayout.setBackgroundColor(bgColor);
 
         return v;
