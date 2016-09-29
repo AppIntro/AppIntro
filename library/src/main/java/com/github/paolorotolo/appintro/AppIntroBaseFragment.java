@@ -6,6 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         View v = inflater.inflate(getLayoutId(), container, false);
         TextView t = (TextView) v.findViewById(R.id.title);
         TextView d = (TextView) v.findViewById(R.id.description);
+        d.setMovementMethod(new ScrollingMovementMethod());
         ImageView i = (ImageView) v.findViewById(R.id.image);
         mainLayout = (LinearLayout) v.findViewById(R.id.main);
 
