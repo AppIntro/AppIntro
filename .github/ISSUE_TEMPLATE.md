@@ -19,7 +19,6 @@ fails on Galaxy S4/GT-I9500 4.4.2, works fine on Nexus 6P 5.1 and Genymotion Nex
 
 <!--
 What is the error message that you got in the log?
-You can find some help on diagnosing issues here: https://github.com/bumptech/glide/wiki/Debugging-and-Error-Handling
 -->
 **Stack trace / LogCat**:
 ```ruby
