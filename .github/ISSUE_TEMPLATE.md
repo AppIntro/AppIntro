@@ -18,7 +18,7 @@ fails on Galaxy S4/GT-I9500 4.4.2, works fine on Nexus 6P 5.1 and Genymotion Nex
 **Issue details / Repro steps / Use case background**: 
 
 <!-- Please include code snippets or whole files as necessary including XML layouts if applicable. If no code is being used, please explain why. Failure to do so will result in your issue being closed. We shouln't have to ask you for code snippets later on in the issue. -->
-**Your Code:**: 
+**Your Code**: 
 
 <!--
 What is the error message that you got in the log?
