@@ -103,7 +103,6 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         }
         i.setImageResource(drawable);
         mainLayout.setBackgroundColor(bgColor);
-
         return v;
     }
 
