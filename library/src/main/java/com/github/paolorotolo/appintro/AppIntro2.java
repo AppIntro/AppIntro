@@ -1,24 +1,21 @@
 package com.github.paolorotolo.appintro;
 
-import android.animation.ArgbEvaluator;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
-public abstract class AppIntro2 extends AppIntroBase {
-    private static final String TAG = "AppIntro2";
+import com.github.paolorotolo.appintro.util.LogHelper;
 
-    private boolean STATUS_BAR_VISIBLE = false;
+import java.util.ArrayList;
+
+public abstract class AppIntro2 extends AppIntroBase {
+    private static final String TAG = LogHelper.makeLogTag(AppIntro2.class);
 
     protected View customBackgroundView;
     protected FrameLayout backgroundFrame;
     private ArrayList<Integer> transitionColors;
-    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +44,26 @@ public abstract class AppIntro2 extends AppIntroBase {
      *
      * @param imageSkipButton your drawable resource
      */
-    public void setImageSkipButton(@DrawableRes final Drawable imageSkipButton) {
+    public void setImageSkipButton(final Drawable imageSkipButton) {
         final ImageButton nextButton = (ImageButton) findViewById(R.id.skip);
         nextButton.setImageDrawable(imageSkipButton);
 
     }
 
-    public void setBackgroundView(View view){
+    public void setBackgroundView(View view) {
         customBackgroundView = view;
-        if (customBackgroundView!=null){
+        if (customBackgroundView != null) {
             backgroundFrame.addView(customBackgroundView);
         }
     }
 
     /**
-     * For color transition, will be shown only if color values are properly set and
+     * For color transition, will be shown only if color values are properly set;
      * Size of the color array must be equal to the number of slides added
+     *
      * @param colors Set color values
-     * */
-    public void setAnimationColors(@ColorInt ArrayList<Integer> colors) {
+     */
+    public void setAnimationColors(ArrayList<Integer> colors) {
         transitionColors = colors;
     }
 }

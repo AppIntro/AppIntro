@@ -2,14 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
+<<<<<<< HEAD
     buildToolsVersion "24.0.1"
+=======
+    buildToolsVersion "24.0.2"
+>>>>>>> PaoloRotolo/master
 
     defaultConfig {
         applicationId "paolorotolo.github.com.appintroexample"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 7
-        versionName "4.0.0"
+        versionCode 8
+        versionName "4.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -25,7 +29,11 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile 'com.android.support:appcompat-v7:24.1.1'
+=======
+    compile 'com.android.support:appcompat-v7:24.2.1'
+>>>>>>> PaoloRotolo/master
     compile project(':library')
     // test dependencies
     androidTestCompile('com.android.support.test:runner:0.5') {

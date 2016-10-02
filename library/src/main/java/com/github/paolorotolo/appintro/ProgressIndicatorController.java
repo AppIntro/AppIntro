@@ -9,18 +9,20 @@ import android.widget.ProgressBar;
 public class ProgressIndicatorController implements IndicatorController {
     public final static int DEFAULT_COLOR = 1;
     private static final int FIRST_PAGE_NUM = 0;
-
-    private ProgressBar mProgressBar;
     int selectedDotColor = DEFAULT_COLOR;
     int unselectedDotColor = DEFAULT_COLOR;
+    private ProgressBar mProgressBar;
 
     @Override
     public View newInstance(@NonNull Context context) {
         mProgressBar = (ProgressBar) View.inflate(context, R.layout.progress_indicator, null);
         if (selectedDotColor != DEFAULT_COLOR)
-            mProgressBar.getProgressDrawable().setColorFilter(selectedDotColor, PorterDuff.Mode.SRC_IN);
+            mProgressBar.getProgressDrawable().setColorFilter(selectedDotColor,
+                    PorterDuff.Mode.SRC_IN);
         if (unselectedDotColor != DEFAULT_COLOR)
-            mProgressBar.getIndeterminateDrawable().setColorFilter(unselectedDotColor, PorterDuff.Mode.SRC_IN);
+            mProgressBar.getIndeterminateDrawable().setColorFilter(unselectedDotColor,
+                    PorterDuff.Mode.SRC_IN);
+
         return mProgressBar;
     }
 

@@ -5,17 +5,14 @@
 package com.github.paolorotolo.appintroexample;
 
 import android.Manifest;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntro2Fragment;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
-public final class PermissionsIntro2 extends AppIntro2 {
+public final class PermissionsIntro2 extends BaseIntro2 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +33,6 @@ public final class PermissionsIntro2 extends AppIntro2 {
 
         // Ask Location permission in the fifth slide
         askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
-    }
-
-    private void loadMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     @Override

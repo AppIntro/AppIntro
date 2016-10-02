@@ -25,11 +25,19 @@
         <activity
             android:name=".DefaultIntro"
             android:label="@string/title_activity_default_intro"
+<<<<<<< HEAD
             android:theme="@style/FullscreenTheme"></activity>
         <activity
             android:name=".CustomIntro"
             android:label="@string/title_activity_custom_intro"
             android:theme="@style/FullscreenTheme"></activity>
+=======
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".CustomIntro"
+            android:label="@string/title_activity_custom_intro"
+            android:theme="@style/FullscreenTheme" />
+>>>>>>> PaoloRotolo/master
         <activity
             android:name=".PermissionsIntro"
             android:label="@string/title_activity_permissions_intro"
@@ -66,6 +74,7 @@
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".IntroDemoPolicy"
+<<<<<<< HEAD
             android:parentActivityName=".MainActivity"
             android:theme="@style/FullscreenTheme">
             <meta-data
@@ -80,6 +89,17 @@
             android:theme="@style/FullscreenTheme" ></activity>
         <activity android:name=".WizardTwoActivity"
             android:theme="@style/FullscreenTheme" ></activity>
+=======
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".CustomTypefaceActivity"
+            android:theme="@style/FullscreenTheme" />
+
+        <activity
+            android:name=".WizardActivity"
+            android:theme="@style/FullscreenTheme" />
+
+>>>>>>> PaoloRotolo/master
     </application>
 
 </manifest>

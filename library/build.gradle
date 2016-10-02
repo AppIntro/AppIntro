@@ -4,24 +4,30 @@ apply plugin: 'signing'
 apply from: 'maven-push.gradle'
 
 android {
+<<<<<<< HEAD
   compileSdkVersion 24
   buildToolsVersion "24.0.1"
+=======
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+>>>>>>> PaoloRotolo/master
 
-  defaultConfig {
-    minSdkVersion 11
-    targetSdkVersion 24
-    versionCode 12
-    versionName "4.0.0"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 24
+        versionCode 13
+        versionName "4.1.0"
+        consumerProguardFiles 'proguard-project.txt'
+        vectorDrawables.useSupportLibrary = true
     }
-  }
 }
 
 dependencies {
+<<<<<<< HEAD
   compile 'com.android.support:appcompat-v7:24.1.1'
   compile 'com.android.support:support-annotations:24.1.1'
+=======
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-annotations:24.2.1'
+>>>>>>> PaoloRotolo/master
 }

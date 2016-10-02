@@ -15,6 +15,7 @@ import com.github.paolorotolo.appintroexample.R;
 import com.github.paolorotolo.appintroexample.SampleSlide;
 
 public class CustomIndicator extends AppIntro {
+
     @Override
     public void init(Bundle savedInstanceState) {
         addSlide(SampleSlide.newInstance(R.layout.intro));
@@ -56,10 +57,9 @@ public class CustomIndicator extends AppIntro {
     }
 
     private class CustomIndicatorController implements IndicatorController {
+        private static final int FIRST_PAGE_NUM = 0;
         private TextView mTextView;
         private int mSlideCount;
-
-        private static final int FIRST_PAGE_NUM = 0;
 
         @Override
         public View newInstance(@NonNull Context context) {

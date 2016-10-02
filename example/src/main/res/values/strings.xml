@@ -50,12 +50,18 @@
     <string name="header_custom_typeface">With Custom Typeface</string>
     <string name="simple_custom">Simple Typeface example</string>
     <string name="skip_done_typeface">Skip/Done typeface example</string>
+<<<<<<< HEAD
     <string name="simple_custom_two">Simple Typeface example 2</string>
+=======
+>>>>>>> PaoloRotolo/master
     <string name="title_font">nemoy_medium.ttf</string>
     <string name="desc_font">OpenSans-Light.ttf</string>
 
     <!-- WizardModeDemoSlide -->
     <string name="header_wizard_mode">Wizard Mode</string>
     <string name="wizard_one">Wizard Example</string>
+<<<<<<< HEAD
     <string name="wizard_two">Wizard Example 2</string>
+=======
+>>>>>>> PaoloRotolo/master
 </resources>

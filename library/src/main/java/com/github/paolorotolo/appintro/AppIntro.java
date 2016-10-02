@@ -3,15 +3,16 @@ package com.github.paolorotolo.appintro;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.util.LogHelper;
+
 public abstract class AppIntro extends AppIntroBase {
-    private static final String TAG = "AppIntro";
+    private static final String TAG = LogHelper.makeLogTag(AppIntro.class);
 
     @Override
     protected int getLayoutId() {
@@ -30,7 +31,6 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override next button arrow color
      * @param color your color
-     *
      */
     public void setNextArrowColor(@ColorInt final int color) {
         ImageButton nextButton = (ImageButton) findViewById(R.id.next);
@@ -57,6 +57,21 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override skip text typeface
+<<<<<<< HEAD
+=======
+     *
+     * @param typeURL URL of font file located in Assets folder
+     */
+    public void setSkipTextTypeface(@Nullable final String typeURL) {
+        TextView skipText = (TextView) findViewById(R.id.skip);
+        if (CustomFontCache.get(typeURL, this) != null) {
+            skipText.setTypeface(CustomFontCache.get(typeURL, this));
+        }
+    }
+
+    /**
+     * Override done text
+>>>>>>> PaoloRotolo/master
      *
      * @param texttf URL of font file located in Assets folder
      */
@@ -80,6 +95,7 @@ public abstract class AppIntro extends AppIntroBase {
 
     /**
      * Override done text typeface
+<<<<<<< HEAD
      * @param texttf your text
      */
     public void setDoneTextTypeface(@Nullable final String texttf) {
@@ -88,6 +104,16 @@ public abstract class AppIntro extends AppIntroBase {
             doneText.setTypeface(CustomFontCache.get(texttf,this));
         }
 
+=======
+     *
+     * @param typeURL your text
+     */
+    public void setDoneTextTypeface(@Nullable final String typeURL) {
+        TextView doneText = (TextView) findViewById(R.id.done);
+        if (CustomFontCache.get(typeURL, this) != null) {
+            doneText.setTypeface(CustomFontCache.get(typeURL, this));
+        }
+>>>>>>> PaoloRotolo/master
     }
 
     /**
@@ -113,10 +139,9 @@ public abstract class AppIntro extends AppIntroBase {
      * Override Next button
      * @param imageNextButton your drawable resource
      */
-    public void setImageNextButton(@DrawableRes final Drawable imageNextButton) {
+    public void setImageNextButton(final Drawable imageNextButton) {
         final ImageView nextButton = (ImageView) findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
-
     }
 
     /**

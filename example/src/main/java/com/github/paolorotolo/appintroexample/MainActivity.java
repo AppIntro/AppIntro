@@ -24,26 +24,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void startDefaultIntro(View v){
+    public void startDefaultIntro(View v) {
         Intent intent = new Intent(this, DefaultIntro.class);
         startActivity(intent);
     }
-    public void customBackgroundView(View v){
+
+    public void customBackgroundView(View v) {
         Intent intent = new Intent(this, IntroWithBackground.class);
         startActivity(intent);
     }
 
-    public void startCustomIntro(View v){
+    public void startCustomIntro(View v) {
         Intent intent = new Intent(this, CustomIntro.class);
         startActivity(intent);
     }
 
-    public void disableSwipeIntro1(View v){
+    public void disableSwipeIntro1(View v) {
         Intent intent = new Intent(this, DisableSwipeIntro1.class);
         startActivity(intent);
     }
 
-    public void disableSwipeIntro2(View v){
+    public void disableSwipeIntro2(View v) {
         Intent intent = new Intent(this, DisableSwipeIntro2.class);
         startActivity(intent);
     }
@@ -53,52 +54,52 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startSecondLayoutIntro(View v){
+    public void startSecondLayoutIntro(View v) {
         Intent intent = new Intent(this, DefaultIntro2.class);
         startActivity(intent);
     }
 
-    public void startFadeAnimation(View v){
+    public void startFadeAnimation(View v) {
         Intent intent = new Intent(this, FadeAnimation.class);
         startActivity(intent);
     }
 
-    public void startZoomAnimation(View v){
+    public void startZoomAnimation(View v) {
         Intent intent = new Intent(this, ZoomAnimation.class);
         startActivity(intent);
     }
 
-    public void startFlowAnimation(View v){
+    public void startFlowAnimation(View v) {
         Intent intent = new Intent(this, FlowAnimation.class);
         startActivity(intent);
     }
 
-    public void startDepthAnimation(View v){
+    public void startDepthAnimation(View v) {
         Intent intent = new Intent(this, DepthAnimation.class);
         startActivity(intent);
     }
 
-    public void startSlideOverAnimation(View v){
+    public void startSlideOverAnimation(View v) {
         Intent intent = new Intent(this, SlideOverAnimation.class);
         startActivity(intent);
     }
 
-    public void startCustomAnimation(View v){
+    public void startCustomAnimation(View v) {
         Intent intent = new Intent(this, CustomAnimation.class);
         startActivity(intent);
     }
 
-    public void startProgressIndicator(View v){
+    public void startProgressIndicator(View v) {
         Intent intent = new Intent(this, ProgressIndicator.class);
         startActivity(intent);
     }
 
-    public void startCustomIndicator(View v){
+    public void startCustomIndicator(View v) {
         Intent intent = new Intent(this, CustomIndicator.class);
         startActivity(intent);
     }
 
-    public void startCustomColorIndicator(View v){
+    public void startCustomColorIndicator(View v) {
         Intent intent = new Intent(this, CustomColorIndicator.class);
         startActivity(intent);
     }
@@ -118,11 +119,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+<<<<<<< HEAD
     public void simpleCustomTypeface(View view){
+=======
+    public void simpleCustomTypeface(View view) {
+>>>>>>> PaoloRotolo/master
         Intent intent = new Intent(this, CustomTypefaceActivity.class);
         startActivity(intent);
     }
 
+<<<<<<< HEAD
     public void simpleCustomTypefaceTwo(View view){
         Intent intent = new Intent(this, CustomTypefaceTwoActivity.class);
         startActivity(intent);
@@ -137,4 +143,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, WizardTwoActivity.class);
         startActivity(intent);
     }
+=======
+    public void wizardMode(View view) {
+        Intent intent = new Intent(this, WizardActivity.class);
+        startActivity(intent);
+    }
+>>>>>>> PaoloRotolo/master
 }

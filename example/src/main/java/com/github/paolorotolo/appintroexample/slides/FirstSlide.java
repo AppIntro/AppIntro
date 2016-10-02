@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import com.github.paolorotolo.appintroexample.R;
 
 public class FirstSlide extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.intro, container, false);
-        return v;
+        return inflater.inflate(R.layout.intro, container, false);
     }
 }

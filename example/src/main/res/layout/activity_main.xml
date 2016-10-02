@@ -1,134 +1,137 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            tools:context=".MainActivity">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
 
         <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startDefaultIntro"
-                android:text="@string/default_intro"/>
-
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startSecondLayoutIntro"
-                android:text="@string/second_layout_intro"/>
-
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startCustomIntro"
-                android:text="@string/customized_intro"/>
-
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="disableSwipeIntro1"
-                android:text="@string/disable_swipe_intro_1"/>
-
-        <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startDefaultIntro"
+            android:text="@string/default_intro" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startSecondLayoutIntro"
+            android:text="@string/second_layout_intro" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startCustomIntro"
+            android:text="@string/customized_intro" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="disableSwipeIntro1"
+            android:text="@string/disable_swipe_intro_1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="slidePolicyDemo"
-            android:text="@string/slide_policy_demo_title"/>
+            android:text="@string/slide_policy_demo_title" />
 
         <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="disableSwipeIntro2"
-                android:text="@string/disable_swipe_intro_2"/>
-
-        <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="disableSwipeIntro2"
+            android:text="@string/disable_swipe_intro_2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="customBackgroundView"
-            android:text="custom background view"/>
+            android:text="custom background view" />
 
         <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:background="#888888"/>
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#888888" />
 
         <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:gravity="center_horizontal"
-                android:text="@string/header_animations"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/header_animations" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startColorAnimation"
             android:text="@string/color_animation" />
 
         <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startFadeAnimation"
-                android:text="@string/fade_animation"/>
-
-        <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startFadeAnimation"
+            android:text="@string/fade_animation" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startZoomAnimation"
             android:text="@string/zoom_animation" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startFlowAnimation"
             android:text="@string/flow_animation" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startDepthAnimation"
             android:text="@string/depth_animation" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startSlideOverAnimation"
             android:text="@string/slideover_animation" />
 
         <Button
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:onClick="startCustomAnimation"
             android:text="@string/custom_animation" />
 
         <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:background="#888888"/>
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#888888" />
+
         <TextView
+<<<<<<< HEAD
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/activity_horizontal_margin"
@@ -152,10 +155,40 @@
                 android:layout_height="wrap_content"
                 android:onClick="startCustomColorIndicator"
                 android:text="@string/custom_color_indicator"/>
+=======
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/header_indicators" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startProgressIndicator"
+            android:text="@string/progress_indicator" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startCustomIndicator"
+            android:text="@string/custom_indicator" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="startCustomColorIndicator"
+            android:text="@string/custom_color_indicator" />
+
+>>>>>>> PaoloRotolo/master
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+<<<<<<< HEAD
             android:background="#888888"/>
         <TextView
             android:layout_width="fill_parent"
@@ -176,10 +209,29 @@
             android:layout_height="wrap_content"
             android:onClick="simpleCustomTypefaceTwo"
             android:text="@string/simple_custom_two"/>
+=======
+            android:background="#888888" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/header_custom_typeface" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="simpleCustomTypeface"
+            android:text="@string/simple_custom" />
+
+>>>>>>> PaoloRotolo/master
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+<<<<<<< HEAD
             android:background="#888888"/>
         <TextView
             android:layout_width="fill_parent"
@@ -199,5 +251,22 @@
             android:layout_height="wrap_content"
             android:onClick="wizardModeTwo"
             android:text="@string/wizard_two"/>
+=======
+            android:background="#888888" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/header_wizard_mode" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="wizardMode"
+            android:text="@string/wizard_one" />
+>>>>>>> PaoloRotolo/master
     </LinearLayout>
 </ScrollView>
