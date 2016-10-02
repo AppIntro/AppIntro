@@ -86,7 +86,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (titleColor != 0) {
             t.setTextColor(titleColor);
         }
-        if (titleTypeface != null) {
+        if (titleTypeface != null && titleTypeface.equals("")) {
             if (CustomFontCache.get(titleTypeface, getContext()) != null) {
                 t.setTypeface(CustomFontCache.get(titleTypeface, getContext()));
             }
@@ -95,7 +95,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-        if (descTypeface != null) {
+        if (descTypeface != null && descTypeface.equals("")) {
             if (CustomFontCache.get(descTypeface, getContext()) != null) {
                 d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
             }
