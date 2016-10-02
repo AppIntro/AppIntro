@@ -28,7 +28,11 @@ public class CustomFontCache {
 
                 return tf;
             } catch (Exception e) {
-                LogHelper.w(TAG, e.toString());
+                if (tfn.equals("")){
+                    LogHelper.w(TAG, e.toString()+", Given path was empty");
+                }else {
+                    LogHelper.w(TAG, e.toString()+", Given path was: "+tfn);
+                }
                 return null;
             }
         } else {
