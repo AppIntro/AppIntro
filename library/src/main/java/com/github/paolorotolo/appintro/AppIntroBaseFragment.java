@@ -6,6 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,17 +43,11 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (getArguments() != null && getArguments().size() != 0) {
             drawable = getArguments().getInt(ARG_DRAWABLE);
             title = getArguments().getString(ARG_TITLE);
-<<<<<<< HEAD
-            titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ? getArguments().getString(ARG_TITLE_TYPEFACE) : "";
-            description = getArguments().getString(ARG_DESC);
-            descTypeface = getArguments().containsKey(ARG_DESC_TYPEFACE) ? getArguments().getString(ARG_DESC_TYPEFACE) : "";
-=======
             titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ?
                     getArguments().getString(ARG_TITLE_TYPEFACE) : "";
             description = getArguments().getString(ARG_DESC);
             descTypeface = getArguments().containsKey(ARG_DESC_TYPEFACE) ?
                     getArguments().getString(ARG_DESC_TYPEFACE) : "";
->>>>>>> PaoloRotolo/master
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ?
                     getArguments().getInt(ARG_TITLE_COLOR) : 0;
@@ -92,39 +87,21 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (titleColor != 0) {
             t.setTextColor(titleColor);
         }
-<<<<<<< HEAD
-        if (titleTypeface != null && titleTypeface.equals("")){
-            if (CustomFontCache.get(titleTypeface,getContext()) != null){
-                t.setTypeface(CustomFontCache.get(titleTypeface,getContext()));
-            }
-
-=======
-        if (titleTypeface != null && titleTypeface.equals("")) {
+        if (titleTypeface != null) {
             if (CustomFontCache.get(titleTypeface, getContext()) != null) {
                 t.setTypeface(CustomFontCache.get(titleTypeface, getContext()));
             }
->>>>>>> PaoloRotolo/master
         }
         d.setText(description);
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-<<<<<<< HEAD
-        if (descTypeface != null && descTypeface.equals("")){
-            if (CustomFontCache.get(descTypeface,getContext()) != null){
-                d.setTypeface(CustomFontCache.get(descTypeface,getContext()));
-            }
-
-        }
-        i.setImageDrawable(ContextCompat.getDrawable(getActivity(), drawable));
-=======
-        if (descTypeface != null && descTypeface.equals("")) {
+        if (descTypeface != null) {
             if (CustomFontCache.get(descTypeface, getContext()) != null) {
                 d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
             }
         }
         i.setImageResource(drawable);
->>>>>>> PaoloRotolo/master
         mainLayout.setBackgroundColor(bgColor);
 
         return v;

@@ -50,25 +50,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
-<<<<<<< HEAD
-                android:src="@drawable/ic_skip_white_24px"/>
-=======
                 android:layout_marginStart="16dp"
                 app:srcCompat="@drawable/ic_skip_white"
                 tools:ignore="ContentDescription" />
 
->>>>>>> PaoloRotolo/master
             <ImageButton
                 android:id="@+id/back"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
-<<<<<<< HEAD
-                android:layout_height="fill_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="16dp"
-                android:visibility="invisible"
-                android:src="@drawable/ic_arrow_back_white_24px"/>
-=======
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
@@ -76,7 +65,6 @@
                 android:visibility="invisible"
                 app:srcCompat="@drawable/ic_arrow_back_white"
                 tools:ignore="ContentDescription" />
->>>>>>> PaoloRotolo/master
 
             <ImageButton
                 android:id="@+id/next"

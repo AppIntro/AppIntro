@@ -18,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -70,12 +69,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     private boolean isImmersiveModeEnabled = false;
     private boolean isImmersiveModeSticky = false;
     private boolean areColorTransitionsEnabled = false;
-<<<<<<< HEAD
-    protected boolean skipButtonEnabled = true;
-    protected boolean isWizardMode = false;
-    protected boolean showBackButtonWithDone = false;
-=======
->>>>>>> PaoloRotolo/master
     private int currentlySelectedItem = -1;
 
     @Override
@@ -128,13 +121,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-                if (pager.getCurrentItem()>0){
-                    pager.setCurrentItem(pager.getCurrentItem()-1);
-=======
                 if (pager.getCurrentItem() > 0) {
                     pager.setCurrentItem(pager.getCurrentItem() - 1);
->>>>>>> PaoloRotolo/master
                 }
 
             }
@@ -395,11 +383,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
-<<<<<<< HEAD
-        if (isWizardMode){
-=======
         if (isWizardMode) {
->>>>>>> PaoloRotolo/master
             setOffScreenPageLimit(fragments.size());
         }
         mPagerAdapter.notifyDataSetChanged();
@@ -412,6 +396,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * Setting to to display or hide the Next or Done button. This is a static setting and
      * button state is maintained across slides until explicitly changed.
+     *
      * @param progressButtonEnabled Set true to display. False to hide.
      */
     public void setProgressButtonEnabled(boolean progressButtonEnabled) {
@@ -422,34 +407,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             if (pager.getCurrentItem() == slidesNumber - 1) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
-<<<<<<< HEAD
-                if (isWizardMode){
-                    setButtonState(backButton, showBackButtonWithDone);
-                }else {
-=======
                 if (isWizardMode) {
                     setButtonState(backButton, showBackButtonWithDone);
                 } else {
->>>>>>> PaoloRotolo/master
                     setButtonState(skipButton, false);
                 }
 
             } else {
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
-<<<<<<< HEAD
-                if (isWizardMode){
-                    if (pager.getCurrentItem()==0){
-                        setButtonState(backButton, false);
-                    }else {
-                        setButtonState(backButton, isWizardMode ? true : false);
-                    }
-                }else {
-                    //setButtonState(skipButton, skipButtonEnabled ? true : false);
-                    setButtonState(skipButton, !isWizardMode ? true : false);
-                }
-
-=======
                 if (isWizardMode) {
                     if (pager.getCurrentItem() == 0) {
                         setButtonState(backButton, false);
@@ -459,19 +425,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 } else {
                     setButtonState(skipButton, skipButtonEnabled);
                 }
->>>>>>> PaoloRotolo/master
             }
         } else {
             setButtonState(nextButton, false);
             setButtonState(doneButton, false);
             setButtonState(backButton, false);
             setButtonState(skipButton, false);
-<<<<<<< HEAD
-
-        }
-    }
-=======
->>>>>>> PaoloRotolo/master
 
         }
     }
@@ -586,6 +545,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     /**
      * Allows for setting statusbar visibility (true by default)
+     *
      * @param isVisible put true to show status bar, and false to hide it
      */
     public void showStatusBar(boolean isVisible) {
@@ -599,6 +559,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     /**
      * sets vibration when buttons are pressed
+     *
      * @param vibrationEnabled on/off
      */
     public void setVibrate(boolean vibrationEnabled) {
@@ -606,9 +567,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-<<<<<<< HEAD
-     * sets wizard mode
-=======
      * get the state of wizard mode
      */
     public boolean getWizardMode() {
@@ -618,7 +576,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * sets wizard mode
      *
->>>>>>> PaoloRotolo/master
      * @param wizardMode on/off
      */
     public void setWizardMode(boolean wizardMode) {
@@ -631,20 +588,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * get the state of wizard mode
      */
-<<<<<<< HEAD
-    public boolean getWizardMode() {
-=======
     public boolean getBackButtonVisibilityWithDone() {
->>>>>>> PaoloRotolo/master
         return isWizardMode;
     }
 
     /**
      * sets wizard mode
-<<<<<<< HEAD
-=======
      *
->>>>>>> PaoloRotolo/master
      * @param show on/off
      */
     public void setBackButtonVisibilityWithDone(boolean show) {
@@ -652,16 +602,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-<<<<<<< HEAD
-     * get the state of wizard mode
-     */
-    public boolean getBackButtonVisibilityWithDone() {
-        return isWizardMode;
-    }
-
-    /**
-=======
->>>>>>> PaoloRotolo/master
      * sets vibration intensity
      *
      * @param intensity desired intensity
