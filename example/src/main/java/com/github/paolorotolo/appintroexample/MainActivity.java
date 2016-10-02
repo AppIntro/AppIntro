@@ -119,34 +119,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void simpleCustomTypeface(View view){
-=======
     public void simpleCustomTypeface(View view) {
->>>>>>> PaoloRotolo/master
         Intent intent = new Intent(this, CustomTypefaceActivity.class);
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void simpleCustomTypefaceTwo(View view){
-        Intent intent = new Intent(this, CustomTypefaceTwoActivity.class);
-        startActivity(intent);
-    }
-
-    public void wizardMode(View view){
-        Intent intent = new Intent(this, WizardActivity.class);
-        startActivity(intent);
-    }
-
-    public void wizardModeTwo(View view){
-        Intent intent = new Intent(this, WizardTwoActivity.class);
-        startActivity(intent);
-    }
-=======
     public void wizardMode(View view) {
         Intent intent = new Intent(this, WizardActivity.class);
         startActivity(intent);
     }
->>>>>>> PaoloRotolo/master
 }

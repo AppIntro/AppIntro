@@ -4,7 +4,6 @@ apply plugin: 'signing'
 apply from: 'maven-push.gradle'
 
 android {
-
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
@@ -19,7 +18,6 @@ android {
 }
 
 dependencies {
-
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-annotations:24.2.1'
 }

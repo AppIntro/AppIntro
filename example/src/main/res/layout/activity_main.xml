@@ -131,31 +131,6 @@
             android:background="#888888" />
 
         <TextView
-<<<<<<< HEAD
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:gravity="center_horizontal"
-                android:text="@string/header_indicators"/>
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startProgressIndicator"
-                android:text="@string/progress_indicator"/>
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startCustomIndicator"
-                android:text="@string/custom_indicator"/>
-        <Button
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startCustomColorIndicator"
-                android:text="@string/custom_color_indicator"/>
-=======
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -183,33 +158,10 @@
             android:onClick="startCustomColorIndicator"
             android:text="@string/custom_color_indicator" />
 
->>>>>>> PaoloRotolo/master
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-<<<<<<< HEAD
-            android:background="#888888"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:gravity="center_horizontal"
-            android:text="@string/header_custom_typeface"/>
-        <Button
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="simpleCustomTypeface"
-            android:text="@string/simple_custom"/>
-
-        <Button
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="simpleCustomTypefaceTwo"
-            android:text="@string/simple_custom_two"/>
-=======
             android:background="#888888" />
 
         <TextView
@@ -226,32 +178,10 @@
             android:onClick="simpleCustomTypeface"
             android:text="@string/simple_custom" />
 
->>>>>>> PaoloRotolo/master
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-<<<<<<< HEAD
-            android:background="#888888"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:gravity="center_horizontal"
-            android:text="@string/header_wizard_mode"/>
-        <Button
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="wizardMode"
-            android:text="@string/wizard_one"/>
-        <Button
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="wizardModeTwo"
-            android:text="@string/wizard_two"/>
-=======
             android:background="#888888" />
 
         <TextView
@@ -267,6 +197,5 @@
             android:layout_gravity="center"
             android:onClick="wizardMode"
             android:text="@string/wizard_one" />
->>>>>>> PaoloRotolo/master
     </LinearLayout>
 </ScrollView>
