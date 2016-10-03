@@ -1,7 +1,6 @@
 <!--
 Please fill in the below fields with some data to help us best diagnose the issue.
 The more specific you are, the better! You can help a lot by not making us ask these questions.
-Feel free to remove any irrelevant parts that you know are not related to the issue.
 Any HTML comment like this will be stripped when rendering markdown, no need to delete them.
 If an issue does not have the following template filled out, it will be closed without discussion.
 -->
