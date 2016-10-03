@@ -867,7 +867,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
-    private final class PagerOnPageChangeListener implements ViewPager.OnPageChangeListener {
+    public class PagerOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
