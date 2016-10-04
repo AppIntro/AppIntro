@@ -31,7 +31,8 @@ public class CustomFontCache {
                 if (tfn.equals("")){
                     LogHelper.w(TAG, e, "Empty path");
                 }else {
-                    LogHelper.w(TAG, e, tfn);                }
+                    LogHelper.w(TAG, e, tfn);
+                }
                 return null;
             }
         } else {
