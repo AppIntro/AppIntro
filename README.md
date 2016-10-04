@@ -37,6 +37,8 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Note here that we DO NOT use setContentView();
+
         // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
         addSlide(firstFragment);
@@ -82,6 +84,8 @@ public class IntroActivity extends AppIntro {
     }
 }
 ```
+
+_Note above that we DID NOT use setContentView();_
 
 Finally, declare the activity in your Manifest like so:
 
@@ -262,7 +266,7 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
 ## Apps using AppIntro
-If you are using AppIntro in your app and would like to be listed here, please let us know by opening a [new issue](https://github.com/PaoloRotolo/AppIntro/issues/new)!
+If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/PaoloRotolo/AppIntro/issues/325)!
 
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes)
  * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)

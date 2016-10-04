@@ -1,9 +1,7 @@
-package com.github.paolorotolo.appintro;
+package com.github.paolorotolo.appintro.util;
 
 import android.content.Context;
 import android.graphics.Typeface;
-
-import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.Hashtable;
 
@@ -28,16 +26,16 @@ public class CustomFontCache {
 
                 return tf;
             } catch (Exception e) {
-                if (tfn.equals("")){
+                if (("").equals(tfn)) {
                     LogHelper.w(TAG, e, "Empty path");
-                }else {
+                } else {
                     LogHelper.w(TAG, e, tfn);
                 }
+
                 return null;
             }
         } else {
             return tf;
         }
-
     }
 }
