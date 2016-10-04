@@ -45,7 +45,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
-                android:text="@string/skip_button"
+                android:text="@string/app_intro_skip_button"
                 android:textColor="@android:color/white" />
 
             <ImageButton
@@ -84,7 +84,7 @@
                 android:minWidth="100dp"
                 android:paddingEnd="16dp"
                 android:paddingRight="16dp"
-                android:text="@string/done_button"
+                android:text="@string/app_intro_done_button"
                 android:textColor="@android:color/white"
                 android:visibility="gone"
                 tools:ignore="RtlSymmetry" />
