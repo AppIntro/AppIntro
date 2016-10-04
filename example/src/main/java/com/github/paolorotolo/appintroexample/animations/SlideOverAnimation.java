@@ -1,11 +1,10 @@
 package com.github.paolorotolo.appintroexample.animations;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintroexample.MainActivity;
 import com.github.paolorotolo.appintroexample.R;
 import com.github.paolorotolo.appintroexample.SampleSlide;
 
@@ -15,7 +14,9 @@ import com.github.paolorotolo.appintroexample.SampleSlide;
 public class SlideOverAnimation extends BaseAppIntro {
 
     @Override
-    public void init(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         addSlide(SampleSlide.newInstance(R.layout.intro));
         addSlide(SampleSlide.newInstance(R.layout.intro2));
         addSlide(SampleSlide.newInstance(R.layout.intro3));
@@ -24,30 +25,20 @@ public class SlideOverAnimation extends BaseAppIntro {
         setSlideOverAnimation();
     }
 
-    private void loadMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
     @Override
-    public void onSkipPressed() {
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onNextPressed() {
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
 
-    }
-
-    @Override
-    public void onDonePressed() {
         loadMainActivity();
-    }
-
-    @Override
-    public void onSlideChanged() {
-
     }
 
     public void getStarted(View v) {

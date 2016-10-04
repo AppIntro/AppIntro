@@ -23,7 +23,8 @@ public final class DisableSwipeIntro1 extends BaseIntro {
         super.onSkipPressed(currentFragment);
 
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

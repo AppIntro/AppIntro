@@ -30,8 +30,10 @@ public final class DefaultIntro extends BaseIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip),
+                Toast.LENGTH_SHORT).show();
     }
 
     public void getStarted(View v) {

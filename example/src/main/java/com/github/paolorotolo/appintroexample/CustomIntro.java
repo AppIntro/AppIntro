@@ -3,11 +3,11 @@ package com.github.paolorotolo.appintroexample;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintroexample.util.Helper;
 
 public final class CustomIntro extends BaseIntro {
 
@@ -15,10 +15,12 @@ public final class CustomIntro extends BaseIntro {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(AppIntroFragment.newInstance("Title here", "Description here...\nYeah, I've added this fragment programmatically",
+        addSlide(AppIntroFragment.newInstance("Title here",
+                "Description here...\nYeah, I've added this fragment programmatically",
                 R.drawable.ic_slide1, Color.parseColor("#2196F3")));
 
-        addSlide(AppIntroFragment.newInstance("HTML Description", Html.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
+        addSlide(AppIntroFragment.newInstance("HTML Description",
+                Helper.fromHtml("<b>Description bold...</b><br><i>Description italic...</i>"),
                 R.drawable.ic_slide1, Color.parseColor("#2196F3")));
 
         setBarColor(Color.parseColor("#3F51B5"));
@@ -34,7 +36,8 @@ public final class CustomIntro extends BaseIntro {
         super.onSkipPressed(currentFragment);
 
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
