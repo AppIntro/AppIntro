@@ -16,3 +16,13 @@ allprojects {
         jcenter()
     }
 }
+
+ext {
+    minSdkVersion = 11
+    targetSdkVersion = 24
+    compileSdkVersion = 24
+    buildToolsVersion = '24.0.3'
+    supportLibVersion = '24.2.1'
+    targetCompatibilityVersion = JavaVersion.VERSION_1_7
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_7
+}

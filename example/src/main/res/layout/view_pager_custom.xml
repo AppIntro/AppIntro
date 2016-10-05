@@ -54,6 +54,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/app_intro_disable_swipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -61,18 +62,20 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="disableSwipeIntro1"
+                android:onClick="onClick"
                 android:text="@string/disable_swipe_intro_1" />
 
             <Button
+                android:id="@+id/app_intro_disable_swipe_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:onClick="disableSwipeIntro2"
+                android:onClick="onClick"
                 android:text="@string/disable_swipe_intro_2" />
 
             <Button
+                android:id="@+id/app_intro_slide_policy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -80,18 +83,20 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="slidePolicyDemo"
+                android:onClick="onClick"
                 android:text="@string/custom_slide_policy" />
 
             <Button
+                android:id="@+id/app_intro_custom_typeface"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:onClick="simpleCustomTypeface"
+                android:onClick="onClick"
                 android:text="@string/custom_typeface" />
 
             <Button
+                android:id="@+id/app_intro_wizard_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -99,7 +104,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="wizardMode"
+                android:onClick="onClick"
                 android:text="@string/custom_wizard" />
 
         </LinearLayout>

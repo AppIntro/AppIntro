@@ -54,6 +54,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/app_intro_permissions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -61,10 +62,11 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startPermissionsIntro"
+                android:onClick="onClick"
                 android:text="@string/permission_intro" />
 
             <Button
+                android:id="@+id/app_intro_permissions_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,7 +74,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startPermissionsIntro2"
+                android:onClick="onClick"
                 android:text="@string/permission_intro2" />
 
         </LinearLayout>

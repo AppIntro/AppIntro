@@ -54,6 +54,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/app_intro_progress_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -61,18 +62,20 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startProgressIndicator"
+                android:onClick="onClick"
                 android:text="@string/progress_indicator" />
 
             <Button
+                android:id="@+id/app_intro_custom_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:onClick="startCustomIndicator"
+                android:onClick="onClick"
                 android:text="@string/custom_indicator" />
 
             <Button
+                android:id="@+id/app_intro_custom_color_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -80,7 +83,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startCustomColorIndicator"
+                android:onClick="onClick"
                 android:text="@string/custom_color_indicator" />
 
         </LinearLayout>

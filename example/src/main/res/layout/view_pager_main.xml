@@ -54,6 +54,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/app_intro_default_intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -61,10 +62,11 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startDefaultIntro"
+                android:onClick="onClick"
                 android:text="@string/default_intro" />
 
             <Button
+                android:id="@+id/app_intro_layout_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,10 +74,11 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startSecondLayoutIntro"
+                android:onClick="onClick"
                 android:text="@string/second_layout_intro" />
 
             <Button
+                android:id="@+id/app_intro_custom_intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -83,10 +86,11 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="startCustomIntro"
+                android:onClick="onClick"
                 android:text="@string/customized_intro" />
 
             <Button
+                android:id="@+id/app_intro_custom_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -94,7 +98,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="5dp"
-                android:onClick="customBackgroundView"
+                android:onClick="onClick"
                 android:text="@string/custom_background_view" />
 
         </LinearLayout>

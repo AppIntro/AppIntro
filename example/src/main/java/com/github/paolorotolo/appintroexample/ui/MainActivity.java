@@ -45,113 +45,83 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new CustomPagerAdapter(this));
     }
 
-    // Main
-    public void startDefaultIntro(View v) {
-        Intent intent = new Intent(this, DefaultIntro.class);
-        startActivity(intent);
-    }
+    public void onClick(View v) {
+        Intent intent = null;
+        switch (v.getId()) {
+            // Main
+            case R.id.app_intro_default_intro:
+                intent = new Intent(this, DefaultIntro.class);
+                break;
+            case R.id.app_intro_layout_2:
+                intent = new Intent(this, DefaultIntro2.class);
+                break;
+            case R.id.app_intro_custom_intro:
+                intent = new Intent(this, CustomIntro.class);
+                break;
+            case R.id.app_intro_custom_background:
+                intent = new Intent(this, IntroWithBackground.class);
+                break;
+            // Permissions
+            case R.id.app_intro_permissions:
+                intent = new Intent(this, PermissionsIntro.class);
+                break;
+            case R.id.app_intro_permissions_2:
+                intent = new Intent(this, PermissionsIntro2.class);
+                break;
+            // Animations
+            case R.id.app_intro_color_animation:
+                intent = new Intent(this, ColorAnimation.class);
+                break;
+            case R.id.app_intro_fade_animation:
+                intent = new Intent(this, FadeAnimation.class);
+                break;
+            case R.id.app_intro_zoom_animation:
+                intent = new Intent(this, ZoomAnimation.class);
+                break;
+            case R.id.app_intro_flow_animation:
+                intent = new Intent(this, FlowAnimation.class);
+                break;
+            case R.id.app_intro_depth_animation:
+                intent = new Intent(this, DepthAnimation.class);
+                break;
+            case R.id.app_intro_slide_over_animation:
+                intent = new Intent(this, SlideOverAnimation.class);
+                break;
+            case R.id.app_intro_custom_transformer:
+                intent = new Intent(this, CustomAnimation.class);
+                break;
+            // Indicators
+            case R.id.app_intro_progress_indicator:
+                intent = new Intent(this, ProgressIndicator.class);
+                break;
+            case R.id.app_intro_custom_indicator:
+                intent = new Intent(this, CustomIndicator.class);
+                break;
+            case R.id.app_intro_custom_color_indicator:
+                intent = new Intent(this, CustomColorIndicator.class);
+                break;
+            // Custom
+            case R.id.app_intro_disable_swipe:
+                intent = new Intent(this, DisableSwipeIntro1.class);
+                break;
+            case R.id.app_intro_disable_swipe_2:
+                intent = new Intent(this, DisableSwipeIntro2.class);
+                break;
+            case R.id.app_intro_slide_policy:
+                intent = new Intent(this, IntroDemoPolicy.class);
+                break;
+            case R.id.app_intro_custom_typeface:
+                intent = new Intent(this, CustomTypefaceActivity.class);
+                break;
+            case R.id.app_intro_wizard_mode:
+                intent = new Intent(this, WizardActivity.class);
+                break;
+            default:
+                break;
+        }
 
-    public void startSecondLayoutIntro(View v) {
-        Intent intent = new Intent(this, DefaultIntro2.class);
-        startActivity(intent);
-    }
-
-    public void startCustomIntro(View v) {
-        Intent intent = new Intent(this, CustomIntro.class);
-        startActivity(intent);
-    }
-
-    public void customBackgroundView(View v) {
-        Intent intent = new Intent(this, IntroWithBackground.class);
-        startActivity(intent);
-    }
-
-    // Permissions
-    public void startPermissionsIntro(View view) {
-        Intent intent = new Intent(this, PermissionsIntro.class);
-        startActivity(intent);
-    }
-
-    public void startPermissionsIntro2(View view) {
-        Intent intent = new Intent(this, PermissionsIntro2.class);
-        startActivity(intent);
-    }
-
-    // Animations
-    public void startColorAnimation(View view) {
-        Intent intent = new Intent(this, ColorAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startFadeAnimation(View v) {
-        Intent intent = new Intent(this, FadeAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startZoomAnimation(View v) {
-        Intent intent = new Intent(this, ZoomAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startFlowAnimation(View v) {
-        Intent intent = new Intent(this, FlowAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startDepthAnimation(View v) {
-        Intent intent = new Intent(this, DepthAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startSlideOverAnimation(View v) {
-        Intent intent = new Intent(this, SlideOverAnimation.class);
-        startActivity(intent);
-    }
-
-    public void startCustomAnimation(View v) {
-        Intent intent = new Intent(this, CustomAnimation.class);
-        startActivity(intent);
-    }
-
-    // Indicators
-    public void startProgressIndicator(View v) {
-        Intent intent = new Intent(this, ProgressIndicator.class);
-        startActivity(intent);
-    }
-
-    public void startCustomIndicator(View v) {
-        Intent intent = new Intent(this, CustomIndicator.class);
-        startActivity(intent);
-    }
-
-    public void startCustomColorIndicator(View v) {
-        Intent intent = new Intent(this, CustomColorIndicator.class);
-        startActivity(intent);
-    }
-
-    // Custom
-    public void disableSwipeIntro1(View v) {
-        Intent intent = new Intent(this, DisableSwipeIntro1.class);
-        startActivity(intent);
-    }
-
-    public void disableSwipeIntro2(View v) {
-        Intent intent = new Intent(this, DisableSwipeIntro2.class);
-        startActivity(intent);
-    }
-
-    public void slidePolicyDemo(View v) {
-        Intent intent = new Intent(this, IntroDemoPolicy.class);
-        startActivity(intent);
-    }
-
-    public void simpleCustomTypeface(View view) {
-        Intent intent = new Intent(this, CustomTypefaceActivity.class);
-        startActivity(intent);
-    }
-
-    public void wizardMode(View view) {
-        Intent intent = new Intent(this, WizardActivity.class);
-        startActivity(intent);
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
 }
