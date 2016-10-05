@@ -12,7 +12,8 @@ android {
         targetSdkVersion 24
         versionCode 13
         versionName "4.1.0"
-        consumerProguardFiles 'proguard-project.txt'
+
+        consumerProguardFiles 'consumer-proguard-rules.pro'
         vectorDrawables.useSupportLibrary = true
     }
 }
