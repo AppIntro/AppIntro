@@ -19,13 +19,13 @@ public final class Helper {
         return Build.VERSION.SDK_INT >= apiLevel;
     }
 
-    @SuppressLint("NewApi")
+//    @SuppressLint("NewApi")
     public static Spanned fromHtml(String source) {
-        if (isAtLeastAPI(Build.VERSION_CODES.N)) {
-            return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY, null, null);
-        } else {
+//        if (isAtLeastAPI(Build.VERSION_CODES.N)) {
+//            return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY, null, null);
+//        } else {
             //noinspection deprecation
             return Html.fromHtml(source);
-        }
+//        }
     }
 }
