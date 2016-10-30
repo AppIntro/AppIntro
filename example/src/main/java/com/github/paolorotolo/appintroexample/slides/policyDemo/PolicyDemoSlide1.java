@@ -22,7 +22,8 @@ public class PolicyDemoSlide1 extends Fragment implements ISlidePolicy, ISlideBa
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.slide_policy_demo, container, false);
 

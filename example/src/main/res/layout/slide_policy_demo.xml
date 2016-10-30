@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/slide_policy_demo_title" />
+        android:text="@string/custom_slide_policy" />
 
     <TextView
         style="@style/AppIntroDefaultText"

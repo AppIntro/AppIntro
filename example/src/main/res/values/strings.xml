@@ -1,37 +1,60 @@
 <resources>
-    <string name="app_name">AppIntroExample</string>
+    <string name="app_name">AppIntro Examples</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="customized_intro">Start custom Intro</string>
-    <string name="disable_swipe_intro_1">Disable swipe</string>
-    <string name="disable_swipe_intro_2">Disable swipe Layout 2</string>
-    <string name="default_intro">Start default Intro</string>
-    <string name="fade_animation">Set Fade animation</string>
-    <string name="custom_animation">Set custom Transformer</string>
+    <!-- View Pager -->
+    <string name="main_title">Main</string>
+    <string name="main_description">Here is a taste of what AppIntro supports.</string>
+    <string name="permissions_title">Permissions</string>
+    <string name="permissions_description">AppIntro supports Runtime Permissions for Android 6.0 and up.\nMake your users happy~</string>
+    <string name="animations_title">Animations</string>
+    <string name="animations_description">AppIntro supports slide animations.\nCheck out a few below.</string>
+    <string name="indicators_title">Indicators</string>
+    <string name="indicators_description">No slide is complete without an indicator.\nAppIntro knows indicators.</string>
+    <string name="custom_title">Custom</string>
+    <string name="custom_description">Not satisfied!?\nThese custom options will take care of that.</string>
+
+    <!-- Buttons -->
+    <!-- Main -->
+    <string name="default_intro">Default Intro</string>
+    <string name="second_layout_intro">Layout 2</string>
+    <string name="customized_intro">Custom Intro</string>
+    <string name="custom_background_view">Custom Background</string>
+
+    <!-- Permissions -->
+    <string name="permission_intro">Permissions</string>
+    <string name="permission_intro2">Permissions 2</string>
+
+    <!-- Animations -->
+    <string name="color_animation">Color Animation</string>
+    <string name="fade_animation">Fade Animation</string>
+    <string name="zoom_animation">Zoom Animation</string>
+    <string name="flow_animation">Flow Animation</string>
+    <string name="depth_animation">Depth Animation</string>
+    <string name="slide_over_animation">Slide Over Animation</string>
+    <string name="custom_animation">Custom Transformer</string>
+
+    <!-- Indicators -->
     <string name="progress_indicator">Set progress indicator</string>
     <string name="custom_indicator">Set custom indicator</string>
     <string name="custom_color_indicator">Set custom color indicator</string>
-    <string name="custom_color_progress_indicator">Set custom color progress indicator</string>
-    <string name="second_layout_intro">Start Intro with Layout 2</string>
+
+    <!-- Custom -->
+    <string name="disable_swipe_intro_1">Disable Swipe</string>
+    <string name="disable_swipe_intro_2">Disable Swipe Layout 2</string>
+    <string name="custom_slide_policy">Slide Policy</string>
+    <string name="custom_typeface">Custom TypeFace</string>
+    <string name="custom_wizard">Wizard Mode</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="skip">Hey! Come back~</string>
+
     <string name="title_activity_default_intro">DefaultIntro</string>
     <string name="title_activity_custom_intro">CustomIntro</string>
     <string name="title_activity_second_intro">SecondLayoutIntro</string>
     <string name="title_activity_default_intro_disable">DisableSwipeDefaultLayoutIntro</string>
     <string name="title_activity_second_intro_disable">DisableSwipeSecondLayoutIntro</string>
-    <string name="title_activity_disable_swipe_intro">DisableSwipeIntro</string>
-    <string name="skip">Y U DO DIS TO ME?</string>
-    <string name="header_animations">Animations</string>
-    <string name="header_indicators">Indicators</string>
 
-    <string name="zoom_animation">SET ZOOM ANIMATION</string>
-    <string name="color_animation">SET COLOR ANIMATION</string>
-    <string name="flow_animation">SET FLOW ANIMATION</string>
-    <string name="depth_animation">SET DEPTH ANIMATION</string>
-    <string name="slideover_animation">SET SLIDEOVER ANIMATION</string>
     <string name="disable_swiping_slide_text">The first button disables swiping to the next slide, but you can still swipe back to previous slides. Swiping is re-enabled after moving to a previous slide \n\n The second button disables swiping completely. \n\n The third button disables the Next/Done button, independent of locking swiping.</string>
-    <string name="permission_intro">Intro with Permissions</string>
-    <string name="permission_intro2">Intro with Permissions 2</string>
     <string name="title_activity_permissions_intro">Permissions Intro</string>
 
     <!-- Input demo slide -->
@@ -41,19 +64,11 @@
     <string name="slide_input_checkbox">Check something</string>
 
     <!-- PolicyDemoSlide -->
-    <string name="slide_policy_demo_title">Slide policy demo</string>
     <string name="slide_policy_demo_description">One may only continue to the next slide if the checkbox has been checked.</string>
     <string name="slide_policy_demo_cb">Check me!</string>
     <string name="slide_policy_demo_error">Please check the checkbox in order to continue.</string>
 
-    <!-- CustomTypefaceDemoSlide -->
-    <string name="header_custom_typeface">With Custom Typeface</string>
-    <string name="simple_custom">Simple Typeface example</string>
-    <string name="skip_done_typeface">Skip/Done typeface example</string>
+    <!-- Custom TypeFace -->
     <string name="title_font">nemoy_medium.ttf</string>
     <string name="desc_font">OpenSans-Light.ttf</string>
-
-    <!-- WizardModeDemoSlide -->
-    <string name="header_wizard_mode">Wizard Mode</string>
-    <string name="wizard_one">Wizard Example</string>
 </resources>

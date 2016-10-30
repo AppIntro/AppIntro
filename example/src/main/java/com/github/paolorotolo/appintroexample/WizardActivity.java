@@ -2,7 +2,6 @@ package com.github.paolorotolo.appintroexample;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -31,24 +30,19 @@ public class WizardActivity extends BaseIntro {
         setWizardMode(true);
         setSkipTextTypeface(getResources().getString(R.string.title_font));
         setDoneTextTypeface(getResources().getString(R.string.title_font));
-        //show back with done button
-        //setBackButtonVisibilityWithDone(false);
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+
         loadMainActivity();
-    }
-
-    @Override
-    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
-
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+
         loadMainActivity();
     }
 }

@@ -1,11 +1,13 @@
 package com.github.paolorotolo.appintroexample;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+@SuppressLint("Registered")
 public class CustomTypefaceTwoActivity extends BaseIntro2 {
 
     @Override
@@ -31,6 +33,7 @@ public class CustomTypefaceTwoActivity extends BaseIntro2 {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+
         loadMainActivity();
     }
 

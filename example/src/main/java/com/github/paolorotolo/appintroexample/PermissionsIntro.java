@@ -15,12 +15,22 @@ public final class PermissionsIntro extends BaseIntro {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(AppIntroFragment.newInstance("Welcome!", "We just need some permissions to start. (This is only as an example...this app doesn't utilize any of the perms.)\n", R.drawable.ic_slide1, Color.parseColor("#2196F3")));
-        addSlide(AppIntroFragment.newInstance("Camera", "We need to use the camera.\n", R.drawable.ic_slide2, Color.parseColor("#2196F3")));
-        addSlide(AppIntroFragment.newInstance("Storage", "We need to save stuff on your device. \n", R.drawable.ic_slide3, Color.parseColor("#2196F3")));
-        addSlide(AppIntroFragment.newInstance("All Set!", "Enjoy our app! \n", R.drawable.ic_slide4, Color.parseColor("#2196F3")));
-        addSlide(AppIntroFragment.newInstance("Location", "One more permission! We need to locate your device. \n", R.drawable.ic_slide4, Color.parseColor("#2196F3")));
-        addSlide(AppIntroFragment.newInstance("All set!", "All done! \n", R.drawable.ic_slide4, Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("Welcome!",
+                "We just need some permissions to start. (This is only as an example..." +
+                        "this app doesn't utilize any of the perms.)\n", R.drawable.ic_slide1,
+                Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("Camera",
+                "We need to use the camera.\n", R.drawable.ic_slide2, Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("Storage",
+                "We need to save stuff on your device. \n", R.drawable.ic_slide3,
+                Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("All Set!", "Enjoy our app! \n", R.drawable.ic_slide4,
+                Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("Location",
+                "One more permission! We need to locate your device. \n", R.drawable.ic_slide4,
+                Color.parseColor("#2196F3")));
+        addSlide(AppIntroFragment.newInstance("All set!", "All done! \n", R.drawable.ic_slide4,
+                Color.parseColor("#2196F3")));
 
         // Ask Camera permission in the second slide
         askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
@@ -37,14 +47,15 @@ public final class PermissionsIntro extends BaseIntro {
         super.onSkipPressed(currentFragment);
 
         loadMainActivity();
-        Toast.makeText(getApplicationContext(), getString(R.string.skip), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.skip),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
-        super.onSlideChanged(oldFragment, newFragment);
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
 
-        Toast.makeText(getBaseContext(), "Hi!", Toast.LENGTH_SHORT).show();
+        loadMainActivity();
     }
 
     public void getStarted(View v) {

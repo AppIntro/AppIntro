@@ -85,7 +85,7 @@ public class IntroActivity extends AppIntro {
 }
 ```
 
-_Note above that we DID NOT use setContentView();_
+_Note above that we DID NOT use `setContentView();`_
 
 Finally, declare the activity in your Manifest like so:
 

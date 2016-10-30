@@ -3,13 +3,13 @@ package com.github.paolorotolo.appintroexample.animations;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintroexample.BaseIntro;
 import com.github.paolorotolo.appintroexample.R;
 
 /**
  * Created by julio on 20/10/15.
  */
-public abstract class BaseAppIntro extends AppIntro {
+public abstract class BaseAppIntro extends BaseIntro {
     private int mScrollDurationFactor = 1;
 
     @Override
