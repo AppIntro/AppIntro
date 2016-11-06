@@ -319,3 +319,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [Angopapo - People around you](https://play.google.com/store/apps/details?id=com.msingapro.angopapofb)
  * [Hugetwit](https://play.google.com/store/apps/details?id=com.halilibo.hugetwit)
  * [Wake Me Up (Mumbai Railway)](https://play.google.com/store/apps/details?id=com.catacomblabs.wakemeup)
+ * [SelfMote - Wireless Remote app](https://play.google.com/store/apps/details?id=com.dmicse.selfmote.free)
+ * [Boo Music Player](https://play.google.com/store/apps/details?id=cdn.BooPlayer)
