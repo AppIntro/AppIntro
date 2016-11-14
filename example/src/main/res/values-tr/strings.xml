@@ -29,7 +29,7 @@
     <string name="flow_animation">ANİMASYON AKIŞINI AYARLA</string>
     <string name="depth_animation">DERİNLİĞİ AYARLA</string>
     <string name="slideover_animation">GEÇİŞ ANİMASYONUNU AYARLA</string>
-    <string name="disable_swiping_slide_text">İlk düğme sonraki slayta geçiş yapmayı devre dışı bırakır, ancak yine de önceki slaytlara geri atlayabilirsiniz. Bir önceki slayta geçtikten sonra ki hızlı kaydırma etkinleştirildi \n\n İkinci düğme tamamen kaydırmayı devre dışı bırakır. \n\n Üçüncü düğme, kaydırmanın kilitlenmesinden bağımsız olarak Sonraki/Bitir düğmesini devre dışı bırakır.</string>
+    <string name="disable_swiping_slide_text">İlk düğme sonraki slayta geçiş yapmayı devre dışı bırakır, ancak yine de önceki slaytlara geri atlayabilirsiniz. Bir önceki slayta geçtikten sonra ki hızlı kaydırma etkinleştirildi \n\n İkinci düğme tamamen kaydırmayı devre dışı bırakır. \n\n Üçüncü düğme, kaydırmanın kilitlenmesinden bağımsız olarak Geç/Tamamla düğmesini devre dışı bırakır.</string>
     <string name="permission_intro">Tanıtım için izinler</string>
     <string name="permission_intro2">Tanıtım için izinler 2</string>
     <string name="title_activity_permissions_intro">Tanıtım izinleri</string>
