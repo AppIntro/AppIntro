@@ -1,59 +1,14 @@
 <resources>
-    <string name="app_name">AppIntroExample</string>
+    <string name="app_name">AppIntro Example</string>
+    <string name="drawer_header">Drawer Header</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="customized_intro">Start custom Intro</string>
-    <string name="disable_swipe_intro_1">Disable swipe</string>
-    <string name="disable_swipe_intro_2">Disable swipe Layout 2</string>
-    <string name="default_intro">Start default Intro</string>
-    <string name="fade_animation">Set Fade animation</string>
-    <string name="custom_animation">Set custom Transformer</string>
-    <string name="progress_indicator">Set progress indicator</string>
-    <string name="custom_indicator">Set custom indicator</string>
-    <string name="custom_color_indicator">Set custom color indicator</string>
-    <string name="custom_color_progress_indicator">Set custom color progress indicator</string>
-    <string name="second_layout_intro">Start Intro with Layout 2</string>
-    <string name="title_activity_default_intro">DefaultIntro</string>
-    <string name="title_activity_custom_intro">CustomIntro</string>
-    <string name="title_activity_second_intro">SecondLayoutIntro</string>
-    <string name="title_activity_default_intro_disable">DisableSwipeDefaultLayoutIntro</string>
-    <string name="title_activity_second_intro_disable">DisableSwipeSecondLayoutIntro</string>
-    <string name="title_activity_disable_swipe_intro">DisableSwipeIntro</string>
-    <string name="skip">Y U DO DIS TO ME?</string>
-    <string name="header_animations">Animations</string>
-    <string name="header_indicators">Indicators</string>
+    <string name="default_intro">This is the most basic form of the AppIntro library. Minimal code is required to achieve this, and there are two layout options available. Tap the button below to launch the demo.</string>
+    <string name="default_intro2">This is the second most basic form of the AppIntro library. Minimal code is required to achieve ths, and this is the second layout option that the library offers. Tap the button below to launch the demo.</string>
+    <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization. Tap the button below to launch the demo.</string>
+    <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds. Tap the button below to launch the demo.</string>
 
-    <string name="zoom_animation">SET ZOOM ANIMATION</string>
-    <string name="color_animation">SET COLOR ANIMATION</string>
-    <string name="flow_animation">SET FLOW ANIMATION</string>
-    <string name="depth_animation">SET DEPTH ANIMATION</string>
-    <string name="slideover_animation">SET SLIDEOVER ANIMATION</string>
-    <string name="disable_swiping_slide_text">The first button disables swiping to the next slide, but you can still swipe back to previous slides. Swiping is re-enabled after moving to a previous slide \n\n The second button disables swiping completely. \n\n The third button disables the Next/Done button, independent of locking swiping.</string>
-    <string name="permission_intro">Intro with Permissions</string>
-    <string name="permission_intro2">Intro with Permissions 2</string>
-    <string name="title_activity_permissions_intro">Permissions Intro</string>
+    <string name="perms_intro1">This demonstrates the ability to request permission on any slide specified. Tap the button below to launch the demo.</string>
+    <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified, only it\'s using the second slide layout. Tap the button below to launch the demo.</string>
 
-    <!-- Input demo slide -->
-    <string name="slide_input_title">Slide: Input Demo</string>
-    <string name="slide_input_description">This slide demonstrates how input is saved over orientation and slide changes.</string>
-    <string name="slide_input_edittext">Type something here.</string>
-    <string name="slide_input_checkbox">Check something</string>
-
-    <!-- PolicyDemoSlide -->
-    <string name="slide_policy_demo_title">Slide policy demo</string>
-    <string name="slide_policy_demo_description">One may only continue to the next slide if the checkbox has been checked.</string>
-    <string name="slide_policy_demo_cb">Check me!</string>
-    <string name="slide_policy_demo_error">Please check the checkbox in order to continue.</string>
-
-    <!-- CustomTypefaceDemoSlide -->
-    <string name="header_custom_typeface">With Custom Typeface</string>
-    <string name="simple_custom">Simple Typeface example</string>
-    <string name="skip_done_typeface">Skip/Done typeface example</string>
-    <string name="title_font">nemoy_medium.ttf</string>
-    <string name="desc_font">OpenSans-Light.ttf</string>
-
-    <!-- WizardModeDemoSlide -->
-    <string name="header_wizard_mode">Wizard Mode</string>
-    <string name="wizard_one">Wizard Example</string>
+    <string name="launch_demo">Launch Demo</string>
 </resources>

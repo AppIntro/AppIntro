@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="175dp"
+        android:scaleType="centerCrop"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:src="@drawable/ic_drawer_header"
+        android:id="@+id/image_header"
+        android:contentDescription="@string/drawer_header" />
+
+</RelativeLayout>
