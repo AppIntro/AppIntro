@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -84,54 +85,80 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
         backButton = findViewById(R.id.back);
+        checkButton(nextButton, "next");
+        checkButton(doneButton, "done");
+        checkButton(skipButton, "skip");
+        checkButton(backButton, "back");
+
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
 
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                if (isVibrateOn) {
-                    mVibrator.vibrate(vibrateIntensity);
+        if (doneButton != null) {
+            doneButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(@NonNull View v) {
+                    if (isVibrateOn) {
+                        mVibrator.vibrate(vibrateIntensity);
+                    }
+
+                    Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+                    boolean isSlideChangingAllowed = handleBeforeSlideChanged();
+
+                    if (isSlideChangingAllowed) {
+                        handleSlideChanged(currentFragment, null);
+                        onDonePressed(currentFragment);
+                    } else {
+                        handleIllegalSlideChangeAttempt();
+                    }
                 }
+            });
+        }
 
-                Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
-                boolean isSlideChangingAllowed = handleBeforeSlideChanged();
-
-                if (isSlideChangingAllowed) {
-                    handleSlideChanged(currentFragment, null);
-                    onDonePressed(currentFragment);
-                } else {
-                    handleIllegalSlideChangeAttempt();
+        if (skipButton != null) {
+            skipButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(@NonNull View v) {
+                    if (isVibrateOn) {
+                        mVibrator.vibrate(vibrateIntensity);
+                    }
+                    onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
                 }
-            }
-        });
+            });
+        }
 
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                if (isVibrateOn) {
-                    mVibrator.vibrate(vibrateIntensity);
+        if (nextButton != null) {
+            nextButton.setOnClickListener(new NextButtonOnClickListener());
+        }
+
+        if (backButton != null) {
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (pager.getCurrentItem() > 0) {
+                        pager.setCurrentItem(pager.getCurrentItem() - 1);
+                    }
+
                 }
-                onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
-            }
-        });
-
-        nextButton.setOnClickListener(new NextButtonOnClickListener());
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pager.getCurrentItem() > 0) {
-                    pager.setCurrentItem(pager.getCurrentItem() - 1);
-                }
-
-            }
-        });
+            });
+        }
         pager.setAdapter(this.mPagerAdapter);
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
         pager.setOnNextPageRequestedListener(this);
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+    }
+
+    /**
+     * Check {@link View} to null pointer. Log error when view is {@code null}.
+     *
+     * @param view     view for check on {@code null}.
+     * @param viewName text representation of {@link View}.
+     */
+    private void checkButton(@Nullable View view, @Nullable String viewName) {
+        if (view == null) {
+            Log.e(TAG, String.format("View not initialized, missing 'R.id.%1$s' in XML!", viewName));
+        }
     }
 
     @Override
@@ -349,7 +376,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param button View which visibility should be changed
      * @param show   Whether the view should be visible or not
      */
-    protected void setButtonState(View button, boolean show) {
+    protected void setButtonState(@Nullable View button, boolean show) {
+        if (button == null) {
+            return;
+        }
+
         if (show) {
             button.setVisibility(View.VISIBLE);
         } else {
