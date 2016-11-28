@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">UygulamaTanıtımOrnegi</string>
+
+    <string name="hello_world">Merhaba!</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="customized_intro">Tanıtım ekranı yapmaya başla.</string>
+    <string name="disable_swipe_intro_1">Kaydırmayı kapat.</string>
+    <string name="disable_swipe_intro_2">2.sayfadaki kaydırmayı kapat.</string>
+    <string name="default_intro">Varsayılan tanıtımı başlat.</string>
+    <string name="fade_animation">Karartma animasyonunu ayarla.</string>
+    <string name="custom_animation">Özel dönüştürücüyü ayarla.</string>
+    <string name="progress_indicator">İlerleme çubuğunu ayarla.</string>
+    <string name="custom_indicator">Özel gösterge çubuğunu ayarla.</string>
+    <string name="custom_color_indicator">Özel gösterge çubuğu rengini ayarla.</string>
+    <string name="custom_color_progress_indicator">Özel ilerleme çubuğu rengini ayarla.</string>
+    <string name="second_layout_intro">2.safya için tanıtımı başlat.</string>
+    <string name="title_activity_default_intro">VarsayılanTanıtım</string>
+    <string name="title_activity_custom_intro">ÖzelTanıtım</string>
+    <string name="title_activity_second_intro">2.SayfaTanıtımı</string>
+    <string name="title_activity_default_intro_disable">Varsayılan sayfada kaydırmayı kapat.</string>
+    <string name="title_activity_second_intro_disable">Varsayılan 2.sayfada kaydırmayı kapat.</string>
+    <string name="title_activity_disable_swipe_intro">Tanıtımda kaydırmayı kapat.</string>
+    <string name="skip">Geç</string>
+    <string name="header_animations">Animasyonlar</string>
+    <string name="header_indicators">Göstergeler</string>
+
+    <string name="zoom_animation">ANİMASYONU YAKINLAŞTIR</string>
+    <string name="color_animation">ANİMASYONUN RENGİNİ AYARLA</string>
+    <string name="flow_animation">ANİMASYON AKIŞINI AYARLA</string>
+    <string name="depth_animation">DERİNLİĞİ AYARLA</string>
+    <string name="slideover_animation">GEÇİŞ ANİMASYONUNU AYARLA</string>
+    <string name="disable_swiping_slide_text">İlk düğme sonraki slayta geçiş yapmayı devre dışı bırakır, ancak yine de önceki slaytlara geri atlayabilirsiniz. Bir önceki slayta geçtikten sonra ki hızlı kaydırma etkinleştirildi \n\n İkinci düğme tamamen kaydırmayı devre dışı bırakır. \n\n Üçüncü düğme, kaydırmanın kilitlenmesinden bağımsız olarak Geç/Tamamla düğmesini devre dışı bırakır.</string>
+    <string name="permission_intro">Tanıtım için izinler</string>
+    <string name="permission_intro2">Tanıtım için izinler 2</string>
+    <string name="title_activity_permissions_intro">Tanıtım izinleri</string>
+
+    <!-- Input demo slide -->
+    <string name="slide_input_title">Slayt: Giriş Demosu</string>
+    <string name="slide_input_description">Bu slayt, girişin yönlendirme üzerinde nasıl kaydedildiğini ve kayan değişiklikleri gösterir.</string>
+    <string name="slide_input_edittext">Birşeyler yaz.</string>
+    <string name="slide_input_checkbox">Kontrol et!</string>
+
+    <!-- PolicyDemoSlide -->
+    <string name="slide_policy_demo_title">Slayt politikası demosu</string>
+    <string name="slide_policy_demo_description">Onay kutusu işaretlendiyse, bir sonraki slayda devam edebilir.</string>
+    <string name="slide_policy_demo_cb">Beni kontrol et!</string>
+    <string name="slide_policy_demo_error">Devam etmek için lütfen onay kutusunu işaretleyin.</string>
+
+    <!-- CustomTypefaceDemoSlide -->
+    <string name="header_custom_typeface">Özel yazıtipi örneği</string>
+    <string name="simple_custom">Basit yazıtipi örneği</string>
+    <string name="skip_done_typeface">Geç/Tamamla yazı karekteri örneği</string>
+    <string name="title_font">nemoy_medium.ttf</string>
+    <string name="desc_font">OpenSans-Light.ttf</string>
+
+    <!-- WizardModeDemoSlide -->
+    <string name="header_wizard_mode">Sihirbaz Modu</string>
+    <string name="wizard_one">Sihirbaz Ayarları</string>
+</resources>
