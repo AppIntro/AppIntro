@@ -1,0 +1,26 @@
+<resources>
+    <!-- Main Strings -->
+    <string name="app_name">AppIntro Beispiel</string>
+    <string name="drawer_header">Drawer Header</string>
+    <string name="launch_demo">Demo starten</string>
+
+    <!-- 1st Tab Group -->
+    <string name="default_intro">Dies is die einfachste Art, die AppIntro Bibliothek zu benutzen. Nur wenig code ist nötig, um dies umzusetzen und es gibt zwei Layoutoptionen. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="default_intro2">Dies ist die zweiteinfachste Art, die AppIntro Bibliothek zu benutzen. Nur wenig code ist nötig, um dies umzusetzen und es ist die zweite Layoutoption, welche die Bibliothek bereitstellt. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="custom_layout_intro">Dies demonstriert die Möglichkeit, ein eigenes Layout anzuzeigen für zusätzliche Personalisierung. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="custom_background_intro">Dies demonstriert die Möglichkeit, einen eigenen Hintergrund für verschiedene Seiten zu bestimmen. Das ist nützlich, wenn man Bilder statt Farben im Hintergrund möchte. Drücke den Button unten, um die Demo zu starten.</string>
+
+    <string name="tg1_tab_1">Layout 1</string>
+    <string name="tg1_tab_2">Layout 2</string>
+    <string name="tg1_tab_3">Eigenes Layout</string>
+    <string name="tg1_tab_4">Eigener Hintergrund</string>
+
+    <!-- 2nd Tab Group -->
+    <string name="perms_intro1">Dies demonstriert die Möglichkeit, Berechtigungen auf jeder angegebenen Seite anzufordern. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="perms_intro2">Dies demonstriert die Möglichkeit, Berechtigungen auf jeder angegebenen Seite anzufordern, verwendet aber das zweite Seitenlayout. Drücke den Button unten, um die Demo zu starten.</string>
+
+    <string name="tg2_tab_1">Layout 1</string>
+    <string name="tg2_tab_2">Layout 2</string>
+
+    <!-- 3rd Tab Group -->
+</resources>
