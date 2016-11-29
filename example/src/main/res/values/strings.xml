@@ -1,13 +1,14 @@
 <resources>
     <!-- Main Strings -->
-    <string name="example_app_name">AppIntro Example</string>
-    <string name="example_drawer_header">Drawer Header</string>
+    <string name="app_name">AppIntro Example</string>
+    <string name="drawer_header">Drawer Header</string>
+    <string name="launch_demo">Launch Demo</string>
 
     <!-- 1st Tab Group -->
-    <string name="example_default_intro">This is the most basic form of the AppIntro library. Minimal code is required to achieve this, and there are two layout options available. Tap the button below to launch the demo.</string>
-    <string name="example_default_intro2">This is the second most basic form of the AppIntro library. Minimal code is required to achieve ths, and this is the second layout option that the library offers. Tap the button below to launch the demo.</string>
-    <string name="example_custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization. Tap the button below to launch the demo.</string>
-    <string name="example_custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds. Tap the button below to launch the demo.</string>
+    <string name="default_intro">This is the most basic form of the AppIntro library. Minimal code is required to achieve this, and there are two layout options available. Tap the button below to launch the demo.</string>
+    <string name="default_intro2">This is the second most basic form of the AppIntro library. Minimal code is required to achieve ths, and this is the second layout option that the library offers. Tap the button below to launch the demo.</string>
+    <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization. Tap the button below to launch the demo.</string>
+    <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds. Tap the button below to launch the demo.</string>
 
     <string name="tg1_tab_1">Layout 1</string>
     <string name="tg1_tab_2">Layout 2</string>
@@ -15,13 +16,11 @@
     <string name="tg1_tab_4">Custom Background</string>
 
     <!-- 2nd Tab Group -->
-    <string name="example_perms_intro1">This demonstrates the ability to request permission on any slide specified. Tap the button below to launch the demo.</string>
-    <string name="example_perms_intro2">This demonstrates the ability to request permission on any slide specified, only it\'s using the second slide layout. Tap the button below to launch the demo.</string>
+    <string name="perms_intro1">This demonstrates the ability to request permission on any slide specified. Tap the button below to launch the demo.</string>
+    <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified, only it\'s using the second slide layout. Tap the button below to launch the demo.</string>
 
     <string name="tg2_tab_1">Layout 1</string>
     <string name="tg2_tab_2">Layout 2</string>
 
     <!-- 3rd Tab Group -->
-
-    <string name="example_launch_demo">Launch Demo</string>
 </resources>

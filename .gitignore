@@ -43,3 +43,5 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+!/example/example-release.apk
+!/example/example_revamped.apk
