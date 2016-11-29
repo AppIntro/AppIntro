@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.amqtech.opensource.appintroexample.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,23 +21,23 @@
         </activity>
 
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.mainTabs.intro.DefaultIntro"
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro"
             android:label="@string/app_name" />
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.mainTabs.intro.DefaultIntro2"
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro2"
             android:label="@string/app_name" />
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.mainTabs.intro.CustomLayoutIntro"
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomLayoutIntro"
             android:label="@string/app_name" />
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro"
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro"
             android:label="@string/app_name" />
 
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.permsTabs.intro.PermissionsIntro1"
+            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro1"
             android:label="@string/app_name" />
         <activity
-            android:name="com.github.paolorotolo.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
+            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
             android:label="@string/app_name" />
     </application>
 
