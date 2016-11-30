@@ -44,3 +44,11 @@ captures/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 !/example/example-release-v1.apk
+!/example/example-release-v2.apk
+!/example/example-release-v3.apk
+!/example/example-release-v4.apk
+!/example/example-release-v5.apk
+!/example/example-release-v6.apk
+!/example/example-release-v7.apk
+!/example/proguard-rules.pro
+.idea/
