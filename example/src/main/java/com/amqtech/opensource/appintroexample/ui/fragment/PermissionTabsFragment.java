@@ -1,6 +1,7 @@
 package com.amqtech.opensource.appintroexample.ui.fragment;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -21,8 +22,7 @@ public class PermissionTabsFragment extends Fragment {
     ViewPager pager;
     PermsPagerAdapter adapter;
     TabLayout tabs;
-    CharSequence Titles[] = {getResources().getString(R.string.tg2_tab_1),
-            getResources().getString(R.string.tg2_tab_2)};
+    CharSequence Titles[] = {"Layout 1", "Layout 2"};
     int Numboftabs = 2;
 
     public PermissionTabsFragment() {
@@ -36,16 +36,16 @@ public class PermissionTabsFragment extends Fragment {
 
         adapter = new PermsPagerAdapter(getActivity().getFragmentManager(), Titles, Numboftabs);
 
-        pager = (ViewPager) getView().findViewById(R.id.pager);
+        pager = (ViewPager) getView().findViewById(R.id.permPager);
         pager.setAdapter(adapter);
 
-        tabs = (TabLayout) getView().findViewById(R.id.tabs);
-        tabs.setBackgroundColor(getResources().getColor(R.color.blue));
+        tabs = (TabLayout) getView().findViewById(R.id.permTabs);
+        tabs.setBackgroundColor(Color.parseColor("#1976D2"));
         tabs.setDistributeEvenly(true);
         tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.blue);
+                return Color.parseColor("#1976D2");
             }
         });
         tabs.setViewPager(pager);

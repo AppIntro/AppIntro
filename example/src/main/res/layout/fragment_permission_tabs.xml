@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.amqtech.opensource.appintroexample.ui.MainActivity">
+    android:orientation="vertical">
 
     <com.amqtech.opensource.appintroexample.util.TabLayout
-        android:id="@+id/tabs"
+        android:id="@+id/permTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/permPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

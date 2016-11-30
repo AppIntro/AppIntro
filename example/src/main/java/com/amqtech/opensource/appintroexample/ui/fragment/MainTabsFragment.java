@@ -1,6 +1,7 @@
 package com.amqtech.opensource.appintroexample.ui.fragment;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -21,10 +22,7 @@ public class MainTabsFragment extends Fragment {
     ViewPager pager;
     MainPagerAdapter adapter;
     TabLayout tabs;
-    CharSequence Titles[] = {getResources().getString(R.string.tg1_tab_1),
-            getResources().getString(R.string.tg1_tab_2),
-            getResources().getString(R.string.tg1_tab_3),
-            getResources().getString(R.string.tg1_tab_4)};
+    CharSequence Titles[] = {"Layout 1", "Layout 2", "Custom Layout", "Custom Background"};
     int Numboftabs = 4;
 
     public MainTabsFragment() {
@@ -38,16 +36,16 @@ public class MainTabsFragment extends Fragment {
 
         adapter = new MainPagerAdapter(getActivity().getFragmentManager(), Titles, Numboftabs);
 
-        pager = (ViewPager) getView().findViewById(R.id.pager);
+        pager = (ViewPager) getView().findViewById(R.id.mainPager);
         pager.setAdapter(adapter);
 
-        tabs = (TabLayout) getView().findViewById(R.id.tabs);
-        tabs.setBackgroundColor(getResources().getColor(R.color.blue));
+        tabs = (TabLayout) getView().findViewById(R.id.mainTabs);
+        tabs.setBackgroundColor(Color.parseColor("#1976D2"));
         tabs.setDistributeEvenly(false);
         tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.blue);
+                return Color.parseColor("#1976D2");
             }
         });
         tabs.setViewPager(pager);
