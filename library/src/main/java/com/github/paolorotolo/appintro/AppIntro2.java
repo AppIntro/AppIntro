@@ -2,8 +2,6 @@ package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -46,7 +44,7 @@ public abstract class AppIntro2 extends AppIntroBase {
      *
      * @param imageSkipButton your drawable resource
      */
-    public void setImageSkipButton(@DrawableRes final Drawable imageSkipButton) {
+    public void setImageSkipButton(final Drawable imageSkipButton) {
         final ImageButton nextButton = (ImageButton) findViewById(R.id.skip);
         nextButton.setImageDrawable(imageSkipButton);
 
@@ -65,7 +63,7 @@ public abstract class AppIntro2 extends AppIntroBase {
      *
      * @param colors Set color values
      */
-    public void setAnimationColors(@ColorInt ArrayList<Integer> colors) {
+    public void setAnimationColors(ArrayList<Integer> colors) {
         transitionColors = colors;
     }
 }

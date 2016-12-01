@@ -29,8 +29,7 @@ public final class AppIntroViewPager extends ViewPager {
         initViewPagerScroller();
     }
 
-    @Override
-    public void addOnPageChangeListener(OnPageChangeListener listener) {
+    public void addOnPageChangeListener(AppIntroBase.PagerOnPageChangeListener listener) {
         super.addOnPageChangeListener(listener);
 
         this.pageChangeListener = listener;

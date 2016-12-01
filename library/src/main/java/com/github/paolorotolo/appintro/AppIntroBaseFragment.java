@@ -5,7 +5,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.paolorotolo.appintro.util.CustomFontCache;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 public abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener,
@@ -86,7 +86,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (titleColor != 0) {
             t.setTextColor(titleColor);
         }
-        if (titleTypeface != null && titleTypeface.equals("")) {
+        if (titleTypeface != null) {
             if (CustomFontCache.get(titleTypeface, getContext()) != null) {
                 t.setTypeface(CustomFontCache.get(titleTypeface, getContext()));
             }
@@ -95,7 +95,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (descColor != 0) {
             d.setTextColor(descColor);
         }
-        if (descTypeface != null && descTypeface.equals("")) {
+        if (descTypeface != null) {
             if (CustomFontCache.get(descTypeface, getContext()) != null) {
                 d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
             }

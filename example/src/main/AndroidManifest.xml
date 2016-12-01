@@ -11,70 +11,34 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask">
+        android:theme="@style/CustomTheme">
+        <activity android:name="com.amqtech.opensource.appintroexample.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DefaultIntro"
-            android:label="@string/title_activity_default_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".CustomIntro"
-            android:label="@string/title_activity_custom_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".PermissionsIntro"
-            android:label="@string/title_activity_permissions_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".PermissionsIntro2"
-            android:label="@string/title_activity_permissions_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".DefaultIntro2"
-            android:label="@string/title_activity_second_intro"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".DisableSwipeIntro1"
-            android:label="@string/title_activity_default_intro_disable"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".DisableSwipeIntro2"
-            android:label="@string/title_activity_second_intro_disable"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".animations.CustomAnimation" />
-        <activity android:name=".animations.FadeAnimation" />
-        <activity android:name=".animations.ZoomAnimation" />
-        <activity android:name=".animations.DepthAnimation" />
-        <activity android:name=".animations.FlowAnimation" />
-        <activity android:name=".animations.SlideOverAnimation" />
-        <activity android:name=".animations.ColorAnimation" />
-        <activity android:name=".indicators.ProgressIndicator" />
-        <activity android:name=".indicators.CustomIndicator" />
-        <activity android:name=".indicators.CustomColorIndicator" />
-        <activity
-            android:name=".IntroWithBackground"
-            android:label="Intro with background"
-            android:theme="@style/FullscreenTheme" />
-        <activity
-            android:name=".IntroDemoPolicy"
-            android:theme="@style/FullscreenTheme"/>
-        <activity
-            android:name=".CustomTypefaceActivity"
-            android:theme="@style/FullscreenTheme" />
 
         <activity
-            android:name=".WizardActivity"
-            android:theme="@style/FullscreenTheme" />
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro2"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomLayoutIntro"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro"
+            android:label="@string/app_name" />
 
+        <activity
+            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro1"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

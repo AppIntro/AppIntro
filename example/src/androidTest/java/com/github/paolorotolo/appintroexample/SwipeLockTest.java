@@ -6,7 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.github.paolorotolo.appintroexample.util.ViewPagerIdlingResource;
+import com.amqtech.opensource.appintroexample.util.ViewPagerIdlingResource;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,8 +25,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.github.paolorotolo.appintroexample.util.OrientationChangeAction.orientationLandscape;
-import static com.github.paolorotolo.appintroexample.util.OrientationChangeAction.orientationPortrait;
+import static com.amqtech.opensource.appintroexample.util.OrientationChangeAction.orientationLandscape;
+import static com.amqtech.opensource.appintroexample.util.OrientationChangeAction.orientationPortrait;
 import static org.hamcrest.CoreMatchers.allOf;
 
 @RunWith(AndroidJUnit4.class)

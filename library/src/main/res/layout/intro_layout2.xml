@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -50,7 +51,7 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/ic_skip_white"
+                app:srcCompat="@drawable/ic_skip_white"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -61,8 +62,8 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/ic_arrow_back_white"
                 android:visibility="invisible"
+                app:srcCompat="@drawable/ic_arrow_back_white"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -73,7 +74,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_arrow_forward_white"
+                app:srcCompat="@drawable/ic_arrow_forward_white"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -84,8 +85,8 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_done_white"
                 android:visibility="gone"
+                app:srcCompat="@drawable/ic_done_white"
                 tools:ignore="ContentDescription" />
         </FrameLayout>
     </LinearLayout>

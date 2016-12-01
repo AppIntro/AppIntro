@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -44,7 +45,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
-                android:text="@string/skip_button"
+                android:text="@string/app_intro_skip_button"
                 android:textColor="@android:color/white" />
 
             <ImageButton
@@ -56,8 +57,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
-                android:src="@drawable/ic_navigate_before_white"
                 android:visibility="invisible"
+                app:srcCompat="@drawable/ic_navigate_before_white"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -69,7 +70,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
-                android:src="@drawable/ic_navigate_next_white"
+                app:srcCompat="@drawable/ic_navigate_next_white"
                 tools:ignore="ContentDescription" />
 
             <Button
@@ -83,7 +84,7 @@
                 android:minWidth="100dp"
                 android:paddingEnd="16dp"
                 android:paddingRight="16dp"
-                android:text="@string/done_button"
+                android:text="@string/app_intro_done_button"
                 android:textColor="@android:color/white"
                 android:visibility="gone"
                 tools:ignore="RtlSymmetry" />
