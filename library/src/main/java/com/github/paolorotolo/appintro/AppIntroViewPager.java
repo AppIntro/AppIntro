@@ -1,9 +1,12 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Interpolator;
 
 import java.lang.reflect.Field;
@@ -35,6 +38,13 @@ public final class AppIntroViewPager extends ViewPager {
         this.pageChangeListener = listener;
     }
 
+    public void goToNextSlide() {
+        if (isRtl(getResources()))
+            setCurrentItem(getCurrentItem() - 1);
+        else
+            setCurrentItem(getCurrentItem() + 1);
+    }
+
     /**
      * Override is required to trigger {@link OnPageChangeListener#onPageSelected} for the first page.
      * This is needed to correctly handle progress button display after rotation on a locked first page.
@@ -47,7 +57,6 @@ public final class AppIntroViewPager extends ViewPager {
 
         if (super.getCurrentItem() == 0 && item == 0)
             invokeMeLater = true;
-
         super.setCurrentItem(item);
 
         if (invokeMeLater && pageChangeListener != null)
@@ -94,7 +103,7 @@ public final class AppIntroViewPager extends ViewPager {
                 currentTouchDownX = event.getX();
             }
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                if (detectSwipeToRight(event)) {
+                if (detectSwipeToEnd(event)) {
                     return true;
                 }
             }
@@ -144,7 +153,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     // Detects the direction of swipe. Right or left.
     // Returns true if swipe is in right direction
-    private boolean detectSwipeToRight(MotionEvent event) {
+    private boolean detectSwipeToEnd(MotionEvent event) {
         final int SWIPE_THRESHOLD = 0; // detect swipe
         boolean result = false;
 
@@ -159,7 +168,17 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        return result;
+        if (isRtl(getResources()))
+            return !result;
+        else
+            return result;
+    }
+
+    static boolean isRtl(Resources resources) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return resources.getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        }
+        return false;
     }
 
     /**
