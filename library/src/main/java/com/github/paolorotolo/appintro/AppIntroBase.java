@@ -174,7 +174,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void onBackPressed() {
         // Do nothing if go back lock is enabled or slide has custom policy.
         if (!isGoBackLockEnabled) {
-            super.onBackPressed();
+            if (!pager.isFirstSlide(fragments.size()))
+                pager.goToPreviousSlide();
+            else
+                super.onBackPressed();
         }
     }
 

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -43,6 +44,24 @@ public final class AppIntroViewPager extends ViewPager {
             setCurrentItem(getCurrentItem() - 1);
         else
             setCurrentItem(getCurrentItem() + 1);
+    }
+
+    public void goToPreviousSlide() {
+        try {
+            if (isRtl(getResources()))
+                setCurrentItem(getCurrentItem() + 1);
+            else
+                setCurrentItem(getCurrentItem() - 1);
+        } catch (Exception e){
+            Log.e("AppIntroViewPager", "goToPreviousSlide: An error occured while switching to the previous slide. Was isFirstSlide checked before the call?");
+        }
+    }
+
+    public boolean isFirstSlide(int size) {
+        if (isRtl(getResources())) {
+            return getCurrentItem() - size + 1 == 0;
+        } else
+            return getCurrentItem() == 0;
     }
 
     /**
