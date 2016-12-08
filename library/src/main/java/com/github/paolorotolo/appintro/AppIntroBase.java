@@ -84,6 +84,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
         backButton = findViewById(R.id.back);
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.bottomContainer);
+        if (frameLayout != null && isRtl()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                frameLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            }
+        }
+        if (isRtl()) {
+            (nextButton).setScaleX(-1);
+        }
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
@@ -144,7 +153,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         // required for triggering onPageSelected and onSlideChanged for first page
-        pager.setCurrentItem(savedCurrentItem);
+        if (isRtl())
+            pager.setCurrentItem(fragments.size() - savedCurrentItem);
+        else
+            pager.setCurrentItem(savedCurrentItem);
         pager.post(new Runnable() {
             @Override
             public void run() {
@@ -382,7 +394,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param fragment Instance of Fragment which should be added as slide
      */
     public void addSlide(@NonNull Fragment fragment) {
-        fragments.add(fragment);
+        if (isRtl())
+            fragments.add(0, fragment);
+        else
+            fragments.add(fragment);
         if (isWizardMode) {
             setOffScreenPageLimit(fragments.size());
         }
@@ -404,7 +419,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         this.progressButtonEnabled = progressButtonEnabled;
         if (progressButtonEnabled) {
 
-            if (pager.getCurrentItem() == slidesNumber - 1) {
+            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) || (isRtl() && pager.getCurrentItem() == 0)) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 if (isWizardMode) {
@@ -819,11 +834,18 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
+                if (isRtl())
+                    pager.setCurrentItem(pager.getCurrentItem() - 1);
+                else
+                    pager.setCurrentItem(pager.getCurrentItem() + 1);
                 break;
             default:
                 LogHelper.e(TAG, "Unexpected request code");
         }
+    }
+
+    protected boolean isRtl() {
+        return AppIntroViewPager.isRtl(getResources());
     }
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
@@ -854,11 +876,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                                 PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                         permissionsArray.remove(position);
                     } else {
-                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        pager.goToNextSlide();
+
                         onNextPressed();
                     }
                 } else {
-                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                    pager.goToNextSlide();
                     onNextPressed();
                 }
             } else {
