@@ -40,18 +40,20 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public void goToNextSlide() {
-        if (isRtl(getResources()))
+        if (isRtl(getResources())) {
             setCurrentItem(getCurrentItem() - 1);
-        else
+        } else {
             setCurrentItem(getCurrentItem() + 1);
+        }
     }
 
     public void goToPreviousSlide() {
         try {
-            if (isRtl(getResources()))
+            if (isRtl(getResources())) {
                 setCurrentItem(getCurrentItem() + 1);
-            else
+            } else {
                 setCurrentItem(getCurrentItem() - 1);
+            }
         } catch (Exception e){
             Log.e("AppIntroViewPager", "goToPreviousSlide: An error occured while switching to the previous slide. Was isFirstSlide checked before the call?");
         }
@@ -60,8 +62,9 @@ public final class AppIntroViewPager extends ViewPager {
     public boolean isFirstSlide(int size) {
         if (isRtl(getResources())) {
             return getCurrentItem() - size + 1 == 0;
-        } else
+        } else {
             return getCurrentItem() == 0;
+        }
     }
 
     /**
@@ -187,10 +190,11 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        if (isRtl(getResources()))
+        if (isRtl(getResources())) {
             return !result;
-        else
+        } else {
             return result;
+        }
     }
 
     static boolean isRtl(Resources resources) {
