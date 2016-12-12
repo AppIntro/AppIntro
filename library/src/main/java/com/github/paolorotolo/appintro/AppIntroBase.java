@@ -153,10 +153,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         // required for triggering onPageSelected and onSlideChanged for first page
-        if (isRtl())
+        if (isRtl()) {
             pager.setCurrentItem(fragments.size() - savedCurrentItem);
-        else
+        } else {
             pager.setCurrentItem(savedCurrentItem);
+        }
         pager.post(new Runnable() {
             @Override
             public void run() {
@@ -174,10 +175,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void onBackPressed() {
         // Do nothing if go back lock is enabled or slide has custom policy.
         if (!isGoBackLockEnabled) {
-            if (!pager.isFirstSlide(fragments.size()))
+            if (!pager.isFirstSlide(fragments.size())) {
                 pager.goToPreviousSlide();
-            else
+            } else {
                 super.onBackPressed();
+            }
         }
     }
 
@@ -837,10 +839,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                if (isRtl())
+                if (isRtl()) {
                     pager.setCurrentItem(pager.getCurrentItem() - 1);
-                else
+                } else {
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
+                }
                 break;
             default:
                 LogHelper.e(TAG, "Unexpected request code");
@@ -880,7 +883,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                         permissionsArray.remove(position);
                     } else {
                         pager.goToNextSlide();
-
                         onNextPressed();
                     }
                 } else {
