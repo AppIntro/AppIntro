@@ -129,7 +129,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 ##### Custom slides example
 
 One may also define custom slides as seen in the example project:
- * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/util/SampleSlide.java).
+ * Copy the class **SampleSlide** from my [example project](https://github.com/paolorotolo/AppIntro/blob/master/example/src/main/java/com/amqtech/opensource/appintroexample/util/SampleSlide.java).
  * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
 
 There's no need to create one class for fragment anymore. :)
