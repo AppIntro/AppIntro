@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintro;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -131,5 +132,21 @@ public abstract class AppIntro extends AppIntroBase {
     @Deprecated
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
+    }
+
+    /**
+     * Show or hide the Separator line.
+     * This is a static setting and Separator state is maintained across slides
+     * until explicitly changed.
+     *
+     * @param showSeparator Set : true to display. false to hide.
+     */
+    public void showSeparator(boolean showSeparator)
+    {
+        TextView bottomSeparator = (TextView) findViewById(R.id.bottom_separator);
+        if(showSeparator)
+            bottomSeparator.setVisibility(View.VISIBLE);
+        else
+            bottomSeparator.setVisibility(View.INVISIBLE);
     }
 }
