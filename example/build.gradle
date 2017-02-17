@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile project(':library')
     // test dependencies
     androidTestCompile('com.android.support.test:runner:0.5') {
