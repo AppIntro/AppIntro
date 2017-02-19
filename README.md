@@ -226,6 +226,8 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
 
+**NOTE 2:** Requesting permissions automatically disables sliding, and users will have to result to pressing the buttons. Please do not open any issues regarding this, as they will be immmediately closed. Thanks!
+
 #### Slide Policies
 
 If you want to restrict navigation between your slides (i.e. the user has to toggle a checkbox in order to continue), our **Slide Policy** feature might help you.
