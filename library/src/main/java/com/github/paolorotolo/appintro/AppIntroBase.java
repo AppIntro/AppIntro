@@ -22,6 +22,11 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.github.paolorotolo.appintro.model.DepthTransformation;
+import com.github.paolorotolo.appintro.model.FadeTranformation;
+import com.github.paolorotolo.appintro.model.FlowTransformation;
+import com.github.paolorotolo.appintro.model.SlideOverTransformation;
+import com.github.paolorotolo.appintro.model.ZoomTransformation;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.ArrayList;
@@ -694,35 +699,35 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FADE));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FadeTranformation()));
     }
 
     /**
      * Sets the animation of the intro to a zoom animation
      */
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
+        pager.setPageTransformer(true, new ViewPageTransformer(new ZoomTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a flow animation
      */
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FlowTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a Slide Over animation
      */
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
+        pager.setPageTransformer(true, new ViewPageTransformer(new SlideOverTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a Depth animation
      */
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
+        pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransformation()));
     }
 
     /**
