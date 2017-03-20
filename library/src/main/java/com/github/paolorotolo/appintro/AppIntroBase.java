@@ -27,6 +27,7 @@ import com.github.paolorotolo.appintro.model.FadeTranformation;
 import com.github.paolorotolo.appintro.model.FlowTransformation;
 import com.github.paolorotolo.appintro.model.SlideOverTransformation;
 import com.github.paolorotolo.appintro.model.ZoomTransformation;
+import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.ArrayList;
@@ -888,7 +889,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     protected boolean isRtl() {
-        return AppIntroViewPager.isRtl(getResources());
+        return  LayoutUtil.isRtl(getResources());
     }
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
