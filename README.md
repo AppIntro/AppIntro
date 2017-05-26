@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#browse%7C2137414099)
+[![](https://jitpack.io/v/apl-devs/appintro.svg)](https://jitpack.io/#apl-devs/appintro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
 [![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
 
@@ -18,16 +18,23 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 
 ### Basic usage
 
-Add this to your **build.gradle**:
+1. **Add the JitPack repository to your build file**
 
-```java
-repositories {
-    mavenCentral()
-}
+ Add it in your root build.gradle at the end of repositories:
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
 
-dependencies {
-    compile 'com.github.paolorotolo:appintro:4.1.0'
-}
+2. **Add the dependency**
+```gradle
+	dependencies {
+	        compile 'com.github.apl-devs:appintro:v4.2.0'
+	}
 ```
 
 Create a new **Activity that extends AppIntro**:
