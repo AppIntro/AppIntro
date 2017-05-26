@@ -141,12 +141,12 @@ public abstract class AppIntro extends AppIntroBase {
      *
      * @param showSeparator Set : true to display. false to hide.
      */
-    public void showSeparator(boolean showSeparator)
-    {
+    public void showSeparator(boolean showSeparator) {
         TextView bottomSeparator = (TextView) findViewById(R.id.bottom_separator);
-        if(showSeparator)
+        if(showSeparator) {
             bottomSeparator.setVisibility(View.VISIBLE);
-        else
+        } else {
             bottomSeparator.setVisibility(View.INVISIBLE);
+        }
     }
 }
