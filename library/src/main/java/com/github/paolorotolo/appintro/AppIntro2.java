@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.support.annotation.ColorInt;
 
 import com.github.paolorotolo.appintro.util.LogHelper;
 
@@ -37,6 +38,16 @@ public abstract class AppIntro2 extends AppIntroBase {
     @Deprecated
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
+    }
+    
+    /**
+     * Override viewpager bar color
+     *
+     * @param color your color resource
+     */
+    public void setBarColor(@ColorInt final int color) {
+        LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
+        bottomBar.setBackgroundColor(color);
     }
 
     /**
