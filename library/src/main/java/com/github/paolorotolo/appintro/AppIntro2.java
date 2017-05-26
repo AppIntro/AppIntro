@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.support.annotation.ColorInt;
+import android.widget.LinearLayout;
 
 import com.github.paolorotolo.appintro.util.LogHelper;
 
