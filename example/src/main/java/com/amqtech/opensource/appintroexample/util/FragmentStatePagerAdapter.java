@@ -109,13 +109,17 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
             mFragments.add(null);
         }
         fragment.setMenuVisibility(false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            fragment.setUserVisibleHint(false);
-        }
+        setFragmentUserVisibleHint(fragment);
         mFragments.set(position, fragment);
         mCurTransaction.add(container.getId(), fragment);
 
         return fragment;
+    }
+
+    public void setFragmentUserVisibleHint(Fragment fragment) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            fragment.setUserVisibleHint(false);
+        }
     }
 
     @Override
@@ -141,15 +145,11 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
                 mCurrentPrimaryItem.setMenuVisibility(false);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                    mCurrentPrimaryItem.setUserVisibleHint(false);
-                }
+                setFragmentUserVisibleHint(mCurrentPrimaryItem);
             }
             if (fragment != null) {
                 fragment.setMenuVisibility(true);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                    fragment.setUserVisibleHint(true);
-                }
+                setFragmentUserVisibleHint(fragment);
             }
             mCurrentPrimaryItem = fragment;
         }

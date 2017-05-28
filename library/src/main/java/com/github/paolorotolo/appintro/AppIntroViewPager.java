@@ -1,14 +1,13 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.Interpolator;
+
+import com.github.paolorotolo.appintro.util.LayoutUtil;
 
 import java.lang.reflect.Field;
 
@@ -40,7 +39,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public void goToNextSlide() {
-        if (isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getResources())) {
             setCurrentItem(getCurrentItem() - 1);
         } else {
             setCurrentItem(getCurrentItem() + 1);
@@ -49,7 +48,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     public void goToPreviousSlide() {
         try {
-            if (isRtl(getResources())) {
+            if (LayoutUtil.isRtl(getResources())) {
                 setCurrentItem(getCurrentItem() + 1);
             } else {
                 setCurrentItem(getCurrentItem() - 1);
@@ -60,7 +59,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public boolean isFirstSlide(int size) {
-        if (isRtl(getResources())) {
+        if ( LayoutUtil.isRtl(getResources())) {
             return getCurrentItem() - size + 1 == 0;
         } else {
             return getCurrentItem() == 0;
@@ -190,18 +189,11 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        if (isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getResources())) {
             return !result;
         } else {
             return result;
         }
-    }
-
-    static boolean isRtl(Resources resources) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return resources.getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-        }
-        return false;
     }
 
     /**
