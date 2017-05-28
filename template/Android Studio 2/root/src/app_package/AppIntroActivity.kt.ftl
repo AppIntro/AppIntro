@@ -40,10 +40,19 @@ class ${className} : AppIntro2() {
             addSlide()
         </#if>
 
-        showSkipButton(false)
         showStatusBar(false)
-        this.progressButtonEnabled = true
 
+        <#if showSkipButton>
+            showSkipButton(true)
+        <#else>
+            showSkipButton(false)
+        </#if>
+        <#if showDoneButton>
+            this.progressButtonEnabled = true
+        <#else>
+            this.progressButtonEnabled = false
+        </#if>
+        
         // askForPermissions(permissions, 0)
     }
 

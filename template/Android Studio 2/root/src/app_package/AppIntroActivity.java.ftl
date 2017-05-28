@@ -50,9 +50,17 @@ public class ${className} extends AppIntro2 {
             addSlide()
         </#if>
 
-        showSkipButton(false);
         showStatusBar(false);
-        this.progressButtonEnabled = true;
+        <#if showSkipButton>
+            showSkipButton(true);
+        <#else>
+            showSkipButton(false);
+        </#if>
+        <#if showDoneButton>
+
+        <#else>
+            setProgressButtonEnabled(true);
+        </#if>
 
         // askForPermissions(permissions, 1);
 

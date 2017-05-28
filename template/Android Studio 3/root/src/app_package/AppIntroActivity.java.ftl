@@ -14,7 +14,7 @@ import com.github.paolorotolo.appintro.${appIntroFragment2};
 </#if>
 
 <#if layoutType == "type1">
-class ${className} extends AppIntro {
+public class ${className} extends AppIntro {
 </#if>
 <#if layoutType == "type2">
 public class ${className} extends AppIntro2 {
@@ -50,9 +50,17 @@ public class ${className} extends AppIntro2 {
             addSlide()
         </#if>
 
-        showSkipButton(false);
         showStatusBar(false);
-        this.progressButtonEnabled = true;
+        <#if showSkipButton>
+            showSkipButton(true);
+        <#else>
+            showSkipButton(false);
+        </#if>
+        <#if showDoneButton>
+
+        <#else>
+            setProgressButtonEnabled(true);
+        </#if>
 
         // askForPermissions(permissions, 1);
 
