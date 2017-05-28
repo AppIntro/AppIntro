@@ -6,7 +6,7 @@
     description="Creates a new Application Introduction class with AppIntro library. "
     minApi="4">
 
-    <category value="Kotlin" />
+    <category value="App Intro" />
     <dependency name="android-support-v4" revision="10" />
 
     <parameter
