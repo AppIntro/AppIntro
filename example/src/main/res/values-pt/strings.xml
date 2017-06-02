@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">AppIntroExample</string>
+
+    <string name="hello_world">Olá Mundo!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="customized_intro">Inicia introdução customizada</string>
+    <string name="disable_swipe_intro_1">Desabilitar swipe</string>
+    <string name="disable_swipe_intro_2">Desabilitar swipe Layout 2</string>
+    <string name="default_intro">Inicia introdução padrão</string>
+    <string name="fade_animation">Definir animação fade</string>
+    <string name="custom_animation">Definir transformação padrão</string>
+    <string name="progress_indicator">Definir indicador de progresso</string>
+    <string name="custom_indicator">Definir indicador padrão</string>
+    <string name="custom_color_indicator">Definir cor do indicador padrão</string>
+    <string name="custom_color_progress_indicator">Definir cor padrão do indicador de progresso</string>
+    <string name="second_layout_intro">Inicia a introdução com Layout 2</string>
+    <string name="title_activity_default_intro">IntroduçãoPadrão</string>
+    <string name="title_activity_custom_intro">IntroduçãoCustomizada</string>
+    <string name="title_activity_second_intro">SecondLayoutIntro</string>
+    <string name="title_activity_default_intro_disable">DisableSwipeDefaultLayoutIntro</string>
+    <string name="title_activity_second_intro_disable">DisableSwipeSecondLayoutIntro</string>
+    <string name="title_activity_disable_swipe_intro">DisableSwipeIntro</string>
+    <string name="skip">Y U DO DIS TO ME?</string>
+    <string name="header_animations">Animações</string>
+    <string name="header_indicators">Indicadores</string>
+    <string name="zoom_animation">DEFINIR ANIMAÇÃO DE ZOOM</string>
+    <string name="color_animation">DEFINIR ANIMAÇÃO DE COR</string>
+    <string name="flow_animation">DEFINIR ANIMAÇÃO DE FLUXO</string>
+    <string name="depth_animation">DEFINIR ANIMAÇÃO DE PROFUNDIDADE</string>
+    <string name="slideover_animation">DEFINIR ANIMAÇÃO DE SLIDEOVER</string>
+    <string name="disable_swiping_slide_text">O primeiro botão desabilita a transição para o próximo slide, mas você pode continuar transitando de volta para os slides anteriores. Swiping é reativado depois de se mudar para um slide anterior \n\n O segundo botão desabilita totalmente o swiping. \n\n O terceiro botão desabilita o botão Próximo/Feito, independente da trava de swiping.</string>
+    <string name="permission_intro">Introdução com Permissões</string>
+    <string name="permission_intro2">Introdução com Permissões 2</string>
+    <string name="title_activity_permissions_intro">Intro Permissões</string>
+</resources>
