@@ -41,6 +41,17 @@ In the main folder, right click -> new -> App Intro -> App Intro
 You will see the template window, you can enter the name of the Intro Activity and the name of the Main Activity.  
 Those activities should not already exist. You have the choice between the type of slides that you want,the number of slides, etc...  
 
+**Add the JitPack repository to your build file**  
+Add it in your root build.gradle at the end of repositories:
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
 Notes: The templates are available in both Java and Kotlin. Make sure to use the correct template based on the version of your Android Studio. If you are using Android Studio 3.0 Canary, you need to use the Android Studio 3 template files.
 
 [1]: https://github.com/apl-devs/AppIntro

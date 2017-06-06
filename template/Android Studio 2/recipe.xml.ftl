@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <recipe>
 
-    <dependency mavenUrl="com.github.paolorotolo:appintro:4.1.0" />
+    <dependency mavenUrl="com.github.apl-devs:appintro:v4.2.0" />
 
 <#if generateKotlin == "true">
     <#-- Instantiate the ftl file -->

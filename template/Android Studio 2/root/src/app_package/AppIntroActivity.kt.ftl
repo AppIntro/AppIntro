@@ -12,6 +12,8 @@ import com.github.paolorotolo.appintro.${activityClassSuper2}
 import com.github.paolorotolo.appintro.${appIntroFragment2}
 </#if>
 
+// Add in your root build.gradle at the end of repositories:
+// maven { url 'https://jitpack.io' }
 <#if layoutType == "type1">
 class ${className} : AppIntro() {
 </#if>
