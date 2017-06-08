@@ -15,12 +15,9 @@ The template is used to:
 ## Install
 
 To install a template in your installation of Android Studio, you can download
-the zip file corresponding to your Android Studio version. If you have any doubt, download Android Studio 2.
-- Android Studio 2: AppIntroTemplate2.zip
-- Android Studio 3:  AppIntroTemplate3.zip
+the repository. You will find 2 templates inside the "template" folder. You can copy the one corresponding to your Android Studio version. If you have any doubt, choose Android Studio 2.
 
-Extract the 
-zip and copy the folder in the following directory.
+Copy the folder in the following directory.
 
 ```
 AndroidStudioInstallationFolder/plugins/android/lib/templates/other/
