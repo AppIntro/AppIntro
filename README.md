@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/badge/maven%20central-appintro-green.svg)](http://search.maven.org/#browse%7C2137414099)
+[![](https://jitpack.io/v/apl-devs/appintro.svg)](https://jitpack.io/#apl-devs/appintro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
 [![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
 
@@ -8,25 +8,33 @@
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-*Watch YouTube video [here](https://www.youtube.com/watch?v=OlAugnH3jFY&feature=youtu.be).*
-
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
 <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+
+### *Watch the demo video on YouTube*
+[![Intro demo video](https://img.youtube.com/vi/-KgAAbZz248/0.jpg)](https://www.youtube.com/watch?v=-KgAAbZz248)
 
 ## Usage
 
 ### Basic usage
 
-Add this to your **build.gradle**:
+1. **Add the JitPack repository to your build file**
 
-```java
-repositories {
-    mavenCentral()
-}
+ Add it in your root build.gradle at the end of repositories:
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
 
-dependencies {
-    compile 'com.github.paolorotolo:appintro:4.1.0'
-}
+2. **Add the dependency**
+```gradle
+	dependencies {
+	        compile 'com.github.apl-devs:appintro:v4.2.0'
+	}
 ```
 
 Create a new **Activity that extends AppIntro**:
@@ -128,7 +136,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 ##### Custom slides example
 
 One may also define custom slides as seen in the example project:
- * Copy the class **SampleSlide** from my [example project](https://github.com/PaoloRotolo/AppIntro/blob/master/example/src/main/java/com/github/paolorotolo/appintroexample/util/SampleSlide.java).
+ * Copy the class **SampleSlide** from my [example project](https://github.com/paolorotolo/AppIntro/blob/master/example/src/main/java/com/amqtech/opensource/appintroexample/util/SampleSlide.java).
  * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
 
 There's no need to create one class for fragment anymore. :)
@@ -224,6 +232,8 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 ```
 
 **NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
+
+**NOTE 2:** Requesting permissions automatically disables sliding, and users will have to result to pressing the buttons. Please do not open any issues regarding this, as they will be immmediately closed. Thanks!
 
 #### Slide Policies
 

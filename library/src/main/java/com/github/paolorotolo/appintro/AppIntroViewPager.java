@@ -3,8 +3,11 @@ package com.github.paolorotolo.appintro;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
+
+import com.github.paolorotolo.appintro.util.LayoutUtil;
 
 import java.lang.reflect.Field;
 
@@ -35,6 +38,34 @@ public final class AppIntroViewPager extends ViewPager {
         this.pageChangeListener = listener;
     }
 
+    public void goToNextSlide() {
+        if (LayoutUtil.isRtl(getResources())) {
+            setCurrentItem(getCurrentItem() - 1);
+        } else {
+            setCurrentItem(getCurrentItem() + 1);
+        }
+    }
+
+    public void goToPreviousSlide() {
+        try {
+            if (LayoutUtil.isRtl(getResources())) {
+                setCurrentItem(getCurrentItem() + 1);
+            } else {
+                setCurrentItem(getCurrentItem() - 1);
+            }
+        } catch (Exception e){
+            Log.e("AppIntroViewPager", "goToPreviousSlide: An error occured while switching to the previous slide. Was isFirstSlide checked before the call?");
+        }
+    }
+
+    public boolean isFirstSlide(int size) {
+        if ( LayoutUtil.isRtl(getResources())) {
+            return getCurrentItem() - size + 1 == 0;
+        } else {
+            return getCurrentItem() == 0;
+        }
+    }
+
     /**
      * Override is required to trigger {@link OnPageChangeListener#onPageSelected} for the first page.
      * This is needed to correctly handle progress button display after rotation on a locked first page.
@@ -47,7 +78,6 @@ public final class AppIntroViewPager extends ViewPager {
 
         if (super.getCurrentItem() == 0 && item == 0)
             invokeMeLater = true;
-
         super.setCurrentItem(item);
 
         if (invokeMeLater && pageChangeListener != null)
@@ -94,7 +124,7 @@ public final class AppIntroViewPager extends ViewPager {
                 currentTouchDownX = event.getX();
             }
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                if (detectSwipeToRight(event)) {
+                if (detectSwipeToEnd(event)) {
                     return true;
                 }
             }
@@ -144,7 +174,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     // Detects the direction of swipe. Right or left.
     // Returns true if swipe is in right direction
-    private boolean detectSwipeToRight(MotionEvent event) {
+    private boolean detectSwipeToEnd(MotionEvent event) {
         final int SWIPE_THRESHOLD = 0; // detect swipe
         boolean result = false;
 
@@ -159,7 +189,11 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        return result;
+        if (LayoutUtil.isRtl(getResources())) {
+            return !result;
+        } else {
+            return result;
+        }
     }
 
     /**

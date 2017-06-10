@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -21,6 +22,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.github.paolorotolo.appintro.model.DepthTransformation;
+import com.github.paolorotolo.appintro.model.FadeTranformation;
+import com.github.paolorotolo.appintro.model.FlowTransformation;
+import com.github.paolorotolo.appintro.model.SlideOverTransformation;
+import com.github.paolorotolo.appintro.model.ZoomTransformation;
+import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.ArrayList;
@@ -84,54 +91,90 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
         backButton = findViewById(R.id.back);
+
+        checkButton(nextButton, "next");
+        checkButton(doneButton, "done");
+        checkButton(skipButton, "skip");
+        checkButton(backButton, "back");
+
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.bottomContainer);
+        if (frameLayout != null && isRtl()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                frameLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            }
+        }
+        if (isRtl()) {
+            (nextButton).setScaleX(-1);
+        }
+
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
 
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                if (isVibrateOn) {
-                    mVibrator.vibrate(vibrateIntensity);
+        if (doneButton != null) {
+            doneButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(@NonNull View v) {
+                    if (isVibrateOn) {
+                        mVibrator.vibrate(vibrateIntensity);
+                    }
+
+                    Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+                    boolean isSlideChangingAllowed = handleBeforeSlideChanged();
+
+                    if (isSlideChangingAllowed) {
+                        handleSlideChanged(currentFragment, null);
+                        onDonePressed(currentFragment);
+                    } else {
+                        handleIllegalSlideChangeAttempt();
+                    }
                 }
+            });
+        }
 
-                Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
-                boolean isSlideChangingAllowed = handleBeforeSlideChanged();
-
-                if (isSlideChangingAllowed) {
-                    handleSlideChanged(currentFragment, null);
-                    onDonePressed(currentFragment);
-                } else {
-                    handleIllegalSlideChangeAttempt();
+        if (skipButton != null) {
+            skipButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(@NonNull View v) {
+                    if (isVibrateOn) {
+                        mVibrator.vibrate(vibrateIntensity);
+                    }
+                    onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
                 }
-            }
-        });
+            });
+        }
 
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                if (isVibrateOn) {
-                    mVibrator.vibrate(vibrateIntensity);
+        if (nextButton != null) {
+            nextButton.setOnClickListener(new NextButtonOnClickListener());
+        }
+
+        if (backButton != null) {
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (pager.getCurrentItem() > 0) {
+                        pager.setCurrentItem(pager.getCurrentItem() - 1);
+                    }
                 }
-                onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
-            }
-        });
-
-        nextButton.setOnClickListener(new NextButtonOnClickListener());
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pager.getCurrentItem() > 0) {
-                    pager.setCurrentItem(pager.getCurrentItem() - 1);
-                }
-
-            }
-        });
+            });
+        }
         pager.setAdapter(this.mPagerAdapter);
         pager.addOnPageChangeListener(new PagerOnPageChangeListener());
         pager.setOnNextPageRequestedListener(this);
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+    }
+
+    /**
+     * Check {@link View} to null pointer. Log error when view is {@code null}.
+     *
+     * @param view     view for check on {@code null}.
+     * @param viewName text representation of {@link View}.
+     */
+    private void checkButton(@Nullable View view, @Nullable String viewName) {
+        if (view == null) {
+            Log.e(TAG, String.format("View not initialized, missing 'R.id.%1$s' in XML!", viewName));
+        }
     }
 
     @Override
@@ -144,7 +187,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         // required for triggering onPageSelected and onSlideChanged for first page
-        pager.setCurrentItem(savedCurrentItem);
+        if (isRtl()) {
+            pager.setCurrentItem(fragments.size() - savedCurrentItem);
+        } else {
+            pager.setCurrentItem(savedCurrentItem);
+        }
         pager.post(new Runnable() {
             @Override
             public void run() {
@@ -162,7 +209,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void onBackPressed() {
         // Do nothing if go back lock is enabled or slide has custom policy.
         if (!isGoBackLockEnabled) {
-            super.onBackPressed();
+            if (!pager.isFirstSlide(fragments.size())) {
+                pager.goToPreviousSlide();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -349,7 +400,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param button View which visibility should be changed
      * @param show   Whether the view should be visible or not
      */
-    protected void setButtonState(View button, boolean show) {
+    protected void setButtonState(@Nullable View button, boolean show) {
+        if (button == null) {
+            return;
+        }
+
         if (show) {
             button.setVisibility(View.VISIBLE);
         } else {
@@ -382,7 +437,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param fragment Instance of Fragment which should be added as slide
      */
     public void addSlide(@NonNull Fragment fragment) {
-        fragments.add(fragment);
+        if (isRtl())
+            fragments.add(0, fragment);
+        else
+            fragments.add(fragment);
         if (isWizardMode) {
             setOffScreenPageLimit(fragments.size());
         }
@@ -404,7 +462,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         this.progressButtonEnabled = progressButtonEnabled;
         if (progressButtonEnabled) {
 
-            if (pager.getCurrentItem() == slidesNumber - 1) {
+            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) || (isRtl() && pager.getCurrentItem() == 0)) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 if (isWizardMode) {
@@ -642,35 +700,35 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FADE));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FadeTranformation()));
     }
 
     /**
      * Sets the animation of the intro to a zoom animation
      */
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.ZOOM));
+        pager.setPageTransformer(true, new ViewPageTransformer(new ZoomTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a flow animation
      */
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.FLOW));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FlowTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a Slide Over animation
      */
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.SLIDE_OVER));
+        pager.setPageTransformer(true, new ViewPageTransformer(new SlideOverTransformation()));
     }
 
     /**
      * Sets the animation of the intro to a Depth animation
      */
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ViewPageTransformer.TransformType.DEPTH));
+        pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransformation()));
     }
 
     /**
@@ -819,11 +877,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                pager.setCurrentItem(pager.getCurrentItem() + 1);
+                if (isRtl()) {
+                    pager.setCurrentItem(pager.getCurrentItem() - 1);
+                } else {
+                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                }
                 break;
             default:
                 LogHelper.e(TAG, "Unexpected request code");
         }
+    }
+
+    protected boolean isRtl() {
+        return  LayoutUtil.isRtl(getResources());
     }
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
@@ -854,11 +920,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                                 PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                         permissionsArray.remove(position);
                     } else {
-                        pager.setCurrentItem(pager.getCurrentItem() + 1);
+                        pager.goToNextSlide();
                         onNextPressed();
                     }
                 } else {
-                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                    pager.goToNextSlide();
                     onNextPressed();
                 }
             } else {
