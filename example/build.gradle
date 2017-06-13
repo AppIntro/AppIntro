@@ -22,6 +22,9 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+    lintOptions {
+        warning 'MissingTranslation'
+    }
 }
 
 dependencies {
