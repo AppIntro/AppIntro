@@ -12,6 +12,7 @@ android {
         versionName "1.0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -21,6 +22,9 @@ android {
     }
     packagingOptions {
         exclude 'LICENSE.txt'
+    }
+    lintOptions {
+        warning 'MissingTranslation'
     }
 }
 
