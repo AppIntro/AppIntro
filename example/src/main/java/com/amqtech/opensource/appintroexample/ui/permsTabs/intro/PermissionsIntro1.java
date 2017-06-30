@@ -50,7 +50,7 @@ public class PermissionsIntro1 extends AppIntro {
         addSlide(AppIntroFragment.newInstance(sliderPage4));
 
         // Here we load a string array with a camera permission, and tell the library to request permissions on slide 2
-        askForPermissions(new String[]{Manifest.permission.CAMERA}, 4);
+        askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
     }
 
     @Override
