@@ -24,12 +24,16 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // Check if the fragment at this position has been retained by the PagerAdapter
-        if (retainedFragments.containsKey(position)) {
-            return retainedFragments.get(position);
+        if (!fragments.isEmpty()) {
+            // Check if the fragment at this position has been retained by the PagerAdapter
+            if (retainedFragments.containsKey(position)) {
+                return retainedFragments.get(position);
+            }
+
+            return fragments.get(position);
         }
 
-        return fragments.get(position);
+        return null;
     }
 
     @Override

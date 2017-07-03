@@ -195,7 +195,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         pager.post(new Runnable() {
             @Override
             public void run() {
-                handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
+                Fragment fragment = mPagerAdapter.getItem(pager.getCurrentItem());
+
+                // Fragment is null when no slides are passed to AppIntro
+                if (fragment!=null) {
+                    handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
+                } else {
+                    // Close the intro if there are no slides to show
+                    finish();
+                }
             }
         });
 
