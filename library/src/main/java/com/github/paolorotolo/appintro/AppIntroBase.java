@@ -911,30 +911,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
             // Check if changing to the next slide is allowed
             if (isSlideChangingAllowed) {
-
-                boolean requestPermission = false;
-                int position = 0;
-
-                for (int i = 0; i < permissionsArray.size(); i++) {
-                    requestPermission =
-                            pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
-                    position = i;
-                    break;
-                }
-
-                if (requestPermission) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(permissionsArray.get(position).getPermission(),
-                                PERMISSIONS_REQUEST_ALL_PERMISSIONS);
-                        permissionsArray.remove(position);
-                    } else {
-                        pager.goToNextSlide();
-                        onNextPressed();
-                    }
-                } else {
-                    pager.goToNextSlide();
-                    onNextPressed();
-                }
+                pager.goToNextSlide();
+                onNextPressed();
             } else {
                 handleIllegalSlideChangeAttempt();
             }
@@ -976,6 +954,29 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         @Override
         public void onPageSelected(int position) {
+            // check for permission
+            if (!permissionsArray.isEmpty()) {
+                boolean requestPermission = false;
+                int permissionPosition = 0;
+
+                for (int i = 0; i < permissionsArray.size(); i++) {
+                    requestPermission =
+                            pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                    permissionPosition = i;
+                    break;
+                }
+                if (requestPermission) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
+                                PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                        permissionsArray.remove(permissionPosition);
+                    } else {
+                        pager.goToNextSlide();
+                        onNextPressed();
+                    }
+                }
+            }
+
             if (slidesNumber > 1)
                 mController.selectPosition(position);
 
