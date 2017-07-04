@@ -69,6 +69,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected boolean baseProgressButtonEnabled = true;
     protected boolean progressButtonEnabled = true;
     protected boolean skipButtonEnabled = true;
+    protected boolean pagerIndicatorEnabled = true;
     protected boolean isWizardMode = false;
     protected boolean showBackButtonWithDone = false;
     private GestureDetectorCompat gestureDetector;
@@ -243,6 +244,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         outState.putBoolean("nextEnabled", pager.isPagingEnabled());
         outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
         outState.putBoolean("skipButtonEnabled", skipButtonEnabled);
+        outState.putBoolean("pagerIndicatorEnabled", pagerIndicatorEnabled);
         outState.putInt("lockPage", pager.getLockPage());
         outState.putInt("currentItem", pager.getCurrentItem());
 
@@ -258,6 +260,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
         this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
         this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
+        this.pagerIndicatorEnabled = savedInstanceState.getBoolean("pagerIndicatorEnabled");
         this.savedCurrentItem = savedInstanceState.getInt("currentItem");
         pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
         pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
@@ -293,6 +296,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
 
         mController.selectPosition(currentlySelectedItem);
+
+        if (pagerIndicatorEnabled){
+            indicatorContainer.setVisibility(View.VISIBLE);
+        } else {
+            indicatorContainer.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void handleIllegalSlideChangeAttempt() {
@@ -364,6 +373,23 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     protected void onPageSelected(int position) {
         // Empty method
+    }
+
+    /**
+     * Setting this to display or hide the Pager Indicator. This is a static setting and
+     * view state is maintained across slides until explicitly changed.
+     * @param showIndicator Set true to display. false to hide.
+     */
+    public void showPagerIndicator(boolean showIndicator){
+        this.pagerIndicatorEnabled = showIndicator;
+    }
+
+    /**
+     * Check if the Pager Indicator is enabled
+     * @return true if yes, false if not.
+     */
+    public boolean isPagerIndicatorEnabled(){
+        return pagerIndicatorEnabled;
     }
 
     /**
