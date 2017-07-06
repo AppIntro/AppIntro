@@ -32,6 +32,7 @@ import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 public abstract class AppIntroBase extends AppCompatActivity implements
@@ -763,6 +764,31 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setDepthAnimation() {
         pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransformation()));
+    }
+
+    /**
+     * Sets the animation of the intro to a random animation between default options
+     */
+    public void setRandomDefaultAnimations() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt(5);
+        switch(randomNum) {
+            case 0:
+                this.setDepthAnimation();
+                break;
+            case 1:
+                this.setFadeAnimation();
+                break;
+            case 2:
+                this.setFlowAnimation();
+                break;
+            case 3:
+                this.setZoomAnimation();
+                break;
+            case 4:
+                this.setSlideOverAnimation();
+                break;
+        }
     }
 
     /**

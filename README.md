@@ -163,6 +163,8 @@ setZoomAnimation()
 setFlowAnimation()
 setSlideOverAnimation()
 setDepthAnimation()
+
+setRandomDefaultAnimations() - Draw one of the above options
 ```
 
 If you want to create nice parallax effect or your own custom animation, create your own **PageTransformer** and call:
