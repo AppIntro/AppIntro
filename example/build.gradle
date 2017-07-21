@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.amqtech.opensource.appintroexample"
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.0.0'
     compile project(':library')
 
     compile('com.mikepenz:materialdrawer:5.9.1@aar') {

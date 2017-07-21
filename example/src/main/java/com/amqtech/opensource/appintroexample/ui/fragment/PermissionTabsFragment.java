@@ -1,6 +1,6 @@
 package com.amqtech.opensource.appintroexample.ui.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,7 +34,7 @@ public class PermissionTabsFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        adapter = new PermsPagerAdapter(getActivity().getFragmentManager(), Titles, Numboftabs);
+        adapter = new PermsPagerAdapter(getChildFragmentManager(), Titles, Numboftabs);
 
         pager = (ViewPager) getView().findViewById(R.id.permPager);
         pager.setAdapter(adapter);
