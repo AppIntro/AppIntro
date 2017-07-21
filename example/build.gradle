@@ -30,7 +30,7 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
-    compile project(':library')
+    compile 'com.github.apl-devs:appintro:v4.2.0'
 
     compile('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
