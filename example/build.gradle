@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
 
     defaultConfig {
         applicationId "com.amqtech.opensource.appintroexample"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 2
         versionName "1.0.1"
 
@@ -29,13 +29,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.github.apl-devs:appintro:v4.2.0'
-
     compile('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
     }
-
     // test dependencies
     androidTestCompile('com.android.support.test:runner:0.5') {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -43,4 +40,5 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile 'com.android.support:support-annotations:26.0.0-alpha1'
 }
