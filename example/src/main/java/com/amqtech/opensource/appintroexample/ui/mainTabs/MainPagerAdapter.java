@@ -1,9 +1,8 @@
 package com.amqtech.opensource.appintroexample.ui.mainTabs;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-
-import com.amqtech.opensource.appintroexample.util.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 /**
  * Created by andrew on 11/17/16.
