@@ -22,17 +22,18 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.model.DepthTransform;
-import com.github.paolorotolo.appintro.model.FadeTransform;
-import com.github.paolorotolo.appintro.model.FlowTransform;
-import com.github.paolorotolo.appintro.model.SlideOverTransform;
-import com.github.paolorotolo.appintro.model.ZoomTransform;
 import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.DEPTH;
+import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FADE;
+import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FLOW;
+import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.SLIDE_OVER;
+import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.ZOOM;
 
 public abstract class AppIntroBase extends AppCompatActivity implements
         AppIntroViewPager.OnNextPageRequestedListener {
@@ -199,7 +200,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 Fragment fragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
                 // Fragment is null when no slides are passed to AppIntro
-                if (fragment!=null) {
+                if (fragment != null) {
                     handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
                 } else {
                     // Close the intro if there are no slides to show
@@ -305,7 +306,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         mController.selectPosition(currentlySelectedItem);
 
-        if (pagerIndicatorEnabled){
+        if (pagerIndicatorEnabled) {
             indicatorContainer.setVisibility(View.VISIBLE);
         } else {
             indicatorContainer.setVisibility(View.INVISIBLE);
@@ -386,17 +387,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * Setting this to display or hide the Pager Indicator. This is a static setting and
      * view state is maintained across slides until explicitly changed.
+     *
      * @param showIndicator Set true to display. false to hide.
      */
-    public void showPagerIndicator(boolean showIndicator){
+    public void showPagerIndicator(boolean showIndicator) {
         this.pagerIndicatorEnabled = showIndicator;
     }
 
     /**
      * Check if the Pager Indicator is enabled
+     *
      * @return true if yes, false if not.
      */
-    public boolean isPagerIndicatorEnabled(){
+    public boolean isPagerIndicatorEnabled() {
         return pagerIndicatorEnabled;
     }
 
@@ -734,35 +737,35 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new FadeTransform()));
+        pager.setPageTransformer(true, new ViewPageTransformer(FADE));
     }
 
     /**
      * Sets the animation of the intro to a zoom animation
      */
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new ZoomTransform()));
+        pager.setPageTransformer(true, new ViewPageTransformer(ZOOM));
     }
 
     /**
      * Sets the animation of the intro to a flow animation
      */
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new FlowTransform()));
+        pager.setPageTransformer(true, new ViewPageTransformer(FLOW));
     }
 
     /**
      * Sets the animation of the intro to a Slide Over animation
      */
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new SlideOverTransform()));
+        pager.setPageTransformer(true, new ViewPageTransformer(SLIDE_OVER));
     }
 
     /**
      * Sets the animation of the intro to a Depth animation
      */
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransform()));
+        pager.setPageTransformer(true, new ViewPageTransformer(DEPTH));
     }
 
     /**
@@ -844,7 +847,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * Specifies whether to enable the non-sticky immersive mode.
      * This is a shorthand method for {@link #setImmersiveMode(boolean, boolean)} the second parameter set to false.
-     * If you want to enable the sticky immersive mode (transcluent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
+     * If you want to enable the sticky immersive mode (translucent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
      * Note that immersive mode is only supported on Kitkat and newer.
      *
      * @param isEnabled Whether the immersive mode (non-sticky) should be enabled or not.
@@ -923,7 +926,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     protected boolean isRtl() {
-        return  LayoutUtil.isRtl(getResources());
+        return LayoutUtil.isRtl(getResources());
     }
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
@@ -985,6 +988,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 boolean requestPermission = false;
                 int permissionPosition = 0;
 
+                //noinspection LoopStatementThatDoesntLoop
                 for (int i = 0; i < permissionsArray.size(); i++) {
                     requestPermission =
                             pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();

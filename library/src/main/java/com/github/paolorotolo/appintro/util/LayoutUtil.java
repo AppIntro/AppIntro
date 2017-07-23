@@ -4,10 +4,6 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.view.View;
 
-/**
- * Created by tatianasolonets on 3/19/17.
- */
-
 public class LayoutUtil {
 
     public static boolean isRtl(Resources resources) {
