@@ -4,6 +4,7 @@ import android.view.View;
 
 /**
  * Created by tatianasolonets on 3/19/17.
+ * Transformation class for use with slide transform animations.
  */
 
 public abstract class Transformation {
@@ -12,9 +13,9 @@ public abstract class Transformation {
     protected float scale;
     protected float translationX;
 
-    public abstract void transformPage( View page, float position );
+    public abstract void transformPage(View page, float position);
 
-    protected void setTransformParameters( View page) {
+    protected void setTransformParameters(View page) {
         page.setAlpha(alpha);
         page.setTranslationX(translationX);
         page.setScaleX(scale);

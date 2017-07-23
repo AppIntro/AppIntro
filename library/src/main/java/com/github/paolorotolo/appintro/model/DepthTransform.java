@@ -2,16 +2,12 @@ package com.github.paolorotolo.appintro.model;
 
 import android.view.View;
 
-/**
- * Created by tatianasolonets on 3/19/17.
- */
-
-public class DepthTransformation extends Transformation {
+public class DepthTransform extends Transformation {
 
     private static final float MIN_SCALE_DEPTH = 0.75f;
 
     @Override
-    public void transformPage( View page, float position) {
+    public void transformPage(View page, float position) {
 
         if (position > 0 && position < 1) {
             // moving to the right

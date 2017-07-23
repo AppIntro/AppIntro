@@ -22,11 +22,11 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.model.DepthTransformation;
-import com.github.paolorotolo.appintro.model.FadeTranformation;
-import com.github.paolorotolo.appintro.model.FlowTransformation;
-import com.github.paolorotolo.appintro.model.SlideOverTransformation;
-import com.github.paolorotolo.appintro.model.ZoomTransformation;
+import com.github.paolorotolo.appintro.model.DepthTransform;
+import com.github.paolorotolo.appintro.model.FadeTransform;
+import com.github.paolorotolo.appintro.model.FlowTransform;
+import com.github.paolorotolo.appintro.model.SlideOverTransform;
+import com.github.paolorotolo.appintro.model.ZoomTransform;
 import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
@@ -734,35 +734,35 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new FadeTranformation()));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FadeTransform()));
     }
 
     /**
      * Sets the animation of the intro to a zoom animation
      */
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new ZoomTransformation()));
+        pager.setPageTransformer(true, new ViewPageTransformer(new ZoomTransform()));
     }
 
     /**
      * Sets the animation of the intro to a flow animation
      */
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new FlowTransformation()));
+        pager.setPageTransformer(true, new ViewPageTransformer(new FlowTransform()));
     }
 
     /**
      * Sets the animation of the intro to a Slide Over animation
      */
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new SlideOverTransformation()));
+        pager.setPageTransformer(true, new ViewPageTransformer(new SlideOverTransform()));
     }
 
     /**
      * Sets the animation of the intro to a Depth animation
      */
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransformation()));
+        pager.setPageTransformer(true, new ViewPageTransformer(new DepthTransform()));
     }
 
     /**

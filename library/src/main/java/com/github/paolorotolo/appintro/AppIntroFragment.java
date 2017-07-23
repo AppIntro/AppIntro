@@ -1,10 +1,49 @@
 package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 
 import com.github.paolorotolo.appintro.model.SliderPage;
 
 public final class AppIntroFragment extends AppIntroBaseFragment {
+
+    /**
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
+     */
+    public static AppIntroFragment newInstance(CharSequence title, CharSequence description,
+                                               @DrawableRes int imageDrawable,
+                                               @ColorInt int bgColor) {
+        return newInstance(title, null, description, null, imageDrawable, bgColor, 0, 0);
+    }
+
+    /**
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
+     */
+    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
+                                               CharSequence description, String descTypeface,
+                                               @DrawableRes int imageDrawable,
+                                               @ColorInt int bgColor) {
+        return newInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor,
+                0, 0);
+    }
+
+    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
+                                               CharSequence description, String descTypeface,
+                                               @DrawableRes int imageDrawable, @ColorInt int bgColor,
+                                               @ColorInt int titleColor, @ColorInt int descColor) {
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(title);
+        sliderPage.setTitleTypeface(titleTypeface);
+        sliderPage.setDescription(description);
+        sliderPage.setDescTypeface(descTypeface);
+        sliderPage.setImageDrawable(imageDrawable);
+        sliderPage.setBgColor(bgColor);
+        sliderPage.setTitleColor(titleColor);
+        sliderPage.setDescColor(descColor);
+
+        return newInstance(sliderPage);
+    }
 
     public static AppIntroFragment newInstance(SliderPage sliderPage) {
         AppIntroFragment slide = new AppIntroFragment();

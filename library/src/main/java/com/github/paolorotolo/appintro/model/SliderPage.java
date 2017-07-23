@@ -5,57 +5,30 @@ import android.support.annotation.DrawableRes;
 
 /**
  * Created by tatianasolonets on 3/19/17.
+ * Slide Page Model
  */
 
 public class SliderPage {
 
-    CharSequence title;
-    CharSequence description;
+    private CharSequence title;
+    private CharSequence description;
     @DrawableRes
-    int imageDrawable;
+    private int imageDrawable;
     @ColorInt
-    int bgColor;
+    private int bgColor;
     @ColorInt
-    int titleColor;
+    private int titleColor;
     @ColorInt
-    int descColor;
-    String titleTypeface;
-    String descTypeface;
-
-    public void setBgColor( final int bgColor ) {
-        this.bgColor = bgColor;
-    }
-
-    public void setDescColor( final int descColor ) {
-        this.descColor = descColor;
-    }
-
-    public void setDescription( final CharSequence description ) {
-        this.description = description;
-    }
-
-    public void setDescTypeface( final String descTypeface ) {
-        this.descTypeface = descTypeface;
-    }
-
-    public void setImageDrawable( final int imageDrawable ) {
-        this.imageDrawable = imageDrawable;
-    }
-
-    public void setTitle( final CharSequence title ) {
-        this.title = title;
-    }
-
-    public void setTitleColor( final int titleColor ) {
-        this.titleColor = titleColor;
-    }
-
-    public void setTitleTypeface( final String titleTypeface ) {
-        this.titleTypeface = titleTypeface;
-    }
+    private int descColor;
+    private String titleTypeface;
+    private String descTypeface;
 
     public CharSequence getTitle() {
         return title;
+    }
+
+    public void setTitle(final CharSequence title) {
+        this.title = title;
     }
 
     public String getTitleString() {
@@ -66,6 +39,10 @@ public class SliderPage {
         return description;
     }
 
+    public void setDescription(final CharSequence description) {
+        this.description = description;
+    }
+
     public String getDescriptionString() {
         return description != null ? description.toString() : null;
     }
@@ -74,23 +51,47 @@ public class SliderPage {
         return bgColor;
     }
 
+    public void setBgColor(final int bgColor) {
+        this.bgColor = bgColor;
+    }
+
     public int getDescColor() {
         return descColor;
+    }
+
+    public void setDescColor(final int descColor) {
+        this.descColor = descColor;
     }
 
     public int getImageDrawable() {
         return imageDrawable;
     }
 
+    public void setImageDrawable(final int imageDrawable) {
+        this.imageDrawable = imageDrawable;
+    }
+
     public int getTitleColor() {
         return titleColor;
+    }
+
+    public void setTitleColor(final int titleColor) {
+        this.titleColor = titleColor;
     }
 
     public String getDescTypeface() {
         return descTypeface;
     }
 
+    public void setDescTypeface(final String descTypeface) {
+        this.descTypeface = descTypeface;
+    }
+
     public String getTitleTypeface() {
         return titleTypeface;
+    }
+
+    public void setTitleTypeface(final String titleTypeface) {
+        this.titleTypeface = titleTypeface;
     }
 }

@@ -2,17 +2,13 @@ package com.github.paolorotolo.appintro.model;
 
 import android.view.View;
 
-/**
- * Created by tatianasolonets on 3/19/17.
- */
-
-public class SlideOverTransformation extends  Transformation {
+public class SlideOverTransform extends Transformation {
 
     private static final float SCALE_FACTOR_SLIDE = 0.85f;
     private static final float MIN_ALPHA_SLIDE = 0.35f;
 
     @Override
-    public void transformPage( View page, float position) {
+    public void transformPage(View page, float position) {
         if (position < 0 && position > -1) {
             // this is the page to the left
             scale = Math.abs(Math.abs(position) - 1) * (1.0f - SCALE_FACTOR_SLIDE) +

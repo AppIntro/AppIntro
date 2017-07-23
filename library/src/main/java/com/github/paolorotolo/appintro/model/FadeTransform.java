@@ -2,14 +2,10 @@ package com.github.paolorotolo.appintro.model;
 
 import android.view.View;
 
-/**
- * Created by tatianasolonets on 3/19/17.
- */
-
-public class FadeTranformation extends  Transformation {
+public class FadeTransform extends Transformation {
 
     @Override
-    public void transformPage( View page, float position) {
+    public void transformPage(View page, float position) {
 
         if (position <= -1.0F || position >= 1.0F) {
             page.setAlpha(0.0F);

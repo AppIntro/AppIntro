@@ -2,17 +2,13 @@ package com.github.paolorotolo.appintro.model;
 
 import android.view.View;
 
-/**
- * Created by tatianasolonets on 3/19/17.
- */
-
-public class ZoomTransformation extends  Transformation {
+public class ZoomTransform extends Transformation {
 
     private static final float MIN_SCALE_ZOOM = 0.85f;
     private static final float MIN_ALPHA_ZOOM = 0.5f;
 
     @Override
-    public void transformPage( View page, float position) {
+    public void transformPage(View page, float position) {
 
         if (position >= -1 && position <= 1) {
             scale = Math.max(MIN_SCALE_ZOOM, 1 - Math.abs(position));

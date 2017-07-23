@@ -11,9 +11,7 @@ import android.view.View;
 public class LayoutUtil {
 
     public static boolean isRtl(Resources resources) {
-        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return resources.getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-        }
-        return false;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
+                && resources.getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 }
