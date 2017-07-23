@@ -9,7 +9,6 @@ import android.support.annotation.DrawableRes;
  */
 
 public class SliderPage {
-
     private CharSequence title;
     private CharSequence description;
     @DrawableRes
@@ -51,7 +50,7 @@ public class SliderPage {
         return bgColor;
     }
 
-    public void setBgColor(final int bgColor) {
+    public void setBgColor(@ColorInt final int bgColor) {
         this.bgColor = bgColor;
     }
 
@@ -59,7 +58,7 @@ public class SliderPage {
         return descColor;
     }
 
-    public void setDescColor(final int descColor) {
+    public void setDescColor(@ColorInt final int descColor) {
         this.descColor = descColor;
     }
 
@@ -67,7 +66,7 @@ public class SliderPage {
         return imageDrawable;
     }
 
-    public void setImageDrawable(final int imageDrawable) {
+    public void setImageDrawable(@DrawableRes final int imageDrawable) {
         this.imageDrawable = imageDrawable;
     }
 
@@ -75,7 +74,7 @@ public class SliderPage {
         return titleColor;
     }
 
-    public void setTitleColor(final int titleColor) {
+    public void setTitleColor(@ColorInt final int titleColor) {
         this.titleColor = titleColor;
     }
 
