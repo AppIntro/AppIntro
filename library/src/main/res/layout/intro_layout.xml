@@ -8,6 +8,7 @@
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
+        android:fitsSystemWindows="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
