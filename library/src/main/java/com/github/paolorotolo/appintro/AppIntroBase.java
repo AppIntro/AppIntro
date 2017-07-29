@@ -121,12 +121,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                         mVibrator.vibrate(vibrateIntensity);
                     }
 
-                    Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
                     boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
                     if (isSlideChangingAllowed) {
-                        handleSlideChanged(currentFragment, null);
-                        onDonePressed(currentFragment);
+                        // Changing slide is handled by permission result
+                        if (!checkAndRequestPermissions()) {
+                            changeSlide(true);
+                        }
                     } else {
                         handleIllegalSlideChangeAttempt();
                     }
@@ -896,6 +897,44 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
+    private void changeSlide(boolean isLastSlide){
+        if (isLastSlide) {
+            Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+            handleSlideChanged(currentFragment, null);
+            onDonePressed(currentFragment);
+        } else {
+            pager.goToNextSlide();
+            onNextPressed();
+        }
+    }
+
+    // Returns true if a permission has been requested
+    private boolean checkAndRequestPermissions(){
+        if (!permissionsArray.isEmpty()) {
+            boolean requestPermission = false;
+            int permissionPosition = 0;
+
+            //noinspection LoopStatementThatDoesntLoop
+            for (int i = 0; i < permissionsArray.size(); i++) {
+                requestPermission =
+                        pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                permissionPosition = i;
+                break;
+            }
+            if (requestPermission) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
+                            PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                    permissionsArray.remove(permissionPosition);
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
@@ -914,10 +953,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                if (isRtl()) {
-                    pager.setCurrentItem(pager.getCurrentItem() - 1);
+                // Check if next slide is the last one
+                if (pager.getCurrentItem()+1 == slidesNumber) {
+                    changeSlide(true);
                 } else {
-                    pager.setCurrentItem(pager.getCurrentItem() + 1);
+                    changeSlide(false);
                 }
                 break;
             default:
@@ -940,8 +980,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
             // Check if changing to the next slide is allowed
             if (isSlideChangingAllowed) {
-                pager.goToNextSlide();
-                onNextPressed();
+                // Changing slide is handled by permission result
+                if (!checkAndRequestPermissions()) {
+                    changeSlide(false);
+                }
             } else {
                 handleIllegalSlideChangeAttempt();
             }
@@ -983,30 +1025,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         @Override
         public void onPageSelected(int position) {
-            // check for permission
-            if (!permissionsArray.isEmpty()) {
-                boolean requestPermission = false;
-                int permissionPosition = 0;
-
-                //noinspection LoopStatementThatDoesntLoop
-                for (int i = 0; i < permissionsArray.size(); i++) {
-                    requestPermission =
-                            pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
-                    permissionPosition = i;
-                    break;
-                }
-                if (requestPermission) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
-                                PERMISSIONS_REQUEST_ALL_PERMISSIONS);
-                        permissionsArray.remove(permissionPosition);
-                    } else {
-                        pager.goToNextSlide();
-                        onNextPressed();
-                    }
-                }
-            }
-
             if (slidesNumber > 1)
                 mController.selectPosition(position);
 
