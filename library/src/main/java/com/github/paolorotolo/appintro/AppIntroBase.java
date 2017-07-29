@@ -125,6 +125,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
                     if (isSlideChangingAllowed) {
+                        checkPermissions();
                         handleSlideChanged(currentFragment, null);
                         onDonePressed(currentFragment);
                     } else {
@@ -896,6 +897,28 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
+    private void checkPermissions(){
+        if (!permissionsArray.isEmpty()) {
+            boolean requestPermission = false;
+            int permissionPosition = 0;
+
+            //noinspection LoopStatementThatDoesntLoop
+            for (int i = 0; i < permissionsArray.size(); i++) {
+                requestPermission =
+                        pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
+                permissionPosition = i;
+                break;
+            }
+            if (requestPermission) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
+                            PERMISSIONS_REQUEST_ALL_PERMISSIONS);
+                    permissionsArray.remove(permissionPosition);
+                }
+            }
+        }
+    }
+
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
@@ -912,17 +935,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
-                if (isRtl()) {
-                    pager.setCurrentItem(pager.getCurrentItem() - 1);
-                } else {
-                    pager.setCurrentItem(pager.getCurrentItem() + 1);
-                }
-                break;
-            default:
-                LogHelper.e(TAG, "Unexpected request code");
-        }
+        if (requestCode!= PERMISSIONS_REQUEST_ALL_PERMISSIONS)
+            LogHelper.e(TAG, "Unexpected request code");
     }
 
     protected boolean isRtl() {
@@ -940,6 +954,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
             // Check if changing to the next slide is allowed
             if (isSlideChangingAllowed) {
+                checkPermissions();
                 pager.goToNextSlide();
                 onNextPressed();
             } else {
@@ -983,30 +998,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         @Override
         public void onPageSelected(int position) {
-            // check for permission
-            if (!permissionsArray.isEmpty()) {
-                boolean requestPermission = false;
-                int permissionPosition = 0;
-
-                //noinspection LoopStatementThatDoesntLoop
-                for (int i = 0; i < permissionsArray.size(); i++) {
-                    requestPermission =
-                            pager.getCurrentItem() + 1 == permissionsArray.get(i).getPosition();
-                    permissionPosition = i;
-                    break;
-                }
-                if (requestPermission) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
-                                PERMISSIONS_REQUEST_ALL_PERMISSIONS);
-                        permissionsArray.remove(permissionPosition);
-                    } else {
-                        pager.goToNextSlide();
-                        onNextPressed();
-                    }
-                }
-            }
-
             if (slidesNumber > 1)
                 mController.selectPosition(position);
 
