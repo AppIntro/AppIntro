@@ -121,13 +121,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                         mVibrator.vibrate(vibrateIntensity);
                     }
 
-                    Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
                     boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
                     if (isSlideChangingAllowed) {
-                        checkPermissions();
-                        handleSlideChanged(currentFragment, null);
-                        onDonePressed(currentFragment);
+                        // Changing slide is handled by permission result
+                        if (!checkAndRequestPermissions()) {
+                            changeSlide(true);
+                        }
                     } else {
                         handleIllegalSlideChangeAttempt();
                     }
@@ -897,7 +897,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
-    private void checkPermissions(){
+    private void changeSlide(boolean isLastSlide){
+        if (isLastSlide) {
+            Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
+            handleSlideChanged(currentFragment, null);
+            onDonePressed(currentFragment);
+        } else {
+            pager.goToNextSlide();
+            onNextPressed();
+        }
+    }
+
+    // Returns true if a permission has been requested
+    private boolean checkAndRequestPermissions(){
         if (!permissionsArray.isEmpty()) {
             boolean requestPermission = false;
             int permissionPosition = 0;
@@ -914,9 +926,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
                             PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                     permissionsArray.remove(permissionPosition);
+
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 
     public void askForPermissions(String[] permissions, int slidesNumber) {
@@ -935,8 +951,18 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode!= PERMISSIONS_REQUEST_ALL_PERMISSIONS)
-            LogHelper.e(TAG, "Unexpected request code");
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
+                // Check if next slide is the last one
+                if (pager.getCurrentItem()+1 == slidesNumber) {
+                    changeSlide(true);
+                } else {
+                    changeSlide(false);
+                }
+                break;
+            default:
+                LogHelper.e(TAG, "Unexpected request code");
+        }
     }
 
     protected boolean isRtl() {
@@ -954,9 +980,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
             // Check if changing to the next slide is allowed
             if (isSlideChangingAllowed) {
-                checkPermissions();
-                pager.goToNextSlide();
-                onNextPressed();
+                // Changing slide is handled by permission result
+                if (!checkAndRequestPermissions()) {
+                    changeSlide(false);
+                }
             } else {
                 handleIllegalSlideChangeAttempt();
             }
