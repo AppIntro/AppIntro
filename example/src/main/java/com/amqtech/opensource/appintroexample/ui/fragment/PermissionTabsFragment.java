@@ -36,10 +36,10 @@ public class PermissionTabsFragment extends Fragment {
 
         adapter = new PermsPagerAdapter(getChildFragmentManager(), Titles, Numboftabs);
 
-        pager = (ViewPager) getView().findViewById(R.id.permPager);
+        pager = getView().findViewById(R.id.permPager);
         pager.setAdapter(adapter);
 
-        tabs = (TabLayout) getView().findViewById(R.id.permTabs);
+        tabs = getView().findViewById(R.id.permTabs);
         tabs.setBackgroundColor(Color.parseColor("#1976D2"));
         tabs.setDistributeEvenly(true);
         tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {

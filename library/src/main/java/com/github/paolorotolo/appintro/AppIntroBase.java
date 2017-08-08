@@ -99,7 +99,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         checkButton(skipButton, "skip");
         checkButton(backButton, "back");
 
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.bottomContainer);
+        FrameLayout frameLayout = findViewById(R.id.bottomContainer);
         if (frameLayout != null && isRtl()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 frameLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -111,7 +111,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
-        pager = (AppIntroViewPager) findViewById(R.id.view_pager);
+        pager = findViewById(R.id.view_pager);
 
         if (doneButton != null) {
             doneButton.setOnClickListener(new View.OnClickListener() {
@@ -296,7 +296,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         if (mController == null)
             mController = new DefaultIndicatorController();
 
-        FrameLayout indicatorContainer = (FrameLayout) findViewById(R.id.indicator_container);
+        FrameLayout indicatorContainer = findViewById(R.id.indicator_container);
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
@@ -604,7 +604,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public boolean onKeyDown(int code, KeyEvent event) {
         if (code == KeyEvent.KEYCODE_ENTER || code == KeyEvent.KEYCODE_BUTTON_A ||
                 code == KeyEvent.KEYCODE_DPAD_CENTER) {
-            ViewPager vp = (ViewPager) this.findViewById(R.id.view_pager);
+            ViewPager vp = this.findViewById(R.id.view_pager);
             if (vp.getCurrentItem() == vp.getAdapter().getCount() - 1) {
                 onDonePressed(fragments.get(vp.getCurrentItem()));
             } else {

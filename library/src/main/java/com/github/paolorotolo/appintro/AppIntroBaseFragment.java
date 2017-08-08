@@ -77,10 +77,10 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(getLayoutId(), container, false);
-        TextView t = (TextView) v.findViewById(R.id.title);
-        TextView d = (TextView) v.findViewById(R.id.description);
-        ImageView i = (ImageView) v.findViewById(R.id.image);
-        mainLayout = (LinearLayout) v.findViewById(R.id.main);
+        TextView t = v.findViewById(R.id.title);
+        TextView d = v.findViewById(R.id.description);
+        ImageView i = v.findViewById(R.id.image);
+        mainLayout = v.findViewById(R.id.main);
 
         t.setText(title);
         if (titleColor != 0) {

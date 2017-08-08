@@ -22,7 +22,7 @@ public class CustomBackgroundIntro extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button demo = (Button) getView().findViewById(R.id.intro4);
+        Button demo = getView().findViewById(R.id.intro4);
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

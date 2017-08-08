@@ -22,7 +22,7 @@ public class CustomLayoutIntro extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button demo = (Button) getView().findViewById(R.id.intro3);
+        Button demo = getView().findViewById(R.id.intro3);
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

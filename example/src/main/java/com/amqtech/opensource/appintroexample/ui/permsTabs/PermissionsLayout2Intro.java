@@ -23,7 +23,7 @@ public class PermissionsLayout2Intro extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button demo = (Button) getView().findViewById(R.id.intro2);
+        Button demo = getView().findViewById(R.id.intro2);
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

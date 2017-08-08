@@ -23,7 +23,7 @@ public abstract class AppIntro2 extends AppIntroBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        backgroundFrame = (FrameLayout) findViewById(R.id.background);
+        backgroundFrame = findViewById(R.id.background);
     }
 
     @Override
@@ -47,7 +47,7 @@ public abstract class AppIntro2 extends AppIntroBase {
      * @param color your color resource
      */
     public void setBarColor(@ColorInt final int color) {
-        LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
+        LinearLayout bottomBar = findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
     }
 
@@ -57,7 +57,7 @@ public abstract class AppIntro2 extends AppIntroBase {
      * @param imageSkipButton your drawable resource
      */
     public void setImageSkipButton(final Drawable imageSkipButton) {
-        final ImageButton nextButton = (ImageButton) findViewById(R.id.skip);
+        final ImageButton nextButton = findViewById(R.id.skip);
         nextButton.setImageDrawable(imageSkipButton);
 
     }
