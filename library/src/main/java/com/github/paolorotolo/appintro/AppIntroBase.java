@@ -64,6 +64,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected View doneButton;
     protected View skipButton;
     protected View backButton;
+    protected FrameLayout indicatorContainer;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
     protected boolean isVibrateOn = false;
@@ -296,7 +297,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         if (mController == null)
             mController = new DefaultIndicatorController();
 
-        FrameLayout indicatorContainer = findViewById(R.id.indicator_container);
+        indicatorContainer = findViewById(R.id.indicator_container);
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
@@ -306,12 +307,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
 
         mController.selectPosition(currentlySelectedItem);
-
-        if (pagerIndicatorEnabled) {
-            indicatorContainer.setVisibility(View.VISIBLE);
-        } else {
-            indicatorContainer.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void handleIllegalSlideChangeAttempt() {
@@ -1052,6 +1047,15 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 }
             }
             currentlySelectedItem = position;
+
+            // Check new state of pagerIndicator
+            if (indicatorContainer != null) {
+                if (pagerIndicatorEnabled) {
+                    indicatorContainer.setVisibility(View.VISIBLE);
+                } else {
+                    indicatorContainer.setVisibility(View.INVISIBLE);
+                }
+            }
         }
 
         @Override
