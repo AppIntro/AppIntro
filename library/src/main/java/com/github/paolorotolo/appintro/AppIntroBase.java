@@ -362,6 +362,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         onSlideChanged(oldFragment, newFragment);
+        updatePagerIndicatorState();
     }
 
     /**
@@ -930,6 +931,16 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return false;
     }
 
+    private void updatePagerIndicatorState(){
+        if (indicatorContainer != null) {
+            if (pagerIndicatorEnabled) {
+                indicatorContainer.setVisibility(View.VISIBLE);
+            } else {
+                indicatorContainer.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
@@ -1049,13 +1060,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             currentlySelectedItem = position;
 
             // Check new state of pagerIndicator
-            if (indicatorContainer != null) {
-                if (pagerIndicatorEnabled) {
-                    indicatorContainer.setVisibility(View.VISIBLE);
-                } else {
-                    indicatorContainer.setVisibility(View.INVISIBLE);
-                }
-            }
+            updatePagerIndicatorState();
         }
 
         @Override
