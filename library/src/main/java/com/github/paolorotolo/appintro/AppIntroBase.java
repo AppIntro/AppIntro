@@ -64,6 +64,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected View doneButton;
     protected View skipButton;
     protected View backButton;
+    protected FrameLayout indicatorContainer;
     protected int savedCurrentItem;
     protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
     protected boolean isVibrateOn = false;
@@ -296,7 +297,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         if (mController == null)
             mController = new DefaultIndicatorController();
 
-        FrameLayout indicatorContainer = findViewById(R.id.indicator_container);
+        indicatorContainer = findViewById(R.id.indicator_container);
         indicatorContainer.addView(mController.newInstance(this));
 
         mController.initialize(slidesNumber);
@@ -306,12 +307,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             mController.setUnselectedIndicatorColor(unselectedIndicatorColor);
 
         mController.selectPosition(currentlySelectedItem);
-
-        if (pagerIndicatorEnabled) {
-            indicatorContainer.setVisibility(View.VISIBLE);
-        } else {
-            indicatorContainer.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void handleIllegalSlideChangeAttempt() {
@@ -367,6 +362,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         onSlideChanged(oldFragment, newFragment);
+        updatePagerIndicatorState();
     }
 
     /**
@@ -935,6 +931,16 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return false;
     }
 
+    private void updatePagerIndicatorState(){
+        if (indicatorContainer != null) {
+            if (pagerIndicatorEnabled) {
+                indicatorContainer.setVisibility(View.VISIBLE);
+            } else {
+                indicatorContainer.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
     public void askForPermissions(String[] permissions, int slidesNumber) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
@@ -1052,6 +1058,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 }
             }
             currentlySelectedItem = position;
+
+            // Check new state of pagerIndicator
+            updatePagerIndicatorState();
         }
 
         @Override
