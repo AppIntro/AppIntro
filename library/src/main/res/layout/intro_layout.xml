@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#222222">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:fitsSystemWindows="true"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <LinearLayout
@@ -23,19 +23,19 @@
 
         <TextView
             android:id="@+id/bottom_separator"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="#55000000" />
 
         <FrameLayout
             android:id="@+id/bottomContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <FrameLayout
                 android:id="@+id/indicator_container"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layoutDirection="ltr"/>
 
@@ -43,7 +43,7 @@
                 android:id="@+id/skip"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
@@ -55,7 +55,7 @@
                 android:id="@+id/back"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
@@ -68,7 +68,7 @@
                 android:id="@+id/next"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
@@ -80,7 +80,7 @@
                 android:id="@+id/done"
                 style="@style/AppIntroButtonStyleCompat"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
