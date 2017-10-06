@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv"
         android:paddingBottom="5dp"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/default_intro2"
         android:textSize="18sp" />
