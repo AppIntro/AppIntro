@@ -54,6 +54,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 app:srcCompat="@drawable/ic_skip_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
