@@ -91,7 +91,7 @@ public final class AppIntroViewPager extends ViewPager {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onInterceptTouchEvent(event);
-        } else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        } else if (checkPagingState(event) && checkCanRequestNextPage(event)) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
@@ -107,7 +107,7 @@ public final class AppIntroViewPager extends ViewPager {
             return super.onTouchEvent(event);
         }
         // Check if we should handle the touch event
-        else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        else if (checkPagingState(event) && checkCanRequestNextPage(event)) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
