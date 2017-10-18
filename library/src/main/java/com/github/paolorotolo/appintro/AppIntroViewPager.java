@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintro;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 
@@ -91,8 +92,7 @@ public final class AppIntroViewPager extends ViewPager {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onInterceptTouchEvent(event);
-        } else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
-            // Call callback method if threshold has been reached
+        } else if (checkPagingState(event) && checkCanRequestNextPage(event)) {
             checkIllegallyRequestedNextPage(event);
             return false;
         }
@@ -107,7 +107,7 @@ public final class AppIntroViewPager extends ViewPager {
             return super.onTouchEvent(event);
         }
         // Check if we should handle the touch event
-        else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        else if (checkPagingState(event) && checkCanRequestNextPage(event)) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
@@ -121,7 +121,7 @@ public final class AppIntroViewPager extends ViewPager {
             return true;
         }
 
-        if (!nextPagingEnabled) {
+        if (nextPagingEnabled) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 currentTouchDownX = event.getX();
             }
@@ -140,7 +140,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     private void checkIllegallyRequestedNextPage(MotionEvent event) {
-        int swipeThreshold = 25;
+        int swipeThreshold = 50;
 
         if (event.getAction() == MotionEvent.ACTION_MOVE &&
                 Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) {
@@ -177,7 +177,7 @@ public final class AppIntroViewPager extends ViewPager {
     // Detects the direction of swipe. Right or left.
     // Returns true if swipe is in right direction
     private boolean detectSwipeToEnd(MotionEvent event) {
-        final int SWIPE_THRESHOLD = 0; // detect swipe
+        final int SWIPE_THRESHOLD = 50; // detect swipe
         boolean result = false;
 
         try {
