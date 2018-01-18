@@ -54,6 +54,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 app:srcCompat="@drawable/ic_skip_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -64,8 +65,8 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:visibility="invisible"
                 app:srcCompat="@drawable/ic_arrow_back_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -77,6 +78,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 app:srcCompat="@drawable/ic_arrow_forward_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -89,6 +91,7 @@
                 android:layout_marginRight="16dp"
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_done_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
         </FrameLayout>
     </LinearLayout>

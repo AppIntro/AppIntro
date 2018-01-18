@@ -48,6 +48,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
+                android:visibility="invisible"
                 android:text="@string/app_intro_skip_button"
                 android:textColor="@android:color/white" />
 
@@ -60,8 +61,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
-                android:visibility="invisible"
                 app:srcCompat="@drawable/ic_navigate_before_white"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
@@ -73,6 +74,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
+                android:visibility="invisible"
                 app:srcCompat="@drawable/ic_navigate_next_white"
                 tools:ignore="ContentDescription" />
 
@@ -85,6 +87,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
+                android:visibility="invisible"
                 android:text="@string/app_intro_done_button"
                 android:textColor="@android:color/white"
                 android:visibility="gone" />
