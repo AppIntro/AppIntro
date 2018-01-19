@@ -80,6 +80,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         TextView t = v.findViewById(R.id.title);
         TextView d = v.findViewById(R.id.description);
         ImageView i = v.findViewById(R.id.image);
+        LinearLayout imageContainer = v.findViewById(R.id.imageContainer);
         mainLayout = v.findViewById(R.id.main);
 
         t.setText(title);
@@ -101,6 +102,8 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
             }
         }
         i.setImageResource(drawable);
+        imageContainer.setVisibility(drawable == 0 ? View.GONE : View.VISIBLE);
+
         mainLayout.setBackgroundColor(bgColor);
 
         return v;
