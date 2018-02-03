@@ -1,0 +1,18 @@
+<resources>
+    <!-- Main Strings -->
+    <string name="app_name">Ejemplo de AppIntro</string>
+    <string name="drawer_header">Cabecera del Drawer</string>
+    <string name="launch_demo">Iniciar Demo</string>
+
+    <!-- 1st Tab Group -->
+    <string name="default_intro">Este es el ejemplo más sencillo posible de la librería AppIntro. Puede llevarse a cabo con muy pocas líneas de código, y está disponible con dos layouts distintos. Pulsa en el botón de abajo para iniciar la demo.</string>
+    <string name="default_intro2">Este es el segundo ejemplo de la librería AppIntro. Puede llevarse a cabo con muy pocas líneas de código, y este es el segundo tipo de layout que ofrece la librería. Pulsa en el botón de abajo para iniciar la demo.</string>
+    <string name="custom_layout_intro">Aquí se demuestra como se puede usar un layout personalizado en la librería para tener un mayor nivel de personalización. Pulsa en el botón de abajo para iniciar la demo.</string>
+    <string name="custom_background_intro">Aquí se demuestra como se puede poner un fondo personalizado para cada slide. Esto es util si quieres usar colores contrastando con imagenes para tus fondos. Pulsa en el botón de abajo para iniciar la demo.</string>
+
+    <!-- 2nd Tab Group -->
+    <string name="perms_intro1">Aquí se demuestra como pedir permisos del sistema en cualquiera de las slides. Pulsa en el botón para iniciar la demo.</string>
+    <string name="perms_intro2">Aquí se demuestra como pedir permisos del sistema en cualquiera de las slides, usando el segundo layout. Pulsa en el botón para iniciar la demo.</string>
+
+    <!-- 3rd Tab Group -->
+</resources>
