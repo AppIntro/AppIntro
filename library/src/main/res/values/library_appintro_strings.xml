@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string name="define_appintro"></string>
+    <!-- Author section -->
+    <string name="library_appintro_author">Paolo Rotolo</string>
+    <string name="library_appintro_authorWebsite">http://paolorotolo.github.io/</string>
+    <!-- Library section -->
+    <string name="library_appintro_libraryName">AppIntro</string>
+    <string name="library_appintro_libraryDescription">AppIntro is a library for making a cool intro in your Android apps.</string>
+    <string name="library_appintro_libraryWebsite">https://github.com/PaoloRotolo/AppIntro</string>
+    <string name="library_appintro_libraryVersion">3.2.0</string>
+    <!-- OpenSource section -->
+    <string name="library_appintro_isOpenSource">true</string>
+    <string name="library_appintro_repositoryLink">https://github.com/PaoloRotolo/AppIntro</string>
+    <!-- ClassPath for autoDetect section -->
+    <string name="library_appintro_classPath">com.github.paolorotolo.appintro</string>
+    <!-- License section -->
+    <string name="library_appintro_licenseId">apache_2_0</string>
+    <!-- Custom variables section -->
+</resources>
