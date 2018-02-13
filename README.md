@@ -8,11 +8,9 @@
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
-### *Watch the demo video on YouTube*
-[![Intro demo video](https://img.youtube.com/vi/-KgAAbZz248/0.jpg)](https://www.youtube.com/watch?v=-KgAAbZz248)
+*Watch the [demo video](https://www.youtube.com/watch?v=-KgAAbZz248) on YouTube*
 
 ## Usage
 
@@ -33,7 +31,7 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 2. **Add the dependency**
 ```gradle
 	dependencies {
-	        compile 'com.github.apl-devs:appintro:v4.2.2'
+	        compile 'com.github.apl-devs:appintro:v4.2.3'
 	}
 ```
 
@@ -114,8 +112,7 @@ public class IntroActivity extends AppIntro2 {
 }
 ```
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
 
 #### Slides
@@ -270,10 +267,8 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 
 **Hermes - Material IRC Client**
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
 ## Apps using AppIntro
 If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/PaoloRotolo/AppIntro/issues/325)!
