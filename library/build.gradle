@@ -11,7 +11,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 13
-        versionName "4.1.0"
+        versionName "4.2.3"
 
         consumerProguardFiles 'consumer-proguard-rules.pro'
         vectorDrawables.useSupportLibrary = true
