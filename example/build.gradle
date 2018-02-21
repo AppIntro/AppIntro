@@ -26,6 +26,12 @@ android {
     lintOptions {
         warning 'MissingTranslation'
     }
+
+    sourceSets {
+
+        test.setRoot('test')
+        instrumentTest.setRoot('tests')
+    }
 }
 
 dependencies {
