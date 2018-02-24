@@ -40,7 +40,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public void goToNextSlide() {
-        if (LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             setCurrentItem(getCurrentItem() - 1);
         } else {
             setCurrentItem(getCurrentItem() + 1);
@@ -49,7 +49,7 @@ public final class AppIntroViewPager extends ViewPager {
 
     public void goToPreviousSlide() {
         try {
-            if (LayoutUtil.isRtl(getResources())) {
+            if (LayoutUtil.isRtl(getContext())) {
                 setCurrentItem(getCurrentItem() + 1);
             } else {
                 setCurrentItem(getCurrentItem() - 1);
@@ -61,7 +61,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public boolean isFirstSlide(int size) {
-        if (LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             return getCurrentItem() - size + 1 == 0;
         } else {
             return getCurrentItem() == 0;
@@ -198,7 +198,7 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        if (LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             return !result;
         } else {
             return result;

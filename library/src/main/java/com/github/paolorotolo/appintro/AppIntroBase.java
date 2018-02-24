@@ -972,7 +972,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     protected boolean isRtl() {
-        return LayoutUtil.isRtl(getResources());
+        return LayoutUtil.isRtl(getApplicationContext());
     }
 
     private final class NextButtonOnClickListener implements View.OnClickListener {
