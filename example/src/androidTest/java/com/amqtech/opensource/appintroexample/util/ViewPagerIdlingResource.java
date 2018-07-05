@@ -1,7 +1,7 @@
 package com.amqtech.opensource.appintroexample.util;
 
-import android.support.test.espresso.IdlingResource;
-import android.support.v4.view.ViewPager;
+import androidx.test.espresso.IdlingResource;
+import androidx.viewpager.widget.ViewPager;
 
 public class ViewPagerIdlingResource implements IdlingResource {
 

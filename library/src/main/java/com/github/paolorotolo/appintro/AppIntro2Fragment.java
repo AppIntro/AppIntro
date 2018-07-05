@@ -1,8 +1,8 @@
 package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 
 public final class AppIntro2Fragment extends AppIntroBaseFragment {
     public static AppIntroFragment newInstance(CharSequence title, CharSequence description,
