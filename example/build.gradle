@@ -11,7 +11,6 @@ android {
         versionCode 2
         versionName "1.0.1"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -20,17 +19,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    packagingOptions {
-        exclude 'LICENSE.txt'
-    }
     lintOptions {
         warning 'MissingTranslation'
-    }
-
-    sourceSets {
-
-        test.setRoot('test')
-        instrumentTest.setRoot('tests')
     }
 }
 
@@ -40,14 +30,6 @@ dependencies {
 
     compile('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
-    }
-
-    // test dependencies
-    androidTestCompile('com.android.support.test:runner:0.5') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
-        exclude group: 'com.android.support', module: 'support-annotations'
     }
 }
 
