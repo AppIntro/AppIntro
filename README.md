@@ -52,9 +52,15 @@ public class IntroActivity extends AppIntro {
         addSlide(thirdFragment);
         addSlide(fourthFragment);
 
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+        // Instead of fragments, you can also use our default slide.
+        // Just create a `SliderPage` and provide title, description, background and image.
+        // AppIntro will do the rest.
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(title);
+        sliderPage.setDescription(description);
+        sliderPage.setImageDrawable(image);
+        sliderPage.setBgColor(backgroundColor);
+        addSlide(AppIntroFragment.newInstance(sliderPage));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
