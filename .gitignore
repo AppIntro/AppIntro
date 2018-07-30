@@ -52,3 +52,6 @@ captures/
 !/example/example-release-v7.apk
 !/example/proguard-rules.pro
 .idea/
+
+# macbook file
+.DS_Store
