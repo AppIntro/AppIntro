@@ -26,17 +26,17 @@ package com.amqtech.opensource.appintroexample.util;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import android.support.test.runner.lifecycle.Stage;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.test.runner.lifecycle.Stage;
 import android.view.View;
 
 import org.hamcrest.Matcher;
 
 import java.util.Collection;
 
-import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 
 /**
  * An Espresso ViewAction that changes the orientation of the screen

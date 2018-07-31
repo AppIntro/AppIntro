@@ -1,7 +1,7 @@
 package com.github.paolorotolo.appintro.model;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by Mike on 21/02/2018.
