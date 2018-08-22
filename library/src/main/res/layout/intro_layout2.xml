@@ -53,6 +53,7 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
+                android:contentDescription="@string/app_intro_skip_button"
                 app:srcCompat="@drawable/ic_skip_white"
                 tools:ignore="ContentDescription" />
 
@@ -65,6 +66,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:visibility="invisible"
+                android:contentDescription="@string/app_intro_back_button"
                 app:srcCompat="@drawable/ic_arrow_back_white"
                 tools:ignore="ContentDescription" />
 
@@ -76,6 +78,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:contentDescription="@string/app_intro_next_button"
                 app:srcCompat="@drawable/ic_arrow_forward_white"
                 tools:ignore="ContentDescription" />
 
@@ -88,6 +91,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:visibility="gone"
+                android:contentDescription="@string/app_intro_done_button"
                 app:srcCompat="@drawable/ic_done_white"
                 tools:ignore="ContentDescription" />
         </FrameLayout>
