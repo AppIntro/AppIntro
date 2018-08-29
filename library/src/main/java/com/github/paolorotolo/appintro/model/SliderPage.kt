@@ -16,6 +16,6 @@ data class SliderPage @JvmOverloads constructor(
         var titleTypeface: String? = null,
         var descTypeface: String? = null
 ) {
-    val titleString = title?.toString()
-    val descriptionString = description?.toString()
+    val titleString : String? get() = title?.toString()
+    val descriptionString : String? get() = description?.toString()
 }
