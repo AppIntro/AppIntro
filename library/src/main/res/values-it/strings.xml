@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">SALTA</string>
+    <string name="app_intro_next_button">AVANTI</string>
+    <string name="app_intro_back_button">INDIETRO</string>
+    <string name="app_intro_done_button">FINE</string>
+</resources>
