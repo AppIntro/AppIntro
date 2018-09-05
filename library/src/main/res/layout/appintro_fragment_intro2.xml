@@ -6,5 +6,5 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/appIntro2BottomBarHeight">
 
-    <include layout="@layout/fragment_intro_content" />
+    <include layout="@layout/appintro_fragment_intro_content" />
 </LinearLayout>

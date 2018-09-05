@@ -28,7 +28,7 @@ public abstract class AppIntro2 extends AppIntroBase {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.intro_layout2;
+        return R.layout.appintro_intro_layout2;
     }
 
     /**

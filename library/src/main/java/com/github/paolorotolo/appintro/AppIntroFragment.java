@@ -63,6 +63,6 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_intro;
+        return R.layout.appintro_fragment_intro;
     }
 }
