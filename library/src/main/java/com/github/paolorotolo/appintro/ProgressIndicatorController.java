@@ -15,7 +15,7 @@ public class ProgressIndicatorController implements IndicatorController {
 
     @Override
     public View newInstance(@NonNull Context context) {
-        mProgressBar = (ProgressBar) View.inflate(context, R.layout.progress_indicator, null);
+        mProgressBar = (ProgressBar) View.inflate(context, R.layout.appintro_progress_indicator, null);
         if (selectedDotColor != DEFAULT_COLOR)
             mProgressBar.getProgressDrawable().setColorFilter(selectedDotColor,
                     PorterDuff.Mode.SRC_IN);
