@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation project(':library')
 
     implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
@@ -36,6 +36,6 @@ dependencies {
     }
 
     // test dependencies
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
