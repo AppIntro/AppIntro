@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.amqtech.opensource.appintroexample"
@@ -11,7 +10,7 @@ android {
         versionCode 2
         versionName "1.0.1"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -29,16 +28,14 @@ android {
 }
 
 dependencies {
-    compile 'com.github.apl-devs:appintro:v4.2.0'
-    compile('com.mikepenz:materialdrawer:5.9.1@aar') {
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+    implementation project(':library')
+
+    implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
     }
+
     // test dependencies
-    androidTestCompile('com.android.support.test:runner:0.5') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    compile 'com.android.support:support-annotations:27.0.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 }

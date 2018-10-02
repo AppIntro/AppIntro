@@ -1,17 +1,18 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 
 import com.github.paolorotolo.appintro.util.LayoutUtil;
+import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.lang.reflect.Field;
 
 public final class AppIntroViewPager extends ViewPager {
+    private static final String TAG = LogHelper.makeLogTag(AppIntroViewPager.class);
     private static final int ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000;
     private boolean pagingEnabled;
     private boolean nextPagingEnabled;
@@ -39,7 +40,7 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     public void goToNextSlide() {
-        if (LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             setCurrentItem(getCurrentItem() - 1);
         } else {
             setCurrentItem(getCurrentItem() + 1);
@@ -48,18 +49,19 @@ public final class AppIntroViewPager extends ViewPager {
 
     public void goToPreviousSlide() {
         try {
-            if (LayoutUtil.isRtl(getResources())) {
+            if (LayoutUtil.isRtl(getContext())) {
                 setCurrentItem(getCurrentItem() + 1);
             } else {
                 setCurrentItem(getCurrentItem() - 1);
             }
-        } catch (Exception e){
-            Log.e("AppIntroViewPager", "goToPreviousSlide: An error occured while switching to the previous slide. Was isFirstSlide checked before the call?");
+        } catch (Exception e) {
+            LogHelper.e(TAG, "goToPreviousSlide: An error occurred while switching to the " +
+                    "previous slide. Was isFirstSlide checked before the call?");
         }
     }
 
     public boolean isFirstSlide(int size) {
-        if ( LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             return getCurrentItem() - size + 1 == 0;
         } else {
             return getCurrentItem() == 0;
@@ -86,6 +88,11 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        // If paging is disabled we should ignore any viewpager touch (also, not display any error message)
+        if (!pagingEnabled) {
+            return false;
+        }
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onInterceptTouchEvent(event);
@@ -100,10 +107,16 @@ public final class AppIntroViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        // If paging is disabled we should ignore any viewpager touch (also, not display any error message)
+        if (!pagingEnabled) {
+            return false;
+        }
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onTouchEvent(event);
         }
+
         // Check if we should handle the touch event
         else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
             // Call callback method if threshold has been reached
@@ -115,10 +128,6 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     private boolean checkPagingState(MotionEvent event) {
-        if (!pagingEnabled) {
-            return true;
-        }
-
         if (!nextPagingEnabled) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 currentTouchDownX = event.getX();
@@ -189,7 +198,7 @@ public final class AppIntroViewPager extends ViewPager {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        if (LayoutUtil.isRtl(getResources())) {
+        if (LayoutUtil.isRtl(getContext())) {
             return !result;
         } else {
             return result;

@@ -3,8 +3,8 @@ package com.github.paolorotolo.appintro;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +26,7 @@ class DefaultIndicatorController implements IndicatorController {
     @Override
     public View newInstance(@NonNull Context context) {
         mContext = context;
-        mDotLayout = (LinearLayout) View.inflate(context, R.layout.default_indicator, null);
+        mDotLayout = (LinearLayout) View.inflate(context, R.layout.appintro_default_indicator, null);
 
         return mDotLayout;
     }
@@ -40,7 +40,7 @@ class DefaultIndicatorController implements IndicatorController {
 
         for (int i = 0; i < slideCount; i++) {
             ImageView dot = new ImageView(mContext);
-            dot.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.indicator_dot_grey));
+            dot.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.appintro_indicator_dot_grey));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -57,7 +57,7 @@ class DefaultIndicatorController implements IndicatorController {
         mCurrentPosition = index;
         for (int i = 0; i < mSlideCount; i++) {
             int drawableId = (i == index) ?
-                    (R.drawable.indicator_dot_white) : (R.drawable.indicator_dot_grey);
+                    (R.drawable.appintro_indicator_dot_white) : (R.drawable.appintro_indicator_dot_grey);
             Drawable drawable = ContextCompat.getDrawable(mContext, drawableId);
             if (selectedDotColor != DEFAULT_COLOR && i == index)
                 drawable.mutate().setColorFilter(selectedDotColor, PorterDuff.Mode.SRC_IN);

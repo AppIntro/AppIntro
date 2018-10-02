@@ -1,11 +1,11 @@
 package com.amqtech.opensource.appintroexample.ui;
 
-import android.support.v4.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 import com.amqtech.opensource.appintroexample.ui.fragment.MainTabsFragment;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar tb = findViewById(R.id.toolbar);
         tb.setTitle(getResources().getString(R.string.app_name));
         tb.setTitleTextColor(Color.parseColor("#FFFFFF"));
 

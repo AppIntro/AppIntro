@@ -6,8 +6,8 @@ package com.amqtech.opensource.appintroexample.util;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.fragment.app.Fragment;import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -26,7 +26,7 @@ import com.github.paolorotolo.appintroexample.R;
  * the user's scroll progress.
  * <p/>
  * To use the component, simply add it to your view hierarchy. Then in your
- * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
+ * {@link android.app.Activity} or {@link Fragment} call
  * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
  * <p/>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
@@ -38,23 +38,10 @@ import com.github.paolorotolo.appintroexample.R;
  * providing the layout ID of your custom layout.
  */
 public class TabLayout extends HorizontalScrollView {
-    /**
-     * Allows complete control over the colors drawn in the tab layout. Set with
-     * {@link #setCustomTabColorizer(TabColorizer)}.
-     */
-    public interface TabColorizer {
-
-        /**
-         * @return return the color of the indicator used when {@code position} is selected.
-         */
-        int getIndicatorColor(int position);
-
-    }
-
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
-
+    private final TabStrip mTabStrip;
     private int mTitleOffset;
 
     private int mTabViewLayoutId;
@@ -62,10 +49,8 @@ public class TabLayout extends HorizontalScrollView {
     private boolean mDistributeEvenly;
 
     private ViewPager mViewPager;
-    private SparseArray<String> mContentDescriptions = new SparseArray<String>();
+    private SparseArray<String> mContentDescriptions = new SparseArray<>();
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
-
-    private final TabStrip mTabStrip;
 
     public TabLayout(Context context) {
         this(context, null);
@@ -117,7 +102,7 @@ public class TabLayout extends HorizontalScrollView {
      * required to set any {@link ViewPager.OnPageChangeListener} through this method. This is so
      * that the layout can update it's scroll position correctly.
      *
-     * @see ViewPager#setOnPageChangeListener(ViewPager.OnPageChangeListener)
+     * @see ViewPager#setOnPageChangeListener( ViewPager.OnPageChangeListener)
      */
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         mViewPagerPageChangeListener = listener;
@@ -143,7 +128,7 @@ public class TabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }
@@ -184,7 +169,7 @@ public class TabLayout extends HorizontalScrollView {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
-                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                tabTitleView = tabView.findViewById(mTabViewTextViewId);
             }
 
             if (tabView == null) {
@@ -248,6 +233,19 @@ public class TabLayout extends HorizontalScrollView {
 
             scrollTo(targetScrollX, 0);
         }
+    }
+
+    /**
+     * Allows complete control over the colors drawn in the tab layout. Set with
+     * {@link #setCustomTabColorizer(TabColorizer)}.
+     */
+    public interface TabColorizer {
+
+        /**
+         * @return return the color of the indicator used when {@code position} is selected.
+         */
+        int getIndicatorColor(int position);
+
     }
 
     private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {

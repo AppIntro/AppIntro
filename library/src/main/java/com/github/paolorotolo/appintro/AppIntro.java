@@ -1,8 +1,8 @@
 package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,7 +17,7 @@ public abstract class AppIntro extends AppIntroBase {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.intro_layout;
+        return R.layout.appintro_intro_layout;
     }
 
     /**
@@ -26,7 +26,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param color your color resource
      */
     public void setBarColor(@ColorInt final int color) {
-        LinearLayout bottomBar = (LinearLayout) findViewById(R.id.bottom);
+        LinearLayout bottomBar = findViewById(R.id.bottom);
         bottomBar.setBackgroundColor(color);
     }
 
@@ -36,7 +36,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param color your color
      */
     public void setNextArrowColor(@ColorInt final int color) {
-        ImageButton nextButton = (ImageButton) findViewById(R.id.next);
+        ImageButton nextButton = findViewById(R.id.next);
         nextButton.setColorFilter(color);
     }
 
@@ -46,7 +46,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param color your color resource
      */
     public void setSeparatorColor(@ColorInt final int color) {
-        TextView separator = (TextView) findViewById(R.id.bottom_separator);
+        TextView separator = findViewById(R.id.bottom_separator);
         separator.setBackgroundColor(color);
     }
 
@@ -56,7 +56,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param text your text
      */
     public void setSkipText(@Nullable final CharSequence text) {
-        TextView skipText = (TextView) findViewById(R.id.skip);
+        TextView skipText = findViewById(R.id.skip);
         skipText.setText(text);
     }
 
@@ -66,7 +66,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param typeURL URL of font file located in Assets folder
      */
     public void setSkipTextTypeface(@Nullable final String typeURL) {
-        TextView skipText = (TextView) findViewById(R.id.skip);
+        TextView skipText = findViewById(R.id.skip);
         if (CustomFontCache.get(typeURL, this) != null) {
             skipText.setTypeface(CustomFontCache.get(typeURL, this));
         }
@@ -78,7 +78,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param text your text
      */
     public void setDoneText(@Nullable final CharSequence text) {
-        TextView doneText = (TextView) findViewById(R.id.done);
+        TextView doneText = findViewById(R.id.done);
         doneText.setText(text);
     }
 
@@ -88,7 +88,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param typeURL your text
      */
     public void setDoneTextTypeface(@Nullable final String typeURL) {
-        TextView doneText = (TextView) findViewById(R.id.done);
+        TextView doneText = findViewById(R.id.done);
         if (CustomFontCache.get(typeURL, this) != null) {
             doneText.setTypeface(CustomFontCache.get(typeURL, this));
         }
@@ -100,7 +100,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param colorDoneText your color resource
      */
     public void setColorDoneText(@ColorInt final int colorDoneText) {
-        TextView doneText = (TextView) findViewById(R.id.done);
+        TextView doneText = findViewById(R.id.done);
         doneText.setTextColor(colorDoneText);
     }
 
@@ -110,7 +110,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param colorSkipButton your color resource
      */
     public void setColorSkipButton(@ColorInt final int colorSkipButton) {
-        TextView skip = (TextView) findViewById(R.id.skip);
+        TextView skip = findViewById(R.id.skip);
         skip.setTextColor(colorSkipButton);
     }
 
@@ -120,7 +120,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param imageNextButton your drawable resource
      */
     public void setImageNextButton(final Drawable imageNextButton) {
-        final ImageView nextButton = (ImageView) findViewById(R.id.next);
+        final ImageView nextButton = findViewById(R.id.next);
         nextButton.setImageDrawable(imageNextButton);
     }
 
@@ -142,7 +142,7 @@ public abstract class AppIntro extends AppIntroBase {
      * @param showSeparator Set : true to display. false to hide.
      */
     public void showSeparator(boolean showSeparator) {
-        TextView bottomSeparator = (TextView) findViewById(R.id.bottom_separator);
+        TextView bottomSeparator = findViewById(R.id.bottom_separator);
         if(showSeparator) {
             bottomSeparator.setVisibility(View.VISIBLE);
         } else {

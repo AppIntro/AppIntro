@@ -1,10 +1,10 @@
 package com.amqtech.opensource.appintroexample.ui.fragment;
 
-import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +36,10 @@ public class PermissionTabsFragment extends Fragment {
 
         adapter = new PermsPagerAdapter(getChildFragmentManager(), Titles, Numboftabs);
 
-        pager = (ViewPager) getView().findViewById(R.id.permPager);
+        pager = getView().findViewById(R.id.permPager);
         pager.setAdapter(adapter);
 
-        tabs = (TabLayout) getView().findViewById(R.id.permTabs);
+        tabs = getView().findViewById(R.id.permTabs);
         tabs.setBackgroundColor(Color.parseColor("#1976D2"));
         tabs.setDistributeEvenly(true);
         tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {

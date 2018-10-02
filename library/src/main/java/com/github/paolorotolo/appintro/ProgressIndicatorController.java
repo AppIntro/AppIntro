@@ -2,7 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -15,7 +15,7 @@ public class ProgressIndicatorController implements IndicatorController {
 
     @Override
     public View newInstance(@NonNull Context context) {
-        mProgressBar = (ProgressBar) View.inflate(context, R.layout.progress_indicator, null);
+        mProgressBar = (ProgressBar) View.inflate(context, R.layout.appintro_progress_indicator, null);
         if (selectedDotColor != DEFAULT_COLOR)
             mProgressBar.getProgressDrawable().setColorFilter(selectedDotColor,
                     PorterDuff.Mode.SRC_IN);

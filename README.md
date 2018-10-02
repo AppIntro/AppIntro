@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/apl-devs/appintro.svg)](https://jitpack.io/#apl-devs/appintro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
-[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
+[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <p>Sample App:</p>
 <a href="https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
@@ -8,11 +8,9 @@
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
-### *Watch the demo video on YouTube*
-[![Intro demo video](https://img.youtube.com/vi/-KgAAbZz248/0.jpg)](https://www.youtube.com/watch?v=-KgAAbZz248)
+*Watch the [demo video](https://www.youtube.com/watch?v=-KgAAbZz248) on YouTube*
 
 ## Usage
 
@@ -33,7 +31,7 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 2. **Add the dependency**
 ```gradle
 	dependencies {
-	        compile 'com.github.apl-devs:appintro:v4.2.0'
+	        implementation 'com.github.apl-devs:appintro:v4.2.3'
 	}
 ```
 
@@ -54,9 +52,15 @@ public class IntroActivity extends AppIntro {
         addSlide(thirdFragment);
         addSlide(fourthFragment);
 
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+        // Instead of fragments, you can also use our default slide.
+        // Just create a `SliderPage` and provide title, description, background and image.
+        // AppIntro will do the rest.
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(title);
+        sliderPage.setDescription(description);
+        sliderPage.setImageDrawable(image);
+        sliderPage.setBgColor(backgroundColor);
+        addSlide(AppIntroFragment.newInstance(sliderPage));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
@@ -114,8 +118,7 @@ public class IntroActivity extends AppIntro2 {
 }
 ```
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
 
 #### Slides
@@ -270,10 +273,8 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 
 **Hermes - Material IRC Client**
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
 ## Apps using AppIntro
 If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/PaoloRotolo/AppIntro/issues/325)!
@@ -332,3 +333,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [SelfMote - Wireless Remote app](https://play.google.com/store/apps/details?id=com.dmicse.selfmote.free)
  * [Boo Music Player](https://play.google.com/store/apps/details?id=cdn.BooPlayer)
  * [BeatPrompter](https://play.google.com/store/apps/details?id=com.stevenfrew.beatprompter)
+ * [Orario Treni Trenitalia](https://play.google.com/store/apps/details?id=com.jaus.albertogiunta.justintrain_oraritreni)
+ * [Tipsy for Gardaland](https://play.google.com/store/apps/details?id=com.MonkeyLab.MyGardaland&hl=it)

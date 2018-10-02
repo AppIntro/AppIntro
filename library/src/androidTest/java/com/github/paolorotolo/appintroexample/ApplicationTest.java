@@ -1,4 +1,4 @@
-package com.github.paolorotolo.appintro;
+package com.github.paolorotolo.appintroexample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
