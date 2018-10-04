@@ -17,7 +17,6 @@ public abstract class AppIntro2 extends AppIntroBase {
 
     protected View customBackgroundView;
     protected FrameLayout backgroundFrame;
-    private ArrayList<Integer> transitionColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,15 +66,5 @@ public abstract class AppIntro2 extends AppIntroBase {
         if (customBackgroundView != null) {
             backgroundFrame.addView(customBackgroundView);
         }
-    }
-
-    /**
-     * For color transition, will be shown only if color values are properly set;
-     * Size of the color array must be equal to the number of slides added
-     *
-     * @param colors Set color values
-     */
-    public void setAnimationColors(ArrayList<Integer> colors) {
-        transitionColors = colors;
     }
 }
