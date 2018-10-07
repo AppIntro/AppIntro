@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/apl-devs/appintro.svg)](https://jitpack.io/#apl-devs/appintro)
+[![](https://jitpack.io/v/paolorotolo/AppIntro.svg)](https://jitpack.io/#paolorotolo/appintro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
 [![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -28,7 +28,7 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 2. **Add the dependency**
 ```gradle
 	dependencies {
-	        implementation 'com.github.paolorotolo:AppIntro:v5.0.0'
+	        implementation 'com.github.paolorotolo:appintro:v5.0.0'
 	}
 ```
 
