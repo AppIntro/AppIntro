@@ -10,7 +10,6 @@ android {
         versionCode 2
         versionName "1.0.1"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -34,8 +33,4 @@ dependencies {
     implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
     }
-
-    // test dependencies
-    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
 }
