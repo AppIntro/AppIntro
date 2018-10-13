@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro.model;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.FontRes;
 
 /**
  * Created by Mike on 21/02/2018.
@@ -25,9 +26,9 @@ public class SliderPagerBuilder {
     @ColorInt
     private int descColor;
 
-    private String titleTypeface;
+    private Object titleTypeface;
 
-    private String descTypeface;
+    private Object descTypeface;
 
     public SliderPagerBuilder(){
 
@@ -70,13 +71,22 @@ public class SliderPagerBuilder {
     }
 
     public SliderPagerBuilder titleTypeface(String titleTypeface){
+        this.titleTypeface = titleTypeface;
+        return this;
+    }
 
+    public SliderPagerBuilder titleTypeface(@FontRes int titleTypeface) {
         this.titleTypeface = titleTypeface;
         return this;
     }
 
     public SliderPagerBuilder descTypeface(String descTypeface){
 
+        this.descTypeface = descTypeface;
+        return this;
+    }
+
+    public SliderPagerBuilder descTypeface(@FontRes int descTypeface) {
         this.descTypeface = descTypeface;
         return this;
     }

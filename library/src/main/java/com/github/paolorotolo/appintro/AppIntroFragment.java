@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 
+import androidx.annotation.FontRes;
 import com.github.paolorotolo.appintro.model.SliderPage;
 
 public final class AppIntroFragment extends AppIntroBaseFragment {
@@ -28,10 +29,34 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                 0, 0);
     }
 
+    public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
+                                               CharSequence description, @FontRes int descTypeface,
+                                               @DrawableRes int imageDrawable,
+                                               @ColorInt int bgColor) {
+        return newInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor,
+                0, 0);
+    }
+
     public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
                                                CharSequence description, String descTypeface,
                                                @DrawableRes int imageDrawable, @ColorInt int bgColor,
                                                @ColorInt int titleColor, @ColorInt int descColor) {
+        return createInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor, titleColor,
+                descColor);
+    }
+
+    public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
+                                               CharSequence description, @FontRes int descTypeface,
+                                               @DrawableRes int imageDrawable, @ColorInt int bgColor,
+                                               @ColorInt int titleColor, @ColorInt int descColor) {
+        return createInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor, titleColor,
+                descColor);
+    }
+
+    private static AppIntroFragment createInstance(CharSequence title, Object titleTypeface,
+                                                   CharSequence description, Object descTypeface,
+                                                   @DrawableRes int imageDrawable, @ColorInt int bgColor,
+                                                   @ColorInt int titleColor, @ColorInt int descColor) {
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle(title);
         sliderPage.setTitleTypeface(titleTypeface);
@@ -49,9 +74,15 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, sliderPage.getTitleString());
-        args.putString(ARG_TITLE_TYPEFACE, sliderPage.getTitleTypeface());
+        if (sliderPage.getTitleTypeface() instanceof Integer)
+            args.putInt(ARG_TITLE_TYPEFACE, (int) sliderPage.getTitleTypeface());
+        else
+            args.putString(ARG_TITLE_TYPEFACE, (String) sliderPage.getTitleTypeface());
         args.putString(ARG_DESC, sliderPage.getDescriptionString());
-        args.putString(ARG_DESC_TYPEFACE, sliderPage.getDescTypeface());
+        if (sliderPage.getTitleTypeface() instanceof Integer)
+            args.putInt(ARG_DESC_TYPEFACE, (int) sliderPage.getDescTypeface());
+        else
+            args.putString(ARG_DESC_TYPEFACE, (String) sliderPage.getDescTypeface());
         args.putInt(ARG_DRAWABLE, sliderPage.getImageDrawable());
         args.putInt(ARG_BG_COLOR, sliderPage.getBgColor());
         args.putInt(ARG_TITLE_COLOR, sliderPage.getTitleColor());
