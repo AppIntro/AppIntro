@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintro;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.util.CustomFontCache;
 import com.github.paolorotolo.appintro.util.LogHelper;
+import com.github.paolorotolo.appintro.util.TypefaceWorker;
 
 public abstract class AppIntroBaseFragment extends Fragment implements ISlideSelectionListener,
         ISlideBackgroundColorHolder {
@@ -29,7 +31,8 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
     private static final String TAG = LogHelper.makeLogTag(AppIntroBaseFragment.class);
 
     private int drawable, bgColor, titleColor, descColor, layoutId;
-    private String title, titleTypeface, description, descTypeface;
+    private String title, description;
+    private TypefaceWorker titleTypeface, descTypeface;
 
     private LinearLayout mainLayout;
 
@@ -43,10 +46,10 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
             drawable = getArguments().getInt(ARG_DRAWABLE);
             title = getArguments().getString(ARG_TITLE);
             titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ?
-                    getArguments().getString(ARG_TITLE_TYPEFACE) : "";
+                    new TypefaceWorker(getArguments().get(ARG_TITLE_TYPEFACE)) : new TypefaceWorker();
             description = getArguments().getString(ARG_DESC);
             descTypeface = getArguments().containsKey(ARG_DESC_TYPEFACE) ?
-                    getArguments().getString(ARG_DESC_TYPEFACE) : "";
+                    new TypefaceWorker(getArguments().get(ARG_DESC_TYPEFACE)) : new TypefaceWorker();
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ?
                     getArguments().getInt(ARG_TITLE_COLOR) : 0;
@@ -62,9 +65,11 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (savedInstanceState != null) {
             drawable = savedInstanceState.getInt(ARG_DRAWABLE);
             title = savedInstanceState.getString(ARG_TITLE);
-            titleTypeface = savedInstanceState.getString(ARG_TITLE_TYPEFACE);
+            titleTypeface = savedInstanceState.get(ARG_TITLE_TYPEFACE) != null ?
+                    new TypefaceWorker(savedInstanceState.get(ARG_TITLE_TYPEFACE)) : new TypefaceWorker();
             description = savedInstanceState.getString(ARG_DESC);
-            descTypeface = savedInstanceState.getString(ARG_DESC_TYPEFACE);
+            descTypeface = savedInstanceState.get(ARG_DESC_TYPEFACE) != null ?
+                    new TypefaceWorker(savedInstanceState.get(ARG_DESC_TYPEFACE)) : new TypefaceWorker();
             bgColor = savedInstanceState.getInt(ARG_BG_COLOR);
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR);
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR);
@@ -74,36 +79,28 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(getLayoutId(), container, false);
-        TextView t = v.findViewById(R.id.title);
-        TextView d = v.findViewById(R.id.description);
-        ImageView i = v.findViewById(R.id.image);
-        mainLayout = v.findViewById(R.id.main);
+        View view = inflater.inflate(getLayoutId(), container, false);
+        TextView titleText = view.findViewById(R.id.title);
+        TextView descriptionText = view.findViewById(R.id.description);
+        ImageView slideImage = view.findViewById(R.id.image);
+        mainLayout = view.findViewById(R.id.main);
 
-        t.setText(title);
+        titleText.setText(title);
         if (titleColor != 0) {
-            t.setTextColor(titleColor);
+            titleText.setTextColor(titleColor);
         }
-        if (titleTypeface != null) {
-            if (CustomFontCache.get(titleTypeface, getContext()) != null) {
-                t.setTypeface(CustomFontCache.get(titleTypeface, getContext()));
-            }
-        }
-        d.setText(description);
+        titleTypeface.setTextTypeface(titleText, getContext());
+        descTypeface.setTextTypeface(descriptionText, getContext());
+        descriptionText.setText(description);
         if (descColor != 0) {
-            d.setTextColor(descColor);
+            descriptionText.setTextColor(descColor);
         }
-        if (descTypeface != null) {
-            if (CustomFontCache.get(descTypeface, getContext()) != null) {
-                d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
-            }
-        }
-        i.setImageResource(drawable);
+        slideImage.setImageResource(drawable);
         mainLayout.setBackgroundColor(bgColor);
 
-        return v;
+        return view;
     }
 
     @Override
@@ -114,7 +111,23 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         outState.putInt(ARG_BG_COLOR, bgColor);
         outState.putInt(ARG_TITLE_COLOR, titleColor);
         outState.putInt(ARG_DESC_COLOR, descColor);
+        saveTypefacesInstanceState(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    private void saveTypefacesInstanceState(Bundle outState) {
+        if (titleTypeface.isAnyTypefaceProvided()) {
+            if (titleTypeface.isFontResource())
+                outState.putInt(ARG_TITLE_TYPEFACE, (int) titleTypeface.getTypeface());
+            else
+                outState.putString(ARG_TITLE_TYPEFACE, (String) titleTypeface.getTypeface());
+        }
+        if (descTypeface.isAnyTypefaceProvided()) {
+            if (descTypeface.isFontResource())
+                outState.putInt(ARG_DESC_TYPEFACE, (int) descTypeface.getTypeface());
+            else
+                outState.putString(ARG_DESC_TYPEFACE, (String) descTypeface.getTypeface());
+        }
     }
 
     @Override

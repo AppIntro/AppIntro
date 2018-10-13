@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.util.CustomFontCache;
 import com.github.paolorotolo.appintro.util.LogHelper;
+import com.github.paolorotolo.appintro.util.TypefaceWorker;
 
 public abstract class AppIntro extends AppIntroBase {
     private static final String TAG = LogHelper.makeLogTag(AppIntro.class);
@@ -63,13 +65,16 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override skip text typeface
      *
-     * @param typeURL URL of font file located in Assets folder
+     * @param typeface <p>the typeface to apply to Skip button - must be a <b>String</b> or <b>Integer</b></p>
      */
-    public void setSkipTextTypeface(@Nullable final String typeURL) {
+    public void setSkipTextTypeface(@Nullable final Object typeface) {
         TextView skipText = findViewById(R.id.skip);
-        if (CustomFontCache.get(typeURL, this) != null) {
-            skipText.setTypeface(CustomFontCache.get(typeURL, this));
-        }
+        setTypefaceToText(skipText, typeface);
+    }
+
+    private void setTypefaceToText(@NonNull TextView text, Object typeface) {
+        TypefaceWorker worker = new TypefaceWorker(typeface);
+        worker.setTextTypeface(text, getApplicationContext());
     }
 
     /**
@@ -85,13 +90,11 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override done text typeface
      *
-     * @param typeURL your text
+     * @param typeface <p>the typeface to apply to Done button - must be a <b>String</b> or <b>Integer</b></p>
      */
-    public void setDoneTextTypeface(@Nullable final String typeURL) {
+    public void setDoneTextTypeface(@Nullable final Object typeface) {
         TextView doneText = findViewById(R.id.done);
-        if (CustomFontCache.get(typeURL, this) != null) {
-            doneText.setTypeface(CustomFontCache.get(typeURL, this));
-        }
+        setTypefaceToText(doneText, getApplicationContext());
     }
 
     /**
