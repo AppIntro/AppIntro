@@ -12,6 +12,7 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
     /**
      * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
+    @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, CharSequence description,
                                                @DrawableRes int imageDrawable,
                                                @ColorInt int bgColor) {
@@ -21,6 +22,7 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
     /**
      * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
+    @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
                                                CharSequence description, String descTypeface,
                                                @DrawableRes int imageDrawable,
@@ -29,6 +31,19 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                 0, 0);
     }
 
+    /**
+     * Generates new instance for AppIntroFragment
+     * @param title CharSequence which will be the slide title
+     * @param titleTypeface @FontRes (Integer) custom title typeface obtained
+     *                     from Resources
+     * @param description CharSequence which will be the slide description
+     * @param descTypeface @FontRes (Integer) custom description typeface
+     *                     obtained from Resources
+     * @param imageDrawable @DrawableRes (Integer) the image that will be
+     *                      displayed, obtained from Resources
+     * @param bgColor @ColorInt (Integer) custom background color
+     * @return AppIntroFragment created instance
+     */
     public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
                                                CharSequence description, @FontRes int descTypeface,
                                                @DrawableRes int imageDrawable,
@@ -37,6 +52,19 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                 0, 0);
     }
 
+    /**
+     * Generates new instance for AppIntroFragment
+     * @param title CharSequence which will be the slide title
+     * @param titleTypeface CharSequence the URL of the custom typeface for
+     *                      the title found at assets folder
+     * @param description CharSequence which will be the slide description
+     * @param descTypeface CharSequence the URL of the custom typeface for
+     *                     the description found at assets folder
+     * @param imageDrawable @DrawableRes (Integer) the image that will be
+     *                      displayed, obtained from Resources
+     * @param bgColor @ColorInt (Integer) custom background color
+     * @return AppIntroFragment created instance
+     */
     public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
                                                CharSequence description, String descTypeface,
                                                @DrawableRes int imageDrawable, @ColorInt int bgColor,
@@ -45,6 +73,21 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                 descColor);
     }
 
+    /**
+     * Generates new instance for AppIntroFragment
+     * @param title CharSequence which will be the slide title
+     * @param titleTypeface @FontRes (Integer) custom title typeface obtained
+     *                     from Resources
+     * @param description CharSequence which will be the slide description
+     * @param descTypeface @FontRes (Integer) custom description typeface
+     *                     obtained from Resources
+     * @param imageDrawable @DrawableRes (Integer) the image that will be
+     *                      displayed, obtained from Resources
+     * @param bgColor @ColorInt (Integer) custom background color
+     * @param titleColor @ColorInt (Integer) custom title color
+     * @param descColor @ColorInt (Integer) custom description color
+     * @return AppIntroFragment created instance
+     */
     public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
                                                CharSequence description, @FontRes int descTypeface,
                                                @DrawableRes int imageDrawable, @ColorInt int bgColor,
@@ -53,6 +96,21 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                 descColor);
     }
 
+    /**
+     * Generates new instance for AppIntroFragment
+     * @param title CharSequence which will be the slide title
+     * @param titleTypeface CharSequence the URL of the custom typeface for
+     *                      the title found at assets folder
+     * @param description CharSequence which will be the slide description
+     * @param descTypeface CharSequence the URL of the custom typeface for
+     *                     the description found at assets folder
+     * @param imageDrawable @DrawableRes (Integer) the image that will be
+     *                      displayed, obtained from Resources
+     * @param bgColor @ColorInt (Integer) custom background color
+     * @param titleColor @ColorInt (Integer) custom title color
+     * @param descColor @ColorInt (Integer) custom description color
+     * @return AppIntroFragment created instance
+     */
     private static AppIntroFragment createInstance(CharSequence title, Object titleTypeface,
                                                    CharSequence description, Object descTypeface,
                                                    @DrawableRes int imageDrawable, @ColorInt int bgColor,
@@ -70,6 +128,12 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
         return newInstance(sliderPage);
     }
 
+    /**
+     * Generates an AppIntroFragment by a given SliderPage
+     * @param sliderPage SliderPage which contains all attributes for the
+     *                   current slide
+     * @return AppIntroFragment created instance
+     */
     public static AppIntroFragment newInstance(SliderPage sliderPage) {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
