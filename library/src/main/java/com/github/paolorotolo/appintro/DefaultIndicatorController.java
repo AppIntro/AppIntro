@@ -3,14 +3,15 @@ package com.github.paolorotolo.appintro;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 class DefaultIndicatorController implements IndicatorController {
     public static final int DEFAULT_COLOR = 1;

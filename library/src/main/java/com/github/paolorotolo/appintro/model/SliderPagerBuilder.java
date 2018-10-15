@@ -30,47 +30,47 @@ public class SliderPagerBuilder {
 
     private Object descTypeface;
 
-    public SliderPagerBuilder(){
+    public SliderPagerBuilder() {
 
     }
 
-    public SliderPagerBuilder title(CharSequence title){
+    public SliderPagerBuilder title(CharSequence title) {
 
         this.title = title;
         return this;
     }
 
-    public SliderPagerBuilder description(CharSequence description){
+    public SliderPagerBuilder description(CharSequence description) {
 
         this.description = description;
         return this;
     }
 
-    public SliderPagerBuilder imageDrawable(int imageDrawable){
+    public SliderPagerBuilder imageDrawable(int imageDrawable) {
 
         this.imageDrawable = imageDrawable;
         return this;
     }
 
-    public SliderPagerBuilder bgColor(int bgColor){
+    public SliderPagerBuilder bgColor(int bgColor) {
 
         this.bgColor = bgColor;
         return this;
     }
 
-    public SliderPagerBuilder titleColor(int titleColor){
+    public SliderPagerBuilder titleColor(int titleColor) {
 
         this.titleColor = titleColor;
-        return  this;
+        return this;
     }
 
-    public SliderPagerBuilder descColor(int descColor){
+    public SliderPagerBuilder descColor(int descColor) {
 
         this.descColor = descColor;
         return this;
     }
 
-    public SliderPagerBuilder titleTypeface(String titleTypeface){
+    public SliderPagerBuilder titleTypeface(String titleTypeface) {
         this.titleTypeface = titleTypeface;
         return this;
     }
@@ -80,7 +80,7 @@ public class SliderPagerBuilder {
         return this;
     }
 
-    public SliderPagerBuilder descTypeface(String descTypeface){
+    public SliderPagerBuilder descTypeface(String descTypeface) {
 
         this.descTypeface = descTypeface;
         return this;
@@ -91,7 +91,7 @@ public class SliderPagerBuilder {
         return this;
     }
 
-    public SliderPage build(){
+    public SliderPage build() {
 
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle(this.title);

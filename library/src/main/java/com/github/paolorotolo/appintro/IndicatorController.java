@@ -1,8 +1,9 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * A controller that is used to provide custom indicator implementations and to control their behaviour.

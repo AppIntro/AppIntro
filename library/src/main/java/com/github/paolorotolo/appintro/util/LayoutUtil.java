@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 public class LayoutUtil {
 

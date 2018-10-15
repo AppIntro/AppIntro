@@ -1,7 +1,8 @@
 package com.github.paolorotolo.appintro;
 
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 class ViewPageTransformer implements ViewPager.PageTransformer {
     private static final float MIN_SCALE_DEPTH = 0.75f;

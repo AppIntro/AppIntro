@@ -4,14 +4,6 @@ import android.animation.ArgbEvaluator;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -28,6 +20,15 @@ import com.github.paolorotolo.appintro.util.LogHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.DEPTH;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FADE;
@@ -893,7 +894,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
-    private void changeSlide(boolean isLastSlide){
+    private void changeSlide(boolean isLastSlide) {
         if (isLastSlide) {
             Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
             handleSlideChanged(currentFragment, null);
@@ -905,7 +906,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     // Returns true if a permission has been requested
-    private boolean checkAndRequestPermissions(){
+    private boolean checkAndRequestPermissions() {
         if (!permissionsArray.isEmpty()) {
             boolean requestPermission = false;
             int permissionPosition = 0;
@@ -931,7 +932,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return false;
     }
 
-    private void updatePagerIndicatorState(){
+    private void updatePagerIndicatorState() {
         if (indicatorContainer != null) {
             if (pagerIndicatorEnabled) {
                 indicatorContainer.setVisibility(View.VISIBLE);
@@ -960,7 +961,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
                 // Check if next slide is the last one
-                if (pager.getCurrentItem()+1 == slidesNumber) {
+                if (pager.getCurrentItem() + 1 == slidesNumber) {
                     changeSlide(true);
                 } else {
                     changeSlide(false);

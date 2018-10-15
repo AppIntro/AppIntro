@@ -1,7 +1,6 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
@@ -10,6 +9,8 @@ import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.lang.reflect.Field;
+
+import androidx.viewpager.widget.ViewPager;
 
 public final class AppIntroViewPager extends ViewPager {
     private static final String TAG = LogHelper.makeLogTag(AppIntroViewPager.class);

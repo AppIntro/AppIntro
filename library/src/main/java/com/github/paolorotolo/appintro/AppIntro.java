@@ -1,18 +1,18 @@
 package com.github.paolorotolo.appintro;
 
 import android.graphics.drawable.Drawable;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.paolorotolo.appintro.util.CustomFontCache;
 import com.github.paolorotolo.appintro.util.LogHelper;
 import com.github.paolorotolo.appintro.util.TypefaceWorker;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public abstract class AppIntro extends AppIntroBase {
     private static final String TAG = LogHelper.makeLogTag(AppIntro.class);
@@ -146,7 +146,7 @@ public abstract class AppIntro extends AppIntroBase {
      */
     public void showSeparator(boolean showSeparator) {
         TextView bottomSeparator = findViewById(R.id.bottom_separator);
-        if(showSeparator) {
+        if (showSeparator) {
             bottomSeparator.setVisibility(View.VISIBLE);
         } else {
             bottomSeparator.setVisibility(View.INVISIBLE);

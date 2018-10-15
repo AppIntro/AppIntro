@@ -1,11 +1,12 @@
 package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
+
+import com.github.paolorotolo.appintro.model.SliderPage;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-
 import androidx.annotation.FontRes;
-import com.github.paolorotolo.appintro.model.SliderPage;
 
 public final class AppIntroFragment extends AppIntroBaseFragment {
 
@@ -32,18 +33,20 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
     }
 
     /**
-     * Generates new instance for AppIntroFragment
-     * @param title CharSequence which will be the slide title
+     * @param title         CharSequence which will be the slide title
      * @param titleTypeface @FontRes (Integer) custom title typeface obtained
-     *                     from Resources
-     * @param description CharSequence which will be the slide description
-     * @param descTypeface @FontRes (Integer) custom description typeface
-     *                     obtained from Resources
+     *                      from Resources
+     * @param description   CharSequence which will be the slide description
+     * @param descTypeface  @FontRes (Integer) custom description typeface
+     *                      obtained from Resources
      * @param imageDrawable @DrawableRes (Integer) the image that will be
      *                      displayed, obtained from Resources
-     * @param bgColor @ColorInt (Integer) custom background color
+     * @param bgColor       @ColorInt (Integer) custom background color
      * @return AppIntroFragment created instance
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
+     * Generates new instance for AppIntroFragment
      */
+    @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
                                                CharSequence description, @FontRes int descTypeface,
                                                @DrawableRes int imageDrawable,
@@ -54,15 +57,16 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     /**
      * Generates new instance for AppIntroFragment
-     * @param title CharSequence which will be the slide title
+     *
+     * @param title         CharSequence which will be the slide title
      * @param titleTypeface CharSequence the URL of the custom typeface for
      *                      the title found at assets folder
-     * @param description CharSequence which will be the slide description
-     * @param descTypeface CharSequence the URL of the custom typeface for
-     *                     the description found at assets folder
+     * @param description   CharSequence which will be the slide description
+     * @param descTypeface  CharSequence the URL of the custom typeface for
+     *                      the description found at assets folder
      * @param imageDrawable @DrawableRes (Integer) the image that will be
      *                      displayed, obtained from Resources
-     * @param bgColor @ColorInt (Integer) custom background color
+     * @param bgColor       @ColorInt (Integer) custom background color
      * @return AppIntroFragment created instance
      */
     public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
@@ -75,17 +79,18 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     /**
      * Generates new instance for AppIntroFragment
-     * @param title CharSequence which will be the slide title
+     *
+     * @param title         CharSequence which will be the slide title
      * @param titleTypeface @FontRes (Integer) custom title typeface obtained
-     *                     from Resources
-     * @param description CharSequence which will be the slide description
-     * @param descTypeface @FontRes (Integer) custom description typeface
-     *                     obtained from Resources
+     *                      from Resources
+     * @param description   CharSequence which will be the slide description
+     * @param descTypeface  @FontRes (Integer) custom description typeface
+     *                      obtained from Resources
      * @param imageDrawable @DrawableRes (Integer) the image that will be
      *                      displayed, obtained from Resources
-     * @param bgColor @ColorInt (Integer) custom background color
-     * @param titleColor @ColorInt (Integer) custom title color
-     * @param descColor @ColorInt (Integer) custom description color
+     * @param bgColor       @ColorInt (Integer) custom background color
+     * @param titleColor    @ColorInt (Integer) custom title color
+     * @param descColor     @ColorInt (Integer) custom description color
      * @return AppIntroFragment created instance
      */
     public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
@@ -98,17 +103,18 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     /**
      * Generates new instance for AppIntroFragment
-     * @param title CharSequence which will be the slide title
+     *
+     * @param title         CharSequence which will be the slide title
      * @param titleTypeface CharSequence the URL of the custom typeface for
      *                      the title found at assets folder
-     * @param description CharSequence which will be the slide description
-     * @param descTypeface CharSequence the URL of the custom typeface for
-     *                     the description found at assets folder
+     * @param description   CharSequence which will be the slide description
+     * @param descTypeface  CharSequence the URL of the custom typeface for
+     *                      the description found at assets folder
      * @param imageDrawable @DrawableRes (Integer) the image that will be
      *                      displayed, obtained from Resources
-     * @param bgColor @ColorInt (Integer) custom background color
-     * @param titleColor @ColorInt (Integer) custom title color
-     * @param descColor @ColorInt (Integer) custom description color
+     * @param bgColor       @ColorInt (Integer) custom background color
+     * @param titleColor    @ColorInt (Integer) custom title color
+     * @param descColor     @ColorInt (Integer) custom description color
      * @return AppIntroFragment created instance
      */
     private static AppIntroFragment createInstance(CharSequence title, Object titleTypeface,
@@ -130,6 +136,7 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
 
     /**
      * Generates an AppIntroFragment by a given SliderPage
+     *
      * @param sliderPage SliderPage which contains all attributes for the
      *                   current slide
      * @return AppIntroFragment created instance

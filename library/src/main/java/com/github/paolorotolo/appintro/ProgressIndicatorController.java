@@ -2,9 +2,10 @@ package com.github.paolorotolo.appintro;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
 
 public class ProgressIndicatorController implements IndicatorController {
     public final static int DEFAULT_COLOR = 1;
