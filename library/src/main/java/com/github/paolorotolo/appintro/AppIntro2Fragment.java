@@ -2,15 +2,17 @@ package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
 
+import com.github.paolorotolo.appintro.model.SliderPage;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FontRes;
+import androidx.annotation.NonNull;
 
 public final class AppIntro2Fragment extends AppIntroBaseFragment {
+
     /**
-     * @deprecated Obsolete, use
-     * {@link #newInstance(CharSequence, int, CharSequence, int, int, int)}
-     * or {@link #newInstance(CharSequence, String, CharSequence, String, int, int, int, int)} instead
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
     @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, CharSequence description,
@@ -39,9 +41,7 @@ public final class AppIntro2Fragment extends AppIntroBaseFragment {
     }
 
     /**
-     * @deprecated Obsolete, use
-     * {@link #newInstance(CharSequence, int, CharSequence, int, int, int)}
-     * or {@link #newInstance(CharSequence, String, CharSequence, String, int, int, int, int)} instead
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
     @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
@@ -53,20 +53,9 @@ public final class AppIntro2Fragment extends AppIntroBaseFragment {
     }
 
     /**
-     * Generates new instance for AppIntro2Fragment
-     *
-     * @param title         CharSequence which will be the slide title
-     * @param titleTypeface @FontRes (Integer) custom title typeface obtained
-     *                      from Resources
-     * @param description   CharSequence which will be the slide description
-     * @param descTypeface  @FontRes (Integer) custom description typeface obtained
-     *                      from Resources
-     *                      the description found at assets folder
-     * @param imageDrawable @DrawableRes (Integer) the image that will be
-     *                      displayed, obtained from Resources
-     * @param bgColor       @ColorInt (Integer) custom background color
-     * @return AppIntro2Fragment created instance
+     * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
+    @Deprecated
     public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
                                                CharSequence description, @FontRes int descTypeface,
                                                @DrawableRes int imageDrawable,
@@ -125,25 +114,43 @@ public final class AppIntro2Fragment extends AppIntroBaseFragment {
                                                    CharSequence description, Object descTypeface,
                                                    @DrawableRes int imageDrawable, @ColorInt int bgColor,
                                                    @ColorInt int titleColor, @ColorInt int descColor) {
-        AppIntroFragment slide = new AppIntroFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_TITLE, title.toString());
-        if (titleTypeface instanceof Integer)
-            args.putInt(ARG_TITLE_TYPEFACE, (int) titleTypeface);
-        else
-            args.putString(ARG_TITLE_TYPEFACE, (String) titleTypeface);
-        args.putString(ARG_DESC, description.toString());
-        if (descTypeface instanceof Integer)
-            args.putInt(ARG_DESC_TYPEFACE, (int) descTypeface);
-        else
-            args.putString(ARG_DESC_TYPEFACE, (String) descTypeface);
-        args.putInt(ARG_DRAWABLE, imageDrawable);
-        args.putInt(ARG_BG_COLOR, bgColor);
-        args.putInt(ARG_TITLE_COLOR, titleColor);
-        args.putInt(ARG_DESC_COLOR, descColor);
-        slide.setArguments(args);
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(title);
+        sliderPage.setTitleTypeface(titleTypeface);
+        sliderPage.setDescription(description);
+        sliderPage.setDescTypeface(descTypeface);
+        sliderPage.setImageDrawable(imageDrawable);
+        sliderPage.setBgColor(bgColor);
+        sliderPage.setTitleColor(titleColor);
+        sliderPage.setDescColor(descColor);
+        return newInstance(sliderPage);
+    }
 
-        return slide;
+    /**
+     * Generates an AppIntro2Fragment by a given SliderPage
+     * @param sliderPage the SliderPage object which contains all attributes for the current slide
+     * @return AppIntro2Fragment created instance
+     */
+    public static AppIntroFragment newInstance(@NonNull SliderPage sliderPage) {
+        AppIntroFragment slides = new AppIntroFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_TITLE, sliderPage.getTitleString());
+        if (sliderPage.getTitleTypeface() instanceof Integer)
+            args.putInt(ARG_TITLE_TYPEFACE, (int) sliderPage.getTitleTypeface());
+        else
+            args.putString(ARG_TITLE_TYPEFACE, (String) sliderPage.getDescTypeface());
+        args.putString(ARG_DESC, sliderPage.getDescriptionString());
+        if (sliderPage.getTitleTypeface() instanceof Integer)
+            args.putInt(ARG_DESC_TYPEFACE, (int) sliderPage.getDescTypeface());
+        else
+            args.putString(ARG_DESC_TYPEFACE, (String) sliderPage.getDescTypeface());
+        args.putInt(ARG_DRAWABLE, sliderPage.getImageDrawable());
+        args.putInt(ARG_BG_COLOR, sliderPage.getBgColor());
+        args.putInt(ARG_TITLE_COLOR, sliderPage.getTitleColor());
+        args.putInt(ARG_DESC_COLOR, sliderPage.getDescColor());
+        slides.setArguments(args);
+
+        return slides;
     }
 
     @Override
