@@ -124,14 +124,19 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
                                                    @ColorInt int titleColor, @ColorInt int descColor) {
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle(title);
-        sliderPage.setTitleTypeface(titleTypeface);
+        if (titleTypeface instanceof Integer)
+            sliderPage.setTitleTypefaceFontRes((int) titleTypeface);
+        else
+            sliderPage.setTitleTypeface((String) titleTypeface);
         sliderPage.setDescription(description);
-        sliderPage.setDescTypeface(descTypeface);
+        if (descTypeface instanceof Integer)
+            sliderPage.setDescTypefaceFontRes((int) descTypeface);
+        else
+            sliderPage.setDescTypeface((String) descTypeface);
         sliderPage.setImageDrawable(imageDrawable);
         sliderPage.setBgColor(bgColor);
         sliderPage.setTitleColor(titleColor);
         sliderPage.setDescColor(descColor);
-
         return newInstance(sliderPage);
     }
 
@@ -146,15 +151,15 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, sliderPage.getTitleString());
-        if (sliderPage.getTitleTypeface() instanceof Integer)
-            args.putInt(ARG_TITLE_TYPEFACE, (int) sliderPage.getTitleTypeface());
+        if (sliderPage.getTitleTypefaceFontRes() != 0)
+            args.putInt(ARG_TITLE_TYPEFACE, sliderPage.getTitleTypefaceFontRes());
         else
-            args.putString(ARG_TITLE_TYPEFACE, (String) sliderPage.getTitleTypeface());
+            args.putString(ARG_TITLE_TYPEFACE, sliderPage.getDescTypeface());
         args.putString(ARG_DESC, sliderPage.getDescriptionString());
-        if (sliderPage.getTitleTypeface() instanceof Integer)
-            args.putInt(ARG_DESC_TYPEFACE, (int) sliderPage.getDescTypeface());
+        if (sliderPage.getTitleTypefaceFontRes() != 0)
+            args.putInt(ARG_DESC_TYPEFACE, sliderPage.getDescTypefaceFontRes());
         else
-            args.putString(ARG_DESC_TYPEFACE, (String) sliderPage.getDescTypeface());
+            args.putString(ARG_DESC_TYPEFACE, sliderPage.getDescTypeface());
         args.putInt(ARG_DRAWABLE, sliderPage.getImageDrawable());
         args.putInt(ARG_BG_COLOR, sliderPage.getBgColor());
         args.putInt(ARG_TITLE_COLOR, sliderPage.getTitleColor());

@@ -100,9 +100,14 @@ public class SliderPagerBuilder {
         sliderPage.setBgColor(this.bgColor);
         sliderPage.setTitleColor(this.titleColor);
         sliderPage.setDescColor(this.descColor);
-        sliderPage.setTitleTypeface(this.titleTypeface);
-        sliderPage.setDescTypeface(this.descTypeface);
-
+        if (this.titleTypeface instanceof Integer)
+            sliderPage.setTitleTypefaceFontRes((int) this.titleTypeface);
+        else
+            sliderPage.setTitleTypeface((String) this.titleTypeface);
+        if (this.descTypeface instanceof Integer)
+            sliderPage.setDescTypefaceFontRes((int) this.descTypeface);
+        else
+            sliderPage.setDescTypeface((String) this.descTypeface);
         return sliderPage;
     }
 }
