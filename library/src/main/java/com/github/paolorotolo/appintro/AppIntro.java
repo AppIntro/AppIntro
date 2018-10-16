@@ -11,6 +11,8 @@ import com.github.paolorotolo.appintro.util.LogHelper;
 import com.github.paolorotolo.appintro.util.TypefaceWorker;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.FontRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -67,9 +69,22 @@ public abstract class AppIntro extends AppIntroBase {
      *
      * @param typeface <p>the typeface to apply to Skip button - must be a <b>String</b> or <b>Integer</b></p>
      */
-    public void setSkipTextTypeface(@Nullable final Object typeface) {
-        TextView skipText = findViewById(R.id.skip);
-        setTypefaceToText(skipText, typeface);
+    public void setSkipTextTypeface(final @FontRes int typeface) {
+        applyTypefaceToText(typeface, R.id.skip);
+    }
+
+    /**
+     * Override skip text typeface
+     *
+     * @param typeURL URL of font file located in Assets folder
+     */
+    public void setSkipTextTypeface(@Nullable final String typeURL) {
+        applyTypefaceToText(typeURL, R.id.skip);
+    }
+
+    private void applyTypefaceToText(@Nullable final Object typeface, @IdRes int textViewId) {
+        TextView textView = findViewById(textViewId);
+        setTypefaceToText(textView, typeface);
     }
 
     private void setTypefaceToText(@NonNull TextView text, Object typeface) {
@@ -90,11 +105,18 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override done text typeface
      *
+     * @param typeURL URL of font file located in Assets folder
+     */
+    public void setDoneTextTypeface(@Nullable final String typeURL) {
+        applyTypefaceToText(typeURL, R.id.done);
+    }
+    /**
+     * Override done text typeface
+     *
      * @param typeface <p>the typeface to apply to Done button - must be a <b>String</b> or <b>Integer</b></p>
      */
-    public void setDoneTextTypeface(@Nullable final Object typeface) {
-        TextView doneText = findViewById(R.id.done);
-        setTypefaceToText(doneText, getApplicationContext());
+    public void setDoneTextTypeface(final @FontRes int typeface) {
+        applyTypefaceToText(typeface, R.id.done);
     }
 
     /**
