@@ -14,16 +14,8 @@ import java.util.Locale;
 public class LayoutUtil {
 
     public static boolean isRtl(@NonNull Context ctx) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            try {
-                ApplicationInfo info = ctx.getPackageManager().getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
-                return (info.flags &= ApplicationInfo.FLAG_SUPPORTS_RTL) != 0;
-            } catch (PackageManager.NameNotFoundException e) {
-                return defaultIsRtlBehavior();
-            }
-        }
-
-        return false;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
+                && ctx.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
 
     }
 
