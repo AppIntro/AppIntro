@@ -107,7 +107,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             }
         }
         if (isRtl()) {
-            (nextButton).setScaleX(-1);
+            nextButton.setScaleX(-1);
+            backButton.setScaleX(-1);
         }
 
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
@@ -156,9 +157,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (pager.getCurrentItem() > 0) {
-                        pager.setCurrentItem(pager.getCurrentItem() - 1);
-                    }
+                    pager.goToPreviousSlide();
                 }
             });
         }
@@ -509,7 +508,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
                 if (isWizardMode) {
-                    if (pager.getCurrentItem() == 0) {
+                    if ((!isRtl() && pager.getCurrentItem() == 0) || (isRtl() && pager.getCurrentItem() == slidesNumber - 1)) {
                         setButtonState(backButton, false);
                     } else {
                         setButtonState(backButton, isWizardMode);
@@ -893,7 +892,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
-    private void changeSlide(boolean isLastSlide){
+    private void changeSlide(boolean isLastSlide) {
         if (isLastSlide) {
             Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
             handleSlideChanged(currentFragment, null);
@@ -905,7 +904,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     // Returns true if a permission has been requested
-    private boolean checkAndRequestPermissions(){
+    private boolean checkAndRequestPermissions() {
         if (!permissionsArray.isEmpty()) {
             boolean requestPermission = false;
             int permissionPosition = 0;
@@ -931,7 +930,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return false;
     }
 
-    private void updatePagerIndicatorState(){
+    private void updatePagerIndicatorState() {
         if (indicatorContainer != null) {
             if (pagerIndicatorEnabled) {
                 indicatorContainer.setVisibility(View.VISIBLE);
@@ -960,7 +959,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ALL_PERMISSIONS:
                 // Check if next slide is the last one
-                if (pager.getCurrentItem()+1 == slidesNumber) {
+                if (pager.getCurrentItem() + 1 == slidesNumber) {
                     changeSlide(true);
                 } else {
                     changeSlide(false);
