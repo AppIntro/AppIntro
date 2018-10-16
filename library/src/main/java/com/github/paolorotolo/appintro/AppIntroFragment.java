@@ -7,6 +7,7 @@ import com.github.paolorotolo.appintro.model.SliderPage;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FontRes;
+import androidx.annotation.NonNull;
 
 public final class AppIntroFragment extends AppIntroBaseFragment {
 
@@ -141,7 +142,7 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      *                   current slide
      * @return AppIntroFragment created instance
      */
-    public static AppIntroFragment newInstance(SliderPage sliderPage) {
+    public static AppIntroFragment newInstance(@NonNull SliderPage sliderPage) {
         AppIntroFragment slide = new AppIntroFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, sliderPage.getTitleString());
