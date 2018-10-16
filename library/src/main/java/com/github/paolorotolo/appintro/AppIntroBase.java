@@ -313,7 +313,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     private void handleIllegalSlideChangeAttempt() {
         Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-        if (currentFragment != null && currentFragment instanceof ISlidePolicy) {
+        // Unnecessary null check - instanceof returns "false" if currentFragment is null (and
+        // other classes also)
+        if (currentFragment instanceof ISlidePolicy) {
             ISlidePolicy slide = (ISlidePolicy) currentFragment;
 
             if (!slide.isPolicyRespected()) {
@@ -352,13 +354,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
-        // Check if oldFragment implements ISlideSelectionListener
-        if (oldFragment != null && oldFragment instanceof ISlideSelectionListener) {
+        // Check if oldFragment implements ISlideSelectionListener - unnecessary null check
+        if (oldFragment instanceof ISlideSelectionListener) {
             ((ISlideSelectionListener) oldFragment).onSlideDeselected();
         }
 
-        // Check if newFragment implements ISlideSelectionListener
-        if (newFragment != null && newFragment instanceof ISlideSelectionListener) {
+        // Check if newFragment implements ISlideSelectionListener - unnecessary null check
+        if (newFragment instanceof ISlideSelectionListener) {
             ((ISlideSelectionListener) newFragment).onSlideSelected();
         }
 
@@ -425,6 +427,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         onSkipPressed();
     }
 
+    /**
+     * Sets the scroll duration factor - by default it is 1. This factor will multiply duration
+     * @param factor the new factor that will be applied to the scroll - default: 1
+     */
     protected void setScrollDurationFactor(int factor) {
         pager.setScrollDurationFactor(factor);
     }
@@ -497,7 +503,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         this.progressButtonEnabled = progressButtonEnabled;
         if (progressButtonEnabled) {
 
-            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) || (isRtl() && pager.getCurrentItem() == 0)) {
+            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) ||
+                    (isRtl() && pager.getCurrentItem() == 0)) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 if (isWizardMode) {
@@ -538,6 +545,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Please note that this method WILL NOT be called when the activity gets recreated i.e. the fragment instances get restored.
      * The method will only be called when there are no fragments registered to the intro at all.
      */
+    @Deprecated
     public void init(@Nullable Bundle savedInstanceState) {
 
     }
@@ -547,6 +555,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *
      * @deprecated Obsolete, use {@link #onSlideChanged(Fragment, Fragment)} instead
      */
+    @Deprecated
     public void onNextPressed() {
 
     }
@@ -565,6 +574,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *
      * @deprecated Override {@link #onSkipPressed(Fragment)} instead
      */
+    @Deprecated
     public void onSkipPressed() {
 
     }
@@ -574,6 +584,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *
      * @deprecated Override {@link #onSlideChanged(Fragment, Fragment)} instead
      */
+    @Deprecated
     public void onSlideChanged() {
 
     }

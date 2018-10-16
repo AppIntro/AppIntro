@@ -1,9 +1,14 @@
 package com.github.paolorotolo.appintro;
 
+import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
+import java.util.AbstractCollection;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,22 +19,22 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class PagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
-    private Map<Integer, Fragment> retainedFragments;
+    // HashMap<Integer, Fragment> is better substitutable by a SparseArray which has better performance
+    private SparseArray<Fragment> retainedFragments;
 
     public PagerAdapter(FragmentManager fm, @NonNull List<Fragment> fragments) {
         super(fm);
 
         this.fragments = fragments;
-        this.retainedFragments = new HashMap<>();
+        this.retainedFragments = new SparseArray<>();
     }
 
     @Override
     public Fragment getItem(int position) {
         if (!fragments.isEmpty()) {
             // Check if the fragment at this position has been retained by the PagerAdapter
-            if (retainedFragments.containsKey(position)) {
+            if (retainedFragments.get(position) != null)
                 return retainedFragments.get(position);
-            }
 
             return fragments.get(position);
         }
@@ -49,7 +54,12 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @NonNull
     public Collection<Fragment> getRetainedFragments() {
-        return retainedFragments.values();
+        // An ArrayList is a Collection type also
+        ArrayList<Fragment> retainedValues = new ArrayList<>(retainedFragments.size());
+        for (int i = 0; i < retainedFragments.size(); ++i) {
+            retainedValues.add(retainedFragments.get(i));
+        }
+        return retainedValues;
     }
 
     @Override
@@ -62,7 +72,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        if (retainedFragments.containsKey(position)) {
+        if (retainedFragments.get(position) != null) {
             retainedFragments.remove(position);
         }
         super.destroyItem(container, position, object);

@@ -104,7 +104,7 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(ARG_DRAWABLE, drawable);
         outState.putString(ARG_TITLE, title);
         outState.putString(ARG_DESC, description);
