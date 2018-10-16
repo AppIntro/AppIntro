@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
+import androidx.annotation.FontRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 
 /**
@@ -25,26 +28,39 @@ public class TypefaceWorker {
     /**
      * Direct constructor by giving the typeface
      *
-     * @param typeface <p>must be an <b>Integer</b> or a <b>String</b>, first one a FontResource;
-     *                 second one Font Name</p>
-     * @throws RuntimeException <p>when the provided typeface is not an <b>Integer</b> or a <b>String</b></p>
+     * @param typeface <p>a <b>String</b>, which is an URL to font found at Assets folder
      */
-    public TypefaceWorker(Object typeface) {
+    public TypefaceWorker(String typeface) {
+        setTypeface(typeface);
+    }
+
+    /**
+     * Direct constructor by giving the typeface
+     *
+     * @param typeface <p>an <b>Integer</b> which is a @FontRes
+     */
+    public TypefaceWorker(@FontRes int typeface) {
         setTypeface(typeface);
     }
 
     /**
      * Once the class is created sets typeface attribute
      *
-     * @param typeface <p>must be an <b>Integer</b> or a <b>String</b>, first one a FontResource;
-     *                 second one Font Name</p>
-     * @throws RuntimeException <p>when the provided typeface is not an <b>Integer</b> or a <b>String</b></p>
+     * @param typeface <p>a <b>String</b>, which is an URL to font found at Assets folder
      */
-    public void setTypeface(Object typeface) {
-        if (!(typeface instanceof String) && !(typeface instanceof Integer))
-            throw new RuntimeException("Typeface object must be either String or Integer");
+    public void setTypeface(String typeface) {
         mTypefaceAttribute = typeface;
-        mIsFontResource = typeface instanceof Integer;
+        mIsFontResource = false;
+    }
+
+    /**
+     * Once the class is created sets typeface attribute
+     *
+     * @param typeface <p>an <b>Integer</b> which is a @FontRes
+     */
+    public void setTypeface(@FontRes int typeface) {
+        mTypefaceAttribute = typeface;
+        mIsFontResource = true;
     }
 
     /**
