@@ -11,7 +11,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomTheme">
+        android:theme="@style/CustomTheme"
+        android:supportsRtl="true">
         <activity android:name="com.amqtech.opensource.appintroexample.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
