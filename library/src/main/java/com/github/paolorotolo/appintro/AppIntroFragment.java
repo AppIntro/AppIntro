@@ -15,22 +15,26 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
     @Deprecated
-    public static AppIntroFragment newInstance(CharSequence title, CharSequence description,
+    public static AppIntroFragment newInstance(CharSequence title,
+                                               CharSequence description,
                                                @DrawableRes int imageDrawable,
                                                @ColorInt int bgColor) {
-        return newInstance(title, null, description, null, imageDrawable, bgColor, 0, 0);
+        return newInstance(title, null, description, null,
+                imageDrawable, bgColor, 0, 0);
     }
 
     /**
      * @deprecated Obsolete, use {@link #newInstance(SliderPage)} instead
      */
     @Deprecated
-    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
-                                               CharSequence description, String descTypeface,
+    public static AppIntroFragment newInstance(CharSequence title,
+                                               String titleTypeface,
+                                               CharSequence description,
+                                               String descTypeface,
                                                @DrawableRes int imageDrawable,
                                                @ColorInt int bgColor) {
-        return newInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor,
-                0, 0);
+        return newInstance(title, titleTypeface, description, descTypeface,
+                imageDrawable, bgColor, 0, 0);
     }
 
     /**
@@ -48,12 +52,14 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      * Generates new instance for AppIntroFragment
      */
     @Deprecated
-    public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
-                                               CharSequence description, @FontRes int descTypeface,
+    public static AppIntroFragment newInstance(CharSequence title,
+                                               @FontRes int titleTypeface,
+                                               CharSequence description,
+                                               @FontRes int descTypeface,
                                                @DrawableRes int imageDrawable,
                                                @ColorInt int bgColor) {
-        return newInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor,
-                0, 0);
+        return newInstance(title, titleTypeface, description, descTypeface,
+                imageDrawable, bgColor, 0, 0);
     }
 
     /**
@@ -70,12 +76,16 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      * @param bgColor       @ColorInt (Integer) custom background color
      * @return AppIntroFragment created instance
      */
-    public static AppIntroFragment newInstance(CharSequence title, String titleTypeface,
-                                               CharSequence description, String descTypeface,
-                                               @DrawableRes int imageDrawable, @ColorInt int bgColor,
-                                               @ColorInt int titleColor, @ColorInt int descColor) {
-        return createInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor, titleColor,
-                descColor);
+    public static AppIntroFragment newInstance(CharSequence title,
+                                               String titleTypeface,
+                                               CharSequence description,
+                                               String descTypeface,
+                                               @DrawableRes int imageDrawable,
+                                               @ColorInt int bgColor,
+                                               @ColorInt int titleColor,
+                                               @ColorInt int descColor) {
+        return createInstance(title, titleTypeface, description, descTypeface,
+                imageDrawable, bgColor, titleColor, descColor);
     }
 
     /**
@@ -94,12 +104,16 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      * @param descColor     @ColorInt (Integer) custom description color
      * @return AppIntroFragment created instance
      */
-    public static AppIntroFragment newInstance(CharSequence title, @FontRes int titleTypeface,
-                                               CharSequence description, @FontRes int descTypeface,
-                                               @DrawableRes int imageDrawable, @ColorInt int bgColor,
-                                               @ColorInt int titleColor, @ColorInt int descColor) {
-        return createInstance(title, titleTypeface, description, descTypeface, imageDrawable, bgColor, titleColor,
-                descColor);
+    public static AppIntroFragment newInstance(CharSequence title,
+                                               @FontRes int titleTypeface,
+                                               CharSequence description,
+                                               @FontRes int descTypeface,
+                                               @DrawableRes int imageDrawable,
+                                               @ColorInt int bgColor,
+                                               @ColorInt int titleColor,
+                                               @ColorInt int descColor) {
+        return createInstance(title, titleTypeface, description, descTypeface,
+                imageDrawable, bgColor, titleColor, descColor);
     }
 
     /**
@@ -118,10 +132,14 @@ public final class AppIntroFragment extends AppIntroBaseFragment {
      * @param descColor     @ColorInt (Integer) custom description color
      * @return AppIntroFragment created instance
      */
-    private static AppIntroFragment createInstance(CharSequence title, Object titleTypeface,
-                                                   CharSequence description, Object descTypeface,
-                                                   @DrawableRes int imageDrawable, @ColorInt int bgColor,
-                                                   @ColorInt int titleColor, @ColorInt int descColor) {
+    private static AppIntroFragment createInstance(CharSequence title,
+                                                   Object titleTypeface,
+                                                   CharSequence description,
+                                                   Object descTypeface,
+                                                   @DrawableRes int imageDrawable,
+                                                   @ColorInt int bgColor,
+                                                   @ColorInt int titleColor,
+                                                   @ColorInt int descColor) {
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle(title);
         if (titleTypeface instanceof Integer)

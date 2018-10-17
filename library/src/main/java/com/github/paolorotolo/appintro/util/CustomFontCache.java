@@ -11,9 +11,11 @@ import java.util.Hashtable;
  * Prevent(s) memory leaks due to Typeface objects
  */
 public class CustomFontCache {
-    private static final String TAG = LogHelper.makeLogTag(CustomFontCache.class);
+    private static final String TAG =
+            LogHelper.makeLogTag(CustomFontCache.class);
 
-    private static final Hashtable<String, Typeface> fCache = new Hashtable<>();
+    private static final Hashtable<String, Typeface> fCache =
+            new Hashtable<>();
 
     public static Typeface get(String tfn, Context ctx) {
         Typeface tf = fCache.get(tfn);

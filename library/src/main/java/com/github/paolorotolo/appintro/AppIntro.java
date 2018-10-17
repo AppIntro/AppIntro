@@ -66,7 +66,8 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override skip text typeface
      *
-     * @param typeface <p>the typeface to apply to Skip button - must be a <b>String</b> or <b>Integer</b></p>
+     * @param typeface <p>the typeface to apply to Skip button - must be a
+     *                 <b>String</b> or <b>Integer</b></p>
      */
     public void setSkipTextTypeface(final @FontRes int typeface) {
         applyTypefaceToText(typeface, R.id.skip);
@@ -81,10 +82,12 @@ public abstract class AppIntro extends AppIntroBase {
         applyTypefaceToText(typeURL, R.id.skip);
     }
 
-    private void applyTypefaceToText(@Nullable final Object typeface, @IdRes int textViewId) {
+    private void applyTypefaceToText(@Nullable final Object typeface,
+                                     @IdRes int textViewId) {
         TextView textView = findViewById(textViewId);
         TypefaceWorker worker = (typeface instanceof Integer) ?
-                new TypefaceWorker((int) typeface) : new TypefaceWorker((String) typeface);
+                new TypefaceWorker((int) typeface) :
+                new TypefaceWorker((String) typeface);
         worker.setTextTypeface(textView, getApplicationContext());
     }
 
@@ -109,7 +112,8 @@ public abstract class AppIntro extends AppIntroBase {
     /**
      * Override done text typeface
      *
-     * @param typeface <p>the typeface to apply to Done button - must be a <b>String</b> or <b>Integer</b></p>
+     * @param typeface <p>the typeface to apply to Done button - must be a
+     *                 <b>String</b> or <b>Integer</b></p>
      */
     public void setDoneTextTypeface(final @FontRes int typeface) {
         applyTypefaceToText(typeface, R.id.done);

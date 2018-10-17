@@ -17,7 +17,8 @@ public class ScrollerCustomDuration extends Scroller {
     }
 
     @SuppressLint("NewApi")
-    public ScrollerCustomDuration(Context context, Interpolator interpolator, boolean flywheel) {
+    public ScrollerCustomDuration(Context context, Interpolator interpolator,
+                                  boolean flywheel) {
         super(context, interpolator, flywheel);
     }
 

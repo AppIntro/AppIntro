@@ -16,13 +16,14 @@ public class ProgressIndicatorController implements IndicatorController {
 
     @Override
     public View newInstance(@NonNull Context context) {
-        mProgressBar = (ProgressBar) View.inflate(context, R.layout.appintro_progress_indicator, null);
+        mProgressBar = (ProgressBar) View.inflate(context,
+                R.layout.appintro_progress_indicator, null);
         if (selectedDotColor != DEFAULT_COLOR)
             mProgressBar.getProgressDrawable().setColorFilter(selectedDotColor,
                     PorterDuff.Mode.SRC_IN);
         if (unselectedDotColor != DEFAULT_COLOR)
-            mProgressBar.getIndeterminateDrawable().setColorFilter(unselectedDotColor,
-                    PorterDuff.Mode.SRC_IN);
+            mProgressBar.getIndeterminateDrawable()
+                    .setColorFilter(unselectedDotColor, PorterDuff.Mode.SRC_IN);
 
         return mProgressBar;
     }
@@ -42,13 +43,15 @@ public class ProgressIndicatorController implements IndicatorController {
     public void setSelectedIndicatorColor(int color) {
         this.selectedDotColor = color;
         if (mProgressBar != null)
-            mProgressBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            mProgressBar.getProgressDrawable().setColorFilter(color,
+                    PorterDuff.Mode.SRC_IN);
     }
 
     @Override
     public void setUnselectedIndicatorColor(int color) {
         this.unselectedDotColor = color;
         if (mProgressBar != null)
-            mProgressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            mProgressBar.getIndeterminateDrawable().setColorFilter(color,
+                    PorterDuff.Mode.SRC_IN);
     }
 }

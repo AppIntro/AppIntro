@@ -27,7 +27,8 @@ public class LogHelper {
 
     private static String makeLogTag(String str) {
         if (str.length() > MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH) {
-            return LOG_PREFIX + str.substring(0, MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH - 1);
+            return LOG_PREFIX + str
+                    .substring(0, MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH - 1);
         }
 
         return LOG_PREFIX + str;
@@ -74,7 +75,8 @@ public class LogHelper {
         log(tag, Log.ERROR, t, messages);
     }
 
-    private static void log(String tag, int level, Throwable t, Object... messages) {
+    private static void log(String tag, int level, Throwable t,
+                            Object... messages) {
         String message;
         if (t == null && messages != null && messages.length == 1) {
             // handle this common case without the extra cost of creating a stringBuffer:
