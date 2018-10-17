@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import androidx.annotation.ColorInt;
 import android.widget.LinearLayout;
 
 import com.github.paolorotolo.appintro.util.LogHelper;
 
-import java.util.ArrayList;
+import androidx.annotation.ColorInt;
 
 public abstract class AppIntro2 extends AppIntroBase {
     private static final String TAG = LogHelper.makeLogTag(AppIntro2.class);
@@ -39,7 +38,7 @@ public abstract class AppIntro2 extends AppIntroBase {
     public void showDoneButton(boolean showDone) {
         setProgressButtonEnabled(showDone);
     }
-    
+
     /**
      * Override viewpager bar color
      *

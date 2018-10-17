@@ -1,17 +1,10 @@
 package com.github.paolorotolo.appintro;
 
 import android.animation.ArgbEvaluator;
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -29,12 +22,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.DEPTH;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FADE;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FLOW;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.SLIDE_OVER;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.ZOOM;
 
+@SuppressWarnings("unused")
 public abstract class AppIntroBase extends AppCompatActivity implements
         AppIntroViewPager.OnNextPageRequestedListener {
 
@@ -82,13 +85,16 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     private int currentlySelectedItem = -1;
 
     @Override
+    @SuppressLint("MissingPermission")
+    // You must grant vibration permissions on your AndroidManifest.xml file
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
 
-        gestureDetector = new GestureDetectorCompat(this, new WindowGestureListener());
+        gestureDetector = new GestureDetectorCompat(this,
+                new WindowGestureListener());
 
         nextButton = findViewById(R.id.next);
         doneButton = findViewById(R.id.done);
@@ -176,7 +182,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     private void checkButton(@Nullable View view, @Nullable String viewName) {
         if (view == null) {
-            Log.e(TAG, String.format("View not initialized, missing 'R.id.%1$s' in XML!", viewName));
+            Log.e(TAG, String
+                    .format("View not initialized, missing 'R.id.%1$s' in XML!",
+                            viewName));
         }
     }
 
@@ -202,7 +210,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
                 // Fragment is null when no slides are passed to AppIntro
                 if (fragment != null) {
-                    handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
+                    handleSlideChanged(null, mPagerAdapter
+                            .getItem(pager.getCurrentItem()));
                 } else {
                     // Close the intro if there are no slides to show
                     finish();
@@ -249,7 +258,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("baseProgressButtonEnabled", baseProgressButtonEnabled);
+        outState.putBoolean("baseProgressButtonEnabled",
+                baseProgressButtonEnabled);
         outState.putBoolean("progressButtonEnabled", progressButtonEnabled);
         outState.putBoolean("nextEnabled", pager.isPagingEnabled());
         outState.putBoolean("nextPagingEnabled", pager.isNextPagingEnabled());
@@ -258,28 +268,40 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         outState.putInt("lockPage", pager.getLockPage());
         outState.putInt("currentItem", pager.getCurrentItem());
 
-        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED, isImmersiveModeEnabled);
-        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY, isImmersiveModeSticky);
-        outState.putBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED, areColorTransitionsEnabled);
+        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED,
+                isImmersiveModeEnabled);
+        outState.putBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY,
+                isImmersiveModeSticky);
+        outState.putBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED,
+                areColorTransitionsEnabled);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
-        this.progressButtonEnabled = savedInstanceState.getBoolean("progressButtonEnabled");
-        this.skipButtonEnabled = savedInstanceState.getBoolean("skipButtonEnabled");
-        this.pagerIndicatorEnabled = savedInstanceState.getBoolean("pagerIndicatorEnabled");
-        this.savedCurrentItem = savedInstanceState.getInt("currentItem");
-        pager.setPagingEnabled(savedInstanceState.getBoolean("nextEnabled"));
-        pager.setNextPagingEnabled(savedInstanceState.getBoolean("nextPagingEnabled"));
+        this.baseProgressButtonEnabled = savedInstanceState
+                .getBoolean("baseProgressButtonEnabled");
+        this.progressButtonEnabled = savedInstanceState
+                .getBoolean("progressButtonEnabled");
+        this.skipButtonEnabled = savedInstanceState
+                .getBoolean("skipButtonEnabled");
+        this.pagerIndicatorEnabled = savedInstanceState
+                .getBoolean("pagerIndicatorEnabled");
+        this.savedCurrentItem = savedInstanceState
+                .getInt("currentItem");
+        pager.setPagingEnabled(savedInstanceState
+                .getBoolean("nextEnabled"));
+        pager.setNextPagingEnabled(savedInstanceState
+                .getBoolean("nextPagingEnabled"));
         pager.setLockPage(savedInstanceState.getInt("lockPage"));
 
-        isImmersiveModeEnabled = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED);
-        isImmersiveModeSticky = savedInstanceState.getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY);
-        areColorTransitionsEnabled = savedInstanceState.getBoolean(
-                INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED);
+        isImmersiveModeEnabled = savedInstanceState
+                .getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_ENABLED);
+        isImmersiveModeSticky = savedInstanceState
+                .getBoolean(INSTANCE_DATA_IMMERSIVE_MODE_STICKY);
+        areColorTransitionsEnabled = savedInstanceState
+                .getBoolean(INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED);
     }
 
     @Override
@@ -311,7 +333,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     private void handleIllegalSlideChangeAttempt() {
         Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-        if (currentFragment != null && currentFragment instanceof ISlidePolicy) {
+        // Unnecessary null check - instanceof returns "false" if currentFragment is null (and
+        // other classes also)
+        if (currentFragment instanceof ISlidePolicy) {
             ISlidePolicy slide = (ISlidePolicy) currentFragment;
 
             if (!slide.isPolicyRespected()) {
@@ -321,7 +345,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Called before a slide change happens. By returning false, one can disallow the slide change.
+     * Called before a slide change happens. By returning false, one can
+     * disallow the slide change.
      *
      * @return true, if the slide change should be allowed, else false
      */
@@ -336,11 +361,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         if (currentFragment instanceof ISlidePolicy) {
             ISlidePolicy slide = (ISlidePolicy) currentFragment;
 
-            LogHelper.d(TAG, "Current fragment implements ISlidePolicy.");
+            LogHelper.d(TAG, "Current fragment implements " +
+                    "ISlidePolicy.");
 
             // Check if policy is fulfilled
             if (!slide.isPolicyRespected()) {
-                LogHelper.d(TAG, "Slide policy not respected, denying change request.");
+                LogHelper.d(TAG, "Slide policy not respected, " +
+                        "denying change request.");
                 return false;
             }
         }
@@ -350,13 +377,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
-        // Check if oldFragment implements ISlideSelectionListener
-        if (oldFragment != null && oldFragment instanceof ISlideSelectionListener) {
+        // Check if oldFragment implements ISlideSelectionListener - unnecessary null check
+        if (oldFragment instanceof ISlideSelectionListener) {
             ((ISlideSelectionListener) oldFragment).onSlideDeselected();
         }
 
-        // Check if newFragment implements ISlideSelectionListener
-        if (newFragment != null && newFragment instanceof ISlideSelectionListener) {
+        // Check if newFragment implements ISlideSelectionListener - unnecessary null check
+        if (newFragment instanceof ISlideSelectionListener) {
             ((ISlideSelectionListener) newFragment).onSlideSelected();
         }
 
@@ -381,7 +408,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Setting this to display or hide the Pager Indicator. This is a static setting and
+     * Setting this to display or hide the Pager Indicator. This is a static
+     * setting and
      * view state is maintained across slides until explicitly changed.
      *
      * @param showIndicator Set true to display. false to hide.
@@ -400,8 +428,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Setting this to display or hide the Skip button. This is a static setting and
-     * button state is maintained across slides until explicitly changed.
+     * Setting this to display or hide the Skip button. This is a static
+     * setting and button state is maintained across slides until explicitly
+     * changed.
      *
      * @param showButton Set true to display. false to hide.
      */
@@ -423,6 +452,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         onSkipPressed();
     }
 
+    /**
+     * Sets the scroll duration factor - by default it is 1. This factor will
+     * multiply duration
+     * @param factor the new factor that will be applied to the scroll - default: 1
+     */
     protected void setScrollDurationFactor(int factor) {
         pager.setScrollDurationFactor(factor);
     }
@@ -485,7 +519,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Setting to to display or hide the Next or Done button. This is a static setting and
+     * Setting to to display or hide the Next or Done button. This is a static
+     * setting and
      * button state is maintained across slides until explicitly changed.
      *
      * @param progressButtonEnabled Set true to display. False to hide.
@@ -495,7 +530,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         this.progressButtonEnabled = progressButtonEnabled;
         if (progressButtonEnabled) {
 
-            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) || (isRtl() && pager.getCurrentItem() == 0)) {
+            if ((!isRtl() && pager.getCurrentItem() == slidesNumber - 1) ||
+                    (isRtl() && pager.getCurrentItem() == 0)) {
                 setButtonState(nextButton, false);
                 setButtonState(doneButton, true);
                 if (isWizardMode) {
@@ -508,11 +544,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 setButtonState(nextButton, true);
                 setButtonState(doneButton, false);
                 if (isWizardMode) {
-                    if ((!isRtl() && pager.getCurrentItem() == 0) || (isRtl() && pager.getCurrentItem() == slidesNumber - 1)) {
+                    if ((!isRtl() && pager.getCurrentItem() == 0) ||
+                            (isRtl() && pager.getCurrentItem() == slidesNumber - 1))
                         setButtonState(backButton, false);
-                    } else {
+                    else
                         setButtonState(backButton, isWizardMode);
-                    }
                 } else {
                     setButtonState(skipButton, skipButtonEnabled);
                 }
@@ -532,19 +568,26 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     /**
      * @param savedInstanceState Null
-     * @deprecated It is strongly recommended to use {@link #onCreate(Bundle)} instead. Be sure calling super.onCreate() in your method.
-     * Please note that this method WILL NOT be called when the activity gets recreated i.e. the fragment instances get restored.
-     * The method will only be called when there are no fragments registered to the intro at all.
+     * @deprecated It is strongly recommended to use {@link #onCreate(Bundle)}
+     * instead. Be sure calling super.onCreate() in your method.
+     * Please note that this method WILL NOT be called when the activity gets
+     * recreated i.e. the fragment instances get restored.
+     * The method will only be called when there are no fragments registered to
+     * the intro at all.
      */
+    @Deprecated
     public void init(@Nullable Bundle savedInstanceState) {
 
     }
 
     /**
-     * Called when the user clicked the next button which triggered a fragment change
+     * Called when the user clicked the next button which triggered a fragment
+     * change
      *
-     * @deprecated Obsolete, use {@link #onSlideChanged(Fragment, Fragment)} instead
+     * @deprecated Obsolete, use {@link #onSlideChanged(Fragment, Fragment)}
+     * instead
      */
+    @Deprecated
     public void onNextPressed() {
 
     }
@@ -563,6 +606,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *
      * @deprecated Override {@link #onSkipPressed(Fragment)} instead
      */
+    @Deprecated
     public void onSkipPressed() {
 
     }
@@ -572,6 +616,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *
      * @deprecated Override {@link #onSlideChanged(Fragment, Fragment)} instead
      */
+    @Deprecated
     public void onSlideChanged() {
 
     }
@@ -586,10 +631,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Called when the selected fragment changed. This will be called automatically if the into starts or is finished via the done button.
+     * Called when the selected fragment changed. This will be called
+     * automatically if the into starts or is finished via the done button.
      *
-     * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro has just started.
-     * @param newFragment Instance of the fragment which is displayed now. This might be null if the intro has finished
+     * @param oldFragment Instance of the fragment which was displayed before.
+     *                    This might be null if the the intro has just started.
+     * @param newFragment Instance of the fragment which is displayed now.
+     *                    This might be null if the intro has finished
      */
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         onSlideChanged();
@@ -702,7 +750,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Set a progress indicator instead of dots. This is recommended for a large amount of slides. In this case there
+     * Set a progress indicator instead of dots. This is recommended for a large
+     * amount of slides. In this case there
      * could not be enough space to display all dots on smaller device screens.
      */
     public void setProgressIndicator() {
@@ -710,7 +759,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Set a custom {@link IndicatorController} to use a custom indicator view for the {@link AppIntro} instead of the
+     * Set a custom {@link IndicatorController} to use a custom indicator view
+     * for the {@link AppIntro} instead of the
      * default one.
      *
      * @param controller The controller to use
@@ -733,35 +783,40 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * Sets the animation of the intro to a fade animation
      */
     public void setFadeAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(FADE));
+        pager.setPageTransformer(true,
+                new ViewPageTransformer(FADE));
     }
 
     /**
      * Sets the animation of the intro to a zoom animation
      */
     public void setZoomAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(ZOOM));
+        pager.setPageTransformer(true,
+                new ViewPageTransformer(ZOOM));
     }
 
     /**
      * Sets the animation of the intro to a flow animation
      */
     public void setFlowAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(FLOW));
+        pager.setPageTransformer(true,
+                new ViewPageTransformer(FLOW));
     }
 
     /**
      * Sets the animation of the intro to a Slide Over animation
      */
     public void setSlideOverAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(SLIDE_OVER));
+        pager.setPageTransformer(true,
+                new ViewPageTransformer(SLIDE_OVER));
     }
 
     /**
      * Sets the animation of the intro to a Depth animation
      */
     public void setDepthAnimation() {
-        pager.setPageTransformer(true, new ViewPageTransformer(DEPTH));
+        pager.setPageTransformer(true,
+                new ViewPageTransformer(DEPTH));
     }
 
     /**
@@ -781,7 +836,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param selectedIndicatorColor   your selected color
      * @param unselectedIndicatorColor your unselected color
      */
-    public void setIndicatorColor(int selectedIndicatorColor, int unselectedIndicatorColor) {
+    public void setIndicatorColor(int selectedIndicatorColor,
+                                  int unselectedIndicatorColor) {
         this.selectedIndicatorColor = selectedIndicatorColor;
         this.unselectedIndicatorColor = unselectedIndicatorColor;
 
@@ -842,8 +898,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     /**
      * Specifies whether to enable the non-sticky immersive mode.
-     * This is a shorthand method for {@link #setImmersiveMode(boolean, boolean)} the second parameter set to false.
-     * If you want to enable the sticky immersive mode (translucent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
+     * This is a shorthand method for {@link #setImmersiveMode(boolean, boolean)}
+     * the second parameter set to false.
+     * If you want to enable the sticky immersive mode (translucent bars),
+     * use {@link #setImmersiveMode(boolean, boolean)} instead.
      * Note that immersive mode is only supported on Kitkat and newer.
      *
      * @param isEnabled Whether the immersive mode (non-sticky) should be enabled or not.
@@ -974,6 +1032,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return LayoutUtil.isRtl(getApplicationContext());
     }
 
+    @SuppressLint("MissingPermission")
+    // You must grant vibration permissions on your AndroidManifest.xml file
     private final class NextButtonOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {

@@ -1,7 +1,6 @@
 package com.github.paolorotolo.appintro;
 
 import android.content.Context;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
@@ -10,6 +9,8 @@ import com.github.paolorotolo.appintro.util.LayoutUtil;
 import com.github.paolorotolo.appintro.util.LogHelper;
 
 import java.lang.reflect.Field;
+
+import androidx.viewpager.widget.ViewPager;
 
 public final class AppIntroViewPager extends ViewPager {
     private static final String TAG = LogHelper.makeLogTag(AppIntroViewPager.class);
@@ -96,13 +97,18 @@ public final class AppIntroViewPager extends ViewPager {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             currentTouchDownX = event.getX();
             return super.onInterceptTouchEvent(event);
-        } else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        } else if (checkPagingState(event) || checkCanRequestNextPage()) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
         }
 
         return super.onInterceptTouchEvent(event);
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
     }
 
     @Override
@@ -118,12 +124,13 @@ public final class AppIntroViewPager extends ViewPager {
         }
 
         // Check if we should handle the touch event
-        else if (checkPagingState(event) || checkCanRequestNextPage(event)) {
+        else if (checkPagingState(event) || checkCanRequestNextPage()) {
             // Call callback method if threshold has been reached
             checkIllegallyRequestedNextPage(event);
             return false;
         }
 
+        performClick();
         return super.onTouchEvent(event);
     }
 
@@ -133,16 +140,14 @@ public final class AppIntroViewPager extends ViewPager {
                 currentTouchDownX = event.getX();
             }
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                if (detectSwipeToEnd(event)) {
-                    return true;
-                }
+                return detectSwipeToEnd(event);
             }
         }
 
         return false;
     }
 
-    private boolean checkCanRequestNextPage(MotionEvent event) {
+    private boolean checkCanRequestNextPage() {
         return nextPageRequestedListener != null && !nextPageRequestedListener.onCanRequestNextPage();
     }
 
