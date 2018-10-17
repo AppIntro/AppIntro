@@ -1,16 +1,11 @@
 package com.github.paolorotolo.appintro;
 
 import android.util.SparseArray;
-import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

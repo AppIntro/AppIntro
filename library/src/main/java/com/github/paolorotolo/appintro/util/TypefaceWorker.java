@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 
 import androidx.annotation.FontRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -98,8 +97,9 @@ public class TypefaceWorker {
     /**
      * Gets the stored typeface attribute
      *
-     * @return <p>typeface attribute that can be a String or Integer</p>
+     * @return <p>typeface attribute that can be a String or Integer (also it can be null)</p>
      */
+    @Nullable
     public Object getTypeface() {
         return mTypefaceAttribute;
     }

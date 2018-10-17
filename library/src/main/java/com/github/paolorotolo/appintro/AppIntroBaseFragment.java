@@ -39,17 +39,20 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setRetainInstance(true);
 
         if (getArguments() != null && getArguments().size() != 0) {
+            Object argsTitleTypeface = getArguments().get(ARG_TITLE_TYPEFACE);
+            Object argsDescTypeface = getArguments().get(ARG_DESC_TYPEFACE);
             drawable = getArguments().getInt(ARG_DRAWABLE);
             title = getArguments().getString(ARG_TITLE);
-            titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ?
-                    new TypefaceWorker(getArguments().get(ARG_TITLE_TYPEFACE)) : new TypefaceWorker();
+            titleTypeface = argsTitleTypeface instanceof Integer ?
+                    new TypefaceWorker((int) argsTitleTypeface) :
+                    new TypefaceWorker((String) argsTitleTypeface);
             description = getArguments().getString(ARG_DESC);
-            descTypeface = getArguments().containsKey(ARG_DESC_TYPEFACE) ?
-                    new TypefaceWorker(getArguments().get(ARG_DESC_TYPEFACE)) : new TypefaceWorker();
+            descTypeface = argsDescTypeface instanceof Integer ?
+                    new TypefaceWorker((int) argsDescTypeface) :
+                    new TypefaceWorker((String) argsDescTypeface);
             bgColor = getArguments().getInt(ARG_BG_COLOR);
             titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ?
                     getArguments().getInt(ARG_TITLE_COLOR) : 0;
@@ -65,11 +68,13 @@ public abstract class AppIntroBaseFragment extends Fragment implements ISlideSel
         if (savedInstanceState != null) {
             drawable = savedInstanceState.getInt(ARG_DRAWABLE);
             title = savedInstanceState.getString(ARG_TITLE);
-            titleTypeface = savedInstanceState.get(ARG_TITLE_TYPEFACE) != null ?
-                    new TypefaceWorker(savedInstanceState.get(ARG_TITLE_TYPEFACE)) : new TypefaceWorker();
+            titleTypeface = savedInstanceState.get(ARG_TITLE_TYPEFACE) instanceof Integer ?
+                    new TypefaceWorker((int) savedInstanceState.get(ARG_TITLE_TYPEFACE)) :
+                    new TypefaceWorker((String) savedInstanceState.get(ARG_TITLE_TYPEFACE));
             description = savedInstanceState.getString(ARG_DESC);
-            descTypeface = savedInstanceState.get(ARG_DESC_TYPEFACE) != null ?
-                    new TypefaceWorker(savedInstanceState.get(ARG_DESC_TYPEFACE)) : new TypefaceWorker();
+            descTypeface = savedInstanceState.get(ARG_DESC_TYPEFACE) instanceof Integer ?
+                    new TypefaceWorker((int) savedInstanceState.get(ARG_DESC_TYPEFACE)) :
+                    new TypefaceWorker((String) savedInstanceState.get(ARG_DESC_TYPEFACE));
             bgColor = savedInstanceState.getInt(ARG_BG_COLOR);
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR);
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR);

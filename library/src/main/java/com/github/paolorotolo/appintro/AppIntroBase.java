@@ -1,6 +1,7 @@
 package com.github.paolorotolo.appintro;
 
 import android.animation.ArgbEvaluator;
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -36,6 +37,7 @@ import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.SLIDE_OVER;
 import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.ZOOM;
 
+@SuppressWarnings("unused")
 public abstract class AppIntroBase extends AppCompatActivity implements
         AppIntroViewPager.OnNextPageRequestedListener {
 
@@ -83,6 +85,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     private int currentlySelectedItem = -1;
 
     @Override
+    @SuppressLint("MissingPermission")
+    // You must grant vibration permissions on your AndroidManifest.xml file
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
@@ -986,6 +990,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         return LayoutUtil.isRtl(getApplicationContext());
     }
 
+    @SuppressLint("MissingPermission")
+    // You must grant vibration permissions on your AndroidManifest.xml file
     private final class NextButtonOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {

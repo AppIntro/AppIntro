@@ -2,6 +2,7 @@ package com.github.paolorotolo.appintro;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 class ViewPageTransformer implements ViewPager.PageTransformer {
@@ -16,7 +17,7 @@ class ViewPageTransformer implements ViewPager.PageTransformer {
         mTransformType = transformType;
     }
 
-    public void transformPage(View page, float position) {
+    public void transformPage(@NonNull View page, float position) {
         final float alpha;
         final float scale;
         final float translationX;

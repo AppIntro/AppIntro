@@ -107,6 +107,11 @@ public final class AppIntroViewPager extends ViewPager {
     }
 
     @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         // If paging is disabled we should ignore any viewpager touch (also, not display any error message)
         if (!pagingEnabled) {
@@ -125,6 +130,7 @@ public final class AppIntroViewPager extends ViewPager {
             return false;
         }
 
+        performClick();
         return super.onTouchEvent(event);
     }
 

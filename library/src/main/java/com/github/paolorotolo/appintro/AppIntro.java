@@ -13,7 +13,6 @@ import com.github.paolorotolo.appintro.util.TypefaceWorker;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FontRes;
 import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public abstract class AppIntro extends AppIntroBase {
@@ -84,12 +83,9 @@ public abstract class AppIntro extends AppIntroBase {
 
     private void applyTypefaceToText(@Nullable final Object typeface, @IdRes int textViewId) {
         TextView textView = findViewById(textViewId);
-        setTypefaceToText(textView, typeface);
-    }
-
-    private void setTypefaceToText(@NonNull TextView text, Object typeface) {
-        TypefaceWorker worker = new TypefaceWorker(typeface);
-        worker.setTextTypeface(text, getApplicationContext());
+        TypefaceWorker worker = (typeface instanceof Integer) ?
+                new TypefaceWorker((int) typeface) : new TypefaceWorker((String) typeface);
+        worker.setTextTypeface(textView, getApplicationContext());
     }
 
     /**
