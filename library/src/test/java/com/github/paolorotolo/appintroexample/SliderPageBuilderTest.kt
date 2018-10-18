@@ -41,7 +41,7 @@ class SliderPageBuilderTest {
         assertEquals(sliderPage.titleColor, titleColor)
         assertEquals(sliderPage.descColor, descColor)
         assertEquals(sliderPage.titleTypeface, titleTypeface)
-        assertEquals(sliderPage.description, descTypeface)
+        assertEquals(sliderPage.descTypeface, descTypeface)
         assertEquals(sliderPage.titleTypefaceFontRes, titleTypefaceRes)
         assertEquals(sliderPage.descTypefaceFontRes, descTypefaceRes)
     }
