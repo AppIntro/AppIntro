@@ -8,11 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.util.LogHelper;
-import com.github.paolorotolo.appintro.util.TypefaceWorker;
+import com.github.paolorotolo.appintro.util.TypefaceContainer;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.FontRes;
-import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 
 public abstract class AppIntro extends AppIntroBase {
@@ -70,7 +69,8 @@ public abstract class AppIntro extends AppIntroBase {
      *                 <b>String</b> or <b>Integer</b></p>
      */
     public void setSkipTextTypeface(final @FontRes int typeface) {
-        applyTypefaceToText(typeface, R.id.skip);
+        TextView view = findViewById(R.id.skip);
+        new TypefaceContainer(null, typeface).applyTo(view);
     }
 
     /**
@@ -79,16 +79,8 @@ public abstract class AppIntro extends AppIntroBase {
      * @param typeURL URL of font file located in Assets folder
      */
     public void setSkipTextTypeface(@Nullable final String typeURL) {
-        applyTypefaceToText(typeURL, R.id.skip);
-    }
-
-    private void applyTypefaceToText(@Nullable final Object typeface,
-                                     @IdRes int textViewId) {
-        TextView textView = findViewById(textViewId);
-        TypefaceWorker worker = (typeface instanceof Integer) ?
-                new TypefaceWorker((int) typeface) :
-                new TypefaceWorker((String) typeface);
-        worker.setTextTypeface(textView, getApplicationContext());
+        TextView view = findViewById(R.id.skip);
+        new TypefaceContainer(typeURL, 0).applyTo(view);
     }
 
     /**
@@ -107,8 +99,10 @@ public abstract class AppIntro extends AppIntroBase {
      * @param typeURL URL of font file located in Assets folder
      */
     public void setDoneTextTypeface(@Nullable final String typeURL) {
-        applyTypefaceToText(typeURL, R.id.done);
+        TextView view = findViewById(R.id.done);
+        new TypefaceContainer(typeURL, 0).applyTo(view);
     }
+
     /**
      * Override done text typeface
      *
@@ -116,7 +110,8 @@ public abstract class AppIntro extends AppIntroBase {
      *                 <b>String</b> or <b>Integer</b></p>
      */
     public void setDoneTextTypeface(final @FontRes int typeface) {
-        applyTypefaceToText(typeface, R.id.done);
+        TextView view = findViewById(R.id.done);
+        new TypefaceContainer(null, typeface).applyTo(view);
     }
 
     /**
