@@ -4,10 +4,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FontRes;
 
-/**
- * Created by Mike on 21/02/2018.
- */
-
 public class SliderPagerBuilder {
 
     private CharSequence title;
@@ -26,9 +22,15 @@ public class SliderPagerBuilder {
     @ColorInt
     private int descColor;
 
-    private Object titleTypeface;
+    private String titleTypeface;
 
-    private Object descTypeface;
+    private String descTypeface;
+
+    @FontRes
+    private int titleTypefaceRes;
+
+    @FontRes
+    private int descTypefaceRes;
 
     public SliderPagerBuilder() {
 
@@ -75,8 +77,8 @@ public class SliderPagerBuilder {
         return this;
     }
 
-    public SliderPagerBuilder titleTypeface(@FontRes int titleTypeface) {
-        this.titleTypeface = titleTypeface;
+    public SliderPagerBuilder titleTypefaceRes(@FontRes int titleTypefaceRes) {
+        this.titleTypefaceRes = titleTypefaceRes;
         return this;
     }
 
@@ -86,13 +88,12 @@ public class SliderPagerBuilder {
         return this;
     }
 
-    public SliderPagerBuilder descTypeface(@FontRes int descTypeface) {
-        this.descTypeface = descTypeface;
+    public SliderPagerBuilder descTypefaceRes(@FontRes int descTypefaceRes) {
+        this.descTypefaceRes = descTypefaceRes;
         return this;
     }
 
     public SliderPage build() {
-
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle(this.title);
         sliderPage.setDescription(this.description);
@@ -100,14 +101,10 @@ public class SliderPagerBuilder {
         sliderPage.setBgColor(this.bgColor);
         sliderPage.setTitleColor(this.titleColor);
         sliderPage.setDescColor(this.descColor);
-        if (this.titleTypeface instanceof Integer)
-            sliderPage.setTitleTypefaceFontRes((int) this.titleTypeface);
-        else
-            sliderPage.setTitleTypeface((String) this.titleTypeface);
-        if (this.descTypeface instanceof Integer)
-            sliderPage.setDescTypefaceFontRes((int) this.descTypeface);
-        else
-            sliderPage.setDescTypeface((String) this.descTypeface);
+        sliderPage.setTitleTypeface(this.titleTypeface);
+        sliderPage.setTitleTypefaceFontRes(this.titleTypefaceRes);
+        sliderPage.setDescTypeface(this.descTypeface);
+        sliderPage.setDescTypefaceFontRes(this.descTypefaceRes);
         return sliderPage;
     }
 }
