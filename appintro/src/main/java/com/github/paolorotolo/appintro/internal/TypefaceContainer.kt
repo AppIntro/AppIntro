@@ -1,6 +1,5 @@
-package com.github.paolorotolo.appintro.util
+package com.github.paolorotolo.appintro.internal
 
-import android.content.Context
 import android.graphics.Typeface
 import android.widget.TextView
 
@@ -14,7 +13,7 @@ import androidx.core.content.res.ResourcesCompat
  * @property typeFaceUrl A [String] which is an URL of a font found at in the /assets folder
  * @property typeFaceResource An [Int] which is a @FontRes
  */
-data class TypefaceContainer(
+internal data class TypefaceContainer(
         var typeFaceUrl: String? = null,
         @FontRes var typeFaceResource: Int = 0
 ) {
@@ -35,7 +34,7 @@ data class TypefaceContainer(
         val textTypeface: Typeface? = if (typeFaceResource != 0)
             ResourcesCompat.getFont(textView.context, typeFaceResource)
         else
-            CustomFontCache.get(typeFaceUrl, textView.context)
+            CustomFontCache[typeFaceUrl, textView.context]
 
         if (textTypeface != null)
             textView.typeface = textTypeface

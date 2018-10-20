@@ -15,8 +15,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.github.paolorotolo.appintro.util.LayoutUtil;
-import com.github.paolorotolo.appintro.util.LogHelper;
+import com.github.paolorotolo.appintro.internal.LayoutUtil;
+import com.github.paolorotolo.appintro.internal.LogHelper;
 
 import java.util.ArrayList;
 import java.util.List;

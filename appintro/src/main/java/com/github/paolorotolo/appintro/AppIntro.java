@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.paolorotolo.appintro.util.LogHelper;
-import com.github.paolorotolo.appintro.util.TypefaceContainer;
+import com.github.paolorotolo.appintro.internal.LogHelper;
+import com.github.paolorotolo.appintro.internal.TypefaceContainer;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.FontRes;
