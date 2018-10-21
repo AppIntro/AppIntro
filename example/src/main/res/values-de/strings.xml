@@ -1,0 +1,17 @@
+<resources>
+    <!-- Main Strings -->
+    <string name="app_name">AppIntro Beispiel</string>
+    <string name="launch_demo">Demo starten</string>
+
+    <!-- 1st Tab Group -->
+    <string name="default_intro">Dies is die einfachste Art, die AppIntro Bibliothek zu benutzen. Hierfür ist nur wenig Code nötig und es gibt zwei Layoutoptionen. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="default_intro2">Dies ist die zweiteinfachste Art, die AppIntro Bibliothek zu benutzen. Hierfür ist nur wenig Code nötig und es ist die zweite Layoutoption, welche die Bibliothek bereitstellt. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="custom_layout_intro">Dies demonstriert die Möglichkeit, ein eigenes Layout anzuzeigen für zusätzliche Personalisierung. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="custom_background_intro">Dies demonstriert die Möglichkeit, einen eigenen Hintergrund für verschiedene Seiten festzulegen. Das ist nützlich, wenn man Bilder statt Farben im Hintergrund möchte. Drücke den Button unten, um die Demo zu starten.</string>
+
+    <!-- 2nd Tab Group -->
+    <string name="perms_intro1">Dies demonstriert die Möglichkeit, Berechtigungen auf jeder angegebenen Seite anzufordern. Drücke den Button unten, um die Demo zu starten.</string>
+    <string name="perms_intro2">Dies demonstriert die Möglichkeit, Berechtigungen auf jeder angegebenen Seite anzufordern, verwendet aber das zweite Seitenlayout. Drücke den Button unten, um die Demo zu starten.</string>
+
+    <!-- 3rd Tab Group -->
+</resources>
