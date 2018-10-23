@@ -29,7 +29,7 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 2. **Add the dependency**
 ```gradle
 	dependencies {
-	        implementation 'com.github.paolorotolo:appintro:v5.0.1'
+	        implementation 'com.github.paolorotolo:appintro:v5.1.0'
 	}
 ```
 
