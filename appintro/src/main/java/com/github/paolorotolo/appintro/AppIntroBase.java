@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.internal.LayoutUtil;
 import com.github.paolorotolo.appintro.internal.LogHelper;
+import com.github.paolorotolo.appintro.internal.PermissionWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected View backButton;
     protected FrameLayout indicatorContainer;
     protected int savedCurrentItem;
-    protected ArrayList<PermissionObject> permissionsArray = new ArrayList<>();
+    protected ArrayList<PermissionWrapper> permissionsArray = new ArrayList<>();
     protected boolean isVibrateOn = false;
     protected boolean baseProgressButtonEnabled = true;
     protected boolean progressButtonEnabled = true;
@@ -982,7 +983,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             }
             if (requestPermission) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(permissionsArray.get(permissionPosition).getPermission(),
+                    requestPermissions(
+                            permissionsArray
+                                    .get(permissionPosition)
+                                    .getPermissions(),
                             PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                     permissionsArray.remove(permissionPosition);
 
@@ -1009,7 +1013,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             if (slidesNumber == 0) {
                 Toast.makeText(getBaseContext(), "Invalid Slide Number", Toast.LENGTH_SHORT).show();
             } else {
-                PermissionObject permission = new PermissionObject(permissions, slidesNumber);
+                PermissionWrapper permission = new PermissionWrapper(permissions, slidesNumber);
                 permissionsArray.add(permission);
                 setSwipeLock(true);
             }
