@@ -45,4 +45,30 @@ class SliderPageBuilderTest {
         assertEquals(sliderPage.titleTypefaceFontRes, titleTypefaceRes)
         assertEquals(sliderPage.descTypefaceFontRes, descTypefaceRes)
     }
+
+    @Test
+    fun sliderPageBuilder_multipleAssignmentOverrides() {
+        val sliderPage = SliderPagerBuilder()
+                .title("title")
+                .title("title2")
+                .build()
+
+        assertEquals(sliderPage.title, "title2")
+    }
+
+    @Test
+    fun sliderPageBuilder_valuesAreDefaulting() {
+        val sliderPage = SliderPagerBuilder().build()
+
+        assertEquals(sliderPage.title, null)
+        assertEquals(sliderPage.description, null)
+        assertEquals(sliderPage.imageDrawable, 0)
+        assertEquals(sliderPage.bgColor, 0)
+        assertEquals(sliderPage.titleColor, 0)
+        assertEquals(sliderPage.descColor, 0)
+        assertEquals(sliderPage.titleTypeface, null)
+        assertEquals(sliderPage.descTypeface, null)
+        assertEquals(sliderPage.titleTypefaceFontRes, 0)
+        assertEquals(sliderPage.descTypefaceFontRes, 0)
+    }
 }

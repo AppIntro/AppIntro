@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.github.paolorotolo.appintro.util.LogHelper;
+import com.github.paolorotolo.appintro.internal.LogHelper;
 
 import androidx.annotation.ColorInt;
 

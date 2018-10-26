@@ -5,8 +5,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 
-import com.github.paolorotolo.appintro.util.LayoutUtil;
-import com.github.paolorotolo.appintro.util.LogHelper;
+import com.github.paolorotolo.appintro.internal.LayoutUtil;
+import com.github.paolorotolo.appintro.internal.LogHelper;
 
 import java.lang.reflect.Field;
 
