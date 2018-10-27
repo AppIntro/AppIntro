@@ -15,6 +15,9 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.github.paolorotolo.appintro.indicator.DotIndicatorController;
+import com.github.paolorotolo.appintro.indicator.IndicatorController;
+import com.github.paolorotolo.appintro.indicator.ProgressIndicatorController;
 import com.github.paolorotolo.appintro.internal.LayoutUtil;
 import com.github.paolorotolo.appintro.internal.LogHelper;
 import com.github.paolorotolo.appintro.internal.PermissionWrapper;
@@ -323,7 +326,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     private void initController() {
         if (mController == null)
-            mController = new DefaultIndicatorController();
+            mController = new DotIndicatorController(this);
 
         indicatorContainer = findViewById(R.id.indicator_container);
         indicatorContainer.addView(mController.newInstance(this));
@@ -762,13 +765,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * could not be enough space to display all dots on smaller device screens.
      */
     public void setProgressIndicator() {
-        mController = new ProgressIndicatorController();
+        mController = new ProgressIndicatorController(this);
     }
 
     /**
      * Set a custom {@link IndicatorController} to use a custom indicator view
-     * for the {@link AppIntro} instead of the
-     * default one.
+     * for the {@link AppIntro} instead of the default one.
      *
      * @param controller The controller to use
      */
