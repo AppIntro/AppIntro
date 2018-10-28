@@ -7,6 +7,7 @@ import android.view.animation.Interpolator;
 
 import com.github.paolorotolo.appintro.internal.LayoutUtil;
 import com.github.paolorotolo.appintro.internal.LogHelper;
+import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration;
 
 import java.lang.reflect.Field;
 
