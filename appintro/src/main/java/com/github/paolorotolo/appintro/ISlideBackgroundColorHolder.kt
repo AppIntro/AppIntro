@@ -1,15 +1,16 @@
-package com.github.paolorotolo.appintro;
+package com.github.paolorotolo.appintro
 
-import androidx.annotation.ColorInt;
+import androidx.annotation.ColorInt
 
-public interface ISlideBackgroundColorHolder {
+interface ISlideBackgroundColorHolder {
+
     /**
      * Returns the default background color of the slide
      *
      * @return The default background color of the slide
      */
-    @ColorInt
-    int getDefaultBackgroundColor();
+    @get:ColorInt
+    val defaultBackgroundColor: Int
 
     /**
      * Sets the actual background color of the slide. This does not affect the default background color.
@@ -17,5 +18,5 @@ public interface ISlideBackgroundColorHolder {
      *
      * @param backgroundColor New actual background color.
      */
-    void setBackgroundColor(@ColorInt int backgroundColor);
+    fun setBackgroundColor(@ColorInt backgroundColor: Int)
 }
