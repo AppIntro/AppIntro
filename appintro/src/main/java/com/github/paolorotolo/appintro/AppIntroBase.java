@@ -21,6 +21,9 @@ import com.github.paolorotolo.appintro.indicator.ProgressIndicatorController;
 import com.github.paolorotolo.appintro.internal.LayoutUtil;
 import com.github.paolorotolo.appintro.internal.LogHelper;
 import com.github.paolorotolo.appintro.internal.PermissionWrapper;
+import com.github.paolorotolo.appintro.internal.viewpager.PagerAdapter;
+import com.github.paolorotolo.appintro.internal.viewpager.TransformType;
+import com.github.paolorotolo.appintro.internal.viewpager.ViewPagerTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +37,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
-import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.DEPTH;
-import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FADE;
-import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.FLOW;
-import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.SLIDE_OVER;
-import static com.github.paolorotolo.appintro.ViewPageTransformer.TransformType.ZOOM;
 
 @SuppressWarnings("unused")
 public abstract class AppIntroBase extends AppCompatActivity implements
@@ -793,7 +790,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setFadeAnimation() {
         pager.setPageTransformer(true,
-                new ViewPageTransformer(FADE));
+                new ViewPagerTransformer(TransformType.FADE));
     }
 
     /**
@@ -801,7 +798,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setZoomAnimation() {
         pager.setPageTransformer(true,
-                new ViewPageTransformer(ZOOM));
+                new ViewPagerTransformer(TransformType.ZOOM));
     }
 
     /**
@@ -809,7 +806,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setFlowAnimation() {
         pager.setPageTransformer(true,
-                new ViewPageTransformer(FLOW));
+                new ViewPagerTransformer(TransformType.FLOW));
     }
 
     /**
@@ -817,7 +814,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setSlideOverAnimation() {
         pager.setPageTransformer(true,
-                new ViewPageTransformer(SLIDE_OVER));
+                new ViewPagerTransformer(TransformType.SLIDE_OVER));
     }
 
     /**
@@ -825,7 +822,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     public void setDepthAnimation() {
         pager.setPageTransformer(true,
-                new ViewPageTransformer(DEPTH));
+                new ViewPagerTransformer(TransformType.DEPTH));
     }
 
     /**
