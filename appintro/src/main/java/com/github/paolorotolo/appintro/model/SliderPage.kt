@@ -7,7 +7,9 @@ import androidx.annotation.FontRes
 import com.github.paolorotolo.appintro.*
 
 /**
- * Slide Page Model
+ * Slide Page Model.
+ *
+ * This data class represent a single page that can be visualized with AppIntro.
  */
 data class SliderPage @JvmOverloads constructor(
         var title: CharSequence? = null,
@@ -24,6 +26,10 @@ data class SliderPage @JvmOverloads constructor(
     val titleString: String? get() = title?.toString()
     val descriptionString: String? get() = description?.toString()
 
+    /**
+     * Util method to convert a [SliderPage] into an Android [Bundle].
+     * This method will be used to pass the [SliderPage] to [AppIntroBaseFragment] implementations.
+     */
     fun toBundle(): Bundle {
         val newBundle = Bundle()
         newBundle.putString(ARG_TITLE, this.titleString)

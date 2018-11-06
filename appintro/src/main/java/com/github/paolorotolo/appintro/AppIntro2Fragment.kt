@@ -10,29 +10,35 @@ class AppIntro2Fragment : AppIntroBaseFragment() {
     override val layoutId: Int get() = R.layout.appintro_fragment_intro2
 
     companion object {
+
         /**
-         * Generates new instance for AppIntro2Fragment
+         * Generates a new instance for [AppIntro2Fragment]
          *
-         * @param title         CharSequence which will be the slide title
-         * @param description   CharSequence which will be the slide description
-         * @param imageDrawable @DrawableRes (Integer) the image that will be
-         * displayed, obtained from Resources
-         * @param bgColor       @ColorInt (Integer) custom background color
-         * @param titleColor    @ColorInt (Integer) custom title color
-         * @param descColor     @ColorInt (Integer) custom description color
-         * @return AppIntro2Fragment created instance
+         * @param title                CharSequence which will be the slide title
+         * @param description          CharSequence which will be the slide description
+         * @param titleTypefaceFontRes @FontRes (Integer) custom title typeface obtained
+         *                             from Resources
+         * @param descTypefaceFontRes  @FontRes (Integer) custom description typeface obtained
+         *                             from Resources
+         * @param imageDrawable        @DrawableRes (Integer) the image that will be
+         *                             displayed, obtained from Resources
+         * @param bgColor              @ColorInt (Integer) custom background color
+         * @param titleColor           @ColorInt (Integer) custom title color
+         * @param descColor            @ColorInt (Integer) custom description color
+         *
+         * @return An [AppIntro2Fragment] created instance
          */
         @JvmOverloads
         @JvmStatic
         fun newInstance(
                 title: CharSequence? = null,
                 description: CharSequence? = null,
+                @FontRes titleTypefaceFontRes: Int = 0,
+                @FontRes descTypefaceFontRes: Int = 0,
                 @DrawableRes imageDrawable: Int = 0,
                 @ColorInt bgColor: Int = 0,
                 @ColorInt titleColor: Int = 0,
-                @ColorInt descColor: Int = 0,
-                @FontRes titleTypefaceFontRes: Int = 0,
-                @FontRes descTypefaceFontRes: Int = 0
+                @ColorInt descColor: Int = 0
         ): AppIntro2Fragment {
             return newInstance(
                     SliderPage(
@@ -44,16 +50,17 @@ class AppIntro2Fragment : AppIntroBaseFragment() {
                             descColor = descColor,
                             titleTypefaceFontRes = titleTypefaceFontRes,
                             descTypefaceFontRes = descTypefaceFontRes
-                            )
+                    )
             )
         }
 
         /**
-         * Generates an AppIntro2Fragment by a given SliderPage
+         * Generates an AppIntro2Fragment from a given [SliderPage]
          *
-         * @param sliderPage the SliderPage object which contains all attributes for
+         * @param sliderPage the [SliderPage] object which contains all attributes for
          * the current slide
-         * @return AppIntro2Fragment created instance
+         *
+         * @return An [AppIntro2Fragment] created instance
          */
         @JvmStatic
         fun newInstance(sliderPage: SliderPage): AppIntro2Fragment {
