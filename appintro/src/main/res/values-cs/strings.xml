@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_intro_skip_button">PŘESKOČIT</string>
+  <string name="app_intro_next_button">DALŠÍ</string>
+  <string name="app_intro_back_button">ZPĚT</string>
+  <string name="app_intro_done_button">DOKONČIT</string>
+</resources>
