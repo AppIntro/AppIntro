@@ -272,7 +272,7 @@ The interface contains two methods:
 ## Translating
 
 Do you want to help AppIntro becoming international 🌍? We are more than happy!
-AppIntro currently supports [the following languages](library/src/main/res).
+AppIntro currently supports [the following languages](appintro/src/main/res).
 
 To add a new translation just add a pull request with a new `strings.xml` file inside a `values-xx` folder (where `xx` is a [two-letter ISO 639-1 language code](https://en.wikipedia.org/wiki/ISO_639-1)).
 
@@ -288,7 +288,7 @@ In order to provide the translation, your file needs to contain the following st
 </resources>
 ```
 
-An updated version of the english version translation is [available here](library/src/main/res/values/strings.xml).
+An updated version of the english version translation is [available here](appintro/src/main/res/values/strings.xml).
 
 ## Example App
 See example code [here](https://github.com/PaoloRotolo/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample).
