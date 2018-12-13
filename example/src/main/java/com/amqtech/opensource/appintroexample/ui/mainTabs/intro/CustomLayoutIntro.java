@@ -1,8 +1,8 @@
 package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.amqtech.opensource.appintroexample.util.SampleSlide;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -22,6 +22,8 @@ public class CustomLayoutIntro extends AppIntro {
         addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout2));
         addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout3));
         addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout4));
+
+        setProgressIndicator();
     }
 
     @Override

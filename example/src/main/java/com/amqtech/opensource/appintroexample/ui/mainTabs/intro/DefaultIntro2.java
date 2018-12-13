@@ -2,8 +2,8 @@ package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -37,6 +37,8 @@ public class DefaultIntro2 extends AppIntro2 {
         SliderPage sliderPage3 = new SliderPage();
         sliderPage3.setTitle("Simple, yet Customizable");
         sliderPage3.setDescription("The library offers a lot of customization, while keeping it simple for those that like simple.");
+        sliderPage3.setTitleTypefaceFontRes(R.font.opensans_regular);
+        sliderPage3.setDescTypefaceFontRes(R.font.opensans_regular);
         sliderPage3.setImageDrawable(R.drawable.ic_slide3);
         sliderPage3.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage3));

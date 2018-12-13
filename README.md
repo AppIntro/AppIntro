@@ -1,18 +1,14 @@
-[![](https://jitpack.io/v/apl-devs/appintro.svg)](https://jitpack.io/#apl-devs/appintro)
+[![](https://jitpack.io/v/paolorotolo/AppIntro.svg)](https://jitpack.io/#paolorotolo/appintro)
+[![Build Status](https://travis-ci.org/paolorotolo/AppIntro.svg?branch=master)](https://travis-ci.org/paolorotolo/AppIntro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
-[![Android Gems](http://www.android-gems.com/badge/PaoloRotolo/AppIntro.svg?branch=master)](http://www.android-gems.com/lib/PaoloRotolo/AppIntro)
-
-<p>Sample App:</p>
-<a href="https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="300" /></a>
+[![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
 
-### *Watch the demo video on YouTube*
-[![Intro demo video](https://img.youtube.com/vi/-KgAAbZz248/0.jpg)](https://www.youtube.com/watch?v=-KgAAbZz248)
+*Watch the [demo video](https://www.youtube.com/watch?v=-KgAAbZz248) on YouTube*
 
 ## Usage
 
@@ -31,9 +27,19 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 ```
 
 2. **Add the dependency**
+
+
 ```gradle
 	dependencies {
-	        compile 'com.github.apl-devs:appintro:v4.2.2'
+	        implementation 'com.github.paolorotolo:appintro:v5.1.0'
+	}
+```
+
+**Must Read**: If your project is still not migrated to [Android X](https://developer.android.com/jetpack/androidx/) you should use:
+
+```gradle
+	dependencies {
+	        implementation 'com.github.apl-devs:appintro:v4.2.3'
 	}
 ```
 
@@ -54,9 +60,15 @@ public class IntroActivity extends AppIntro {
         addSlide(thirdFragment);
         addSlide(fourthFragment);
 
-        // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+        // Instead of fragments, you can also use our default slide.
+        // Just create a `SliderPage` and provide title, description, background and image.
+        // AppIntro will do the rest.
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(title);
+        sliderPage.setDescription(description);
+        sliderPage.setImageDrawable(image);
+        sliderPage.setBgColor(backgroundColor);
+        addSlide(AppIntroFragment.newInstance(sliderPage));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
@@ -114,8 +126,7 @@ public class IntroActivity extends AppIntro2 {
 }
 ```
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
 
 #### Slides
@@ -258,6 +269,27 @@ The interface contains two methods:
 - `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
 - `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide although `isPolicyRespected` returned false. One may show some error message here.
 
+## Translating
+
+Do you want to help AppIntro becoming international 🌍? We are more than happy!
+AppIntro currently supports [the following languages](appintro/src/main/res).
+
+To add a new translation just add a pull request with a new `strings.xml` file inside a `values-xx` folder (where `xx` is a [two-letter ISO 639-1 language code](https://en.wikipedia.org/wiki/ISO_639-1)).
+
+In order to provide the translation, your file needs to contain the following strings:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_intro_skip_button">[Translation for SKIP]</string>
+    <string name="app_intro_next_button">[Translation for NEXT]</string>
+    <string name="app_intro_back_button">[Translation for BACK]</string>
+    <string name="app_intro_done_button">[Translation for DONE]</string>
+</resources>
+```
+
+An updated version of the english version translation is [available here](appintro/src/main/res/values/strings.xml).
+
 ## Example App
 See example code [here](https://github.com/PaoloRotolo/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample).
 
@@ -270,10 +302,8 @@ Do you need inspiration? A lot of apps are using AppIntro out there:
 
 **Hermes - Material IRC Client**
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
 ## Apps using AppIntro
 If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/PaoloRotolo/AppIntro/issues/325)!

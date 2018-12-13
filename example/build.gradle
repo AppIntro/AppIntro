@@ -1,17 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.amqtech.opensource.appintroexample"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 2
         versionName "1.0.1"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -29,29 +27,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile project(':library')
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation project(':appintro')
 
-    compile('com.mikepenz:materialdrawer:5.9.1@aar') {
+    implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
-    }
-
-    // test dependencies
-    androidTestCompile('com.android.support.test:runner:0.5') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-}
-
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion '27.0.2'
-            }
-        }
     }
 }

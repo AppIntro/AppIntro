@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_intro_skip_button">SKIP</string>
+    <string name="app_intro_next_button" tools:ignore="MissingTranslation">NEXT</string>
+    <string name="app_intro_back_button" tools:ignore="MissingTranslation">BACK</string>
+    <string name="app_intro_done_button">DONE</string>
+</resources>
