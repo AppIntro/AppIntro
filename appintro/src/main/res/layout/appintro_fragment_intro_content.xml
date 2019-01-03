@@ -28,9 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:contentDescription="@string/app_intro_image_content_description"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            tools:ignore="ContentDescription" />
+            android:paddingRight="16dp"/>
     </LinearLayout>
 
     <LinearLayout

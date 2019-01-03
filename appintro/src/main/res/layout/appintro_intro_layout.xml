@@ -62,8 +62,8 @@
                 android:layout_marginStart="8dp"
                 android:minWidth="100dp"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/ic_appintro_navigate_before_white"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/app_intro_back_button"
+                app:srcCompat="@drawable/ic_appintro_navigate_before_white" />
 
             <ImageButton
                 android:id="@+id/next"
@@ -74,8 +74,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:minWidth="100dp"
-                app:srcCompat="@drawable/ic_appintro_navigate_next_white"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/app_intro_next_button"
+                app:srcCompat="@drawable/ic_appintro_navigate_next_white" />
 
             <Button
                 android:id="@+id/done"
