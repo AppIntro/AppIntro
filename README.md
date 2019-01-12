@@ -285,6 +285,7 @@ In order to provide the translation, your file needs to contain the following st
     <string name="app_intro_next_button">[Translation for NEXT]</string>
     <string name="app_intro_back_button">[Translation for BACK]</string>
     <string name="app_intro_done_button">[Translation for DONE]</string>
+    <string name="app_intro_image_content_description">[Translation for "graphics"]</string>
 </resources>
 ```
 
