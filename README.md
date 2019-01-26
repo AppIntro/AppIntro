@@ -1,12 +1,12 @@
-[![](https://jitpack.io/v/paolorotolo/AppIntro.svg)](https://jitpack.io/#paolorotolo/appintro)
-[![Build Status](https://travis-ci.org/paolorotolo/AppIntro.svg?branch=master)](https://travis-ci.org/paolorotolo/AppIntro)
+[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro)
+[![Build Status](https://travis-ci.org/AppIntro/AppIntro.svg?branch=master)](https://travis-ci.org/AppIntro/AppIntro)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
 [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2.png" width="300">
 
 *Watch the [demo video](https://www.youtube.com/watch?v=-KgAAbZz248) on YouTube*
 
@@ -28,18 +28,18 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 
 2. **Add the dependency**
 
+Please note that AppIntro supports [Android X](https://developer.android.com/jetpack/androidx/). If you haven't migrated yet, you probably want to use
+a previous version of the library that uses the **old Support Library** packages (or try [Jetifier Reverse mode](https://ncorti.com/blog/jetifier-reverse)).
 
 ```gradle
 	dependencies {
-	        implementation 'com.github.paolorotolo:appintro:v5.1.0'
-	}
-```
-
-**Must Read**: If your project is still not migrated to [Android X](https://developer.android.com/jetpack/androidx/) you should use:
-
-```gradle
-	dependencies {
-	        implementation 'com.github.apl-devs:appintro:v4.2.3'
+	        // AndroidX Capable version
+	        implementation 'com.github.AppIntro:AppIntro:v5.1.0'
+	        
+	        // *** OR ***
+	        
+	        // Support Library compatibility version 
+	        implementation 'com.github.AppIntro:AppIntro:v4.2.3'
 	}
 ```
 
@@ -115,7 +115,7 @@ Finally, declare the activity in your Manifest like so:
 ```
 
 Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts.
-Refer to the [wiki](https://github.com/PaoloRotolo/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
+Refer to the [wiki](https://github.com/AppIntro/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
 
 #### Alternative layout
 If you want to try an alternative layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
@@ -126,7 +126,7 @@ public class IntroActivity extends AppIntro2 {
 }
 ```
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/layout2_2.png" width="300">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2_2.png" width="300">
 <br>
 
 #### Slides
@@ -147,7 +147,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 ##### Custom slides example
 
 One may also define custom slides as seen in the example project:
- * Copy the class **SampleSlide** from my [example project](https://github.com/paolorotolo/AppIntro/blob/master/example/src/main/java/com/amqtech/opensource/appintroexample/util/SampleSlide.java).
+ * Copy the class **SampleSlide** from my [example project](https://github.com/AppIntro/AppIntro/blob/master/example/src/main/java/com/amqtech/opensource/appintroexample/util/SampleSlide.java).
  * Add a new slide with `addSlide(SampleSlide.newInstance(R.layout.your_slide_here));`
 
 There's no need to create one class for fragment anymore. :)
@@ -187,7 +187,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-Click [here](https://github.com/PaoloRotolo/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
+Click [here](https://github.com/AppIntro/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
 
 #### Background color transitions
 
@@ -222,7 +222,7 @@ This is normally the root view of your Fragment's layout. But one may also apply
 
 #### Runtime Permissions (Android 6.0+)
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/permissions.png" width="300">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/permissions.png" width="300">
 
 Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tedious thing to implement.
 
@@ -292,22 +292,22 @@ In order to provide the translation, your file needs to contain the following st
 An updated version of the english version translation is [available here](appintro/src/main/res/values/strings.xml).
 
 ## Example App
-See example code [here](https://github.com/PaoloRotolo/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample).
+See example code [here](https://github.com/AppIntro/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample).
 
 ## Real life examples
 Do you need inspiration? A lot of apps are using AppIntro out there:
 
 **Planets**
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/planets.png">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/planets.png">
 
 **Hermes - Material IRC Client**
 
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/PaoloRotolo/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
+<img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
 
 ## Apps using AppIntro
-If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/PaoloRotolo/AppIntro/issues/325)!
+If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/AppIntro/AppIntro/issues/325)!
 
  * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes)
  * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)
