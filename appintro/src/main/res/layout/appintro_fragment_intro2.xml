@@ -3,8 +3,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/appIntro2BottomBarHeight">
+    android:orientation="vertical">
 
     <include layout="@layout/appintro_fragment_intro_content" />
 </LinearLayout>
