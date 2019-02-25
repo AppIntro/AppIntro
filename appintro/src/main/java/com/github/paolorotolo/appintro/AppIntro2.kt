@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
+import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
@@ -13,12 +14,12 @@ abstract class AppIntro2 : AppIntroBase() {
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.addView(value, 0)
+                backgroundFrame.addView(field, 0)
             }
         }
 
     private lateinit var backgroundFrame: ConstraintLayout
-    private lateinit var bottomBar: View
+    private lateinit var bottomBar: FrameLayout
     private lateinit var skipImageButton: ImageButton
 
 
