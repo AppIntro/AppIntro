@@ -7,7 +7,7 @@ import com.github.paolorotolo.appintro.model.SliderPage
 
 class AppIntro2Fragment : AppIntroBaseFragment() {
 
-    override val layoutId: Int get() = R.layout.appintro_fragment_intro2
+    override val layoutId: Int get() = R.layout.appintro_fragment_intro
 
     companion object {
 
