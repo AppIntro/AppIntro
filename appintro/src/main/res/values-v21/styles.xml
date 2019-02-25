@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
+    <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:layout_width">@dimen/appIntro2DefaultFabSize</item>
+        <item name="android:layout_height">@dimen/appIntro2DefaultFabSize</item>
+        <item name="android:layout_margin">@dimen/appIntro2DefaultFabMargin</item>
     </style>
 
     <style name="AppIntroDefaultHeading" parent="TextAppearance.AppCompat.Display1">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/appIntroHeadingTextSize</item>
         <item name="android:fontFamily">sans-serif-thin</item>
+    </style>
+
+    <style name="AppIntroButtonStyleCompat">
+        <item name="android:minHeight">@dimen/appIntroButtonMinHeight</item>
+        <item name="android:minWidth">@dimen/appIntroButtonMinWidth</item>
+        <item name="android:layout_margin">@dimen/appIntroDefaultButtonMargin</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
 </resources>
