@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="appIntroBottomBarHeight">64dp</dimen>
-    <dimen name="appIntro2BottomBarHeight">80dp</dimen>
+    <dimen name="appIntro2BottomBarHeight">96dp</dimen>
 
-    <dimen name="appIntroDefaultPaddingTop">40dp</dimen>
-    <dimen name="appIntroDefaultPaddingLeft">16dp</dimen>
-    <dimen name="appIntroDefaultPaddingRight">16dp</dimen>
-    <dimen name="appIntroDefaultPaddingBottom">16dp</dimen>
+    <dimen name="appIntro2DefaultFabInset">16dp</dimen>
+    <dimen name="appIntro2DefaultFabSize">64dp</dimen>
+    <dimen name="appIntro2DefaultFabBgSize">56dp</dimen>
+    <dimen name="appIntro2DefaultFabMargin">16dp</dimen>
 
-    <dimen name="appIntroDefaultPaddingBottomIntro1">80dp</dimen>
-    <dimen name="appIntroDefaultPaddingBottomIntro2">96dp</dimen>
+    <dimen name="appIntroDefaultButtonMargin">8dp</dimen>
+    <dimen name="appIntroButtonMinHeight">48dp</dimen>
+    <dimen name="appIntroButtonMinWidth">64dp</dimen>
 
-    <dimen name="appIntroHeadingTextSize">28dp</dimen>
+    <dimen name="appIntroDescriptionTextSize">16sp</dimen>
+    <dimen name="appIntroIndicatorInset">5dp</dimen>
+    <dimen name="appIntroIndicatorSize">10dp</dimen>
+
+    <dimen name="appIntroHeadingTextSize">28sp</dimen>
 </resources>
