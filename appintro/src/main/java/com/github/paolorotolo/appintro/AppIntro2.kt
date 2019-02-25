@@ -3,10 +3,9 @@ package com.github.paolorotolo.appintro
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
@@ -14,12 +13,12 @@ abstract class AppIntro2 : AppIntroBase() {
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.addView(field)
+                backgroundFrame.addView(value, 0)
             }
         }
 
-    private lateinit var backgroundFrame: FrameLayout
-    private lateinit var bottomBar: LinearLayout
+    private lateinit var backgroundFrame: ConstraintLayout
+    private lateinit var bottomBar: View
     private lateinit var skipImageButton: ImageButton
 
 
