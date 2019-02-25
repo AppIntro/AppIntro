@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appintro_background_color"
+    android:layoutDirection="ltr"
+    tools:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+    <com.github.paolorotolo.appintro.AppIntroViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fitsSystemWindows="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--This FrameLayout should not be removed and must always have a transparent background if a custom background is set to -->
+    <!--@+id/background, otherwise the ripple effect on the buttons will not appear-->
+    <!--See https://stackoverflow.com/questions/31948189/ for more info-->
+    <FrameLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appIntroBottomBarHeight"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/skip"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:labelFor="@string/app_intro_skip_button"
+            android:text="@string/app_intro_skip_button"
+            android:textColor="@color/appintro_icon_tint"
+            android:tooltipText="@string/app_intro_skip_button" />
+
+        <ImageButton
+            android:id="@+id/back"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:contentDescription="@string/app_intro_back_button"
+            android:rotation="180"
+            android:tooltipText="@string/app_intro_back_button"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_appintro_navigate_next" />
+
+        <FrameLayout
+            android:id="@+id/indicator_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layoutDirection="ltr"
+            tools:background="@drawable/appintro_indicator_dot_selected" />
+
+        <ImageButton
+            android:id="@+id/next"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:contentDescription="@string/app_intro_next_button"
+            android:tooltipText="@string/app_intro_next_button"
+            app:srcCompat="@drawable/ic_appintro_navigate_next" />
+
+        <Button
+            android:id="@+id/done"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:labelFor="@string/app_intro_done_button"
+            android:text="@string/app_intro_done_button"
+            android:textColor="@color/appintro_icon_tint"
+            android:tooltipText="@string/app_intro_done_button"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/bottom_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#55000000"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
