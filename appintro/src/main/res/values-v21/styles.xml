@@ -13,7 +13,7 @@
         <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
-    <style name="AppIntroButtonStyleCompat">
+    <style name="AppIntroButtonStyleCompat parent="Widget.AppCompat.Button.Borderless">
         <item name="android:minHeight">@dimen/appIntroButtonMinHeight</item>
         <item name="android:minWidth">@dimen/appIntroButtonMinWidth</item>
         <item name="android:layout_margin">@dimen/appIntroDefaultButtonMargin</item>
