@@ -107,12 +107,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         checkButton(skipButton, "skip");
         checkButton(backButton, "back");
 
-        FrameLayout frameLayout = findViewById(R.id.bottomContainer);
-        if (frameLayout != null && isRtl()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                frameLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-            }
-        }
         if (isRtl()) {
             nextButton.setScaleX(-1);
             backButton.setScaleX(-1);
