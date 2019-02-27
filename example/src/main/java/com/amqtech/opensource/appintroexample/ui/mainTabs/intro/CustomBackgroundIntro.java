@@ -64,7 +64,7 @@ public class CustomBackgroundIntro extends AppIntro2 {
         imageView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         // Bind the background to the intro
-        setBackgroundView(imageView);
+        setBackgroundView(R.drawable.ic_drawer_header);
     }
 
     @Override
