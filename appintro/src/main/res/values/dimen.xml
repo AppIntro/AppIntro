@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="appIntroBottomBarHeight">64dp</dimen>
-    <dimen name="appIntro2BottomBarHeight">96dp</dimen>
+    <dimen name="appintro_bottombar_height">70dp</dimen>
+    <dimen name="appintro2_bottombar_height">96dp</dimen>
 
-    <dimen name="appIntro2DefaultFabInset">16dp</dimen>
-    <dimen name="appIntro2DefaultFabSize">64dp</dimen>
-    <dimen name="appIntro2DefaultFabBgSize">56dp</dimen>
-    <dimen name="appIntro2DefaultFabMargin">16dp</dimen>
+    <dimen name="appintro2_fab_inset">16dp</dimen>
+    <dimen name="appintro2_fab_size">64dp</dimen>
+    <dimen name="appintro2_fab_bg_size">56dp</dimen>
+    <dimen name="appintro2_fab_margin">16dp</dimen>
 
-    <dimen name="appIntroDefaultButtonMargin">8dp</dimen>
-    <dimen name="appIntroButtonMinHeight">48dp</dimen>
-    <dimen name="appIntroButtonMinWidth">64dp</dimen>
+    <dimen name="appintro_button_margin">12dp</dimen>
+    <dimen name="appintro_button_minheight">48dp</dimen>
+    <dimen name="appintro_button_minwidth">48dp</dimen>
 
-    <dimen name="appIntroDescriptionTextSize">16sp</dimen>
-    <dimen name="appIntroIndicatorInset">5dp</dimen>
-    <dimen name="appIntroIndicatorSize">10dp</dimen>
+    <dimen name="appintro_indicator_inset">4dp</dimen>
+    <dimen name="appintro_indicator_size">10dp</dimen>
+    <dimen name="appintro_indicator_margin">12dp</dimen>
 
-    <dimen name="appIntroHeadingTextSize">28sp</dimen>
+    <dimen name="appintro_desctext_size">16sp</dimen>
+    <dimen name="appintro_desc_padding">16dp</dimen>
+    <dimen name="appintro_head_padding">8dp</dimen>
+    <dimen name="appintro_headtext_size">28sp</dimen>
 </resources>
