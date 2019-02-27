@@ -23,7 +23,7 @@
         android:id="@+id/bottom"
         android:layout_width="0dp"
         android:layout_height="@dimen/appintro2_bottombar_height"
-        android:background="@android:color/transparent"
+        android:background="@color/appintro_bar_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
