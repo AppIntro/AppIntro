@@ -5,30 +5,30 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
-import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
-    var backgroundView: View? = null
+    var backgroundView: Int? = null
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.addView(field, 0)
+                backgroundFrame.setBackgroundResource(field!!)
             }
         }
 
     private lateinit var backgroundFrame: ConstraintLayout
-    private lateinit var bottomBar: FrameLayout
+    private lateinit var bottomBar: View
     private lateinit var skipImageButton: ImageButton
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         backgroundFrame = findViewById(R.id.background)
         bottomBar = findViewById(R.id.bottom)
         skipImageButton = findViewById(R.id.skip)
+        if (isRtl) {
+            skipImageButton.scaleX = -1F
+        }
     }
 
     override fun getLayoutId() = R.layout.appintro_intro_layout2
