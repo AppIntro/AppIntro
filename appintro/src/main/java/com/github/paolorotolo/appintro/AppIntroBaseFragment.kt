@@ -13,6 +13,7 @@ import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 
 internal const val ARG_TITLE = "title"
@@ -43,7 +44,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
 
-    private var mainLayout: LinearLayout? = null
+    private var mainLayout: ConstraintLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
