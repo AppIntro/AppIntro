@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimary">@color/appintro_color_primary</item>
+        <item name="colorPrimaryDark">@color/appintro_color_primary_dark</item>
+        <item name="colorAccent">@color/appintro_color_accent</item>
+        <item name="android:navigationBarColor">@color/appintro_navbar_color</item>
+    </style>
+
+    <style name="AppIntroButtonStyleCompat">
+        <item name="android:minHeight">@dimen/appintro_button_minheight</item>
+        <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:layout_margin">@dimen/appintro_button_margin</item>
+    </style>
+
     <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:layout_width">@dimen/appIntro2DefaultFabSize</item>
-        <item name="android:layout_height">@dimen/appIntro2DefaultFabSize</item>
-        <item name="android:layout_margin">@dimen/appIntro2DefaultFabMargin</item>
+        <item name="android:layout_width">@dimen/appintro2_fab_size</item>
+        <item name="android:layout_height">@dimen/appintro2_fab_size</item>
+        <item name="android:layout_margin">@dimen/appintro2_fab_margin</item>
     </style>
 
-    <style name="AppIntroDefaultHeading" parent="TextAppearance.AppCompat.Display1">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/appIntroHeadingTextSize</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
-    </style>
 
-    <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:minHeight">@dimen/appIntroButtonMinHeight</item>
-        <item name="android:minWidth">@dimen/appIntroButtonMinWidth</item>
-        <item name="android:layout_margin">@dimen/appIntroDefaultButtonMargin</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-    </style>
 </resources>
