@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
+    android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,7 @@
 
     <FrameLayout
         android:id="@+id/indicator_container"
-        style="@style/AppIntroIndiContainer"
+        style="@style/AppIntroIndicatorContainer"
         android:layoutDirection="ltr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
