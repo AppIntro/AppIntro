@@ -1,19 +1,32 @@
 package com.github.paolorotolo.appintro
 
+import android.annotation.TargetApi
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
+import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
-    var backgroundView: Int? = null
+    @IdRes
+    var backgroundResource: Int? = null
         set(value) {
             field = value
             if (field != null) {
                 backgroundFrame.setBackgroundResource(field!!)
+            }
+        }
+
+    var backgroundDrawable: Drawable? = null
+        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+        set(value) {
+            field = value
+            if (field != null) {
+                backgroundFrame.background = field
             }
         }
 
@@ -32,6 +45,11 @@ abstract class AppIntro2 : AppIntroBase() {
     }
 
     override fun getLayoutId() = R.layout.appintro_intro_layout2
+
+    /**
+     * Returns the backgroundFrame to use with image loading libraries like Glide
+     */
+    fun getBackgroundFrame() = backgroundFrame
 
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
