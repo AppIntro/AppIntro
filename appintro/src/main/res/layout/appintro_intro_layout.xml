@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="false"
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
     android:theme="@style/AppIntroStyle">
@@ -12,7 +13,7 @@
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/bottom_separator"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
 
     <FrameLayout
         android:id="@+id/indicator_container"
-        style="@style/AppIntroIndiContainer"
+        style="@style/AppIntroIndicatorContainer"
         android:layoutDirection="ltr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
