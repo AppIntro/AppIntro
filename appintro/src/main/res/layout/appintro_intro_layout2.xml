@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:fitsSystemWindows="false"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:tooltipText="@string/app_intro_back_button"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_appintro_fab_next" />
@@ -77,5 +77,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_appintro_fab_done" />
+
+    <View
+        android:id="@+id/statusbarbackground"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/appintro_statusbar_height"
+        android:background="@color/status_bar_bg_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
