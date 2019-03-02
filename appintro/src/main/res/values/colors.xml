@@ -12,4 +12,5 @@
     <color name="appintro_color_accent">#D32F2F</color>
     <color name="appintro_navbar_color">#FF000000</color>
     <color name="appintro_bar_color">@android:color/transparent</color>
+    <color name="status_bar_bg_color">#22000000</color>
 </resources>
