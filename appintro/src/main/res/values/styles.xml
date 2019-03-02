@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
     <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:minHeight">@dimen/appintro_button_minheight</item>
+        <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
         <item name="android:layout_margin">@dimen/appintro_button_margin</item>
     </style>
 
     <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:layout_width">@dimen/appintro2_fab_size</item>
         <item name="android:layout_height">@dimen/appintro2_fab_size</item>
+        <item name="android:layout_width">@dimen/appintro2_fab_size</item>
         <item name="android:layout_margin">@dimen/appintro2_fab_margin</item>
+    </style>
+
+    <style name="AppIntroIndicatorContainer">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">@dimen/appintro_indicator_margin</item>
     </style>
 
     <style name="AppIntroDefaultHeading" parent="TextAppearance.AppCompat.Display1">
@@ -27,23 +33,16 @@
         <item name="android:gravity">bottom|center_horizontal</item>
     </style>
 
-    <style name="AppIntroIndicatorContainer">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/appintro_indicator_margin</item>
-    </style>
-
     <style name="AppIntroDefaultText" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">@color/appintro_desc_color</item>
+        <item name="android:textSize">@dimen/appintro_desctext_size</item>
         <item name="android:padding">@dimen/appintro_desc_padding</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/appintro_desctext_size</item>
     </style>
 
     <style name="AppIntroDefaultImage">
         <item name="android:paddingLeft">32dp</item>
         <item name="android:paddingRight">32dp</item>
-        <item name="android:layout_gravity">center</item>
         <item name="android:scaleType">centerInside</item>
     </style>
 
