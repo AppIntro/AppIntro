@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="false"
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
+    android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:fitsSystemWindows="false"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_separator"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -86,5 +86,14 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/statusbarbackground"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/appintro_statusbar_height"
+        android:background="@color/status_bar_bg_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
