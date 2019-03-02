@@ -29,10 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
@@ -68,6 +70,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected View doneButton;
     protected View skipButton;
     protected View backButton;
+    protected View statusBarBackground;
     protected FrameLayout indicatorContainer;
     protected int savedCurrentItem;
     protected ArrayList<PermissionWrapper> permissionsArray = new ArrayList<>();
@@ -90,6 +93,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     // You must grant vibration permissions on your AndroidManifest.xml file
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
@@ -101,11 +105,18 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         doneButton = findViewById(R.id.done);
         skipButton = findViewById(R.id.skip);
         backButton = findViewById(R.id.back);
+        statusBarBackground = findViewById(R.id.statusbarbackground);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            statusBarBackground.getLayoutParams().height = 0;
+            statusBarBackground.requestLayout();
+        }
 
         checkButton(nextButton, "next");
         checkButton(doneButton, "done");
         checkButton(skipButton, "skip");
         checkButton(backButton, "back");
+
 
         if (isRtl()) {
             nextButton.setScaleX(-1);
@@ -173,7 +184,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         pager.setOnNextPageRequestedListener(this);
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+
+
     }
+
 
     /**
      * Check {@link View} to null pointer. Log error when view is {@code null}.
@@ -187,6 +201,24 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     .format("View not initialized, missing 'R.id.%1$s' in XML!",
                             viewName));
         }
+    }
+
+    /**
+     * Used to set the color of the Status Bar
+     *
+     * @param color Color of the Status Bar
+     */
+    public void setStatusBarColor(@ColorInt int color) {
+        statusBarBackground.setBackgroundColor(color);
+    }
+
+    /**
+     * Used to set the color of the Status Bar
+     *
+     * @param color Color of the Status Bar
+     */
+    public void setStatusBarColorRes(@ColorRes int color) {
+        statusBarBackground.setBackgroundColor(ContextCompat.getColor(this, color));
     }
 
     @Override
@@ -456,6 +488,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * Sets the scroll duration factor - by default it is 1. This factor will
      * multiply duration
+     *
      * @param factor the new factor that will be applied to the scroll - default: 1
      */
     protected void setScrollDurationFactor(int factor) {
@@ -692,8 +725,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         if (!isVisible) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            statusBarBackground.setVisibility(View.VISIBLE);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            statusBarBackground.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -927,6 +962,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
                 isImmersiveModeEnabled = false;
+                statusBarBackground.setVisibility(View.VISIBLE);
             } else if (isEnabled) {
 
                 int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -942,7 +978,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     flags |= View.SYSTEM_UI_FLAG_IMMERSIVE;
                     isImmersiveModeSticky = false;
                 }
-
+                statusBarBackground.setVisibility(View.INVISIBLE);
                 getWindow().getDecorView().setSystemUiVisibility(flags);
 
                 isImmersiveModeEnabled = true;
@@ -1036,7 +1072,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     @SuppressLint("MissingPermission")
-    // You must grant vibration permissions on your AndroidManifest.xml file
+// You must grant vibration permissions on your AndroidManifest.xml file
     private final class NextButtonOnClickListener implements View.OnClickListener {
         // Permission should be handled by the library user.
         // We are ok with crashing here.
