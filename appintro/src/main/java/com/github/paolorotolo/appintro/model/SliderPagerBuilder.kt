@@ -21,6 +21,9 @@ class SliderPagerBuilder {
     @ColorInt
     private var bgColor: Int = 0
 
+    @DrawableRes
+    private var bgDrawable: Int = 0
+
     @ColorInt
     private var titleColor: Int = 0
 
@@ -54,6 +57,11 @@ class SliderPagerBuilder {
 
     fun bgColor(bgColor: Int): SliderPagerBuilder {
         this.bgColor = bgColor
+        return this
+    }
+
+    fun bgDrawable(bgDrawable: Int): SliderPagerBuilder {
+        this.bgDrawable = bgDrawable
         return this
     }
 
@@ -91,6 +99,7 @@ class SliderPagerBuilder {
             title = this.title,
             description = this.description,
             imageDrawable = this.imageDrawable,
+            bgDrawable = this.bgDrawable,
             bgColor = this.bgColor,
             titleColor = this.titleColor,
             descColor = this.descColor,
