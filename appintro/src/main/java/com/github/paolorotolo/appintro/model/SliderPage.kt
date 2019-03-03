@@ -14,6 +14,7 @@ import com.github.paolorotolo.appintro.*
 data class SliderPage @JvmOverloads constructor(
         var title: CharSequence? = null,
         var description: CharSequence? = null,
+        @DrawableRes var bgDrawable: Int = 0,
         @DrawableRes var imageDrawable: Int = 0,
         @ColorInt var bgColor: Int = 0,
         @ColorInt var titleColor: Int = 0,
@@ -42,6 +43,7 @@ data class SliderPage @JvmOverloads constructor(
         newBundle.putInt(ARG_DESC_COLOR, this.descColor)
         newBundle.putInt(ARG_DRAWABLE, this.imageDrawable)
         newBundle.putInt(ARG_BG_COLOR, this.bgColor)
+        newBundle.putInt(ARG_BG_DRAWABLE, this.bgDrawable)
         return newBundle
     }
 }
