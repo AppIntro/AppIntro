@@ -22,6 +22,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
          *                             from Resources
          * @param imageDrawable        @DrawableRes (Integer) the image that will be
          *                             displayed, obtained from Resources
+         * @param bgDrawable           @DrawableRes (Integer) custom background drawable
          * @param bgColor              @ColorInt (Integer) custom background color
          * @param titleColor           @ColorInt (Integer) custom title color
          * @param descColor            @ColorInt (Integer) custom description color
@@ -37,6 +38,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
                 @FontRes descTypefaceFontRes: Int = 0,
                 @DrawableRes imageDrawable: Int = 0,
                 @ColorInt bgColor: Int = 0,
+                @DrawableRes bgDrawable: Int = 0,
                 @ColorInt titleColor: Int = 0,
                 @ColorInt descColor: Int = 0
         ): AppIntroFragment {
@@ -46,11 +48,12 @@ class AppIntroFragment : AppIntroBaseFragment() {
                             description = description,
                             imageDrawable = imageDrawable,
                             bgColor = bgColor,
+                            bgDrawable = bgDrawable,
                             titleColor = titleColor,
                             descColor = descColor,
                             titleTypefaceFontRes = titleTypefaceFontRes,
                             descTypefaceFontRes = descTypefaceFontRes
-                            )
+                    )
             )
         }
 
