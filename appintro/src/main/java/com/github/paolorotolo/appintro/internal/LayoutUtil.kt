@@ -11,11 +11,7 @@ internal object LayoutUtil {
 
     @JvmStatic
     fun isRtl(ctx: Context): Boolean {
-       var isRTL : Boolean
-        isRTL = false //RTL is supported only on API 17, so it will be false on API<17
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            isRTL = ctx.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
-        }
-        return isRTL
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 &&
+                ctx.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
     }
 }
