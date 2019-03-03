@@ -33,7 +33,6 @@
         android:id="@+id/skip"
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_skip_button"
-        android:tooltipText="@string/app_intro_skip_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_appintro_fab_skip" />
@@ -43,7 +42,6 @@
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
-        android:tooltipText="@string/app_intro_back_button"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +61,6 @@
         android:id="@+id/next"
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_next_button"
-        android:tooltipText="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_appintro_fab_next" />
@@ -72,19 +69,9 @@
         android:id="@+id/done"
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_done_button"
-        android:tooltipText="@string/app_intro_done_button"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_appintro_fab_done" />
-
-    <View
-        android:id="@+id/statusbarbackground"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/appintro_statusbar_height"
-        android:background="@color/status_bar_bg_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
