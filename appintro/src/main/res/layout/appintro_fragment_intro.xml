@@ -5,16 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/appintro_statusbar_height"
+    android:paddingBottom="@dimen/appintro_bottombar_height"
     tools:background="@color/appintro_background_color">
 
     <TextView
         android:id="@+id/title"
         style="@style/AppIntroDefaultHeading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/topline"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Welcome" />
@@ -22,8 +24,8 @@
     <ImageView
         android:id="@+id/image"
         style="@style/AppIntroDefaultImage"
-        android:layout_height="0dp"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/app_intro_image_content_description"
         app:layout_constraintBottom_toTopOf="@id/bottomline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,11 +35,10 @@
     <TextView
         android:id="@+id/description"
         style="@style/AppIntroDefaultText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomline"
         tools:text="This is a demo of the AppIntro Library" />
