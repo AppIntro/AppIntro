@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.github.paolorotolo.appintro.internal.LogHelper
@@ -26,6 +25,7 @@ internal const val ARG_DRAWABLE = "drawable"
 internal const val ARG_BG_COLOR = "bg_color"
 internal const val ARG_TITLE_COLOR = "title_color"
 internal const val ARG_DESC_COLOR = "desc_color"
+internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
 abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlideBackgroundColorHolder {
 
@@ -35,6 +35,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     protected abstract val layoutId: Int
 
     private var drawable: Int = 0
+    private var bgDrawable: Int = 0
 
     private var titleColor: Int = 0
     private var descColor: Int = 0
@@ -55,6 +56,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             drawable = args.getInt(ARG_DRAWABLE)
             title = args.getString(ARG_TITLE)
             description = args.getString(ARG_DESC)
+            bgDrawable = args.getInt(ARG_BG_DRAWABLE)
 
             val argsTitleTypeface = args.getString(ARG_TITLE_TYPEFACE)
             val argsDescTypeface = args.getString(ARG_DESC_TYPEFACE)
@@ -76,6 +78,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             drawable = savedInstanceState.getInt(ARG_DRAWABLE)
             title = savedInstanceState.getString(ARG_TITLE)
             description = savedInstanceState.getString(ARG_DESC)
+            bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
 
             titleTypeface = TypefaceContainer(
                     savedInstanceState.getString(ARG_TITLE_TYPEFACE),
@@ -111,13 +114,19 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         descTypeface?.applyTo(descriptionText)
 
         slideImage.setImageResource(drawable)
-        mainLayout?.setBackgroundColor(defaultBackgroundColor)
+        if (bgDrawable != 0) {
+            mainLayout?.setBackgroundResource(bgDrawable)
+        } else {
+            mainLayout?.setBackgroundColor(defaultBackgroundColor)
+        }
+
 
         return view
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(ARG_DRAWABLE, drawable)
+        outState.putInt(ARG_BG_DRAWABLE, bgDrawable)
         outState.putString(ARG_TITLE, title)
         outState.putString(ARG_DESC, description)
         outState.putInt(ARG_BG_COLOR, defaultBackgroundColor)
