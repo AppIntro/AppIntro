@@ -1,6 +1,5 @@
 package com.github.paolorotolo.appintro
 
-import android.annotation.TargetApi
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -17,16 +16,17 @@ abstract class AppIntro2 : AppIntroBase() {
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.setBackgroundResource(field!!)
+                field?.let { backgroundFrame.setBackgroundResource(it) }
             }
         }
 
     var backgroundDrawable: Drawable? = null
-        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.background = field
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    backgroundFrame.background = field
+                }
             }
         }
 
