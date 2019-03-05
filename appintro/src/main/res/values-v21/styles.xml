@@ -15,4 +15,11 @@
         <item name="android:layout_margin">@dimen/appintro_button_margin</item>
     </style>
 
+    <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/ic_appintro_ripple</item>
+        <item name="android:layout_height">@dimen/appintro2_fab_size</item>
+        <item name="android:layout_width">@dimen/appintro2_fab_size</item>
+        <item name="android:layout_margin">@dimen/appintro2_fab_margin</item>
+    </style>
+
 </resources>
