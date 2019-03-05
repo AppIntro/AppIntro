@@ -3,7 +3,7 @@
     <dimen name="appintro_statusbar_height">24dp</dimen>
 
     <dimen name="appintro_bottombar_height">70dp</dimen>
-    <dimen name="appintro2_bottombar_height">88dp</dimen>
+    <dimen name="appintro2_bottombar_height">90dp</dimen>
 
     <dimen name="appintro2_fab_inset">16dp</dimen>
     <dimen name="appintro2_fab_size">88dp</dimen>
