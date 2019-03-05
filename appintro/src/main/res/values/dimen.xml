@@ -6,9 +6,9 @@
     <dimen name="appintro2_bottombar_height">96dp</dimen>
 
     <dimen name="appintro2_fab_inset">16dp</dimen>
-    <dimen name="appintro2_fab_size">64dp</dimen>
+    <dimen name="appintro2_fab_size">88dp</dimen>
     <dimen name="appintro2_fab_bg_size">56dp</dimen>
-    <dimen name="appintro2_fab_margin">16dp</dimen>
+    <dimen name="appintro2_fab_margin">0dp</dimen>
 
     <dimen name="appintro_button_margin">12dp</dimen>
     <dimen name="appintro_button_minheight">48dp</dimen>
