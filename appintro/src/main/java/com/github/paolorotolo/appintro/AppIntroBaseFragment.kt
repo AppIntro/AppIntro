@@ -78,7 +78,6 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             drawable = savedInstanceState.getInt(ARG_DRAWABLE)
             title = savedInstanceState.getString(ARG_TITLE)
             description = savedInstanceState.getString(ARG_DESC)
-            bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
 
             titleTypeface = TypefaceContainer(
                     savedInstanceState.getString(ARG_TITLE_TYPEFACE),
@@ -88,6 +87,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
                     savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0))
 
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
+            bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR)
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR)
         }
@@ -119,8 +119,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         } else {
             mainLayout?.setBackgroundColor(defaultBackgroundColor)
         }
-
-
+        
         return view
     }
 
