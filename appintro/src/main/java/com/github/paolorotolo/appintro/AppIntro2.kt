@@ -47,11 +47,6 @@ abstract class AppIntro2 : AppIntroBase() {
     override fun getLayoutId() = R.layout.appintro_intro_layout2
 
     /**
-     * Returns the backgroundFrame to use with image loading libraries like Glide
-     */
-    fun getBackgroundFrame() = backgroundFrame
-
-    /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
      */
     @Deprecated("use {@link #setProgressButtonEnabled(boolean)} instead.", ReplaceWith("isProgressButtonEnabled = showDone"))
