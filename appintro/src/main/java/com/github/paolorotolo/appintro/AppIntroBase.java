@@ -233,7 +233,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
-    public void initSysBars() {
+    private void initSysBars() {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
