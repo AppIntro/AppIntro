@@ -4,7 +4,7 @@
     <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
     <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:minHeight">@dimen/appintro_button_minheight</item>
         <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
         <item name="android:layout_height">wrap_content</item>
@@ -13,7 +13,7 @@
     </style>
 
     <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@drawable/ic_appintro_ripple</item>
         <item name="android:layout_height">@dimen/appintro2_fab_size</item>
         <item name="android:layout_width">@dimen/appintro2_fab_size</item>
         <item name="android:layout_margin">@dimen/appintro2_fab_margin</item>
