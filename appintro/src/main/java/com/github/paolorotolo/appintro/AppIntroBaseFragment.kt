@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.github.paolorotolo.appintro.internal.LogHelper
@@ -13,6 +12,7 @@ import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 
 internal const val ARG_TITLE = "title"
@@ -25,6 +25,7 @@ internal const val ARG_DRAWABLE = "drawable"
 internal const val ARG_BG_COLOR = "bg_color"
 internal const val ARG_TITLE_COLOR = "title_color"
 internal const val ARG_DESC_COLOR = "desc_color"
+internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
 abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlideBackgroundColorHolder {
 
@@ -34,6 +35,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     protected abstract val layoutId: Int
 
     private var drawable: Int = 0
+    private var bgDrawable: Int = 0
 
     private var titleColor: Int = 0
     private var descColor: Int = 0
@@ -43,7 +45,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
 
-    private var mainLayout: LinearLayout? = null
+    private var mainLayout: ConstraintLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             drawable = args.getInt(ARG_DRAWABLE)
             title = args.getString(ARG_TITLE)
             description = args.getString(ARG_DESC)
+            bgDrawable = args.getInt(ARG_BG_DRAWABLE)
 
             val argsTitleTypeface = args.getString(ARG_TITLE_TYPEFACE)
             val argsDescTypeface = args.getString(ARG_DESC_TYPEFACE)
@@ -84,6 +87,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
                     savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0))
 
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
+            bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR)
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR)
         }
@@ -110,13 +114,18 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         descTypeface?.applyTo(descriptionText)
 
         slideImage.setImageResource(drawable)
-        mainLayout?.setBackgroundColor(defaultBackgroundColor)
-
+        if (bgDrawable != 0) {
+            mainLayout?.setBackgroundResource(bgDrawable)
+        } else {
+            mainLayout?.setBackgroundColor(defaultBackgroundColor)
+        }
+        
         return view
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(ARG_DRAWABLE, drawable)
+        outState.putInt(ARG_BG_DRAWABLE, bgDrawable)
         outState.putString(ARG_TITLE, title)
         outState.putString(ARG_DESC, description)
         outState.putInt(ARG_BG_COLOR, defaultBackgroundColor)

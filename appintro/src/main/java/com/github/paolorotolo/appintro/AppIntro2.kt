@@ -1,34 +1,47 @@
 package com.github.paolorotolo.appintro
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.annotation.IdRes
+import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
-    var backgroundView: View? = null
+    @IdRes
+    var backgroundResource: Int? = null
         set(value) {
             field = value
             if (field != null) {
-                backgroundFrame.addView(field)
+                field?.let { backgroundFrame.setBackgroundResource(it) }
             }
         }
 
-    private lateinit var backgroundFrame: FrameLayout
-    private lateinit var bottomBar: LinearLayout
-    private lateinit var skipImageButton: ImageButton
+    var backgroundDrawable: Drawable? = null
+        set(value) {
+            field = value
+            if (field != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    backgroundFrame.background = field
+                }
+            }
+        }
 
+    private lateinit var backgroundFrame: ConstraintLayout
+    private lateinit var bottomBar: View
+    private lateinit var skipImageButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         backgroundFrame = findViewById(R.id.background)
         bottomBar = findViewById(R.id.bottom)
         skipImageButton = findViewById(R.id.skip)
+        if (isRtl) {
+            skipImageButton.scaleX = -1F
+        }
     }
 
     override fun getLayoutId() = R.layout.appintro_intro_layout2

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.indicator.DotIndicatorController;
@@ -29,14 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import static androidx.appcompat.widget.TooltipCompat.setTooltipText;
 
 @SuppressWarnings("unused")
 public abstract class AppIntroBase extends AppCompatActivity implements
@@ -68,6 +73,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     protected View doneButton;
     protected View skipButton;
     protected View backButton;
+    protected View statusBarBackground;
     protected FrameLayout indicatorContainer;
     protected int savedCurrentItem;
     protected ArrayList<PermissionWrapper> permissionsArray = new ArrayList<>();
@@ -90,7 +96,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     // You must grant vibration permissions on your AndroidManifest.xml file
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            initSysBars();
+        }
 
         setContentView(getLayoutId());
 
@@ -107,12 +118,17 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         checkButton(skipButton, "skip");
         checkButton(backButton, "back");
 
-        FrameLayout frameLayout = findViewById(R.id.bottomContainer);
-        if (frameLayout != null && isRtl()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                frameLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-            }
+        setTooltipText(nextButton, getString(R.string.app_intro_next_button));
+        if (skipButton instanceof ImageButton) {
+            setTooltipText(skipButton, getString(R.string.app_intro_skip_button));
         }
+        if (doneButton instanceof ImageButton) {
+            setTooltipText(doneButton, getString(R.string.app_intro_done_button));
+        }
+        if (backButton instanceof ImageButton) {
+            setTooltipText(backButton, getString(R.string.app_intro_back_button));
+        }
+
         if (isRtl()) {
             nextButton.setScaleX(-1);
             backButton.setScaleX(-1);
@@ -193,6 +209,34 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     .format("View not initialized, missing 'R.id.%1$s' in XML!",
                             viewName));
         }
+    }
+
+    /**
+     * Used to set the color of the Status Bar
+     *
+     * @param color Color of the Status Bar
+     */
+    public void setStatusBarColor(@ColorInt int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(color);
+        }
+    }
+
+    /**
+     * Used to set the color of the Status Bar
+     *
+     * @param color Color of the Status Bar
+     */
+    public void setStatusBarColorRes(@ColorRes int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, color));
+        }
+    }
+
+    private void initSysBars() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     @Override
@@ -462,6 +506,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     /**
      * Sets the scroll duration factor - by default it is 1. This factor will
      * multiply duration
+     *
      * @param factor the new factor that will be applied to the scroll - default: 1
      */
     protected void setScrollDurationFactor(int factor) {

@@ -47,7 +47,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(ContextCompat.getDrawable(this.context,
-                    R.drawable.appintro_indicator_dot_grey))
+                    R.drawable.ic_appintro_indicator_unselected))
 
             val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -62,9 +62,9 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         currentPosition = index
         for (i in 0 until slideCount) {
             val drawableId = if (i == index)
-                R.drawable.appintro_indicator_dot_white
+                R.drawable.ic_appintro_indicator_selected
             else
-                R.drawable.appintro_indicator_dot_grey
+                R.drawable.ic_appintro_indicator_unselected
             val drawable = ContextCompat.getDrawable(this.context, drawableId)
 
             if (selectedIndicatorColor != DEFAULT_COLOR && i == index)

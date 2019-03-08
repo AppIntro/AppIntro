@@ -13,6 +13,7 @@ class SliderPageBuilderTest {
         val title = "Title"
         val description = "Description"
         val imageDrawable = 0x7f020000
+        val bgDrawable = 0x7f020000
         val bgColor = Color.GRAY
         val titleColor = Color.WHITE
         val descColor = Color.BLACK
@@ -26,6 +27,7 @@ class SliderPageBuilderTest {
                 .description(description)
                 .imageDrawable(imageDrawable)
                 .bgColor(bgColor)
+                .bgDrawable(bgDrawable)
                 .titleColor(titleColor)
                 .descColor(descColor)
                 .titleTypeface(titleTypeface)
@@ -38,6 +40,7 @@ class SliderPageBuilderTest {
         assertEquals(sliderPage.description, description)
         assertEquals(sliderPage.imageDrawable, imageDrawable)
         assertEquals(sliderPage.bgColor, bgColor)
+        assertEquals(sliderPage.bgDrawable, bgDrawable)
         assertEquals(sliderPage.titleColor, titleColor)
         assertEquals(sliderPage.descColor, descColor)
         assertEquals(sliderPage.titleTypeface, titleTypeface)
@@ -59,11 +62,11 @@ class SliderPageBuilderTest {
     @Test
     fun sliderPageBuilder_valuesAreDefaulting() {
         val sliderPage = SliderPagerBuilder().build()
-
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
         assertEquals(sliderPage.imageDrawable, 0)
         assertEquals(sliderPage.bgColor, 0)
+        assertEquals(sliderPage.bgDrawable, 0)
         assertEquals(sliderPage.titleColor, 0)
         assertEquals(sliderPage.descColor, 0)
         assertEquals(sliderPage.titleTypeface, null)

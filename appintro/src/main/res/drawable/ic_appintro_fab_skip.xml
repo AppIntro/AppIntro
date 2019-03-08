@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_appintro_fab_background" />
+    <item
+        android:bottom="@dimen/appintro2_fab_inset"
+        android:drawable="@drawable/ic_appintro_skip"
+        android:left="@dimen/appintro2_fab_inset"
+        android:right="@dimen/appintro2_fab_inset"
+        android:top="@dimen/appintro2_fab_inset" />
+</layer-list>

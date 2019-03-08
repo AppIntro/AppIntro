@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+
+    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/appintro_statusbar_color</item>
+        <item name="android:navigationBarColor">@color/appintro_navbar_color</item>
     </style>
 
-    <style name="AppIntroDefaultHeading" parent="TextAppearance.AppCompat.Display1">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/appIntroHeadingTextSize</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
-    </style>
 </resources>

@@ -2,11 +2,9 @@ package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
 import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -51,20 +49,8 @@ public class CustomBackgroundIntro extends AppIntro2 {
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
 
-        // Declare a new image view
-        ImageView imageView = new ImageView(this);
-
-        // Bind a drawable to the imageview
-        imageView.setImageResource(R.drawable.ic_sample_bg);
-
-        // Set background color
-        imageView.setBackgroundColor(Color.BLACK);
-
-        // Set layout params
-        imageView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
         // Bind the background to the intro
-        setBackgroundView(imageView);
+        setBackgroundResource(R.drawable.ic_drawer_header);
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FontRes
@@ -19,7 +18,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param color your color resource
      */
     fun setBarColor(@ColorInt color: Int) {
-        val bottomBar = findViewById<LinearLayout>(R.id.bottom)
+        val bottomBar = findViewById<View>(R.id.bottom)
         bottomBar.setBackgroundColor(color)
     }
 
@@ -39,7 +38,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param color your color resource
      */
     fun setSeparatorColor(@ColorInt color: Int) {
-        val separator = findViewById<TextView>(R.id.bottom_separator)
+        val separator = findViewById<View>(R.id.bottom_separator)
         separator.setBackgroundColor(color)
     }
 
@@ -150,7 +149,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param showSeparator Set : true to display. false to hide.
      */
     fun showSeparator(showSeparator: Boolean) {
-        val bottomSeparator = findViewById<TextView>(R.id.bottom_separator)
+        val bottomSeparator = findViewById<View>(R.id.bottom_separator)
         if (showSeparator) {
             bottomSeparator.visibility = View.VISIBLE
         } else {
