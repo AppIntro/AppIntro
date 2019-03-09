@@ -56,13 +56,16 @@ internal class ViewPagerTransformer(
             }
             TransformType.FADE -> {
                 if (position <= -1.0f || position >= 1.0f) {
+                    page.translationX = page.width*position
                     page.alpha = 0.0f
                     page.isClickable = false
                 } else if (position == 0.0f) {
+                    page.translationX = page.width*position
                     page.alpha = 1.0f
                     page.isClickable = true
                 } else {
                     // position is between -1.0F & 0.0F OR 0.0F & 1.0F
+                    page.translationX = page.width* -position
                     page.alpha = 1.0f - Math.abs(position)
                 }
             }
