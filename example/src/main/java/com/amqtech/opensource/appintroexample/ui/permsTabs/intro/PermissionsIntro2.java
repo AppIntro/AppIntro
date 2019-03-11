@@ -3,13 +3,14 @@ package com.amqtech.opensource.appintroexample.ui.permsTabs.intro;
 import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by andrew on 11/17/16.
@@ -49,7 +50,8 @@ public class PermissionsIntro2 extends AppIntro2 {
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
         // Here we load a string array with a camera permission, and tell the library to request permissions on slide 2
-        askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
+        askForPermissions(new String[]{Manifest.permission.CAMERA}, 2, true);
+        askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3, false);
     }
 
     @Override
