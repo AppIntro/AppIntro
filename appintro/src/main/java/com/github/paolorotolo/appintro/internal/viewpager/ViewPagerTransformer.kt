@@ -56,7 +56,7 @@ internal class ViewPagerTransformer(
             }
             TransformType.FADE -> {
                 if (position <= -1.0f || position >= 1.0f) {
-                    page.translationX = page.width*position
+                    page.translationX = page.width.toFloat()
                     page.alpha = 0.0f
                     page.isClickable = false
                 } else if (position == 0.0f) {
