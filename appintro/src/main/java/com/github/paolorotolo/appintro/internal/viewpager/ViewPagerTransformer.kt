@@ -60,7 +60,7 @@ internal class ViewPagerTransformer(
                     page.alpha = 0.0f
                     page.isClickable = false
                 } else if (position == 0.0f) {
-                    page.translationX = page.width*position
+                    page.translationX = 0.0f
                     page.alpha = 1.0f
                     page.isClickable = true
                 } else {
