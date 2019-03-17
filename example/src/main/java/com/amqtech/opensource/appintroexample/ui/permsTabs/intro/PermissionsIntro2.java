@@ -49,8 +49,13 @@ public class PermissionsIntro2 extends AppIntro2 {
         sliderPage4.setImageDrawable(R.drawable.ic_slide4);
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
-        // Here we load a string array with a camera permission, and tell the library to request permissions on slide 2
+
+
+        // Here we load a string array with camera permission, and tell the library to request permissions on slide 2, the variable required is set to true.
         askForPermissions(new String[]{Manifest.permission.CAMERA}, 2, true);
+
+        // Here we load a string array with location permission, and tell the library to request permissions on slide 3, the variable required is set to true.
+
         askForPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3, false);
     }
 

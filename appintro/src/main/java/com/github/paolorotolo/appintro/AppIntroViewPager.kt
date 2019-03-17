@@ -121,11 +121,11 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                 // If the slide contains permissions, check for forward swipe.
                 if (isPermissionSlide) {
                     if (isSwipeForward(currentTouchDownX, event.x))
-                    // If the swipe is occured before 200ms, dont do anything.
+                    // If the swipe occurred before 200ms, don't do anything.
                     {
                         if (System.currentTimeMillis() - permDialogSwipeLastCalled >= ON_PERMISSION_DIALOG_MAX_INTERVAL) {
                             onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
-                            LogHelper.d("Pager", "Permisson being requested  ")
+                            LogHelper.d("AppIntro", "Permisson being requested ")
                             return isPagingEnabled
                         } else {
                             return false

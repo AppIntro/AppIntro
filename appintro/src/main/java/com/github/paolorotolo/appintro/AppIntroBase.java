@@ -15,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.indicator.DotIndicatorController;
 import com.github.paolorotolo.appintro.indicator.IndicatorController;
@@ -482,20 +481,18 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     /**
      * Called after a new slide has been selected
-     * {@link #canChangeLastSlide(int)} is called to check if the last slide can be changed.
      *
      * @param position Position of the new selected slide
      */
     protected void onPageSelected(int position) {
-        LogHelper.d(TAG, "Selected slide number: " + (position + 1));
-        canChangeLastSlide(position);
+        // Empty Method
     }
 
 
     /**
      * Called by {@link #onPageSelected(int)} to check if the user has requested permissions on the previous slide.
      * This method is required as a safety check because otherwise,
-     * the user might skip a slide containing permissions.
+     * the user might skip a slide containing permissions due to a weird bug.
      * <p>
      * This method will send the user back to the first slide that contains permissions.
      *
@@ -506,23 +503,34 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      *                 <p>
      *                 If the position issue is resolved in Viewpager2, simply remove the code inside if(isRtl()).
      */
-    private void canChangeLastSlide(int position) {
+    private void goBackIfRequired(int position) {
         if (isRtl()) {
             if (permissionsPositions.contains(position + 2) && !requestedSlides.contains(position + 2)) {
                 pager.setCurrentItem(position + 1, true);
-                return;
             }
         } else {
             if (permissionsPositions.contains(position) && !requestedSlides.contains(position)) {
                 pager.setCurrentItem(position - 1, true);
-                return;
             }
         }
-        if (permissionsPositions.contains(position + 1) && !requestedSlides.contains(position + 1)) {
-            pager.setPermissionSlide(true);
+    }
+
+    private void setPermissionSlide(int position) {
+        if (isRtl()) {
+            if (permissionsPositions.contains(position - 2) && !requestedSlides.contains(position - 2)) {
+                pager.setPermissionSlide(true);
+                Log.d("Mecha", "" + (position - 2));
+            } else {
+                pager.setPermissionSlide(false);
+                setSwipeLock(false);
+            }
         } else {
-            pager.setPermissionSlide(false);
-            setSwipeLock(false);
+            if (permissionsPositions.contains(position + 1) && !requestedSlides.contains(position + 1)) {
+                pager.setPermissionSlide(true);
+            } else {
+                pager.setPermissionSlide(false);
+                setSwipeLock(false);
+            }
         }
     }
 
@@ -1082,7 +1090,11 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     // Returns true if a permission has been requested
     private boolean checkAndRequestPermissions() {
-        pager.setCurrentItem(currentlySelectedItem, true); //This method is used to make sure the slide is not changed while requesting permissions.
+        //This method is used to make sure the slide is not changed while requesting permissions.
+        pager.setCurrentItem(currentlySelectedItem);
+
+        int userRequestedPosition = permissionsArray.get(0).getPosition();
+
         if (!permissionsArray.isEmpty()) {
             boolean requestPermission;
             permissionPosition = 0;
@@ -1090,10 +1102,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             // TODO(2): This will require tweaking when switching to Viewpager2
             if (isRtl()) {
                 requestPermission =
-                        ((pager.getChildCount() + 1) - pager.getCurrentItem()) == permissionsArray.get(0).getPosition();
+                        ((pager.getChildCount() + 1) - pager.getCurrentItem()) == userRequestedPosition;
             } else {
                 requestPermission =
-                        pager.getCurrentItem() + 1 == permissionsArray.get(0).getPosition();
+                        pager.getCurrentItem() + 1 == userRequestedPosition;
             }
 
             permissionPosition = 0;
@@ -1119,7 +1131,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     }
 
     /**
-     * Empty method that points to {@link #askForPermissions(String[], int, boolean)}
+     * Use this method to associate a permission with a slide.
+     * Please note that the permission will not be mandatory and the user can choose to deny it and move forward.
+     * If you want the permission to be granted before moving forward, use  {@link #askForPermissions(String[], int, boolean)}
      *
      * @param permissions
      * @param slidesNumber
@@ -1138,7 +1152,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void askForPermissions(String[] permissions, int slidesNumber, boolean required) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (slidesNumber == 0) {
-                Toast.makeText(getBaseContext(), "Invalid Slide Number", Toast.LENGTH_SHORT).show();
+                LogHelper.d(TAG, "Invalid Slide Number");
             } else {
                 PermissionWrapper permission = new PermissionWrapper(permissions, slidesNumber, required);
                 if (!permissionsArray.contains(permission)) {
@@ -1198,7 +1212,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                         if (!isPermissionRequired) {
                             permissionsArray.remove(permissionPosition);
                             requestedSlides.add(currentlySelectedItem + 1);
-                            Log.d(TAG, "Adding slide number " + (currentlySelectedItem + 1) + " to selected slides list");
+
                             // Check if next slide is the last one
                             if (pager.getCurrentItem() + 1 == slidesNumber) {
                                 changeSlide(true);
@@ -1322,6 +1336,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 setProgressButtonEnabled(progressButtonEnabled);
             }
 
+            goBackIfRequired(position);
+            setPermissionSlide(position);
             AppIntroBase.this.onPageSelected(position);
 
             if (slidesNumber > 0) {
