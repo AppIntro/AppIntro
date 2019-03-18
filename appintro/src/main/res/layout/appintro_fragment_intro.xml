@@ -15,12 +15,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        app:layout_constraintVertical_weight="2"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintVertical_weight="2"
         tools:text="Welcome" />
 
     <ImageView
@@ -28,23 +28,23 @@
         style="@style/AppIntroDefaultImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="5"
         android:contentDescription="@string/app_intro_image_content_description"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_weight="5" />
 
     <TextView
         android:id="@+id/description"
         style="@style/AppIntroDefaultText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintVertical_weight="3"
         tools:text="This is a demo of the AppIntro Library" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
