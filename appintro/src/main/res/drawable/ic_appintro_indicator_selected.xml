@@ -8,8 +8,8 @@
         <shape android:shape="oval">
             <solid android:color="@color/appintro_default_selected_color" />
             <size
-                android:width="@dimen/appintro_indicator_size"
-                android:height="@dimen/appintro_indicator_size" />
+                android:width="@dimen/appintro_selected_indicator_size"
+                android:height="@dimen/appintro_selected_indicator_size" />
         </shape>
     </item>
 </layer-list>

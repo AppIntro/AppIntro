@@ -16,13 +16,13 @@ import com.github.paolorotolo.appintro.R
  */
 class DotIndicatorController(context: Context) : IndicatorController, LinearLayout(context) {
 
-    override var selectedIndicatorColor = -1
+    override var selectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_selected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
         }
 
-    override var unselectedIndicatorColor = -1
+    override var unselectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_unselected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
@@ -69,10 +69,10 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
             if (selectedIndicatorColor != DEFAULT_COLOR && i == index)
                 drawable!!.mutate().setColorFilter(selectedIndicatorColor,
-                        PorterDuff.Mode.SRC_IN)
+                        PorterDuff.Mode.SRC)
             if (unselectedIndicatorColor != DEFAULT_COLOR && i != index)
                 drawable!!.mutate().setColorFilter(unselectedIndicatorColor,
-                        PorterDuff.Mode.SRC_IN)
+                        PorterDuff.Mode.SRC)
             (getChildAt(i) as ImageView).setImageDrawable(drawable)
         }
     }

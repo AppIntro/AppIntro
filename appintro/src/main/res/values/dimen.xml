@@ -15,7 +15,8 @@
     <dimen name="appintro_button_minwidth">48dp</dimen>
 
     <dimen name="appintro_indicator_inset">3dp</dimen>
-    <dimen name="appintro_indicator_size">10dp</dimen>
+    <dimen name="appintro_unselected_indicator_size">10dp</dimen>
+    <dimen name="appintro_selected_indicator_size">10dp</dimen>
     <dimen name="appintro_indicator_margin">12dp</dimen>
 
     <dimen name="appintro_desctext_size">16sp</dimen>

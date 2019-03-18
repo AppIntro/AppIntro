@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.paolorotolo.appintroexample">
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -12,7 +13,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomTheme"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.amqtech.opensource.appintroexample.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,28 +26,28 @@
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro2"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomLayoutIntro"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
 
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro1"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
         <activity
             android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroStyle" />
     </application>
 
 </manifest>

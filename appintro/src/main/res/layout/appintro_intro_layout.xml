@@ -40,16 +40,14 @@
 
     <Button
         android:id="@+id/skip"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroSkipButtonStyle"
         android:labelFor="@string/app_intro_skip_button"
-        android:text="@string/app_intro_skip_button"
-        android:textColor="@color/appintro_icon_tint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/back"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroBackButtonStyle"
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:visibility="invisible"
@@ -69,7 +67,7 @@
 
     <ImageButton
         android:id="@+id/next"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroNextButtonStyle"
         android:contentDescription="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,10 +75,8 @@
 
     <Button
         android:id="@+id/done"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroDoneButtonStyle"
         android:labelFor="@string/app_intro_done_button"
-        android:text="@string/app_intro_done_button"
-        android:textColor="@color/appintro_icon_tint"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
