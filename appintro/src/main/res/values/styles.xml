@@ -10,9 +10,7 @@
         <item name="android:layout_margin">@dimen/appintro_button_margin</item>
     </style>
 
-    <style name="AppIntroNextButtonStyle" parent="AppIntroButtonStyle">
-
-    </style>
+    <style name="AppIntroNextButtonStyle" parent="AppIntroButtonStyle" />
 
     <style name="AppIntroSkipButtonStyle" parent="AppIntroButtonStyle">
         <item name="android:textColor">@color/appintro_skip_button_text_color</item>
@@ -24,9 +22,7 @@
         <item name="android:textColor">@color/appintro_done_button_text_color</item>
     </style>
 
-    <style name="AppIntroBackButtonStyle" parent="AppIntroButtonStyle">
-
-    </style>
+    <style name="AppIntroBackButtonStyle" parent="AppIntroButtonStyle" />
 
     <style name="AppIntro2ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/ic_appintro_ripple</item>
