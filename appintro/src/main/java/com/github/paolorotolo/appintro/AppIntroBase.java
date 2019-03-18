@@ -490,9 +490,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
 
     /**
-     * Called by {@link #onPageSelected(int)} to check if the user has requested permissions on the previous slide.
+     * Called by {@link ViewPager.OnPageChangeListener#onPageSelected(int)} to check if the user has requested permissions on the previous slide.
      * This method is required as a safety check because otherwise,
-     * the user might skip a slide containing permissions due to a weird bug.
+     * the user might skip a slide containing permissions due to a bug.
      * <p>
      * This method will send the user back to the first slide that contains permissions.
      *
@@ -505,7 +505,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      */
     private void goBackIfRequired(int position) {
         if (isRtl()) {
-            if (permissionsPositions.contains(position + 2) && !requestedSlides.contains(position + 2)) {
+            if (permissionsPositions.contains((mPagerAdapter.getCount() - position) - 1) && !requestedSlides.contains((mPagerAdapter.getCount() - position) - 1)) {
                 pager.setCurrentItem(position + 1, true);
             }
         } else {
@@ -515,11 +515,22 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
+
+    /**
+     * Called by {@link ViewPager.OnPageChangeListener#onPageSelected(int)} to tell {@link AppIntroViewPager} to request permissions on swipe.
+     * If this method is called on a slide, then on a forward swipe permission dialog will be shown.
+     *
+     * @param position - The position that the user has changed to.
+     *                 <p>
+     *                 TODO(3): This method will require tweaking when switching to Viewpager2 as
+     *                 there is no RTL support in the current viewpager and that messes up the position of slides.
+     *                 <p>
+     *                 If the position issue is resolved in Viewpager2, simply remove the code inside if(isRtl()).
+     */
     private void setPermissionSlide(int position) {
         if (isRtl()) {
-            if (permissionsPositions.contains(position - 2) && !requestedSlides.contains(position - 2)) {
+            if (permissionsPositions.contains(mPagerAdapter.getCount() - position) && !requestedSlides.contains(mPagerAdapter.getCount() - position)) {
                 pager.setPermissionSlide(true);
-                Log.d("Mecha", "" + (position - 2));
             } else {
                 pager.setPermissionSlide(false);
                 setSwipeLock(false);
@@ -1093,16 +1104,17 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         //This method is used to make sure the slide is not changed while requesting permissions.
         pager.setCurrentItem(currentlySelectedItem);
 
-        int userRequestedPosition = permissionsArray.get(0).getPosition();
-
         if (!permissionsArray.isEmpty()) {
+            // Prevent the user from touching the screen while permission dialog is about to be shown.
+            blockTouch(true);
+            int userRequestedPosition = permissionsArray.get(0).getPosition();
             boolean requestPermission;
             permissionPosition = 0;
 
             // TODO(2): This will require tweaking when switching to Viewpager2
             if (isRtl()) {
                 requestPermission =
-                        ((pager.getChildCount() + 1) - pager.getCurrentItem()) == userRequestedPosition;
+                        (mPagerAdapter.getCount() - currentlySelectedItem) == userRequestedPosition;
             } else {
                 requestPermission =
                         pager.getCurrentItem() + 1 == userRequestedPosition;
@@ -1114,6 +1126,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             if (requestPermission) {
                 ActivityCompat.requestPermissions(this, permissionsArray.get(permissionPosition).getPermissions(), PERMISSIONS_REQUEST_ALL_PERMISSIONS);
                 return true;
+            } else {
+                blockTouch(false);
             }
         }
 
@@ -1163,9 +1177,23 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
     }
 
+    /**
+     * This method is called to block touch event on the window
+     *
+     * @param isBlocked - Whether to block touch or not.
+     */
+    private void blockTouch(boolean isBlocked) {
+        if (isBlocked) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+    }
+
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        blockTouch(false);
         setSwipeLock(false);
         pager.setPermDialogSwipeLastCalled(System.currentTimeMillis());
         if (requestCode == PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
@@ -1186,8 +1214,14 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
                 // Proceed to next slide
                 permissionsArray.remove(permissionPosition);
-                requestedSlides.add(currentlySelectedItem + 1);
-                Log.d(TAG, "Adding slide number " + (currentlySelectedItem + 1) + " to selected slides list");
+
+                // TODO(4): This part will require tweaking when switching to ViewPager2
+                if (isRtl()) {
+                    requestedSlides.add(mPagerAdapter.getCount() - currentlySelectedItem);
+                } else {
+                    requestedSlides.add(currentlySelectedItem + 1);
+                }
+
                 // Check if next slide is the last one
                 if (pager.getCurrentItem() + 1 == slidesNumber) {
                     changeSlide(true);
@@ -1211,7 +1245,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permName)) {
                         if (!isPermissionRequired) {
                             permissionsArray.remove(permissionPosition);
-                            requestedSlides.add(currentlySelectedItem + 1);
+
+                            // TODO(5): This part will require tweaking when switching to ViewPager2
+                            if (isRtl()) {
+                                requestedSlides.add(mPagerAdapter.getCount() - currentlySelectedItem);
+                            } else {
+                                requestedSlides.add(currentlySelectedItem + 1);
+                            }
 
                             // Check if next slide is the last one
                             if (pager.getCurrentItem() + 1 == slidesNumber) {

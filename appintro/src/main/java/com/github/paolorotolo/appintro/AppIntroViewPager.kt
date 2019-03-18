@@ -117,25 +117,6 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
             MotionEvent.ACTION_UP -> performClick()
             MotionEvent.ACTION_DOWN -> currentTouchDownX = event.x
             MotionEvent.ACTION_MOVE -> {
-
-                // If the slide contains permissions, check for forward swipe.
-                if (isPermissionSlide) {
-                    if (isSwipeForward(currentTouchDownX, event.x))
-                    // If the swipe occurred before 200ms, don't do anything.
-                    {
-                        if (System.currentTimeMillis() - permDialogSwipeLastCalled >= ON_PERMISSION_DIALOG_MAX_INTERVAL) {
-                            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
-                            LogHelper.d("AppIntro", "Permisson being requested ")
-                            return isPagingEnabled
-                        } else {
-                            return false
-                        }
-                    }
-                } else {
-                    isPagingEnabled = true
-                }
-
-                permDialogSwipeLastCalled = System.currentTimeMillis()
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
                 // We need to return false, and also call onIllegallyRequestedNextPage if the
                 // threshold was too high (so the user can be informed).
@@ -145,6 +126,23 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                     }
                     return false
                 }
+
+                // If the slide contains permissions, check for forward swipe.
+                if (isPermissionSlide) {
+                    if (isSwipeForward(currentTouchDownX, event.x))
+                    // If the swipe occurred before 200ms, don't do anything.
+                    {
+                        return if (System.currentTimeMillis() - permDialogSwipeLastCalled >= ON_PERMISSION_DIALOG_MAX_INTERVAL) {
+                            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
+                            LogHelper.d("AppIntro", "Permisson being requested ")
+                            isPagingEnabled
+                        } else {
+                            false
+                        }
+                    }
+                }
+
+                permDialogSwipeLastCalled = System.currentTimeMillis()
             }
         }
 
