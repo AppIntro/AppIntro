@@ -22,4 +22,8 @@
     <dimen name="appintro_desc_padding">16dp</dimen>
     <dimen name="appintro_head_padding">8dp</dimen>
     <dimen name="appintro_headtext_size">28sp</dimen>
+
+    <dimen name="appintro3_skip_button_padding">8dp</dimen>
+    <dimen name="appintro3_skip_button_marginTop">24dp</dimen>
+    <dimen name="appintro3_skip_button_marginEnd">16dp</dimen>
 </resources>

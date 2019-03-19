@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appintro_background_color"
+    android:fitsSystemWindows="false"
+    android:theme="@style/AppIntroStyle">
+
+    <com.github.paolorotolo.appintro.AppIntroViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fitsSystemWindows="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/next"
+        style="@style/AppIntro3NextButtonStyle"
+        android:text="@string/app_intro_next_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_guideline" />
+
+    <ImageButton
+        android:id="@+id/skip"
+        style="@style/AppIntro3SkipButtonStyle"
+        android:contentDescription="@string/app_intro_skip_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_appintro_close" />
+
+
+    <FrameLayout
+        android:id="@+id/indicator_container"
+        style="@style/AppIntroIndicatorContainer"
+        android:layoutDirection="ltr"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="@drawable/ic_appintro_indicator_selected" />
+
+
+    <Button
+        android:id="@+id/done"
+        style="@style/AppIntro3DoneButtonStyle"
+        android:text="@string/app_intro_done_button"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/appintro_bottombar_height" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

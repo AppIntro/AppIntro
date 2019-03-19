@@ -13,6 +13,7 @@
     <!-- 2nd Tab Group -->
     <string name="perms_intro1">This demonstrates the ability to request permission on any slide specified. Tap the button below to launch the demo.</string>
     <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified, only it\'s using the second slide layout. Tap the button below to launch the demo.</string>
+    <string name="default_intro3">This is the third most basic form of the AppIntro library. Minimal code is required to achieve ths, and this is the third layout option that the library offers. Tap the button below to launch the demo.</string>
 
     <!-- 3rd Tab Group -->
 </resources>

@@ -46,4 +46,30 @@
         <item name="android:scaleType">centerInside</item>
     </style>
 
+    <style name="AppIntro3SkipButtonStyle">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/appintro3_skip_button_marginTop</item>
+        <item name="android:layout_marginRight">@dimen/appintro3_skip_button_marginEnd</item>
+        <item name="android:layout_marginEnd">@dimen/appintro3_skip_button_marginEnd</item>
+        <item name="android:padding">@dimen/appintro3_skip_button_padding</item>
+    </style>
+
+    <style name="AppIntro3ButtonStyle" parent="Widget.AppCompat.Button.Borderless" />
+
+    <style name="AppIntro3NextButtonStyle" parent="AppIntro3ButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@color/appintro_next_button_background_color</item>
+        <item name="android:layout_height">@dimen/appintro_bottombar_height</item>
+        <item name="android:textColor">@color/appintro_next_button_text_color</item>
+    </style>
+
+    <style name="AppIntro3DoneButtonStyle" parent="AppIntro3ButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@color/appintro_done_button_background_color</item>
+        <item name="android:layout_height">@dimen/appintro_bottombar_height</item>
+        <item name="android:textColor">@color/appintro_done_button_text_color</item>
+    </style>
+
 </resources>

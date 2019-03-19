@@ -31,6 +31,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         } else if (position == 1) {
             return new DefaultLayout2Intro();
         } else if (position == 2) {
+            return new DefaultLayout3Intro();
+        } else if (position == 3) {
             return new CustomLayoutIntro();
         } else {
             return new CustomBackgroundIntro();

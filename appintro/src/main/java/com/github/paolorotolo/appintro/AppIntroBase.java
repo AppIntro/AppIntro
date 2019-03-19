@@ -118,7 +118,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         checkButton(skipButton, "skip");
         checkButton(backButton, "back");
 
-        setTooltipText(nextButton, getString(R.string.app_intro_next_button));
         if (skipButton instanceof ImageButton) {
             setTooltipText(skipButton, getString(R.string.app_intro_skip_button));
         }
@@ -127,6 +126,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
         if (backButton instanceof ImageButton) {
             setTooltipText(backButton, getString(R.string.app_intro_back_button));
+        }
+        if (nextButton instanceof ImageButton) {
+            setTooltipText(backButton, getString(R.string.app_intro_next_button));
         }
 
         if (isRtl()) {
