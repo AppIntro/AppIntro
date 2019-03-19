@@ -65,7 +65,7 @@ internal class ViewPagerTransformer(
                     page.isClickable = true
                 } else {
                     // position is between -1.0F & 0.0F OR 0.0F & 1.0F
-                    page.translationX = page.width * -position
+                    page.translationX = page.width* -position
                     page.alpha = 1.0f - Math.abs(position)
                 }
             }
