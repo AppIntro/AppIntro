@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
     android:fitsSystemWindows="false"
-    android:theme="@style/AppIntroStyle">
+    android:theme="@style/AppIntroTheme">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
