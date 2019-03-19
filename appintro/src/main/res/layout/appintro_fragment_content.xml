@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/AppIntroDefaultHeading"
+        style="@style/AppIntroTitleStyleLandscape"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/description"
@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/image"
-        style="@style/AppIntroDefaultImage"
+        style="@style/AppIntroImageStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_intro_image_content_description"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/description"
-        style="@style/AppIntroDefaultText"
+        style="@style/AppIntroDescriptionStyleLandscape"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
