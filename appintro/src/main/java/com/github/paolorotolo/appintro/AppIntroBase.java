@@ -132,8 +132,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         }
 
         if (isRtl()) {
-            nextButton.setScaleX(-1);
-            backButton.setScaleX(-1);
+            if (nextButton instanceof ImageButton) {
+                nextButton.setScaleX(-1);
+            }
+            if (backButton != null) {
+                backButton.setScaleX(-1);
+            }
         }
 
         mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
