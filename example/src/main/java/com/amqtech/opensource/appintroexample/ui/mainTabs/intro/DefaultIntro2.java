@@ -2,13 +2,13 @@ package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by andrew on 11/17/16.
@@ -56,6 +56,11 @@ public class DefaultIntro2 extends AppIntro2 {
         sliderPage5.setImageDrawable(R.drawable.ic_slide4);
         sliderPage5.setBgDrawable(R.drawable.back_slide5);
         addSlide(AppIntroFragment.newInstance(sliderPage5));
+        // This call sets parallax effect with default values.
+        // setParallax(2.0,3.0,4.0);
+
+        // This call sets parallax effect with default values.
+        setParallax();
     }
 
 
