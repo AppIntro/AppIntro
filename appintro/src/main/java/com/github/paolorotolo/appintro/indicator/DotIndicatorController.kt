@@ -69,10 +69,10 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
             if (selectedIndicatorColor != DEFAULT_COLOR && i == index)
                 drawable!!.mutate().setColorFilter(selectedIndicatorColor,
-                        PorterDuff.Mode.SRC)
+                        PorterDuff.Mode.SRC_IN)
             if (unselectedIndicatorColor != DEFAULT_COLOR && i != index)
                 drawable!!.mutate().setColorFilter(unselectedIndicatorColor,
-                        PorterDuff.Mode.SRC)
+                        PorterDuff.Mode.SRC_IN)
             (getChildAt(i) as ImageView).setImageDrawable(drawable)
         }
     }

@@ -1,24 +1,84 @@
 package com.github.paolorotolo.appintro
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FontRes
+import androidx.annotation.IdRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 abstract class AppIntro : AppIntroBase() {
 
+    @IdRes
+    var backgroundResource: Int? = null
+        set(value) {
+            field = value
+            if (field != null) {
+                field?.let { backgroundFrame.setBackgroundResource(it) }
+            }
+        }
+
+    var backgroundDrawable: Drawable? = null
+        set(value) {
+            field = value
+            if (field != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    backgroundFrame.background = field
+                }
+            }
+        }
+
+    private lateinit var backgroundFrame: ConstraintLayout
+    private lateinit var bottomBar: View
+    private lateinit var separator: View
+    private lateinit var skipButtonCasted: Button
+    private lateinit var doneButtonCasted: Button
+    private lateinit var nextButtonCasted: ImageButton
+
+    var dynamicThemeDisabled: Boolean = false
+
     override fun getLayoutId() = R.layout.appintro_intro_layout
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        backgroundFrame = findViewById(R.id.background)
+        bottomBar = findViewById(R.id.bottom)
+        separator = findViewById(R.id.bottom_separator)
+        skipButtonCasted = skipButton as Button
+        doneButtonCasted = doneButton as Button
+        nextButtonCasted = nextButton as ImageButton
+    }
+
+    /**
+     * @see AppIntroBase.updateBackground
+     * Users can set [dynamicThemeDisabled] to prevent this behaviour.
+     */
+    override fun updateBackground(fragment: Fragment?): Boolean {
+        if (!dynamicThemeDisabled) {
+            if (super.updateBackground(fragment)) {
+                nextButtonCasted.setColorFilter(Color.BLACK)
+            } else {
+                nextButtonCasted.clearColorFilter()
+            }
+            return super.updateBackground(fragment)
+        }
+        return false
+    }
 
     /**
      * Override viewpager bar color
      * @param color your color resource
      */
     fun setBarColor(@ColorInt color: Int) {
-        val bottomBar = findViewById<View>(R.id.bottom)
         bottomBar.setBackgroundColor(color)
     }
 
@@ -28,8 +88,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param color your color
      */
     fun setNextArrowColor(@ColorInt color: Int) {
-        val nextButton = findViewById<ImageButton>(R.id.next)
-        nextButton.setColorFilter(color)
+        nextButtonCasted.setColorFilter(color)
     }
 
     /**
@@ -38,7 +97,6 @@ abstract class AppIntro : AppIntroBase() {
      * @param color your color resource
      */
     fun setSeparatorColor(@ColorInt color: Int) {
-        val separator = findViewById<View>(R.id.bottom_separator)
         separator.setBackgroundColor(color)
     }
 
@@ -48,8 +106,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param text your text
      */
     fun setSkipText(text: CharSequence?) {
-        val skipText = findViewById<TextView>(R.id.skip)
-        skipText.text = text
+        skipButtonCasted.text = text
     }
 
     /**
@@ -58,8 +115,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param typeface the typeface to apply to Skip button
      */
     fun setSkipTextTypeface(@FontRes typeface: Int) {
-        val view = findViewById<TextView>(R.id.skip)
-        TypefaceContainer(null, typeface).applyTo(view)
+        TypefaceContainer(null, typeface).applyTo(skipButtonCasted)
     }
 
     /**
@@ -68,8 +124,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param typeURL URL of font file located in Assets folder
      */
     fun setSkipTextTypeface(typeURL: String?) {
-        val view = findViewById<TextView>(R.id.skip)
-        TypefaceContainer(typeURL, 0).applyTo(view)
+        TypefaceContainer(typeURL, 0).applyTo(skipButtonCasted)
     }
 
     /**
@@ -78,8 +133,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param text your text
      */
     fun setDoneText(text: CharSequence?) {
-        val doneText = findViewById<TextView>(R.id.done)
-        doneText.text = text
+        doneButtonCasted.text = text
     }
 
     /**
@@ -88,8 +142,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param typeURL URL of font file located in Assets folder
      */
     fun setDoneTextTypeface(typeURL: String?) {
-        val view = findViewById<TextView>(R.id.done)
-        TypefaceContainer(typeURL, 0).applyTo(view)
+        TypefaceContainer(typeURL, 0).applyTo(doneButtonCasted)
     }
 
     /**
@@ -108,8 +161,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param colorDoneText your color resource
      */
     fun setColorDoneText(@ColorInt colorDoneText: Int) {
-        val doneText = findViewById<TextView>(R.id.done)
-        doneText.setTextColor(colorDoneText)
+        doneButtonCasted.setTextColor(colorDoneText)
     }
 
     /**
@@ -118,8 +170,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param colorSkipButton your color resource
      */
     fun setColorSkipButton(@ColorInt colorSkipButton: Int) {
-        val skip = findViewById<TextView>(R.id.skip)
-        skip.setTextColor(colorSkipButton)
+        skipButtonCasted.setTextColor(colorSkipButton)
     }
 
     /**
@@ -128,8 +179,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param imageNextButton your drawable resource
      */
     fun setImageNextButton(imageNextButton: Drawable) {
-        val nextButton = findViewById<ImageView>(R.id.next)
-        nextButton.setImageDrawable(imageNextButton)
+        nextButtonCasted.setImageDrawable(imageNextButton)
     }
 
     /**
@@ -149,11 +199,10 @@ abstract class AppIntro : AppIntroBase() {
      * @param showSeparator Set : true to display. false to hide.
      */
     fun showSeparator(showSeparator: Boolean) {
-        val bottomSeparator = findViewById<View>(R.id.bottom_separator)
         if (showSeparator) {
-            bottomSeparator.visibility = View.VISIBLE
+            separator.visibility = View.VISIBLE
         } else {
-            bottomSeparator.visibility = View.INVISIBLE
+            separator.visibility = View.INVISIBLE
         }
     }
 }
