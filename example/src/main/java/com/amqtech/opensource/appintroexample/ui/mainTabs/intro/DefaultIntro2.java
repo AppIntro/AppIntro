@@ -2,13 +2,14 @@ package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by andrew on 11/17/16.
@@ -25,7 +26,8 @@ public class DefaultIntro2 extends AppIntro2 {
         sliderPage1.setDescription("This is a demo of the AppIntro library, using the second layout.");
         sliderPage1.setImageDrawable(R.drawable.ic_slide1);
         sliderPage1.setBgDrawable(R.drawable.back_slide1);
-        addSlide(AppIntroFragment.newInstance(sliderPage1));
+        // A new instance of AppIntro2Fragment is created to get alternative layout.
+        addSlide(AppIntro2Fragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
         sliderPage2.setTitle("Gradients!");
