@@ -31,13 +31,21 @@ internal data class TypefaceContainer(
             return
         }
 
-        // We give priority to the FontRes here.
-        val textTypeface: Typeface? = if (typeFaceResource != 0)
-            ResourcesCompat.getFont(textView.context, typeFaceResource)
-        else
-            CustomFontCache[typeFaceUrl, textView.context]
+        // Callback to font retrieval
+        val callback = object : ResourcesCompat.FontCallback() {
+            override fun onFontRetrievalFailed(reason: Int) {
+                // Don't be panic, just do nothing.
+            }
+            override fun onFontRetrieved(typeface: Typeface) {
+                textView.typeface = typeface
+            }
+        }
 
-        if (textTypeface != null)
-            textView.typeface = textTypeface
+        // We give priority to the FontRes here.
+        if (typeFaceResource != 0) {
+            ResourcesCompat.getFont(textView.context, typeFaceResource, callback, null)
+        } else {
+            CustomFontCache.getFont(textView.context, typeFaceUrl, callback)
+        }
     }
 }
