@@ -10,21 +10,28 @@ import com.github.paolorotolo.appintro.internal.LogHelper
 import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration
 
 const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
+const val ON_PERMISSION_DIALOG_MAX_INTERVAL = 200
 
 /**
  * Class that controls the [AppIntro] of AppIntro.
  * This is responsible of handling of paging, managing touch and dispatching events.
  *
  * @property isPagingEnabled Enable or disable swiping at all.
+ * @property isPermissionSlide If the current slide has permissions.
+ * @property isRTL If the layout is RTL or LTR.
  * @property lockPage Set the page where the lock happened.
- * @property onNextPageRequestedListener Listener for Next Page events
+ * @property onNextPageRequestedListener Listener for Next Page events.
+ * @property permDialogSwipeLastCalled Time of last swipe that enables permission dialog.
  * @property isNextPagingEnabled Enable or disable swiping to the next page.
  */
 class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
 
     var isPagingEnabled = true
+    var isPermissionSlide = false
     var lockPage = 0
+    var isRTL = false
     var onNextPageRequestedListener: OnNextPageRequestedListener? = null
+    var permDialogSwipeLastCalled: Long = 0
     var isNextPagingEnabled: Boolean = true
         set(value) {
             field = value
@@ -97,7 +104,6 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         customScroller?.scrollDurationFactor = factor
     }
 
-    override fun performClick() = super.performClick()
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         // If paging is disabled we should ignore any viewpager touch
@@ -120,11 +126,36 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                     }
                     return false
                 }
+
+                // If the slide contains permissions, check for forward swipe.
+                if (isPermissionSlide) {
+                    if (isSwipeForward(currentTouchDownX, event.x))
+                    // If the swipe occurred before 200ms, don't do anything.
+                    {
+                        return if (System.currentTimeMillis() - permDialogSwipeLastCalled >= ON_PERMISSION_DIALOG_MAX_INTERVAL) {
+                            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
+                            LogHelper.d("AppIntro", "Permisson being requested ")
+                            isPagingEnabled
+                        } else {
+                            false
+                        }
+                    }
+                }
+
+                permDialogSwipeLastCalled = System.currentTimeMillis()
             }
         }
 
         // Calling super will allow the slider to "work" left and right.
         return super.onTouchEvent(event)
+    }
+
+    /**
+     * Util function to check if the user swiped forward.
+     * The direction of forward is different in RTL mode.
+     */
+    private fun isSwipeForward(oldX: Float, newX: Float): Boolean {
+        return (if (isRTL) (newX > oldX) else (oldX > newX))
     }
 
     /**
@@ -149,10 +180,15 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
      *
      * [onIllegallyRequestedNextPage] will be called if the user tries to swipe and was not allowed
      * to do so (useful for showing a toast or something similar).
+     *
+     * [onUserRequestedPermissionsDialog] will be called when the user swipes forward on a slide
+     * that contains permissions.
      */
     interface OnNextPageRequestedListener {
         fun onCanRequestNextPage(): Boolean
 
         fun onIllegallyRequestedNextPage()
+
+        fun onUserRequestedPermissionsDialog()
     }
 }
