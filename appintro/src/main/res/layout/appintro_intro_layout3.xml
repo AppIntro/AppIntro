@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
     android:fitsSystemWindows="false"
-    android:theme="@style/AppIntroStyle">
+    android:theme="@style/AppIntroTheme">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
@@ -39,7 +39,7 @@
 
     <FrameLayout
         android:id="@+id/indicator_container"
-        style="@style/AppIntroIndicatorContainer"
+        style="@style/AppIntroIndicatorContainerStyle"
         android:layoutDirection="ltr"
         app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
         app:layout_constraintEnd_toEndOf="parent"

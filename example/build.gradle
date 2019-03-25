@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.amqtech.opensource.appintroexample"
+        applicationId "com.github.appintro.example"
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 2
@@ -13,7 +13,7 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
-        debug {
+        release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

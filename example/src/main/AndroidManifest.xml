@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.paolorotolo.appintroexample">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.github.appintro.example">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,12 +9,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomTheme"
-        android:supportsRtl="true">
-        <activity android:name="com.amqtech.opensource.appintroexample.ui.MainActivity">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name="com.github.appintro.example.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,34 +22,34 @@
         </activity>
 
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro"
-            android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
-        <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro2"
+            android:name="com.github.appintro.example.ui.mainTabs.intro.DefaultIntro"
             android:label="@string/app_name"
             android:theme="@style/AppIntroTheme" />
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro3"
+            android:name="com.github.appintro.example.ui.mainTabs.intro.DefaultIntro2"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"></activity>
+            android:theme="@style/AppIntroTheme" />
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomLayoutIntro"
+            android:name="com.github.appintro.example.ui.mainTabs.intro.DefaultIntro3"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroTheme" />
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro"
+            android:name="com.github.appintro.example.ui.mainTabs.intro.CustomLayoutIntro"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroTheme" />
+        <activity
+            android:name="com.github.appintro.example.ui.mainTabs.intro.CustomBackgroundIntro"
+            android:label="@string/app_name"
+            android:theme="@style/AppIntroTheme" />
 
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro1"
+            android:name="com.github.appintro.example.ui.permsTabs.intro.PermissionsIntro1"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroTheme" />
         <activity
-            android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
+            android:name="com.github.appintro.example.ui.permsTabs.intro.PermissionsIntro2"
             android:label="@string/app_name"
-            android:theme="@style/AppIntroTheme"/>
+            android:theme="@style/AppIntroTheme" />
     </application>
 
 </manifest>

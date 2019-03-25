@@ -54,6 +54,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
     public static final int DEFAULT_COLOR = 1;
 
+    public static final int RESULT_FINISHED = -3;
+    public static final int RESULT_SKIPPED = 3;
+
     private static final String TAG = LogHelper.makeLogTag(AppIntroBase.class);
 
     private static final int DEFAULT_SCROLL_DURATION_FACTOR = 1;
@@ -140,6 +143,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
             setTooltipText(nextButton, getString(R.string.app_intro_next_button));
         }
 
+        mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        pager = findViewById(R.id.view_pager);
+
         if (isRtl()) {
             pager.setRTL(true);
             if (nextButton instanceof ImageButton) {
@@ -149,10 +156,6 @@ public abstract class AppIntroBase extends AppCompatActivity implements
                 backButton.setScaleX(-1);
             }
         }
-
-        mVibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
-        pager = findViewById(R.id.view_pager);
 
         if (doneButton != null) {
             doneButton.setOnClickListener(new View.OnClickListener() {
@@ -596,6 +599,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param currentFragment Instance of the currently displayed fragment
      */
     public void onSkipPressed(Fragment currentFragment) {
+        setResult(RESULT_SKIPPED);
         onSkipPressed();
     }
 
@@ -775,6 +779,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
      * @param currentFragment Instance of the currently displayed fragment
      */
     public void onDonePressed(Fragment currentFragment) {
+        setResult(RESULT_FINISHED);
         onDonePressed();
     }
 

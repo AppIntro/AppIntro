@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/image"
-        style="@style/AppIntroImageStyle"
+        style="@style/AppIntro2FragmentImageStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_intro_image_content_description"
@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/AppIntro2TitleStyle"
+        style="@style/AppIntro2FragmentTitleStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/description"
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/description"
-        style="@style/AppIntro2DescriptionStyle"
+        style="@style/AppIntro2FragmentDescriptionStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

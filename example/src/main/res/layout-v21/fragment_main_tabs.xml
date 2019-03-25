@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.amqtech.opensource.appintroexample.ui.MainActivity">
+    tools:context="com.github.appintro.example.ui.MainActivity">
 
-    <com.amqtech.opensource.appintroexample.util.TabLayout
+    <com.github.appintro.example.util.TabLayout
         android:id="@+id/mainTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
