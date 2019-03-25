@@ -76,18 +76,16 @@ internal class ViewPagerTransformer(
                 }
             }
             TransformType.PARALLAX -> {
-                if (position < -1) {
-                    // This page is way off-screen to the left.
-                    page.alpha = 0.0f
-                } else if (position <= 1) {
-                    try {
+                when {
+                    position < -1 -> // This page is way off-screen to the left.
+                        page.alpha = 1.0f
+                    position <= 1 -> try {
                         applyParallax(page, position)
                     } catch (e: IllegalStateException) {
                         e.printStackTrace()
                     }
-                } else {
-                    // This page is way off-screen to the right.
-                    page.alpha = 0.0f
+                    else -> // This page is way off-screen to the right.
+                        page.alpha = 1.0f
                 }
             }
         }

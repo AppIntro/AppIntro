@@ -3,7 +3,6 @@ package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntro2Fragment;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
@@ -27,7 +26,7 @@ public class DefaultIntro2 extends AppIntro2 {
         sliderPage1.setImageDrawable(R.drawable.ic_slide1);
         sliderPage1.setBgDrawable(R.drawable.back_slide1);
         // A new instance of AppIntro2Fragment is created to get alternative layout.
-        addSlide(AppIntro2Fragment.newInstance(sliderPage1));
+        addSlide(AppIntroFragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
         sliderPage2.setTitle("Gradients!");
