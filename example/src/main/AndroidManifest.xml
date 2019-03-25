@@ -46,6 +46,10 @@
             android:name="com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2"
             android:label="@string/app_name"
             android:theme="@style/AppIntroTheme"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
