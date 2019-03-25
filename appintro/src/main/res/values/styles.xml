@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="AppIntroTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
-    <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
+    <style name="AppIntroButtonStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:minHeight">@dimen/appintro_button_minheight</item>
-        <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_margin">@dimen/appintro_button_margin</item>
     </style>
 
-    <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
+    <style name="AppIntroNextButtonStyle" parent="AppIntroButtonStyle" />
+
+    <style name="AppIntroSkipButtonStyle" parent="AppIntroButtonStyle">
+        <item name="android:textColor">@color/appintro_skip_button_text_color</item>
+        <item name="android:text">@string/app_intro_skip_button</item>
+    </style>
+
+    <style name="AppIntroDoneButtonStyle" parent="AppIntroButtonStyle">
+        <item name="android:text">@string/app_intro_done_button</item>
+        <item name="android:textColor">@color/appintro_done_button_text_color</item>
+    </style>
+
+    <style name="AppIntroBackButtonStyle" parent="AppIntroButtonStyle" />
+
+    <style name="AppIntro2ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/ic_appintro_ripple</item>
         <item name="android:layout_height">@dimen/appintro2_fab_size</item>
         <item name="android:layout_width">@dimen/appintro2_fab_size</item>
         <item name="android:layout_margin">@dimen/appintro2_fab_margin</item>
     </style>
+
+    <style name="AppIntro2NextButtonStyle" parent="AppIntro2ButtonStyle" />
+
+    <style name="AppIntro2SkipButtonStyle" parent="AppIntro2ButtonStyle" />
+
+    <style name="AppIntro2DoneButtonStyle" parent="AppIntro2ButtonStyle" />
+
+    <style name="AppIntro2BackButtonStyle" parent="AppIntro2ButtonStyle" />
 
     <style name="AppIntroIndicatorContainer">
         <item name="android:layout_height">wrap_content</item>
@@ -27,10 +47,10 @@
 
     <style name="AppIntroTitleStyle" parent="TextAppearance.AppCompat.Display1">
         <item name="android:textColor">@color/appintro_title_color</item>
-        <item name="android:textSize">@dimen/appintro_headtext_size</item>
+        <item name="android:textSize">@dimen/appintro_title_text_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:padding">@dimen/appintro_head_padding</item>
-        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/appintro_title_padding</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
     </style>
 
     <style name="AppIntroDescriptionStyle" parent="TextAppearance.AppCompat.Body1">

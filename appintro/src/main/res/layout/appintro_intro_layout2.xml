@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
     android:fitsSystemWindows="false"
-    android:theme="@style/AppIntroStyle">
+    android:theme="@style/AppIntroTheme">
 
     <com.github.paolorotolo.appintro.AppIntroViewPager
         android:id="@+id/view_pager"
@@ -31,7 +31,7 @@
 
     <ImageButton
         android:id="@+id/skip"
-        style="@style/AppIntro2ButtonStyleCompat"
+        style="@style/AppIntro2SkipButtonStyle"
         android:contentDescription="@string/app_intro_skip_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
 
     <ImageButton
         android:id="@+id/back"
-        style="@style/AppIntro2ButtonStyleCompat"
+        style="@style/AppIntro2BackButtonStyle"
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:visibility="gone"
@@ -59,7 +59,7 @@
 
     <ImageButton
         android:id="@+id/next"
-        style="@style/AppIntro2ButtonStyleCompat"
+        style="@style/AppIntro2NextButtonStyle"
         android:contentDescription="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
 
     <ImageButton
         android:id="@+id/done"
-        style="@style/AppIntro2ButtonStyleCompat"
+        style="@style/AppIntro2DoneButtonStyle"
         android:contentDescription="@string/app_intro_done_button"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

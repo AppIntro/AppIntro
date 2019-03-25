@@ -1,5 +1,6 @@
 package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro2;
@@ -29,10 +30,12 @@ public class DefaultIntro2 extends AppIntro2 {
         addSlide(AppIntroFragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
-        sliderPage2.setTitle("Gradients!");
-        sliderPage2.setDescription("This text is written on a gradient background");
+        sliderPage2.setTitle("Dynamic Theme");
+        sliderPage2.setDescription("The StatusBar, buttons and the indicator change colors depending on the background color");
         sliderPage2.setImageDrawable(R.drawable.ic_slide1);
-        sliderPage2.setBgDrawable(R.drawable.back_slide2);
+        sliderPage2.setBgColor(Color.WHITE);
+        sliderPage2.setTitleColor(Color.BLACK);
+        sliderPage2.setDescColor(Color.DKGRAY);
         addSlide(AppIntroFragment.newInstance(sliderPage2));
 
         SliderPage sliderPage3 = new SliderPage();

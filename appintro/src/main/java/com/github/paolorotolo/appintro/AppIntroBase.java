@@ -40,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -477,6 +478,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements
 
         onSlideChanged(oldFragment, newFragment);
         updatePagerIndicatorState();
+        updateBackground(newFragment);
     }
 
     /**
@@ -1427,6 +1429,41 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         @Override
         public void onPageScrollStateChanged(int state) {
         }
+    }
+
+    /**
+     * Used to tint the statusBar and the indicators dark based on the backgroundColor
+     *
+     * @param fragment - The fragment whose background color is checked
+     * @return - Returns true if the background is light and false otherwise.
+     */
+    protected boolean updateBackground(Fragment fragment) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            boolean isLight;
+            ISlideBackgroundColorHolder currentSlide = null;
+            try {
+                currentSlide = (ISlideBackgroundColorHolder) fragment;
+            } catch (ClassCastException e) {
+                LogHelper.e(TAG, "Slide does not implement ISlideBackgroundColorHolder");
+            }
+
+            if (currentSlide != null) {
+                int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
+                int flagLightStatusBar = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                if (ColorUtils.calculateLuminance(currentSlide.getDefaultBackgroundColor()) > 0.4) {
+                    systemUiVisibility |= flagLightStatusBar;
+                    setIndicatorColor(ContextCompat.getColor(this, R.color.appintro_default_selected_color_dark), ContextCompat.getColor(this, R.color.appintro_default_unselected_color_dark));
+                    isLight = true;
+                } else {
+                    systemUiVisibility &= ~flagLightStatusBar;
+                    setIndicatorColor(ContextCompat.getColor(this, R.color.appintro_default_selected_color), ContextCompat.getColor(this, R.color.appintro_default_unselected_color));
+                    isLight = false;
+                }
+                getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility);
+                return isLight;
+            }
+        }
+        return false;
     }
 
     private final class WindowGestureListener extends GestureDetector.SimpleOnGestureListener {

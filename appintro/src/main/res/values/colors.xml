@@ -13,7 +13,18 @@
     <color name="appintro_next_button_text_color">#FFFFFF</color>
     <color name="appintro_done_button_text_color">#FFFFFF</color>
     <color name="appintro_default_unselected_color">#22000000</color>
+    <color name="appintro_next_icon_tint">#FFFFFF</color>
+    <color name="appintro_skip_icon_tint">#FFFFFF</color>
+    <color name="appintro_back_icon_tint">#FFFFFF</color>
+    <color name="appintro_done_icon_tint">#FFFFFF</color>
+    <color name="appintro_next_button_text_color">#FFFFFF</color>
+    <color name="appintro_skip_button_text_color">#FFFFFF</color>
+    <color name="appintro_back_button_text_color">#FFFFFF</color>
+    <color name="appintro_done_button_text_color">#FFFFFF</color>
+    <color name="appintro_default_unselected_color">#4D000000</color>
+    <color name="appintro_default_unselected_color_dark">#4D000000</color>
     <color name="appintro_default_selected_color">#FFFFFF</color>
+    <color name="appintro_default_selected_color_dark">#000000</color>
     <color name="appintro_navbar_color">#000000</color>
     <color name="appintro_ripple_color">#1FFFFFFF</color>
 </resources>

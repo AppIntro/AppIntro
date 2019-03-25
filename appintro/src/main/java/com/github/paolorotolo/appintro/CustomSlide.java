@@ -1,25 +1,26 @@
-package com.amqtech.opensource.appintroexample.util;
+package com.github.paolorotolo.appintro;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SampleSlide extends Fragment {
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class CustomSlide extends Fragment {
 
     private static final String ARG_LAYOUT_RES_ID = "layoutResId";
     private int layoutResId;
 
-    public static SampleSlide newInstance(int layoutResId) {
-        SampleSlide sampleSlide = new SampleSlide();
+    public static CustomSlide newInstance(int layoutResId) {
+        CustomSlide customSlide = new CustomSlide();
 
         Bundle args = new Bundle();
         args.putInt(ARG_LAYOUT_RES_ID, layoutResId);
-        sampleSlide.setArguments(args);
+        customSlide.setArguments(args);
 
-        return sampleSlide;
+        return customSlide;
     }
 
     @Override

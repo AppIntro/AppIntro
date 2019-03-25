@@ -1,1 +1,4 @@
--keep class com.github.paolorotolo.** {*;}
+-keep class com.github.paolorotolo.appintro.AppIntroBase
+-keep class com.github.paolorotolo.appintro.AppIntroViewPager
+-keep class com.github.paolorotolo.appintro.internal.** {*;}
+-keep class com.github.paolorotolo.appintro.IndicatorController
