@@ -1,7 +1,10 @@
 package com.github.paolorotolo.appintro.internal.viewpager
 
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.github.paolorotolo.appintro.R
 
 private const val MIN_SCALE_DEPTH = 0.75f
 private const val MIN_SCALE_ZOOM = 0.85f
@@ -12,6 +15,9 @@ private const val MIN_ALPHA_SLIDE = 0.35f
 internal class ViewPagerTransformer(
         private val transformType: TransformType
 ) : ViewPager.PageTransformer {
+    var titleParallaxFactor: Double = 0.2
+    var imageParallaxFactor: Double = -0.2
+    var descriptionParallaxFactor: Double = 2.0
 
     override fun transformPage(page: View, position: Float) {
         when (transformType) {
@@ -56,17 +62,41 @@ internal class ViewPagerTransformer(
             }
             TransformType.FADE -> {
                 if (position <= -1.0f || position >= 1.0f) {
+                    page.translationX = page.width.toFloat()
                     page.alpha = 0.0f
                     page.isClickable = false
                 } else if (position == 0.0f) {
+                    page.translationX = 0.0f
                     page.alpha = 1.0f
                     page.isClickable = true
                 } else {
                     // position is between -1.0F & 0.0F OR 0.0F & 1.0F
+                    page.translationX = page.width* -position
                     page.alpha = 1.0f - Math.abs(position)
                 }
             }
+            TransformType.PARALLAX -> {
+                if (position < -1) {
+                    // This page is way off-screen to the left.
+                    page.alpha = 0.0f
+                } else if (position <= 1) {
+                    try {
+                        applyParallax(page, position)
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                } else {
+                    // This page is way off-screen to the right.
+                    page.alpha = 0.0f
+                }
+            }
         }
+    }
+
+    private fun applyParallax(page: View, position: Float) {
+        page.findViewById<TextView>(R.id.title).translationX = (-position * (page.width / titleParallaxFactor)).toFloat()
+        page.findViewById<ImageView>(R.id.image).translationX = (-position * (page.width / imageParallaxFactor)).toFloat()
+        page.findViewById<TextView>(R.id.description).translationX = (-position * (page.width / descriptionParallaxFactor)).toFloat()
     }
 }
 
@@ -75,7 +105,8 @@ enum class TransformType {
     DEPTH,
     ZOOM,
     SLIDE_OVER,
-    FADE
+    FADE,
+    PARALLAX
 }
 
 private fun View.transformDefaults() {

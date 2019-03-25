@@ -47,6 +47,7 @@ import androidx.viewpager.widget.ViewPager;
 import static androidx.appcompat.widget.TooltipCompat.setTooltipText;
 
 @SuppressWarnings("unused")
+@SuppressLint("InlinedApi")
 public abstract class AppIntroBase extends AppCompatActivity implements
         AppIntroViewPager.OnNextPageRequestedListener {
 
@@ -929,6 +930,29 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void setFadeAnimation() {
         pager.setPageTransformer(true,
                 new ViewPagerTransformer(TransformType.FADE));
+    }
+
+    /**
+     * Sets the parallax effect on the slide.
+     *
+     * @param titleParallaxFactor       - Parallax factor of title
+     * @param imageParallaxFactor       - Parallax factor of image
+     * @param descriptionParallaxFactor - Parallax factor of description
+     */
+    public void setParallax(Double titleParallaxFactor, Double imageParallaxFactor, Double descriptionParallaxFactor) {
+        ViewPagerTransformer transformer = new ViewPagerTransformer(TransformType.PARALLAX);
+        transformer.setTitleParallaxFactor(titleParallaxFactor);
+        transformer.setImageParallaxFactor(imageParallaxFactor);
+        transformer.setDescriptionParallaxFactor(descriptionParallaxFactor);
+        pager.setPageTransformer(true, transformer);
+    }
+
+    /**
+     * Sets the parallax effect on the slide with default values.
+     */
+    public void setParallax() {
+        pager.setPageTransformer(true,
+                new ViewPagerTransformer(TransformType.PARALLAX));
     }
 
     /**

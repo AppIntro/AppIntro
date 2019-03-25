@@ -58,6 +58,11 @@ public class DefaultIntro2 extends AppIntro2 {
         sliderPage5.setImageDrawable(R.drawable.ic_slide4);
         sliderPage5.setBgDrawable(R.drawable.back_slide5);
         addSlide(AppIntroFragment.newInstance(sliderPage5));
+        // This call sets parallax effect with default values.
+        // setParallax(2.0,3.0,4.0);
+
+        // This call sets parallax effect with default values.
+        setParallax();
     }
 
 
