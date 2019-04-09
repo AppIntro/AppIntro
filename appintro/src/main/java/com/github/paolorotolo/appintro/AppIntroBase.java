@@ -197,6 +197,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
     }
 
+    public void nextPage(){
+        nextButton.callOnClick();
+    }
     /**
      * Check {@link View} to null pointer. Log error when view is {@code null}.
      *
