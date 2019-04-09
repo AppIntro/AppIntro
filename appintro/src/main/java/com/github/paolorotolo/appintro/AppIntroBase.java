@@ -200,6 +200,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements
     public void nextPage(){
         nextButton.callOnClick();
     }
+    public void reloadAdapter(){
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        pager.setAdapter(this.mPagerAdapter);
+    }
     /**
      * Check {@link View} to null pointer. Log error when view is {@code null}.
      *
