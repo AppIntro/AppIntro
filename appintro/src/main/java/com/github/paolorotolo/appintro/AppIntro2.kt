@@ -11,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
+    override val layoutId = R.layout.appintro_intro_layout2
+
     @IdRes
     var backgroundResource: Int? = null
         set(value) {
@@ -44,14 +46,12 @@ abstract class AppIntro2 : AppIntroBase() {
         }
     }
 
-    override fun getLayoutId() = R.layout.appintro_intro_layout2
-
     /**
      * Shows or hides Done button, replaced with setProgressButtonEnabled
      */
     @Deprecated("use {@link #setProgressButtonEnabled(boolean)} instead.", ReplaceWith("isProgressButtonEnabled = showDone"))
     fun showDoneButton(showDone: Boolean) {
-        isProgressButtonEnabled = showDone
+        isButtonsEnabled = showDone
     }
 
     /**

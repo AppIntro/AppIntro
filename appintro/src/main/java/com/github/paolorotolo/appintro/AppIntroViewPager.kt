@@ -15,14 +15,14 @@ const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
  * Class that controls the [AppIntro] of AppIntro.
  * This is responsible of handling of paging, managing touch and dispatching events.
  *
- * @property isPagingEnabled Enable or disable swiping at all.
+ * @property isFullPagingEnabled Enable or disable swiping at all.
  * @property lockPage Set the page where the lock happened.
  * @property onNextPageRequestedListener Listener for Next Page events
  * @property isNextPagingEnabled Enable or disable swiping to the next page.
  */
 class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
 
-    var isPagingEnabled = true
+    var isFullPagingEnabled = true
     var lockPage = 0
     var onNextPageRequestedListener: OnNextPageRequestedListener? = null
     var isNextPagingEnabled: Boolean = true
@@ -54,7 +54,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         }
     }
 
-    fun addOnPageChangeListener(listener: AppIntroBase.PagerOnPageChangeListener) {
+    internal fun addOnPageChangeListener(listener: AppIntroBase.OnPageChangerListener) {
         super.addOnPageChangeListener(listener)
         this.pageChangeListener = listener
     }
@@ -102,7 +102,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         // If paging is disabled we should ignore any viewpager touch
         // (also, not display any error message)
-        if (!isPagingEnabled) {
+        if (!isFullPagingEnabled) {
             return false
         }
 

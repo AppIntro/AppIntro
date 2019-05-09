@@ -11,7 +11,7 @@ import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 abstract class AppIntro : AppIntroBase() {
 
-    override fun getLayoutId() = R.layout.appintro_intro_layout
+    override val layoutId = R.layout.appintro_intro_layout
 
     /**
      * Override viewpager bar color
@@ -138,7 +138,7 @@ abstract class AppIntro : AppIntroBase() {
      */
     @Deprecated("use {@link #setProgressButtonEnabled(boolean)} instead.", ReplaceWith("isProgressButtonEnabled = showDone"))
     fun showDoneButton(showDone: Boolean) {
-        isProgressButtonEnabled = showDone
+        isButtonsEnabled = showDone
     }
 
     /**
