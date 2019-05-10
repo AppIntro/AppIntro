@@ -1,7 +1,7 @@
 package com.github.paolorotolo.appintroexample
 
 import android.graphics.Color
-import com.github.paolorotolo.appintro.model.SliderPage
+import com.github.paolorotolo.appintro.model.SliderPagerBuilder
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -22,7 +22,7 @@ class SliderPageBuilderTest {
         val titleTypefaceRes = 0x12345678
         val descTypefaceRes = 0x789abcdf
 
-        val sliderPage = SliderPage.Builder()
+        val sliderPage = SliderPagerBuilder()
                 .title(title)
                 .description(description)
                 .imageDrawable(imageDrawable)
@@ -51,7 +51,7 @@ class SliderPageBuilderTest {
 
     @Test
     fun sliderPageBuilder_multipleAssignmentOverrides() {
-        val sliderPage = SliderPage.Builder()
+        val sliderPage = SliderPagerBuilder()
                 .title("title")
                 .title("title2")
                 .build()
@@ -61,7 +61,7 @@ class SliderPageBuilderTest {
 
     @Test
     fun sliderPageBuilder_valuesAreDefaulting() {
-        val sliderPage = SliderPage.Builder().build()
+        val sliderPage = SliderPagerBuilder().build()
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
         assertEquals(sliderPage.imageDrawable, 0)
