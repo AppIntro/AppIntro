@@ -1,1 +1,3 @@
-include ':appintro', ':example'
+include ':appintro',
+        ':appintro-indicators',
+        ':example'

@@ -28,8 +28,10 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation project(':appintro')
     implementation 'androidx.annotation:annotation:1.0.2'
+
+    implementation project(':appintro')
+    implementation project(':appintro-indicators')
 
     implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
