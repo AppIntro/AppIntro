@@ -54,7 +54,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         }
     }
 
-    internal fun addOnPageChangeListener(listener: AppIntroBase.OnPageChangerListener) {
+    internal fun addOnPageChangeListener(listener: AppIntroBase.OnPageChangeListener) {
         super.addOnPageChangeListener(listener)
         this.pageChangeListener = listener
     }

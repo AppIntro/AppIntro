@@ -402,7 +402,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         }
 
         pager.adapter = this.pagerAdapter
-        pager.addOnPageChangeListener(OnPageChangerListener())
+        pager.addOnPageChangeListener(OnPageChangeListener())
         pager.onNextPageRequestedListener = this
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR)
@@ -666,7 +666,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      * [OnPageChangeListener] used to handle all the callbacks coming from the ViewPager.
      * Moreover, if [isColorTransitionsEnabled] a color interpolation will happen in the [onPageScrolled]
      */
-    internal inner class OnPageChangerListener : ViewPager.OnPageChangeListener {
+    internal inner class OnPageChangeListener : ViewPager.OnPageChangeListener {
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             if (isColorTransitionsEnabled && position < pagerAdapter.count - 1) {
