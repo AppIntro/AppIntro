@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintro
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
@@ -14,6 +15,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -37,6 +39,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     /** The layout ID that will be used during inflation. */
     @get:LayoutRes
     protected abstract val layoutId: Int
+
+    /** List of positions of slides that contain permissions */
+    private var permissionsPositions = ArrayList<Int>()
+
+    /** List of positions of slides whose permissions have been requested */
+    private var requestedSlides: ArrayList<Int>? = ArrayList()
+
+    /** Permission requested by user */
+    private lateinit var requestedPermission: PermissionWrapper
+
+    /** Whether the permission is required or not */
+    private var isPermissionRequired: Boolean = false
 
     /**
      * A subclass of [IndicatorController] to show the progress.
@@ -138,21 +152,40 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         pagerAdapter.notifyDataSetChanged()
     }
 
+
     /**
-     * Request for a specific set of permission at a given slide.
-     * @param permissions A list of permission Strings
-     * @param slideNumber The slide position where to ask for permission
+     * Use this method to associate a permission with a slide.
+     * Please note that the permission will not be mandatory and the user can choose to deny it and move forward.
+     * If you want the permission to be granted before moving forward, use  [.askForPermissions]
+     *
+     * @param permissions
+     * @param slidesNumber
      */
-    protected fun askForPermissions(permissions: Array<String>, slideNumber: Int) {
+    protected fun askForPermissions(permissions: Array<String>, slidesNumber: Int) {
+        askForPermissions(permissions, slidesNumber, false)
+    }
+
+    /**
+     * Called by the user to associate permissions with slides.
+     *
+     * @param permissions  - Array of permissions
+     * @param slidesNumber - The slide at which permission is to be asked.
+     * @param required     - Whether the user can change this slide without granting the permissions.
+     */
+    protected fun askForPermissions(permissions: Array<String>, slidesNumber: Int, required: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (slideNumber <= 0) {
-                error("Invalid Slide Number: $slideNumber")
+            if (slidesNumber == 0) {
+                LogHelper.d(TAG, "Invalid Slide Number")
             } else {
-                permissionsArray.add(PermissionWrapper(permissions, slideNumber))
-                setSwipeLock(true)
+                val permission = PermissionWrapper(permissions, slidesNumber, required)
+                if (!permissionsArray.contains(permission)) {
+                    permissionsArray.add(permission)
+                    permissionsPositions.add(slidesNumber) // Add the number of the slide that contains permission to an arraylist
+                }
             }
         }
     }
+
 
     /** Moves the AppIntro to the next slide */
     protected fun goToNextSlide(isLastSlide: Boolean) {
@@ -320,6 +353,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      CALLBACKS
      =================================== */
 
+
+    /**
+     * Called by [AppIntroViewPager] when the user swipes forward on a slide which contains permissions.
+     * [.setSwipeLock] is called to prevent user from swiping while permission is requested.
+     * [.checkAndRequestPermissions] is called to request permissions from the user.
+     */
+    override fun onUserRequestedPermissionsDialog() {
+        setSwipeLock(true)
+        LogHelper.d(TAG, "Requesting Permissions on " + (currentlySelectedItem + 1))
+        checkAndRequestPermissions()
+    }
+
     /**
      * Called after a new slide has been selected
      * @param position Position of the new selected slide
@@ -447,6 +492,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             putBoolean("isFullPagingEnabled", pager.isFullPagingEnabled)
             putBoolean("isNextPagingEnabled", pager.isNextPagingEnabled)
 
+            putIntegerArrayList("requestedSlides", requestedSlides)
+            putParcelableArrayList("permissionsArray", permissionsArray)
+            putBoolean("isPermissionRequired", isPermissionRequired)
+
             putBoolean(COLOR_TRANSITIONS_ENABLED, isColorTransitionsEnabled)
         }
     }
@@ -463,6 +512,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             savedCurrentItem = getInt("currentItem")
             pager.isFullPagingEnabled = getBoolean("isFullPagingEnabled")
             pager.isNextPagingEnabled = getBoolean("isNextPagingEnabled")
+            requestedSlides = getIntegerArrayList("requestedSlides")
+            permissionsArray = getParcelableArrayList("permissionsArray")
+            isPermissionRequired = getBoolean("isPermissionRequired")
 
             isColorTransitionsEnabled = getBoolean(COLOR_TRANSITIONS_ENABLED)
         }
@@ -567,43 +619,175 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     // Returns true if a permission has been requested
     private fun checkAndRequestPermissions(): Boolean {
         // Let's search for a matching [PermissionWrapper] for this position.
-        val permissionToRequest = permissionsArray.find {
-            (pager.currentItem + 1) == it.position
-        } ?: return false
+        if (permissionsArray.isNotEmpty()) {
+            blockTouch(true)
+            val permissionToRequest = permissionsArray.find {
+                // TODO(2): This will require tweaking when switching to Viewpager2
+                if (isRtl) {
+                    (pagerAdapter.count - currentlySelectedItem) == it.position
+                } else {
+                    (pager.currentItem + 1) == it.position
+                }
+            } ?: return false
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(
+            isPermissionRequired = permissionToRequest.required
+            requestedPermission = permissionToRequest
+            ActivityCompat.requestPermissions(this,
                     permissionToRequest.permissions,
                     PERMISSIONS_REQUEST_ALL_PERMISSIONS)
-            permissionsArray.remove(permissionToRequest)
-            true
+
+        }
+        return false
+    }
+
+
+    /**
+     * This method is called to block touch event on the window
+     *
+     * @param isBlocked - Whether to block touch or not.
+     */
+    private fun blockTouch(isBlocked: Boolean) {
+        if (isBlocked) {
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         } else {
-            false
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        blockTouch(false)
+        setSwipeLock(false)
+        pager.permDialogSwipeLastCalled = System.currentTimeMillis()
         if (requestCode == PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
-            val isLastSlide = (pager.currentItem + 1 == slidesNumber)
-            goToNextSlide(isLastSlide)
-            if (isLastSlide) {
-                // We emulate the onDonePressed here to keep backward compatibility
-                // with the previous API (users expect an onDonePressed to kill the Activity).
-                // Ideally we should get rid of this extra callback in one of the future release.
-                onDonePressed(pagerAdapter.getItem(pager.currentItem))
+            val permissionResults = HashMap<String, Int>()
+            var deniedCount = 0
+
+            // Gather permission grant results.
+            for (i in grantResults.indices) {
+                // Add only permissions which are denied.
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    permissionResults[permissions[i]] = grantResults[i]
+                    deniedCount++
+                }
             }
-        } else {
-            LogHelper.e(TAG, "Unexpected request code from onRequestPermissionsResult")
+
+            // Check if all permissions are granted.
+            if (deniedCount == 0) {
+
+                // Proceed to next slide
+                permissionsArray.remove(requestedPermission)
+
+                // TODO(4): This part will require tweaking when switching to ViewPager2
+                if (isRtl) {
+                    requestedSlides?.add(pagerAdapter.count - currentlySelectedItem)
+                } else {
+                    requestedSlides?.add(currentlySelectedItem + 1)
+                }
+
+                // Check if next slide is the last one
+                if (pager.currentItem + 1 == slidesNumber) {
+                    goToNextSlide(true)
+                } else {
+
+                    goToNextSlide(false)
+
+                }
+            } else {
+                for ((permName, permResult) in permissionResults) {
+
+                    // Permission is denied for the first time (never ask again box is not checked).
+                    // Ask again explaining the usage of the permission (Show an AlertDialog or Snackbar)
+                    // shouldShowRequestPermissionRationale will return true
+
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, permName)) {
+                        if (!isPermissionRequired) {
+                            permissionsArray.remove(requestedPermission)
+
+                            // TODO(5): This part will require tweaking when switching to ViewPager2
+                            if (isRtl) {
+                                requestedSlides?.add(pagerAdapter.count - currentlySelectedItem)
+                            } else {
+                                requestedSlides?.add(currentlySelectedItem + 1)
+                            }
+
+                            // Check if next slide is the last one
+                            if (pager.currentItem + 1 == slidesNumber) {
+                                goToNextSlide(true)
+                            } else {
+                                goToNextSlide(false)
+
+                            }
+
+                        }
+                        onUserDeniedPermission(permName)
+                    } else {
+                        // Ask the user to go to settings to enable permission.
+                        onUserDisabledPermission(permName)
+                        break
+                    }// Permission is disabled (never ask again is checked)
+                    // shouldShowRequestPermissionRationale will return false.
+                }
+
+            }// Atleast one or all of the permissions have been denied.
         }
     }
+
+    /**
+     * Called when the user denies a permission to the app.
+     *
+     * @param permName - Name of the permission denied.
+     */
+    protected fun onUserDisabledPermission(permName: String) {}
+
+    /**
+     * Called when the user checks "Don't ask again" in the permission dialog.
+     *
+     * @param permName - Name of the permission disabled.
+     */
+    protected fun onUserDeniedPermission(permName: String) {
+
+    }
+
 
     // You must grant vibration permissions on your AndroidManifest.xml file
     @SuppressLint("MissingPermission")
     private fun dispatchVibration() {
         if (isVibrateOn) {
             vibrator.vibrate(vibrateDuration)
+        }
+    }
+
+
+    /**
+     * Called by [ViewPager.OnPageChangeListener.onPageSelected] to tell [AppIntroViewPager] to request permissions on swipe.
+     * If this method is called on a slide, then on a forward swipe permission dialog will be shown.
+     *
+     * @param position - The position that the user has changed to.
+     *
+     *
+     * TODO(3): This method will require tweaking when switching to Viewpager2 as
+     * there is no RTL support in the current viewpager and that messes up the position of slides.
+     *
+     *
+     * If the position issue is resolved in Viewpager2, simply remove the code inside if(isRtl()).
+     */
+    private fun setPermissionSlide(position: Int) {
+        if (isRtl) {
+            if (permissionsPositions.contains(pagerAdapter.count - position) && !requestedSlides?.contains(pagerAdapter.count - position)!!) {
+                pager.isPermissionSlide = true
+            } else {
+                pager.isPermissionSlide = false
+                setSwipeLock(false)
+            }
+        } else {
+            if (permissionsPositions.contains(position + 1) && !requestedSlides?.contains(position + 1)!!) {
+                pager.isPermissionSlide = true
+            } else {
+                pager.isPermissionSlide = false
+                setSwipeLock(false)
+            }
         }
     }
 
@@ -647,7 +831,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             val isSlideChangingAllowed = onCanRequestNextPage()
             if (isSlideChangingAllowed) {
                 // Changing slide is handled by permission result
-                if (!checkAndRequestPermissions()) {
+                if (!checkAndRequestPermissions() && !(permissionsPositions.contains(currentlySelectedItem + 1) && !requestedSlides?.contains(currentlySelectedItem + 1)!!)) {
                     val currentFragment = pagerAdapter.getItem(pager.currentItem)
                     if (isLastSlide) {
                         onDonePressed(currentFragment)
@@ -658,6 +842,35 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 }
             } else {
                 onIllegallyRequestedNextPage()
+            }
+        }
+    }
+
+    /**
+     * Called by [ViewPager.OnPageChangeListener.onPageSelected] to check if the user has requested permissions on the previous slide.
+     * This method is required as a safety check because otherwise,
+     * the user might skip a slide containing permissions due to a bug.
+     *
+     *
+     * This method will send the user back to the first slide that contains permissions.
+     *
+     * @param position - The position that the user has changed to.
+     *
+     *
+     * TODO(1): This method will require tweaking when switching to Viewpager2 as
+     * there is no RTL support in the current viewpager and that messes up the position of slides.
+     *
+     *
+     * If the position issue is resolved in Viewpager2, simply remove the code inside if(isRtl()).
+     */
+    private fun goBackIfRequired(position: Int) {
+        if (isRtl) {
+            if (permissionsPositions.contains(pagerAdapter.count - position - 1) && !requestedSlides?.contains(pagerAdapter.count - position - 1)!!) {
+                pager.currentItem = position + 1
+            }
+        } else {
+            if (permissionsPositions.contains(position) && !requestedSlides?.contains(position)!!) {
+                pager.currentItem = position - 1
             }
         }
     }
@@ -693,6 +906,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             } else {
                 isButtonsEnabled = isButtonsEnabled
             }
+
+            goBackIfRequired(position)
+            setPermissionSlide(position)
+
 
             // Firing all the necessary Callbacks
             this@AppIntroBase.onPageSelected(position)
