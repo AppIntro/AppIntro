@@ -3,6 +3,7 @@ package com.github.paolorotolo.appintro
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
@@ -149,9 +150,13 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 error("Invalid Slide Number: $slideNumber")
             } else {
                 permissionsArray.add(PermissionWrapper(permissions, slideNumber))
-                setSwipeLock(true)
             }
         }
+    }
+
+    /** Moves the AppIntro to the previous slide */
+    private fun goToPreviousSlide() {
+        pager.goToPreviousSlide()
     }
 
     /** Moves the AppIntro to the next slide */
@@ -568,14 +573,14 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     private fun checkAndRequestPermissions(): Boolean {
         // Let's search for a matching [PermissionWrapper] for this position.
         val permissionToRequest = permissionsArray.find {
-            (pager.currentItem + 1) == it.position
+            !it.pending && pager.getNextItem(fragments.size) == it.position
         } ?: return false
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            permissionToRequest.pending = true
             requestPermissions(
                     permissionToRequest.permissions,
                     PERMISSIONS_REQUEST_ALL_PERMISSIONS)
-            permissionsArray.remove(permissionToRequest)
             true
         } else {
             false
@@ -586,13 +591,25 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
-            val isLastSlide = (pager.currentItem + 1 == slidesNumber)
-            goToNextSlide(isLastSlide)
-            if (isLastSlide) {
-                // We emulate the onDonePressed here to keep backward compatibility
-                // with the previous API (users expect an onDonePressed to kill the Activity).
-                // Ideally we should get rid of this extra callback in one of the future release.
-                onDonePressed(pagerAdapter.getItem(pager.currentItem))
+            val pendingPermission = permissionsArray.find {
+                it.pending && pager.getNextItem(fragments.size) == it.position
+            }
+            if (grantResults.isNotEmpty() &&
+                    grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                // If one of the permission failed, let's go back to the previous slide.
+                pendingPermission?.pending = false
+                goToPreviousSlide()
+            } else {
+                // If is a success, let's remove the permission from the permission array.
+                permissionsArray.remove(pendingPermission)
+
+                val isLastSlide = (pager.currentItem + 1 == slidesNumber)
+                if (isLastSlide) {
+                    // We emulate the onDonePressed here to keep backward compatibility
+                    // with the previous API (users expect an onDonePressed to kill the Activity).
+                    // Ideally we should get rid of this extra callback in one of the future release.
+                    onDonePressed(pagerAdapter.getItem(pager.currentItem))
+                }
             }
         } else {
             LogHelper.e(TAG, "Unexpected request code from onRequestPermissionsResult")
@@ -646,16 +663,14 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             // Check if changing to the next slide is allowed
             val isSlideChangingAllowed = onCanRequestNextPage()
             if (isSlideChangingAllowed) {
-                // Changing slide is handled by permission result
-                if (!checkAndRequestPermissions()) {
-                    val currentFragment = pagerAdapter.getItem(pager.currentItem)
-                    if (isLastSlide) {
-                        onDonePressed(currentFragment)
-                    } else {
-                        onNextPressed(currentFragment)
-                    }
-                    goToNextSlide(isLastSlide)
+                checkAndRequestPermissions()
+                val currentFragment = pagerAdapter.getItem(pager.currentItem)
+                if (isLastSlide) {
+                    onDonePressed(currentFragment)
+                } else {
+                    onNextPressed(currentFragment)
                 }
+                goToNextSlide(isLastSlide)
             } else {
                 onIllegallyRequestedNextPage()
             }
@@ -674,6 +689,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 val nextSlide = pagerAdapter.getItem(position + 1)
                 performColorTransition(currentSlide, nextSlide, positionOffset)
             }
+            checkAndRequestPermissions()
         }
 
         override fun onPageSelected(position: Int) {
