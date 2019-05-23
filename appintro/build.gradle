@@ -1,6 +1,10 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'io.gitlab.arturbosch.detekt'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 group='com.github.AppIntro'
 
@@ -31,4 +35,28 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+
+ktlint {
+    version = "0.32.0"
+    debug = false
+    verbose = true
+    android = false
+    outputToConsole = true
+    reporters = [ReporterType.JSON]
+    ignoreFailures = false
+    enableExperimentalRules = true
+    kotlinScriptAdditionalPaths {
+        include fileTree("scripts/")
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}
+
+detekt {
+    toolVersion = "1.0.0-RC14"
+    input = files("src/main/java")
+    filters = ".*/resources/.*,.*/build/.*"
 }
