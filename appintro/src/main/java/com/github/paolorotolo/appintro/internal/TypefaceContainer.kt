@@ -24,9 +24,10 @@ internal data class TypefaceContainer(
      * @param textView The [TextView] where the Typeface will be applied
      */
     fun applyTo(textView: TextView?) {
-        if (textView == null || textView.context == null ||
-            (typeFaceUrl == null && typeFaceResource == 0)
-        ) {
+        if (textView == null || textView.context == null) {
+            return
+        }
+        if (typeFaceUrl == null && typeFaceResource == 0) {
             return
         }
 

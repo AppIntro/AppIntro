@@ -10,6 +10,7 @@ import com.github.paolorotolo.appintro.internal.LogHelper
 import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration
 
 const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
+private const val VALID_SWIPE_THRESHOLD_PX = 25
 
 /**
  * Class that controls the [AppIntro] of AppIntro.
@@ -49,7 +50,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
 
             customScroller = ScrollerCustomDuration(context, interpolator.get(null) as Interpolator)
             scroller.set(this, customScroller)
-        } catch (e: Exception) {
+        } catch (e: NoSuchFieldException) {
             e.printStackTrace()
         }
     }
@@ -64,11 +65,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     }
 
     fun goToPreviousSlide() {
-        try {
-            currentItem += if (!LayoutUtil.isRtl(context)) -1 else 1
-        } catch (e: Exception) {
-            LogHelper.e("AppIntro", "goToPreviousSlide: An error occurred while switching to the previous slide. Was isFirstSlide checked before the call?")
-        }
+        currentItem += if (!LayoutUtil.isRtl(context)) -1 else 1
     }
 
     fun isFirstSlide(size: Int): Boolean {
@@ -136,9 +133,9 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
      * Also checks if the event happened not earlier than every 1000ms
      */
     private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
-        val swipeThreshold = 25
-        if (Math.abs(event.x - currentTouchDownX) >= swipeThreshold) {
-            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
+        if (Math.abs(event.x - currentTouchDownX) >= VALID_SWIPE_THRESHOLD_PX) {
+            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
+                    ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
                 illegallyRequestedNextPageLastCalled = System.currentTimeMillis()
                 return true
             }

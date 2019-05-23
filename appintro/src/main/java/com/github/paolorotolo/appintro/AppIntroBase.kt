@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.github.paolorotolo.appintro
 
 import android.animation.ArgbEvaluator
@@ -88,7 +90,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     protected var isColorTransitionsEnabled = false
 
     /** Vibration duration in milliseconds */
-    protected var vibrateDuration = 20L
+    protected var vibrateDuration = DEFAULT_VIBRATE_DURATION
 
     /**
      * Toggles vibration on button clicks If you enable it, don't forget to grant
@@ -757,6 +759,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         private val TAG = LogHelper.makeLogTag(AppIntroBase::class.java)
 
         private const val DEFAULT_SCROLL_DURATION_FACTOR = 1
+        private const val DEFAULT_VIBRATE_DURATION = 20L
         private const val PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1
         private const val COLOR_TRANSITIONS_ENABLED = "appintro_color_transitions_enabled"
     }

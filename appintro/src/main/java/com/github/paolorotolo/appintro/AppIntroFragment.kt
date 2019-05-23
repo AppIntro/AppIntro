@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import com.github.paolorotolo.appintro.model.SliderPage
 
+@Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {
 
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
