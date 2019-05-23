@@ -14,13 +14,15 @@ import kotlin.math.absoluteValue
  * This is responsible of handling of paging, managing touch and dispatching events.
  *
  * @property isFullPagingEnabled Enable or disable swiping at all.
+ * @property isPermissionSlide If the current slide has permissions.
  * @property lockPage Set the page where the lock happened.
- * @property onNextPageRequestedListener Listener for Next Page events
+ * @property onNextPageRequestedListener Listener for Next Page events.
  * @property isNextPagingEnabled Enable or disable swiping to the next page.
  */
 class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
 
     var isFullPagingEnabled = true
+    var isPermissionSlide = false
     var lockPage = 0
     var onNextPageRequestedListener: OnNextPageRequestedListener? = null
     var isNextPagingEnabled: Boolean = true
@@ -35,7 +37,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     private var currentTouchDownY: Float = 0.toFloat()
     private var illegallyRequestedNextPageLastCalled: Long = 0
     private var customScroller: ScrollerCustomDuration? = null
-    private var pageChangeListener: ViewPager.OnPageChangeListener? = null
+    private var pageChangeListener: OnPageChangeListener? = null
 
     init {
         // Override the Scroller instance with our own class so we can change the duration
@@ -70,12 +72,12 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         return if (LayoutUtil.isRtl(context)) (currentItem - size + 1 == 0) else (currentItem == 0)
     }
 
-    fun getNextItem(size: Int): Int {
-        return if (LayoutUtil.isRtl(context)) (size - currentItem) else currentItem + 1
+    fun getCurrentSlideNumber(size: Int): Int {
+        return if (LayoutUtil.isRtl(context)) (size - currentItem) else (currentItem + 1)
     }
 
     /**
-     * Override is required to trigger [OnPageChangeListener.onPageSelected] for the first page.
+     * Override is required to trigger [AppIntroBase.OnPageChangeListener.onPageSelected] for the first page.
      * This is needed to correctly handle progress button display after rotation on a locked first page.
      */
     override fun setCurrentItem(currentItem: Int) {
@@ -99,21 +101,11 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     override fun performClick() = super.performClick()
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
-        if (!handleTouchEvent(event)) {
-            return false
-        }
-
-        // Calling super will allow the slider to "work" left and right.
-        return super.onInterceptTouchEvent(event)
+        return handleTouchEvent(event) && super.onInterceptTouchEvent(event)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!handleTouchEvent(event)) {
-            return false
-        }
-
-        // Calling super will allow the slider to "work" left and right.
-        return super.onTouchEvent(event)
+        return handleTouchEvent(event) && super.onTouchEvent(event)
     }
 
     /**
@@ -135,11 +127,8 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                 currentTouchDownX = event.x
                 currentTouchDownY = event.y
             }
-            else -> {
-                if (event.action == MotionEvent.ACTION_UP) {
-                    performClick()
-                }
-
+            MotionEvent.ACTION_UP -> performClick()
+            MotionEvent.ACTION_MOVE -> {
                 val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
 
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
@@ -149,13 +138,31 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                     if (userIllegallyRequestNextPage(event)) {
                         onNextPageRequestedListener?.onIllegallyRequestedNextPage()
                     }
-
                     return false
                 }
+
+                // If the slide contains permissions, check for forward swipe.
+                if (isPermissionSlide) {
+                    handlePermissionSlide(event)
+                }
+                currentTouchDownX = event.x
             }
         }
+        return isFullPagingEnabled
+    }
 
-        return true
+    private fun handlePermissionSlide(event: MotionEvent): Boolean {
+        if (isSwipeForward(currentTouchDownX, event.x)) {
+            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
+        }
+        return isFullPagingEnabled
+    }
+    /**
+     * Util function to check if the user swiped forward.
+     * The direction of forward is different in RTL mode.
+     */
+    private fun isSwipeForward(oldX: Float, newX: Float): Boolean {
+        return (if (LayoutUtil.isRtl(context)) (newX > oldX) else (oldX > newX))
     }
 
     /**
@@ -180,11 +187,10 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     /**
      * Checks if two points are aligned and could represent a slide gesture from the user.
      */
-    private fun isASwipeGesture(startPoint: MotionEvent, x: Float, y: Float) =
-        (
-            (startPoint.x - x).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X &&
-                (startPoint.y - y).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y
-            )
+    private fun isASwipeGesture(startPoint: MotionEvent, x: Float, y: Float) = (
+        (startPoint.x - x).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X &&
+            (startPoint.y - y).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y
+        )
 
     /**
      * Register an instance of OnNextPageRequestedListener.
@@ -193,16 +199,21 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
      *
      * [onIllegallyRequestedNextPage] will be called if the user tries to swipe and was not allowed
      * to do so (useful for showing a toast or something similar).
+     *
+     * [onUserRequestedPermissionsDialog] will be called when the user swipes forward on a slide
+     * that contains permissions.
      */
     interface OnNextPageRequestedListener {
         fun onCanRequestNextPage(): Boolean
 
         fun onIllegallyRequestedNextPage()
+
+        fun onUserRequestedPermissionsDialog()
     }
 
     companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
-        private const val VALID_SWIPE_THRESHOLD_PX_X = 25
         private const val VALID_SWIPE_THRESHOLD_PX_Y = 25
+        private const val VALID_SWIPE_THRESHOLD_PX_X = 0
     }
 }
