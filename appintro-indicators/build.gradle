@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.AppIntro'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 20
+        versionName "5.1.0"
+
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+    }
+}
+
+dependencies {
+    implementation project(':appintro')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.romandanylyk:pageindicatorview:1.0.3"
+}
+
+repositories {
+    mavenCentral()
+}

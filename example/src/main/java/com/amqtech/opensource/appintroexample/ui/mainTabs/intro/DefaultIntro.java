@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.indicator.PageIndicatorAnimationType;
+import com.github.paolorotolo.appintro.indicator.PageIndicatorViewIndicatorController;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
 
@@ -47,6 +49,11 @@ public class DefaultIntro extends AppIntro {
         sliderPage4.setImageDrawable(R.drawable.ic_slide4);
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
+
+        setIndicatorController(
+                new PageIndicatorViewIndicatorController(this, null,
+                        PageIndicatorAnimationType.WORM)
+        );
     }
 
     @Override
