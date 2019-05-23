@@ -31,7 +31,5 @@ dependencies {
     implementation project(':appintro')
     implementation 'androidx.annotation:annotation:1.0.2'
 
-    implementation('com.mikepenz:materialdrawer:5.9.1@aar') {
-        transitive = true
-    }
+    implementation "com.mikepenz:materialdrawer:6.1.2"
 }
