@@ -7,7 +7,11 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
-import android.view.*
+import android.view.KeyEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -27,7 +31,6 @@ import com.github.paolorotolo.appintro.internal.PermissionWrapper
 import com.github.paolorotolo.appintro.internal.viewpager.PagerAdapter
 import com.github.paolorotolo.appintro.internal.viewpager.TransformType
 import com.github.paolorotolo.appintro.internal.viewpager.ViewPagerTransformer
-import java.util.*
 
 /**
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
@@ -119,7 +122,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     internal val isRtl: Boolean
         get() = LayoutUtil.isRtl(applicationContext)
 
-
     /*
      PUBLIC API
      =================================== */
@@ -172,12 +174,14 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     /** Enable the Immersive Sticky Mode */
     protected fun setImmersiveMode() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN)
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN
+                )
         }
     }
 
@@ -192,7 +196,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     protected fun setStatusBarColorRes(@ColorRes color: Int) {
         setStatusBarColor(ContextCompat.getColor(this, color))
     }
-
 
     /** Customize the color of the Navigation Bar */
     protected fun setNavBarColor(@ColorInt color: Int) {
@@ -213,8 +216,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         if (show) {
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         } else {
-            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
     }
 
@@ -266,11 +271,13 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
 
     /**
      * Overrides color of selected and unselected indicator colors
-     * @param selectedIndicatorColor   your selected color
+     * @param selectedIndicatorColor your selected color
      * @param unselectedIndicatorColor your unselected color
      */
-    protected fun setIndicatorColor(selectedIndicatorColor: Int,
-                                    unselectedIndicatorColor: Int) {
+    protected fun setIndicatorColor(
+        selectedIndicatorColor: Int,
+        unselectedIndicatorColor: Int
+    ) {
         indicatorController.selectedIndicatorColor = selectedIndicatorColor
         indicatorController.unselectedIndicatorColor = unselectedIndicatorColor
     }
@@ -300,20 +307,26 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
 
     /** Sets the animation of the intro to a flow animation */
     protected fun setFlowAnimation() {
-        pager.setPageTransformer(true,
-                ViewPagerTransformer(TransformType.FLOW))
+        pager.setPageTransformer(
+            true,
+            ViewPagerTransformer(TransformType.FLOW)
+        )
     }
 
     /** Sets the animation of the intro to a slide over animation */
     protected fun setSlideOverAnimation() {
-        pager.setPageTransformer(true,
-                ViewPagerTransformer(TransformType.SLIDE_OVER))
+        pager.setPageTransformer(
+            true,
+            ViewPagerTransformer(TransformType.SLIDE_OVER)
+        )
     }
 
     /** Sets the animation of the intro to a depth animation */
     protected fun setDepthAnimation() {
-        pager.setPageTransformer(true,
-                ViewPagerTransformer(TransformType.DEPTH))
+        pager.setPageTransformer(
+            true,
+            ViewPagerTransformer(TransformType.DEPTH)
+        )
     }
 
     /** Overrides viewpager transformer with you custom [ViewPagerTransformer] */
@@ -371,7 +384,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         setContentView(layoutId)
 
         indicatorContainer = findViewById(R.id.indicator_container)
-                ?: error("Missing Indicator Container: R.id.indicator_container")
+            ?: error("Missing Indicator Container: R.id.indicator_container")
         nextButton = findViewById(R.id.next) ?: error("Missing Next button: R.id.next")
         doneButton = findViewById(R.id.done) ?: error("Missing Done button: R.id.done")
         skipButton = findViewById(R.id.skip) ?: error("Missing Skip button: R.id.skip")
@@ -427,8 +440,11 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             val fragment = pagerAdapter.getItem(pager.currentItem)
             // Fragment is null when no slides are passed to AppIntro
             if (fragment != null) {
-                dispatchSlideChangedCallbacks(null, pagerAdapter
-                        .getItem(pager.currentItem))
+                dispatchSlideChangedCallbacks(
+                    null,
+                    pagerAdapter
+                        .getItem(pager.currentItem)
+                )
             } else {
                 // Close the intro if there are no slides to show
                 finish()
@@ -437,7 +453,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         slidesNumber = fragments.size
         initializeIndicator()
     }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -486,8 +501,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     override fun onKeyDown(code: Int, event: KeyEvent): Boolean {
         // Handle the navigation with 'Enter' or Dpad events.
         if (code == KeyEvent.KEYCODE_ENTER ||
-                code == KeyEvent.KEYCODE_BUTTON_A ||
-                code == KeyEvent.KEYCODE_DPAD_CENTER) {
+            code == KeyEvent.KEYCODE_BUTTON_A ||
+            code == KeyEvent.KEYCODE_DPAD_CENTER
+        ) {
             val isLastSlide = pager.currentItem == pagerAdapter.count - 1
             goToNextSlide(isLastSlide)
             if (isLastSlide) {
@@ -519,7 +535,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
 
     private fun updateButtonsVisibility() {
         if (isButtonsEnabled) {
-            val isLastSlide = !isRtl && pager.currentItem == slidesNumber - 1 ||
+            val isLastSlide =
+                !isRtl && pager.currentItem == slidesNumber - 1 ||
                     isRtl && pager.currentItem == 0
             nextButton.isVisible = !isLastSlide
             doneButton.isVisible = isLastSlide
@@ -579,23 +596,28 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             permissionToRequest.pending = true
             requestPermissions(
-                    permissionToRequest.permissions,
-                    PERMISSIONS_REQUEST_ALL_PERMISSIONS)
+                permissionToRequest.permissions,
+                PERMISSIONS_REQUEST_ALL_PERMISSIONS
+            )
             true
         } else {
             false
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
-                                            grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
             val pendingPermission = permissionsArray.find {
                 it.pending && pager.getNextItem(fragments.size) == it.position
             }
             if (grantResults.isNotEmpty() &&
-                    grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                grantResults[0] != PackageManager.PERMISSION_GRANTED
+            ) {
                 // If one of the permission failed, let's go back to the previous slide.
                 pendingPermission?.pending = false
                 goToPreviousSlide()
@@ -638,13 +660,16 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     /** Performs color interpolation between two slides.. */
     private fun performColorTransition(currentSlide: Fragment?, nextSlide: Fragment?, positionOffset: Float) {
         if (currentSlide is ISlideBackgroundColorHolder &&
-                nextSlide is ISlideBackgroundColorHolder) {
+            nextSlide is ISlideBackgroundColorHolder
+        ) {
             // Check if both fragments are attached to an activity,
             // otherwise getDefaultBackgroundColor may fail.
             if (currentSlide.isAdded && nextSlide.isAdded) {
-                val newColor = argbEvaluator.evaluate(positionOffset,
-                        currentSlide.defaultBackgroundColor,
-                        nextSlide.defaultBackgroundColor) as Int
+                val newColor = argbEvaluator.evaluate(
+                    positionOffset,
+                    currentSlide.defaultBackgroundColor,
+                    nextSlide.defaultBackgroundColor
+                ) as Int
                 currentSlide.setBackgroundColor(newColor)
                 nextSlide.setBackgroundColor(newColor)
             }
@@ -716,8 +741,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 if (currentlySelectedItem == -1) {
                     dispatchSlideChangedCallbacks(null, pagerAdapter.getItem(position))
                 } else {
-                    dispatchSlideChangedCallbacks(pagerAdapter.getItem(currentlySelectedItem),
-                            pagerAdapter.getItem(pager.currentItem))
+                    dispatchSlideChangedCallbacks(
+                        pagerAdapter.getItem(currentlySelectedItem),
+                        pagerAdapter.getItem(pager.currentItem)
+                    )
                 }
             }
             currentlySelectedItem = position

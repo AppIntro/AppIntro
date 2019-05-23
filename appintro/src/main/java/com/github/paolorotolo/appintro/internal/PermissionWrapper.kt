@@ -7,9 +7,9 @@ package com.github.paolorotolo.appintro.internal
  * @property pending Flag set to true if AppIntro already requested this permission and is awaiting response.
  */
 internal data class PermissionWrapper(
-        var permissions: Array<String>,
-        var position: Int,
-        internal var pending: Boolean = false
+    var permissions: Array<String>,
+    var position: Int,
+    internal var pending: Boolean = false
 ) {
 
     override fun equals(other: Any?): Boolean {

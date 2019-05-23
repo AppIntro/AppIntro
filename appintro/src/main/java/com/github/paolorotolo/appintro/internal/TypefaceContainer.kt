@@ -2,7 +2,6 @@ package com.github.paolorotolo.appintro.internal
 
 import android.graphics.Typeface
 import android.widget.TextView
-
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 
@@ -14,8 +13,8 @@ import androidx.core.content.res.ResourcesCompat
  * @property typeFaceResource An [Int] which is a @FontRes
  */
 internal data class TypefaceContainer(
-        var typeFaceUrl: String? = null,
-        @FontRes var typeFaceResource: Int = 0
+    var typeFaceUrl: String? = null,
+    @FontRes var typeFaceResource: Int = 0
 ) {
 
     /**
@@ -25,8 +24,9 @@ internal data class TypefaceContainer(
      * @param textView The [TextView] where the Typeface will be applied
      */
     fun applyTo(textView: TextView?) {
-        if (textView == null || textView.context == null
-                || (typeFaceUrl == null && typeFaceResource == 0)) {
+        if (textView == null || textView.context == null ||
+            (typeFaceUrl == null && typeFaceResource == 0)
+        ) {
             return
         }
 

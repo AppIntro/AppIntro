@@ -75,7 +75,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         return if (LayoutUtil.isRtl(context)) (currentItem - size + 1 == 0) else (currentItem == 0)
     }
 
-    fun getNextItem(size: Int) : Int {
+    fun getNextItem(size: Int): Int {
         return if (LayoutUtil.isRtl(context)) (size - currentItem) else currentItem + 1
     }
 

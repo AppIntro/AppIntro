@@ -12,9 +12,9 @@ import android.widget.ProgressBar
  * would not fit in the screen.
  */
 class ProgressIndicatorController @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = android.R.attr.progressBarStyleHorizontal
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = android.R.attr.progressBarStyleHorizontal
 ) : IndicatorController, ProgressBar(context, attrs, defStyleAttr) {
 
     override var selectedIndicatorColor = DEFAULT_COLOR

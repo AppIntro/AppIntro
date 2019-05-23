@@ -4,7 +4,17 @@ import android.os.Bundle
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
-import com.github.paolorotolo.appintro.*
+import com.github.paolorotolo.appintro.ARG_BG_COLOR
+import com.github.paolorotolo.appintro.ARG_BG_DRAWABLE
+import com.github.paolorotolo.appintro.ARG_DESC
+import com.github.paolorotolo.appintro.ARG_DESC_COLOR
+import com.github.paolorotolo.appintro.ARG_DESC_TYPEFACE
+import com.github.paolorotolo.appintro.ARG_DESC_TYPEFACE_RES
+import com.github.paolorotolo.appintro.ARG_DRAWABLE
+import com.github.paolorotolo.appintro.ARG_TITLE
+import com.github.paolorotolo.appintro.ARG_TITLE_COLOR
+import com.github.paolorotolo.appintro.ARG_TITLE_TYPEFACE
+import com.github.paolorotolo.appintro.ARG_TITLE_TYPEFACE_RES
 
 /**
  * Slide Page Model.
@@ -12,17 +22,17 @@ import com.github.paolorotolo.appintro.*
  * This data class represent a single page that can be visualized with AppIntro.
  */
 data class SliderPage @JvmOverloads constructor(
-        var title: CharSequence? = null,
-        var description: CharSequence? = null,
-        @DrawableRes var bgDrawable: Int = 0,
-        @DrawableRes var imageDrawable: Int = 0,
-        @ColorInt var bgColor: Int = 0,
-        @ColorInt var titleColor: Int = 0,
-        @ColorInt var descColor: Int = 0,
-        @FontRes var titleTypefaceFontRes: Int = 0,
-        @FontRes var descTypefaceFontRes: Int = 0,
-        var titleTypeface: String? = null,
-        var descTypeface: String? = null
+    var title: CharSequence? = null,
+    var description: CharSequence? = null,
+    @DrawableRes var bgDrawable: Int = 0,
+    @DrawableRes var imageDrawable: Int = 0,
+    @ColorInt var bgColor: Int = 0,
+    @ColorInt var titleColor: Int = 0,
+    @ColorInt var descColor: Int = 0,
+    @FontRes var titleTypefaceFontRes: Int = 0,
+    @FontRes var descTypefaceFontRes: Int = 0,
+    var titleTypeface: String? = null,
+    var descTypeface: String? = null
 ) {
     val titleString: String? get() = title?.toString()
     val descriptionString: String? get() = description?.toString()

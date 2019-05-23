@@ -17,14 +17,16 @@ internal object LogHelper {
      * Don't use this when obfuscating class names!
      */
     @JvmStatic
-    fun makeLogTag(cls: Class<*>) = LOG_PREFIX +
+    fun makeLogTag(cls: Class<*>) =
+        LOG_PREFIX +
             cutTagLength(cls.simpleName, MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH)
 
     /**
      * Creates a tag for the logs from a [KClass]
      * Don't use this when obfuscating class names!
      */
-    fun makeLogTag(cls: KClass<*>) = LOG_PREFIX +
+    fun makeLogTag(cls: KClass<*>) =
+        LOG_PREFIX +
             cutTagLength(cls.simpleName ?: "", MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH)
 
     private fun cutTagLength(tag: String, length: Int): String {

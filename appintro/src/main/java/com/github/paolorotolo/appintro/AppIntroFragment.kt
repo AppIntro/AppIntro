@@ -14,46 +14,46 @@ class AppIntroFragment : AppIntroBaseFragment() {
         /**
          * Generates a new instance for [AppIntroFragment]
          *
-         * @param title                CharSequence which will be the slide title
-         * @param description          CharSequence which will be the slide description
+         * @param title CharSequence which will be the slide title
+         * @param description CharSequence which will be the slide description
          * @param titleTypefaceFontRes @FontRes (Integer) custom title typeface obtained
          *                             from Resources
-         * @param descTypefaceFontRes  @FontRes (Integer) custom description typeface obtained
+         * @param descTypefaceFontRes @FontRes (Integer) custom description typeface obtained
          *                             from Resources
-         * @param imageDrawable        @DrawableRes (Integer) the image that will be
+         * @param imageDrawable @DrawableRes (Integer) the image that will be
          *                             displayed, obtained from Resources
-         * @param bgDrawable           @DrawableRes (Integer) custom background drawable
-         * @param bgColor              @ColorInt (Integer) custom background color
-         * @param titleColor           @ColorInt (Integer) custom title color
-         * @param descColor            @ColorInt (Integer) custom description color
+         * @param bgDrawable @DrawableRes (Integer) custom background drawable
+         * @param bgColor @ColorInt (Integer) custom background color
+         * @param titleColor @ColorInt (Integer) custom title color
+         * @param descColor @ColorInt (Integer) custom description color
          *
          * @return An [AppIntroFragment] created instance
          */
         @JvmOverloads
         @JvmStatic
         fun newInstance(
-                title: CharSequence? = null,
-                description: CharSequence? = null,
-                @FontRes titleTypefaceFontRes: Int = 0,
-                @FontRes descTypefaceFontRes: Int = 0,
-                @DrawableRes imageDrawable: Int = 0,
-                @ColorInt bgColor: Int = 0,
-                @DrawableRes bgDrawable: Int = 0,
-                @ColorInt titleColor: Int = 0,
-                @ColorInt descColor: Int = 0
+            title: CharSequence? = null,
+            description: CharSequence? = null,
+            @FontRes titleTypefaceFontRes: Int = 0,
+            @FontRes descTypefaceFontRes: Int = 0,
+            @DrawableRes imageDrawable: Int = 0,
+            @ColorInt bgColor: Int = 0,
+            @DrawableRes bgDrawable: Int = 0,
+            @ColorInt titleColor: Int = 0,
+            @ColorInt descColor: Int = 0
         ): AppIntroFragment {
             return newInstance(
-                    SliderPage(
-                            title = title,
-                            description = description,
-                            imageDrawable = imageDrawable,
-                            bgColor = bgColor,
-                            bgDrawable = bgDrawable,
-                            titleColor = titleColor,
-                            descColor = descColor,
-                            titleTypefaceFontRes = titleTypefaceFontRes,
-                            descTypefaceFontRes = descTypefaceFontRes
-                    )
+                SliderPage(
+                    title = title,
+                    description = description,
+                    imageDrawable = imageDrawable,
+                    bgColor = bgColor,
+                    bgDrawable = bgDrawable,
+                    titleColor = titleColor,
+                    descColor = descColor,
+                    titleTypefaceFontRes = titleTypefaceFontRes,
+                    descTypefaceFontRes = descTypefaceFontRes
+                )
             )
         }
 

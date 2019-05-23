@@ -2,14 +2,13 @@ package com.github.paolorotolo.appintro.internal.viewpager
 
 import android.util.SparseArray
 import android.view.ViewGroup
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 internal class PagerAdapter(
-        fragmentManager: FragmentManager,
-        val fragments: List<Fragment>
+    fragmentManager: FragmentManager,
+    val fragments: List<Fragment>
 ) : FragmentPagerAdapter(fragmentManager) {
 
     private val retainedFragments: SparseArray<Fragment> = SparseArray()
@@ -21,7 +20,6 @@ internal class PagerAdapter(
                 retainedFragments.get(position)
             else
                 fragments[position]
-
         } else null
     }
 
