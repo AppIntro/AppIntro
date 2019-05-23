@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
-apply plugin: 'signing'
-apply from: 'maven-push.gradle'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.AppIntro'
 
 android {
     compileSdkVersion 28
