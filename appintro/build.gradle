@@ -57,6 +57,7 @@ ktlint {
 
 detekt {
     toolVersion = "1.0.0-RC14"
+    config = files("./detekt-config.yml")
     input = files("src/main/java")
     filters = ".*/resources/.*,.*/build/.*"
 }
