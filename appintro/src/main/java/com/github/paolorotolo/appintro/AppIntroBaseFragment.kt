@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
-import com.github.paolorotolo.appintro.internal.LogHelper
-import com.github.paolorotolo.appintro.internal.TypefaceContainer
-
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import com.github.paolorotolo.appintro.internal.LogHelper
+import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 internal const val ARG_TITLE = "title"
 internal const val ARG_TITLE_TYPEFACE = "title_typeface"
@@ -80,11 +78,13 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             description = savedInstanceState.getString(ARG_DESC)
 
             titleTypeface = TypefaceContainer(
-                    savedInstanceState.getString(ARG_TITLE_TYPEFACE),
-                    savedInstanceState.getInt(ARG_TITLE_TYPEFACE_RES, 0))
+                savedInstanceState.getString(ARG_TITLE_TYPEFACE),
+                savedInstanceState.getInt(ARG_TITLE_TYPEFACE_RES, 0)
+            )
             descTypeface = TypefaceContainer(
-                    savedInstanceState.getString(ARG_DESC_TYPEFACE),
-                    savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0))
+                savedInstanceState.getString(ARG_DESC_TYPEFACE),
+                savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0)
+            )
 
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
             bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
@@ -93,9 +93,11 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         }
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(layoutId, container, false)
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
@@ -119,7 +121,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         } else {
             mainLayout?.setBackgroundColor(defaultBackgroundColor)
         }
-        
+
         return view
     }
 

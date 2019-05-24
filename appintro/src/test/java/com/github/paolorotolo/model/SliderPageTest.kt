@@ -21,16 +21,16 @@ class SliderPageTest {
         val descTypefaceRes = 0x789abcdf
 
         val sliderPage = SliderPage(
-                title = title,
-                description = description,
-                imageDrawable = imageDrawable,
-                bgColor = bgColor,
-                titleColor = titleColor,
-                descColor = descColor,
-                titleTypeface = titleTypeface,
-                titleTypefaceFontRes = titleTypefaceRes,
-                descTypeface = descTypeface,
-                descTypefaceFontRes = descTypefaceRes
+            title = title,
+            description = description,
+            imageDrawable = imageDrawable,
+            bgColor = bgColor,
+            titleColor = titleColor,
+            descColor = descColor,
+            titleTypeface = titleTypeface,
+            titleTypefaceFontRes = titleTypefaceRes,
+            descTypeface = descTypeface,
+            descTypefaceFontRes = descTypefaceRes
         )
 
         assertEquals(sliderPage.title, title)
@@ -63,8 +63,8 @@ class SliderPageTest {
 
     @Test
     fun sliderPage_titleString_worksAfterReassignment() {
-        val title1 : CharSequence = "title1"
-        val title2 : CharSequence = "title2"
+        val title1: CharSequence = "title1"
+        val title2: CharSequence = "title2"
 
         val sliderPage = SliderPage(title = title1)
         assertEquals(title1, sliderPage.titleString)
@@ -74,8 +74,8 @@ class SliderPageTest {
 
     @Test
     fun sliderPage_titleDescription_worksAfterReassignment() {
-        val desc1 : CharSequence = "desc1"
-        val desc2 : CharSequence = "desc2"
+        val desc1: CharSequence = "desc1"
+        val desc2: CharSequence = "desc2"
 
         val sliderPage = SliderPage(description = desc1)
         assertEquals(desc1, sliderPage.descriptionString)

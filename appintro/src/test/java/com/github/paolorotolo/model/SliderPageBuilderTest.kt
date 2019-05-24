@@ -22,7 +22,8 @@ class SliderPageBuilderTest {
         val titleTypefaceRes = 0x12345678
         val descTypefaceRes = 0x789abcdf
 
-        val sliderPage = SliderPagerBuilder()
+        val sliderPage =
+            SliderPagerBuilder()
                 .title(title)
                 .description(description)
                 .imageDrawable(imageDrawable)
@@ -51,7 +52,8 @@ class SliderPageBuilderTest {
 
     @Test
     fun sliderPageBuilder_multipleAssignmentOverrides() {
-        val sliderPage = SliderPagerBuilder()
+        val sliderPage =
+            SliderPagerBuilder()
                 .title("title")
                 .title("title2")
                 .build()

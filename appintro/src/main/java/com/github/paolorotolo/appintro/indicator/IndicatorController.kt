@@ -12,9 +12,9 @@ internal const val DEFAULT_COLOR = 1
  */
 interface IndicatorController {
 
-    var selectedIndicatorColor : Int
+    var selectedIndicatorColor: Int
 
-    var unselectedIndicatorColor : Int
+    var unselectedIndicatorColor: Int
 
     /**
      * Create a new instance of the view to be inserted in the AppIntro layout.

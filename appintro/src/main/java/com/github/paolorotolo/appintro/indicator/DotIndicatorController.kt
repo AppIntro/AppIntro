@@ -33,7 +33,8 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
     override fun newInstance(context: Context): View {
         val newLayoutParams = LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
+            LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT
+        )
         newLayoutParams.gravity = Gravity.CENTER_VERTICAL
         layoutParams = newLayoutParams
         orientation = HORIZONTAL
@@ -46,12 +47,16 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
-            dot.setImageDrawable(ContextCompat.getDrawable(this.context,
-                    R.drawable.ic_appintro_indicator_unselected))
+            dot.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this.context,
+                    R.drawable.ic_appintro_indicator_unselected
+                )
+            )
 
             val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             this.addView(dot, params)
         }
@@ -68,11 +73,15 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
             val drawable = ContextCompat.getDrawable(this.context, drawableId)
 
             if (selectedIndicatorColor != DEFAULT_COLOR && i == index)
-                drawable!!.mutate().setColorFilter(selectedIndicatorColor,
-                        PorterDuff.Mode.SRC_IN)
+                drawable!!.mutate().setColorFilter(
+                    selectedIndicatorColor,
+                    PorterDuff.Mode.SRC_IN
+                )
             if (unselectedIndicatorColor != DEFAULT_COLOR && i != index)
-                drawable!!.mutate().setColorFilter(unselectedIndicatorColor,
-                        PorterDuff.Mode.SRC_IN)
+                drawable!!.mutate().setColorFilter(
+                    unselectedIndicatorColor,
+                    PorterDuff.Mode.SRC_IN
+                )
             (getChildAt(i) as ImageView).setImageDrawable(drawable)
         }
     }

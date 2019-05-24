@@ -96,16 +96,16 @@ class SliderPagerBuilder {
     }
 
     fun build() = SliderPage(
-            title = this.title,
-            description = this.description,
-            imageDrawable = this.imageDrawable,
-            bgDrawable = this.bgDrawable,
-            bgColor = this.bgColor,
-            titleColor = this.titleColor,
-            descColor = this.descColor,
-            titleTypeface = this.titleTypeface,
-            titleTypefaceFontRes = this.titleTypefaceRes,
-            descTypeface = this.descTypeface,
-            descTypefaceFontRes = this.descTypefaceRes
+        title = this.title,
+        description = this.description,
+        imageDrawable = this.imageDrawable,
+        bgDrawable = this.bgDrawable,
+        bgColor = this.bgColor,
+        titleColor = this.titleColor,
+        descColor = this.descColor,
+        titleTypeface = this.titleTypeface,
+        titleTypefaceFontRes = this.titleTypefaceRes,
+        descTypeface = this.descTypeface,
+        descTypefaceFontRes = this.descTypefaceRes
     )
 }
