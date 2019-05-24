@@ -47,7 +47,7 @@ internal class ViewPagerTransformer(
         if (position >= -1 && position <= 1) {
             page.scaleXY = Math.max(MIN_SCALE_ZOOM, 1 - Math.abs(position))
             page.alpha = MIN_ALPHA_ZOOM + (page.scaleXY - MIN_SCALE_ZOOM) /
-                    (1 - MIN_SCALE_ZOOM) * (1 - MIN_ALPHA_ZOOM)
+                (1 - MIN_SCALE_ZOOM) * (1 - MIN_ALPHA_ZOOM)
             val vMargin = page.height * (1 - page.scaleXY) / 2
             val hMargin = page.width * (1 - page.scaleXY) / 2
             if (position < 0) {

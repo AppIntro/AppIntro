@@ -6,7 +6,6 @@ import android.view.MotionEvent
 import android.view.animation.Interpolator
 import androidx.viewpager.widget.ViewPager
 import com.github.paolorotolo.appintro.internal.LayoutUtil
-import com.github.paolorotolo.appintro.internal.LogHelper
 import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration
 
 const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
@@ -135,7 +134,8 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
         if (Math.abs(event.x - currentTouchDownX) >= VALID_SWIPE_THRESHOLD_PX) {
             if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
-                    ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
+                ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL
+            ) {
                 illegallyRequestedNextPageLastCalled = System.currentTimeMillis()
                 return true
             }
