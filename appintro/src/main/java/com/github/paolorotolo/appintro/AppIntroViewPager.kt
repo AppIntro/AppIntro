@@ -7,9 +7,7 @@ import android.view.animation.Interpolator
 import androidx.viewpager.widget.ViewPager
 import com.github.paolorotolo.appintro.internal.LayoutUtil
 import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration
-
-const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
-private const val VALID_SWIPE_THRESHOLD_PX = 25
+import kotlin.math.absoluteValue
 
 /**
  * Class that controls the [AppIntro] of AppIntro.
@@ -34,6 +32,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         }
 
     private var currentTouchDownX: Float = 0.toFloat()
+    private var currentTouchDownY: Float = 0.toFloat()
     private var illegallyRequestedNextPageLastCalled: Long = 0
     private var customScroller: ScrollerCustomDuration? = null
     private var pageChangeListener: ViewPager.OnPageChangeListener? = null
@@ -97,34 +96,57 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         customScroller?.scrollDurationFactor = factor
     }
 
-    override fun performClick() = super.performClick()
+    override fun onInterceptTouchEvent(event: MotionEvent?): Boolean
+    {
+        if (!handleTouchEvent(event)) {
+            return false
+        }
+
+        // Calling super will allow the slider to "work" left and right.
+        return super.onInterceptTouchEvent(event)
+    }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (!handleTouchEvent(event)) {
+            return false
+        }
+
+        // Calling super will allow the slider to "work" left and right.
+        return super.onTouchEvent(event)
+    }
+
+    private fun handleTouchEvent(event: MotionEvent?) : Boolean {
         // If paging is disabled we should ignore any viewpager touch
         // (also, not display any error message)
         if (!isFullPagingEnabled) {
             return false
         }
 
-        val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
-        when (event?.action) {
-            MotionEvent.ACTION_UP -> performClick()
-            MotionEvent.ACTION_DOWN -> currentTouchDownX = event.x
-            MotionEvent.ACTION_MOVE -> {
+        when(event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                currentTouchDownX = event.x
+                currentTouchDownY = event.y
+            }
+            else -> {
+                val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
+
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
                 // We need to return false, and also call onIllegallyRequestedNextPage if the
                 // threshold was too high (so the user can be informed).
                 if (!canRequestNextPage) {
-                    if (userIllegallyRequestNextPage(event)) {
-                        onNextPageRequestedListener?.onIllegallyRequestedNextPage()
+
+                    event?.let {
+                        if(userIllegallyRequestNextPage(event)) {
+                            onNextPageRequestedListener?.onIllegallyRequestedNextPage()
+                        }
                     }
+
                     return false
                 }
             }
         }
 
-        // Calling super will allow the slider to "work" left and right.
-        return super.onTouchEvent(event)
+        return true
     }
 
     /**
@@ -132,10 +154,10 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
      * Also checks if the event happened not earlier than every 1000ms
      */
     private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
-        if (Math.abs(event.x - currentTouchDownX) >= VALID_SWIPE_THRESHOLD_PX) {
-            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
-                ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL
-            ) {
+        if ((event.x - currentTouchDownX).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X
+                && (event.y - currentTouchDownY).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y) {
+            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled
+                    >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
                 illegallyRequestedNextPageLastCalled = System.currentTimeMillis()
                 return true
             }
@@ -155,5 +177,11 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         fun onCanRequestNextPage(): Boolean
 
         fun onIllegallyRequestedNextPage()
+    }
+
+    companion object {
+        private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
+        private const val VALID_SWIPE_THRESHOLD_PX_X = 35
+        private const val VALID_SWIPE_THRESHOLD_PX_Y = 25
     }
 }
