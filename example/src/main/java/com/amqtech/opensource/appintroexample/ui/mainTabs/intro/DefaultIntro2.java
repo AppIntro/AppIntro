@@ -10,10 +10,6 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class DefaultIntro2 extends AppIntro2 {
 
     @Override

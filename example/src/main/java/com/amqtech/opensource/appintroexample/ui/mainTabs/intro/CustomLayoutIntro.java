@@ -8,10 +8,6 @@ import com.amqtech.opensource.appintroexample.util.SampleSlide;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class CustomLayoutIntro extends AppIntro {
 
     @Override
