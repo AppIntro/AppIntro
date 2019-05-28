@@ -12,10 +12,6 @@ import android.widget.Button;
 import com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2;
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class PermissionsLayout2Intro extends Fragment {
 
     @SuppressWarnings("ConstantConditions")

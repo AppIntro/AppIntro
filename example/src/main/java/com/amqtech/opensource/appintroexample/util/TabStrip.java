@@ -9,10 +9,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 class TabStrip extends LinearLayout {
 
     private static final int DEFAULT_BOTTOM_BORDER_THICKNESS_DIPS = 0;

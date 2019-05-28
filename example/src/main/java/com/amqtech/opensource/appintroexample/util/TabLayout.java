@@ -1,9 +1,5 @@
 package com.amqtech.opensource.appintroexample.util;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 import android.content.Context;
 import android.graphics.Typeface;
 import androidx.fragment.app.Fragment;import androidx.viewpager.widget.PagerAdapter;

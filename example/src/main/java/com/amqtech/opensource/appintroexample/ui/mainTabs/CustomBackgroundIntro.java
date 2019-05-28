@@ -11,10 +11,6 @@ import android.widget.Button;
 
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class CustomBackgroundIntro extends Fragment {
 
     @SuppressWarnings("ConstantConditions")
