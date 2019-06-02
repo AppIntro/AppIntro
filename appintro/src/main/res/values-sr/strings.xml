@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_intro_skip_button">PRESKOČI</string>
     <string name="app_intro_next_button">DALJE</string>
     <string name="app_intro_back_button">NAZAD</string>
