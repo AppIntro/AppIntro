@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/appintro_statusbar_height"
     android:paddingBottom="@dimen/appintro2_bottombar_height"
-    tools:background="@color/appintro_background_color">
+    tools:background="@color/appintro_icon_tint">
 
     <TextView
         android:id="@+id/title"
         style="@style/AppIntroDefaultHeading"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
+        android:gravity="left"
         app:layout_constraintVertical_weight="2"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
