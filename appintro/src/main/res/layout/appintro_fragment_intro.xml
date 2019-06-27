@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/appintro_statusbar_height"
     android:paddingBottom="@dimen/appintro2_bottombar_height"
-    tools:background="@color/appintro_icon_tint">
+    tools:background="@color/appintro_separator_color">
+
 
     <TextView
         android:id="@+id/title"
