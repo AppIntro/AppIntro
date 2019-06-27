@@ -9,7 +9,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="3"
-        android:gravity="center"
+        android:gravity="left"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:textColor="@android:color/white"
@@ -20,14 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:gravity="center"
+        android:gravity="left"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             tools:ignore="ContentDescription" />
