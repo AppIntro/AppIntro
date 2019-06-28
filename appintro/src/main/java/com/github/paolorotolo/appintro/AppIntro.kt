@@ -158,8 +158,8 @@ abstract class AppIntro : AppIntroBase() {
      *
      */
     @Deprecated(
-            "use {@link #setProgressButtonEnabled(boolean)} instead.",
-            ReplaceWith("isProgressButtonEnabled = showDone")
+        "use {@link #setProgressButtonEnabled(boolean)} instead.",
+        ReplaceWith("isProgressButtonEnabled = showDone")
     )
     fun showDoneButton(showDone: Boolean) {
         isButtonsEnabled = showDone
