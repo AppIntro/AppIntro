@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FontRes
+import androidx.annotation.StringRes
 import com.github.paolorotolo.appintro.internal.TypefaceContainer
 
 abstract class AppIntro : AppIntroBase() {
@@ -53,6 +54,16 @@ abstract class AppIntro : AppIntroBase() {
     }
 
     /**
+     * Override skip text
+     *
+     * @param skipResId your text resource Id
+     */
+    fun setSkipText(@StringRes skipResId: Int) {
+        val skipText = findViewById<TextView>(R.id.skip)
+        skipText.setText(skipResId)
+    }
+
+    /**
      * Override skip text typeface
      *
      * @param typeface the typeface to apply to Skip button
@@ -80,6 +91,16 @@ abstract class AppIntro : AppIntroBase() {
     fun setDoneText(text: CharSequence?) {
         val doneText = findViewById<TextView>(R.id.done)
         doneText.text = text
+    }
+
+    /**
+     * Override done text
+     *
+     * @param doneResId your text resource Id
+     */
+    fun setDoneText(@StringRes doneResId: Int) {
+        val doneText = findViewById<TextView>(R.id.done)
+        doneText.setText(doneResId)
     }
 
     /**
