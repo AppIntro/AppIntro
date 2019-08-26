@@ -96,8 +96,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         customScroller?.scrollDurationFactor = factor
     }
 
-    override fun onInterceptTouchEvent(event: MotionEvent?): Boolean
-    {
+    override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
         if (!handleTouchEvent(event)) {
             return false
         }
@@ -115,6 +114,13 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         return super.onTouchEvent(event)
     }
 
+    /**
+     * Checks for illegal sliding attempts.
+     * Every time the user presses the screen, the respective coordinates are stored.
+     * Once the user swipes/stops pressing, the new coordinates are checked against the stored ones.
+     * Therefor [userIllegallyRequestNextPage] is called. If this call detects an illegal swipe,
+     * the respective listener [onNextPageRequestedListener] gets called.
+     */
     private fun handleTouchEvent(event: MotionEvent?) : Boolean {
         // If paging is disabled we should ignore any viewpager touch
         // (also, not display any error message)
@@ -122,12 +128,16 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
             return false
         }
 
-        when(event?.action) {
+        when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 currentTouchDownX = event.x
                 currentTouchDownY = event.y
             }
             else -> {
+                if (event?.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
+
                 val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
 
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
@@ -150,8 +160,11 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     }
 
     /**
-     * Util function to check if the user Illegaly request a swipe.
-     * Also checks if the event happened not earlier than every 1000ms
+     * Util function to check if the user illegally requests a swipe.
+     * Throttles such requests to max one request per second.
+     *
+     * To prevent false positives one has to check that the user scrolls mainly horizontally
+     * and the horizontal scrolling does not belong to a actual vertical scrolling.
      */
     private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
         if ((event.x - currentTouchDownX).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X
