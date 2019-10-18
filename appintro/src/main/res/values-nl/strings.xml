@@ -4,5 +4,5 @@
     <string name="app_intro_next_button" tools:ignore="MissingTranslation">VOLGENDE</string>
     <string name="app_intro_back_button" tools:ignore="MissingTranslation">TERUG</string>
     <string name="app_intro_done_button">VOLTOOIEN</string>
-    <string name="app_intro_image_content_description" tools:ignore="MissingTranslation">graphics</string>
+    <string name="app_intro_image_content_description" tools:ignore="MissingTranslation">afbeelding</string>
 </resources>
