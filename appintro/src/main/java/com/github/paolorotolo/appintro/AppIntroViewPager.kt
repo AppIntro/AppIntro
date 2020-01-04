@@ -96,6 +96,8 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         customScroller?.scrollDurationFactor = factor
     }
 
+    override fun performClick() = super.performClick()
+
     override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
         if (!handleTouchEvent(event)) {
             return false
@@ -167,16 +169,22 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
      * and the horizontal scrolling does not belong to a actual vertical scrolling.
      */
     private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
-        if ((event.x - currentTouchDownX).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X
-                && (event.y - currentTouchDownY).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y) {
-            if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled
-                    >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
-                illegallyRequestedNextPageLastCalled = System.currentTimeMillis()
-                return true
-            }
+        if (isASwipeGesture(event, currentTouchDownX, currentTouchDownY) &&
+                System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
+                ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) {
+            illegallyRequestedNextPageLastCalled = System.currentTimeMillis()
+            return true
         }
+
         return false
     }
+
+    /**
+     * Checks if two points are aligned and could represent a slide gesture from the user.
+     */
+    private fun isASwipeGesture(startPoint: MotionEvent, x: Float, y: Float) =
+            ((startPoint.x - x).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X
+                    && (startPoint.y - y).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y)
 
     /**
      * Register an instance of OnNextPageRequestedListener.
@@ -194,7 +202,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
 
     companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
-        private const val VALID_SWIPE_THRESHOLD_PX_X = 35
+        private const val VALID_SWIPE_THRESHOLD_PX_X = 25
         private const val VALID_SWIPE_THRESHOLD_PX_Y = 25
     }
 }
