@@ -1,7 +1,4 @@
-[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro)
-[![Build Status](https://travis-ci.org/AppIntro/AppIntro.svg?branch=master)](https://travis-ci.org/AppIntro/AppIntro)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939)
-[![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Build Status](https://travis-ci.org/AppIntro/AppIntro.svg?branch=master)](https://travis-ci.org/AppIntro/AppIntro) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 # AppIntro
 AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
@@ -365,3 +362,5 @@ If you are using AppIntro in your app and would like to be listed here, please l
  * [BeatPrompter](https://play.google.com/store/apps/details?id=com.stevenfrew.beatprompter)
  * [Orario Treni Trenitalia](https://play.google.com/store/apps/details?id=com.jaus.albertogiunta.justintrain_oraritreni)
  * [Tipsy for Gardaland](https://play.google.com/store/apps/details?id=com.MonkeyLab.MyGardaland&hl=it)
+ * [BlueWords](https://play.google.com/store/apps/details?id=com.thesrb.bluewords&referrer=utm_source%3Dappintro%26utm_medium%3Dgithub%26utm_campaign%3Dreadme)
+  * [Best Quotes & Status 2019 (99000+ Collection)](https://play.google.com/store/apps/details?id=com.swastik.quotesandstatus&hl=en_IN)

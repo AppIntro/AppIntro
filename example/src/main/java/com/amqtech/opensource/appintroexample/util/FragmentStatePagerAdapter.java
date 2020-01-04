@@ -1,9 +1,5 @@
 package com.amqtech.opensource.appintroexample.util;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;

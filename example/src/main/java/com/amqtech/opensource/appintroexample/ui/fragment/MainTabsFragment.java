@@ -13,10 +13,6 @@ import com.amqtech.opensource.appintroexample.ui.mainTabs.MainPagerAdapter;
 import com.amqtech.opensource.appintroexample.util.TabLayout;
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class MainTabsFragment extends Fragment {
 
     ViewPager pager;

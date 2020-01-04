@@ -4,10 +4,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     private CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when PermsPagerAdapter is created

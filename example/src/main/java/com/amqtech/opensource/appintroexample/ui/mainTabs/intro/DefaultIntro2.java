@@ -10,10 +10,6 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
 
-/**
- * Created by andrew on 11/17/16.
- */
-
 public class DefaultIntro2 extends AppIntro2 {
 
     @Override
@@ -37,6 +33,8 @@ public class DefaultIntro2 extends AppIntro2 {
         SliderPage sliderPage3 = new SliderPage();
         sliderPage3.setTitle("Clean App Intros");
         sliderPage3.setDescription("This library offers developers the ability to add clean app intros at the start of their apps.");
+        sliderPage1.setTitleTypefaceFontRes(R.font.lato);
+        sliderPage1.setDescTypefaceFontRes(R.font.lato);
         sliderPage3.setImageDrawable(R.drawable.ic_slide2);
         sliderPage3.setBgDrawable(R.drawable.back_slide3);
         addSlide(AppIntroFragment.newInstance(sliderPage3));
@@ -53,6 +51,8 @@ public class DefaultIntro2 extends AppIntro2 {
         SliderPage sliderPage5 = new SliderPage();
         sliderPage5.setTitle("Explore");
         sliderPage5.setDescription("Feel free to explore the rest of the library demo!");
+        sliderPage3.setTitleTypeface("OpenSans-Light.ttf");
+        sliderPage3.setDescTypeface("OpenSans-Light.ttf");
         sliderPage5.setImageDrawable(R.drawable.ic_slide4);
         sliderPage5.setBgDrawable(R.drawable.back_slide5);
         addSlide(AppIntroFragment.newInstance(sliderPage5));
