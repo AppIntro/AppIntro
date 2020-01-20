@@ -9,7 +9,6 @@ class SliderPageBuilderTest {
 
     @Test
     fun sliderPageBuilder_correctParametersAssignment() {
-
         val title = "Title"
         val description = "Description"
         val imageDrawable = 0x7f020000

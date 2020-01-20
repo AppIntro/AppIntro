@@ -1,19 +1,18 @@
-import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'io.gitlab.arturbosch.detekt'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
-group='com.github.AppIntro'
+group = 'com.github.AppIntro'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
+    buildToolsVersion "29.0.2"
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 20
         versionName "5.1.0"
 
@@ -23,7 +22,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -38,12 +37,14 @@ repositories {
 }
 
 ktlint {
-    version = "0.32.0"
+    version = "0.36.0"
     debug = false
     verbose = true
     android = false
     outputToConsole = true
-    reporters = [ReporterType.JSON]
+    reporters {
+        reporter "json"
+    }
     ignoreFailures = false
     enableExperimentalRules = true
     kotlinScriptAdditionalPaths {
@@ -56,8 +57,11 @@ ktlint {
 }
 
 detekt {
-    toolVersion = "1.0.0-RC15"
+    toolVersion = "1.4.0"
     config = files("./detekt-config.yml")
     input = files("src/main/java")
-    filters = ".*/resources/.*,.*/build/.*"
+}
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+    exclude("**/resources/**,**/build/**")
 }

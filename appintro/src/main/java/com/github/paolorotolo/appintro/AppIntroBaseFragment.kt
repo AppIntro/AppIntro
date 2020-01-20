@@ -27,7 +27,7 @@ internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
 abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlideBackgroundColorHolder {
 
-    private val TAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
+    private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
 
     @get:LayoutRes
     protected abstract val layoutId: Int
@@ -145,11 +145,11 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     }
 
     override fun onSlideDeselected() {
-        LogHelper.d(TAG, "Slide $title has been deselected.")
+        LogHelper.d(logTAG, "Slide $title has been deselected.")
     }
 
     override fun onSlideSelected() {
-        LogHelper.d(TAG, "Slide $title has been selected.")
+        LogHelper.d(logTAG, "Slide $title has been selected.")
     }
 
     override fun setBackgroundColor(@ColorInt backgroundColor: Int) {

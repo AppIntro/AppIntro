@@ -133,13 +133,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      * @param fragment Instance of Fragment which should be added as slide.
      */
     protected fun addSlide(fragment: Fragment) {
-        if (isRtl)
-            fragments.add(0, fragment)
-        else
-            fragments.add(fragment)
-        if (isWizardMode) {
-            pager.offscreenPageLimit = fragments.size
-        }
+        if (isRtl) { fragments.add(0, fragment) } else { fragments.add(fragment) }
+        if (isWizardMode) { pager.offscreenPageLimit = fragments.size }
         pagerAdapter.notifyDataSetChanged()
     }
 
