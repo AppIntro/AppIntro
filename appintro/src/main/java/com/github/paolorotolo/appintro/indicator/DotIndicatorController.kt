@@ -66,22 +66,23 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
     override fun selectPosition(index: Int) {
         currentPosition = index
         for (i in 0 until slideCount) {
-            val drawableId = if (i == index)
+            val drawableId = if (i == index) {
                 R.drawable.ic_appintro_indicator_selected
-            else
-                R.drawable.ic_appintro_indicator_unselected
+            } else { R.drawable.ic_appintro_indicator_unselected }
             val drawable = ContextCompat.getDrawable(this.context, drawableId)
 
-            if (selectedIndicatorColor != DEFAULT_COLOR && i == index)
+            if (selectedIndicatorColor != DEFAULT_COLOR && i == index) {
                 drawable!!.mutate().setColorFilter(
                     selectedIndicatorColor,
                     PorterDuff.Mode.SRC_IN
                 )
-            if (unselectedIndicatorColor != DEFAULT_COLOR && i != index)
+            }
+            if (unselectedIndicatorColor != DEFAULT_COLOR && i != index) {
                 drawable!!.mutate().setColorFilter(
                     unselectedIndicatorColor,
                     PorterDuff.Mode.SRC_IN
                 )
+            }
             (getChildAt(i) as ImageView).setImageDrawable(drawable)
         }
     }

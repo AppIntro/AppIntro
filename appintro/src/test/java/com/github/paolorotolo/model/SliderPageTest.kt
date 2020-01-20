@@ -8,7 +8,6 @@ class SliderPageTest {
 
     @Test
     fun sliderPage_correctParametersAreAssigned() {
-
         val title = "Title"
         val description = "Description"
         val imageDrawable = 0x7f020000
