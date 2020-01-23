@@ -303,17 +303,23 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         pager.setPageTransformer(true, ViewPagerTransformer(TransformType.FADE))
     }
 
-    /** Sets the animation of the intro to a parallax animation
-     * @param titlePF -   Parallax factor of title
-     * @param imagePF -   Parallax factor of image
-     * @param descriptionPF -   Parallax factor of description
-     * */
+    /**
+     * Sets the animation of the intro to a parallax animation
+     * @param titleParallaxFactor Parallax factor of title
+     * @param imageParallaxFactor Parallax factor of image
+     * @param descriptionParallaxFactor Parallax factor of description
+     */
     @JvmOverloads
-    protected fun setParallaxAnimation(titlePF: Double = 1.0, imagePF: Double = -1.0, descriptionPF: Double = 2.0) {
-        val transformer = ViewPagerTransformer(TransformType.PARALLAX)
-        transformer.titlePF = titlePF
-        transformer.imagePF = imagePF
-        transformer.descriptionPF = descriptionPF
+    protected fun setParallaxAnimation(
+            titleParallaxFactor: Double = 1.0,
+            imageParallaxFactor: Double = -1.0,
+            descriptionParallaxFactor: Double = 2.0
+    ) {
+        val transformer = ViewPagerTransformer(TransformType.PARALLAX).apply {
+            titlePF = titleParallaxFactor
+            imagePF = imageParallaxFactor
+            descriptionPF = descriptionParallaxFactor
+        }
         pager.setPageTransformer(true, transformer)
     }
 
