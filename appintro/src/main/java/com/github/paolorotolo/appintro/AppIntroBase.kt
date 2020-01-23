@@ -547,7 +547,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
             pager.isNextPagingEnabled = getBoolean(ARG_BUNDLE_IS_NEXT_PAGING_ENABLED)
 
-            permissionsMap = ((getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?) ?: hashMapOf())
+            permissionsMap = (
+                (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
+                    ?: hashMapOf()
+                )
             isColorTransitionsEnabled = getBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED)
         }
     }
