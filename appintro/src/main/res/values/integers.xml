@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="appintro_fragment_title_weight">2</integer>
+    <integer name="appintro_fragment_image_weight">5</integer>
+    <integer name="appintro_fragment_description_weight">3</integer>
+</resources>
