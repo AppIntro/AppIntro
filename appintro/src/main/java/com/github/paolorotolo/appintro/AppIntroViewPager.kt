@@ -101,11 +101,21 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
     override fun performClick() = super.performClick()
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
-        return handleTouchEvent(event) && super.onInterceptTouchEvent(event)
+        if (!handleTouchEvent(event)) {
+            return false
+        }
+
+        // Calling super will allow the slider to "work" left and right.
+        return super.onInterceptTouchEvent(event)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        return handleTouchEvent(event) && super.onTouchEvent(event)
+        if (!handleTouchEvent(event)) {
+            return false
+        }
+
+        // Calling super will allow the slider to "work" left and right.
+        return super.onTouchEvent(event)
     }
 
     /**
@@ -127,8 +137,10 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                 currentTouchDownX = event.x
                 currentTouchDownY = event.y
             }
-            MotionEvent.ACTION_UP -> performClick()
-            MotionEvent.ACTION_MOVE -> {
+            else -> {
+                if (event.action == MotionEvent.ACTION_UP) {
+                    performClick()
+                }
                 val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
 
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
@@ -138,12 +150,13 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
                     if (userIllegallyRequestNextPage(event)) {
                         onNextPageRequestedListener?.onIllegallyRequestedNextPage()
                     }
+
                     return false
                 }
 
                 // If the slide contains permissions, check for forward swipe.
-                if (isPermissionSlide) {
-                    handlePermissionSlide(event)
+                if (isPermissionSlide && isSwipeForward(currentTouchDownX, event.x)) {
+                    onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
                 }
                 currentTouchDownX = event.x
             }
@@ -151,12 +164,6 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
         return isFullPagingEnabled
     }
 
-    private fun handlePermissionSlide(event: MotionEvent): Boolean {
-        if (isSwipeForward(currentTouchDownX, event.x)) {
-            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
-        }
-        return isFullPagingEnabled
-    }
     /**
      * Util function to check if the user swiped forward.
      * The direction of forward is different in RTL mode.
@@ -213,7 +220,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
 
     companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
+        private const val VALID_SWIPE_THRESHOLD_PX_X = 25
         private const val VALID_SWIPE_THRESHOLD_PX_Y = 25
-        private const val VALID_SWIPE_THRESHOLD_PX_X = 0
     }
 }
