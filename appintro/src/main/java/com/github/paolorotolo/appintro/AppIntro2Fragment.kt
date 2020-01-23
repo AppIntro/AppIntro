@@ -33,28 +33,28 @@ class AppIntro2Fragment : AppIntroBaseFragment() {
         @JvmOverloads
         @JvmStatic
         fun newInstance(
-            title: CharSequence? = null,
-            description: CharSequence? = null,
-            @FontRes titleTypefaceFontRes: Int = 0,
-            @FontRes descTypefaceFontRes: Int = 0,
-            @DrawableRes imageDrawable: Int = 0,
-            @ColorInt bgColor: Int = 0,
-            @DrawableRes bgDrawable: Int = 0,
-            @ColorInt titleColor: Int = 0,
-            @ColorInt descColor: Int = 0
+                title: CharSequence? = null,
+                description: CharSequence? = null,
+                @FontRes titleTypefaceFontRes: Int = 0,
+                @FontRes descTypefaceFontRes: Int = 0,
+                @DrawableRes imageDrawable: Int = 0,
+                @ColorInt bgColor: Int = 0,
+                @DrawableRes bgDrawable: Int = 0,
+                @ColorInt titleColor: Int = 0,
+                @ColorInt descColor: Int = 0
         ): AppIntro2Fragment {
             return newInstance(
-                SliderPage(
-                    title = title,
-                    description = description,
-                    imageDrawable = imageDrawable,
-                    bgColor = bgColor,
-                    bgDrawable = bgDrawable,
-                    titleColor = titleColor,
-                    descColor = descColor,
-                    titleTypefaceFontRes = titleTypefaceFontRes,
-                    descTypefaceFontRes = descTypefaceFontRes
-                )
+                    SliderPage(
+                            title = title,
+                            description = description,
+                            imageDrawable = imageDrawable,
+                            bgColor = bgColor,
+                            bgDrawable = bgDrawable,
+                            titleColor = titleColor,
+                            descColor = descColor,
+                            titleTypefaceFontRes = titleTypefaceFontRes,
+                            descTypefaceFontRes = descTypefaceFontRes
+                    )
             )
         }
 
