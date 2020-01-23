@@ -133,8 +133,14 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      * @param fragment Instance of Fragment which should be added as slide.
      */
     protected fun addSlide(fragment: Fragment) {
-        if (isRtl) { fragments.add(0, fragment) } else { fragments.add(fragment) }
-        if (isWizardMode) { pager.offscreenPageLimit = fragments.size }
+        if (isRtl) {
+            fragments.add(0, fragment)
+        } else {
+            fragments.add(fragment)
+        }
+        if (isWizardMode) {
+            pager.offscreenPageLimit = fragments.size
+        }
         pagerAdapter.notifyDataSetChanged()
     }
 
@@ -295,6 +301,20 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     /** Sets the animation of the intro to a fade animation */
     protected fun setFadeAnimation() {
         pager.setPageTransformer(true, ViewPagerTransformer(TransformType.FADE))
+    }
+
+    /** Sets the animation of the intro to a parallax animation
+     * @param titlePF -   Parallax factor of title
+     * @param imagePF -   Parallax factor of image
+     * @param descriptionPF -   Parallax factor of description
+     * */
+    @JvmOverloads
+    protected fun setParallaxAnimation(titlePF: Double = 1.0, imagePF: Double = -1.0, descriptionPF: Double = 2.0) {
+        val transformer = ViewPagerTransformer(TransformType.PARALLAX)
+        transformer.titlePF = titlePF
+        transformer.imagePF = imagePF
+        transformer.descriptionPF = descriptionPF
+        pager.setPageTransformer(true, transformer)
     }
 
     /** Sets the animation of the intro to a zoom animation */
