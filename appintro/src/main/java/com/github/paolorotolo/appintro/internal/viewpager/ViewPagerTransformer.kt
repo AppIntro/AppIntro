@@ -1,7 +1,10 @@
 package com.github.paolorotolo.appintro.internal.viewpager
 
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.github.paolorotolo.appintro.R
 
 private const val MIN_SCALE_DEPTH = 0.75f
 private const val MIN_SCALE_ZOOM = 0.85f
@@ -14,6 +17,9 @@ private const val FLOW_ROTATION_ANGLE = -30f
 internal class ViewPagerTransformer(
     private val transformType: TransformType
 ) : ViewPager.PageTransformer {
+    var titlePF: Double = 0.0
+    var imagePF: Double = 0.0
+    var descriptionPF: Double = 0.0
 
     override fun transformPage(page: View, position: Float) {
         when (transformType) {
@@ -24,7 +30,28 @@ internal class ViewPagerTransformer(
             TransformType.DEPTH -> transformDepth(position, page)
             TransformType.ZOOM -> transformZoom(position, page)
             TransformType.FADE -> transformFade(position, page)
+            TransformType.PARALLAX -> transformParallax(position, page)
         }
+    }
+
+    private fun transformParallax(position: Float, page: View) {
+        if (position > -1 && position < 1) {
+            try {
+                applyParallax(page, position)
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun applyParallax(page: View, position: Float) {
+        page.findViewById<TextView>(R.id.title).translationX = computeParallax(page, position, titlePF)
+        page.findViewById<ImageView>(R.id.image).translationX = computeParallax(page, position, imagePF)
+        page.findViewById<TextView>(R.id.description).translationX = computeParallax(page, position, descriptionPF)
+    }
+
+    private fun computeParallax(page: View, position: Float, parallaxFactor: Double): Float {
+        return (-position * (page.width / parallaxFactor)).toFloat()
     }
 
     private fun transformFade(position: Float, page: View) {
@@ -94,7 +121,8 @@ enum class TransformType {
     DEPTH,
     ZOOM,
     SLIDE_OVER,
-    FADE
+    FADE,
+    PARALLAX
 }
 
 private fun View.transformDefaults() {
