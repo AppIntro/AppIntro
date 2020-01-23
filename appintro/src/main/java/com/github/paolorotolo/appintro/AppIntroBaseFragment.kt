@@ -37,7 +37,9 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
 
     private var titleColor: Int = 0
     private var descColor: Int = 0
-    override var defaultBackgroundColor: Int = 0
+    final override var defaultBackgroundColor: Int = 0
+        private set
+
     private var title: String? = null
     private var description: String? = null
     private var titleTypeface: TypefaceContainer? = null

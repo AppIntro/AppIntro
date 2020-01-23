@@ -28,6 +28,7 @@ import androidx.viewpager.widget.ViewPager
 import com.github.paolorotolo.appintro.indicator.DotIndicatorController
 import com.github.paolorotolo.appintro.indicator.IndicatorController
 import com.github.paolorotolo.appintro.indicator.ProgressIndicatorController
+import com.github.paolorotolo.appintro.internal.AppIntroViewPager
 import com.github.paolorotolo.appintro.internal.LayoutUtil
 import com.github.paolorotolo.appintro.internal.LogHelper
 import com.github.paolorotolo.appintro.internal.PermissionWrapper
@@ -39,7 +40,7 @@ import com.github.paolorotolo.appintro.internal.viewpager.ViewPagerTransformer
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
  * the lifecycle and all the event callbacks for AppIntro.
  */
-abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageRequestedListener {
+abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** The layout ID that will be used during inflation. */
     @get:LayoutRes
@@ -97,7 +98,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      * Toggles vibration on button clicks If you enable it, don't forget to grant
      * vibration permissions on your AndroidManifest.xml file
      * */
-    protected var isVibrateOn = false
+    protected var isVibrate = false
 
     // Private Fields
 
@@ -728,7 +729,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     // You must grant vibration permissions on your AndroidManifest.xml file
     @SuppressLint("MissingPermission")
     private fun dispatchVibration() {
-        if (isVibrateOn) {
+        if (isVibrate) {
             vibrator.vibrate(vibrateDuration)
         }
     }
@@ -857,7 +858,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         override fun onPageScrollStateChanged(state: Int) {}
     }
 
-    protected companion object {
+    private companion object {
         private val TAG = LogHelper.makeLogTag(AppIntroBase::class.java)
 
         private const val DEFAULT_SCROLL_DURATION_FACTOR = 1

@@ -9,7 +9,7 @@
     android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
-    <com.github.paolorotolo.appintro.AppIntroViewPager
+    <com.github.paolorotolo.appintro.internal.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
