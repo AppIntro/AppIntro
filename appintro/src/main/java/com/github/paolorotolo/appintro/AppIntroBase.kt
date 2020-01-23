@@ -516,6 +516,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.apply {
+            putInt("slidesNumber", slidesNumber)
             putBoolean("retainIsButtonEnabled", retainIsButtonEnabled)
             putBoolean("isButtonsEnabled", isButtonsEnabled)
             putBoolean("isSkipButtonEnabled", isSkipButtonEnabled)
@@ -535,6 +536,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         with(savedInstanceState) {
+            slidesNumber = getInt("slidesNumber")
             retainIsButtonEnabled = getBoolean("retainIsButtonEnabled")
             isButtonsEnabled = getBoolean("isButtonsEnabled")
             isSkipButtonEnabled = getBoolean("isSkipButtonEnabled")
@@ -829,12 +831,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 if (pager.currentItem != pager.lockPage) {
                     isButtonsEnabled = retainIsButtonEnabled
                     pager.isNextPagingEnabled = true
-                } else {
-                    isButtonsEnabled = isButtonsEnabled
                 }
-            } else {
-                isButtonsEnabled = isButtonsEnabled
             }
+            updateButtonsVisibility()
 
             setPermissionSlide()
 
