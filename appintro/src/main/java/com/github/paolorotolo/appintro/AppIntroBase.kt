@@ -114,10 +114,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     private lateinit var backButton: View
     private lateinit var indicatorContainer: ViewGroup
 
-    // Permission related Fields
+    // Asks the ViewPager for the current slide number. Useful to query the [permissionsMap]
+    private val currentSlideNumber: Int
+        get() = pager.getCurrentSlideNumber(fragments.size)
 
-    /** Permission requested by user */
-    private lateinit var requestedPermission: PermissionWrapper
     /** HashMap that contains the [PermissionWrapper] objects */
     private var permissionsMap = HashMap<Int, PermissionWrapper>()
 
@@ -163,10 +163,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             if (slideNumber <= 0) {
                 error("Invalid Slide Number: $slideNumber")
             } else {
-                val permission = PermissionWrapper(permissions, slideNumber, required)
-                if (slideNumber !in permissionsMap) {
-                    permissionsMap[slideNumber] = permission
-                }
+                permissionsMap[slideNumber] = PermissionWrapper(permissions, slideNumber, required)
             }
         }
     }
@@ -379,27 +376,26 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      * [.checkAndRequestPermissions] is called to request permissions from the user.
      */
     override fun onUserRequestedPermissionsDialog() {
-        setSwipeLock(true)
-        LogHelper.d(TAG, "Requesting Permissions on " + (pager.getCurrentSlideNumber(fragments.size)))
-        checkAndRequestPermissions()
+        LogHelper.d(TAG, "Requesting Permissions on $currentSlideNumber")
+        requestPermissions()
     }
 
     /**
-     * Called when the user checks "Don't ask again" in the permission dialog.
+     * Called when the user checks "Don't ask again" in the permission dialog
+     * or when the permission is disabled by the device policy.
      *
-     * @param permName - Name of the permission disabled.
+     * @param permissionName - Name of the permission disabled.
      */
-    protected open fun onUserDisabledPermission(permName: String) {
-        // Cannot move further if permission disabled.
-        setSwipeLock(true)
-    }
+    protected open fun onUserDisabledPermission(permissionName: String) {}
 
     /**
      * Called when the user denies a permission to the app.
+     * This method is called both when the permission was required (so we
+     * block the user) and when it was not (so the user can actually proceed).
      *
-     * @param permName - Name of the permission denied.
+     * @param permissionName - Name of the permission denied.
      */
-    protected open fun onUserDeniedPermission(permName: String) {}
+    protected open fun onUserDeniedPermission(permissionName: String) {}
 
     /**
      * Called after a new slide has been selected
@@ -536,13 +532,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         }
     }
 
-    override fun onResume() {
-        if (pager.getCurrentSlideNumber(fragments.size) in permissionsMap) {
-            requestedPermission = permissionsMap[pager.getCurrentSlideNumber(fragments.size)]!!
-        }
-        super.onResume()
-    }
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         with(savedInstanceState) {
@@ -555,6 +544,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
             savedCurrentItem = getInt("currentItem")
             pager.isFullPagingEnabled = getBoolean("isFullPagingEnabled")
             pager.isNextPagingEnabled = getBoolean("isNextPagingEnabled")
+
             permissionsMap = ((getSerializable("permissionSlides") as HashMap<Int, PermissionWrapper>?) ?: hashMapOf())
 
             isColorTransitionsEnabled = getBoolean(COLOR_TRANSITIONS_ENABLED)
@@ -659,27 +649,24 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      PERMISSION
      =================================== */
 
-    // Returns true if a permission has been requested
-    private fun checkAndRequestPermissions(): Boolean {
-        // Let's search for a matching [PermissionWrapper] for this position.
-        return if (permissionsMap.isNotEmpty()) {
-            if (pager.getCurrentSlideNumber(fragments.size) !in permissionsMap) {
-                return false
-            }
-            requestedPermission = permissionsMap[pager.getCurrentSlideNumber(fragments.size)]!!
+    private fun shouldRequestPermission() = permissionsMap.containsKey(currentSlideNumber)
 
+    // Request one or more permission to the Android SDK.
+    private fun requestPermissions() {
+        setSwipeLock(true)
+        val permissionToRequest = permissionsMap[currentSlideNumber]
+        permissionToRequest?.let {
             ActivityCompat.requestPermissions(
                 this,
-                requestedPermission.permissions,
+                it.permissions,
                 PERMISSIONS_REQUEST_ALL_PERMISSIONS
             )
-            true
-        } else {
-            setSwipeLock(false)
-            false
         }
     }
 
+    /**
+     * Handles the Permission Result from Android SDK.
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -688,29 +675,49 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         setSwipeLock(false)
 
-        if (requestCode == PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
-            val permissionResults = HashMap<String, Int>()
-            var hasDeniedPerms = false
+        if (requestCode != PERMISSIONS_REQUEST_ALL_PERMISSIONS) {
+            return
+        }
 
-            // Gather permission grant results.
-            for (i in grantResults.indices) {
-                // Add only permissions which are denied.
-                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                    permissionResults[permissions[i]] = grantResults[i]
-                    hasDeniedPerms = true
+        val deniedPermissions = grantResults
+            .mapIndexed { index, result -> (permissions[index] to result) }
+            .filter { (_, result) -> result == PackageManager.PERMISSION_DENIED }
+            .map { (permission, _) -> permission }
+
+        // Check if all permissions are granted.
+        if (deniedPermissions.isEmpty()) {
+            // If the permission request was a success, we remove
+            // the permission from the permissionsMap.
+            permissionsMap.remove(currentSlideNumber)
+            goToNextSlide()
+        } else {
+            // At least one or all of the permissions have been denied.
+            deniedPermissions.forEach(::handleDeniedPermission)
+        }
+    }
+
+    /**
+     * Function to supports the event dispatching and the handling of the
+     * various "Permission Denied" scenarios.
+     */
+    private fun handleDeniedPermission(permission: String) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+            // Permission is denied for the first time (never ask again box is not checked).
+            // Ask again explaining the usage of the permission (Show an AlertDialog or Snackbar)
+            onUserDeniedPermission(permission)
+
+            // If the permission was not required, we can remove it from the App and let the user proceed.
+            permissionsMap[currentSlideNumber]?.let { requestedPermission ->
+                if (!requestedPermission.required) {
+                    permissionsMap.remove(requestedPermission.position)
+                    goToNextSlide()
                 }
             }
-
-            // Check if all permissions are granted.
-            if (!hasDeniedPerms) {
-                // If the permission request was a success, we remove
-                // the permission from the permissionsMap.
-                permissionsMap.remove(requestedPermission.position)
-                goToNextSlide()
-            } else {
-                // At least one or all of the permissions have been denied.
-                onDenyPressed(permissionResults)
-            }
+        } else {
+            // Permission is disabled (never ask again is checked)
+            // Ask the user to go to settings to enable permission.
+            setSwipeLock(true)
+            onUserDisabledPermission(permission)
         }
     }
 
@@ -719,29 +726,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     private fun dispatchVibration() {
         if (isVibrateOn) {
             vibrator.vibrate(vibrateDuration)
-        }
-    }
-
-    private fun onDenyPressed(permissionResults: HashMap<String, Int>) {
-        for ((permName) in permissionResults) {
-            // Permission is denied for the first time (never ask again box is not checked).
-            // Ask again explaining the usage of the permission (Show an AlertDialog or Snackbar)
-            // shouldShowRequestPermissionRationale will return true
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permName)) {
-                if (!requestedPermission.required) {
-                    // If the permission request was a success, we remove
-                    // the permission from the permissionsMap
-                    permissionsMap.remove(requestedPermission.position)
-                    goToNextSlide()
-                }
-                onUserDeniedPermission(permName)
-            } else {
-                // Permission is disabled (never ask again is checked)
-                // shouldShowRequestPermissionRationale will return false.
-                // Ask the user to go to settings to enable permission.
-                onUserDisabledPermission(permName)
-            }
         }
     }
 
@@ -800,23 +784,23 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         override fun onClick(view: View) {
             dispatchVibration()
             // Check if changing to the next slide is allowed
-            val isSlideChangingAllowed = onCanRequestNextPage()
-            if (isSlideChangingAllowed) {
-                // Changing slide is handled by permission result
-                if (!checkAndRequestPermissions() &&
-                    pager.getCurrentSlideNumber(fragments.size) !in permissionsMap
-                ) {
-                    val currentFragment = pagerAdapter.getItem(pager.currentItem)
-                    if (isLastSlide) {
-                        onDonePressed(currentFragment)
-                    } else {
-                        onNextPressed(currentFragment)
-                    }
-                    goToNextSlide(isLastSlide)
-                }
-            } else {
+            if (!onCanRequestNextPage()) {
                 onIllegallyRequestedNextPage()
+                return
             }
+            if (shouldRequestPermission()) {
+                requestPermissions()
+                return
+            }
+
+            // We can successfully change slide, let's do it.
+            val currentFragment = pagerAdapter.getItem(pager.currentItem)
+            if (isLastSlide) {
+                onDonePressed(currentFragment)
+            } else {
+                onNextPressed(currentFragment)
+            }
+            goToNextSlide(isLastSlide)
         }
     }
 
