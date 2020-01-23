@@ -4,7 +4,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.amqtech.opensource.appintroexample.util.SampleSlide;
+import com.github.paolorotolo.appintro.CustomSlide;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintroexample.R;
 
@@ -14,10 +14,10 @@ public class CustomLayoutIntro extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout1));
-        addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout2));
-        addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout3));
-        addSlide(SampleSlide.newInstance(R.layout.intro_custom_layout4));
+        addSlide(CustomSlide.newInstance(R.layout.intro_custom_layout1));
+        addSlide(CustomSlide.newInstance(R.layout.intro_custom_layout2));
+        addSlide(CustomSlide.newInstance(R.layout.intro_custom_layout3));
+        addSlide(CustomSlide.newInstance(R.layout.intro_custom_layout4));
 
         setProgressIndicator();
     }
