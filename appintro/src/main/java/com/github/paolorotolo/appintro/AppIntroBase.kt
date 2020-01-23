@@ -311,9 +311,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
      */
     @JvmOverloads
     protected fun setParallaxAnimation(
-            titleParallaxFactor: Double = 1.0,
-            imageParallaxFactor: Double = -1.0,
-            descriptionParallaxFactor: Double = 2.0
+        titleParallaxFactor: Double = 1.0,
+        imageParallaxFactor: Double = -1.0,
+        descriptionParallaxFactor: Double = 2.0
     ) {
         val transformer = ViewPagerTransformer(TransformType.PARALLAX).apply {
             titlePF = titleParallaxFactor
