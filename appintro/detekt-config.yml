@@ -1,5 +1,5 @@
 build:
-  maxIssues: 10
+  maxIssues: 1
   excludeCorrectable: false
   weights:
     # complexity: 2
@@ -541,7 +541,7 @@ style:
     active: false
   ReturnCount:
     active: true
-    max: 2
+    max: 5
     excludedFunctions: "equals"
     excludeLabeled: false
     excludeReturnFromLambda: true
