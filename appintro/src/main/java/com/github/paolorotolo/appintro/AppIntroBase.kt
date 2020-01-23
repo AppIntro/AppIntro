@@ -516,38 +516,42 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.apply {
-            putBoolean("retainIsButtonEnabled", retainIsButtonEnabled)
-            putBoolean("isButtonsEnabled", isButtonsEnabled)
-            putBoolean("isSkipButtonEnabled", isSkipButtonEnabled)
-            putBoolean("isIndicatorEnabled", isIndicatorEnabled)
+            putInt(ARG_BUNDLE_SLIDES_NUMBER, slidesNumber)
+            putBoolean(ARG_BUNDLE_RETAIN_IS_BUTTON_ENABLED, retainIsButtonEnabled)
+            putBoolean(ARG_BUNDLE_IS_BUTTON_ENABLED, isButtonsEnabled)
+            putBoolean(ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED, isSkipButtonEnabled)
+            putBoolean(ARG_BUNDLE_IS_INDICATOR_ENABLED, isIndicatorEnabled)
 
-            putInt("lockPage", pager.lockPage)
-            putInt("currentItem", pager.currentItem)
-            putBoolean("isFullPagingEnabled", pager.isFullPagingEnabled)
-            putBoolean("isNextPagingEnabled", pager.isNextPagingEnabled)
+            putInt(ARG_BUNDLE_LOCK_PAGE, pager.lockPage)
+            putInt(ARG_BUNDLE_CURRENT_ITEM, pager.currentItem)
+            putBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED, pager.isFullPagingEnabled)
+            putBoolean(ARG_BUNDLE_IS_NEXT_PAGING_ENABLED, pager.isNextPagingEnabled)
 
-            putSerializable("permissionSlides", permissionsMap)
+            putSerializable(ARG_BUNDLE_PERMISSION_MAP, permissionsMap)
 
-            putBoolean(COLOR_TRANSITIONS_ENABLED, isColorTransitionsEnabled)
+            putBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED, isColorTransitionsEnabled)
         }
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         with(savedInstanceState) {
-            retainIsButtonEnabled = getBoolean("retainIsButtonEnabled")
-            isButtonsEnabled = getBoolean("isButtonsEnabled")
-            isSkipButtonEnabled = getBoolean("isSkipButtonEnabled")
-            isIndicatorEnabled = getBoolean("isIndicatorEnabled")
+            slidesNumber = getInt(ARG_BUNDLE_SLIDES_NUMBER)
+            retainIsButtonEnabled = getBoolean(ARG_BUNDLE_RETAIN_IS_BUTTON_ENABLED)
+            isButtonsEnabled = getBoolean(ARG_BUNDLE_IS_BUTTON_ENABLED)
+            isSkipButtonEnabled = getBoolean(ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED)
+            isIndicatorEnabled = getBoolean(ARG_BUNDLE_IS_INDICATOR_ENABLED)
 
-            pager.lockPage = getInt("lockPage")
-            savedCurrentItem = getInt("currentItem")
-            pager.isFullPagingEnabled = getBoolean("isFullPagingEnabled")
-            pager.isNextPagingEnabled = getBoolean("isNextPagingEnabled")
+            pager.lockPage = getInt(ARG_BUNDLE_LOCK_PAGE)
+            savedCurrentItem = getInt(ARG_BUNDLE_CURRENT_ITEM)
+            pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
+            pager.isNextPagingEnabled = getBoolean(ARG_BUNDLE_IS_NEXT_PAGING_ENABLED)
 
-            permissionsMap = ((getSerializable("permissionSlides") as HashMap<Int, PermissionWrapper>?) ?: hashMapOf())
-
-            isColorTransitionsEnabled = getBoolean(COLOR_TRANSITIONS_ENABLED)
+            permissionsMap = (
+                (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
+                    ?: hashMapOf()
+                )
+            isColorTransitionsEnabled = getBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED)
         }
     }
 
@@ -829,12 +833,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
                 if (pager.currentItem != pager.lockPage) {
                     isButtonsEnabled = retainIsButtonEnabled
                     pager.isNextPagingEnabled = true
-                } else {
-                    isButtonsEnabled = isButtonsEnabled
                 }
-            } else {
-                isButtonsEnabled = isButtonsEnabled
             }
+            updateButtonsVisibility()
 
             setPermissionSlide()
 
@@ -862,7 +863,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPager.OnNextPageR
         private const val DEFAULT_SCROLL_DURATION_FACTOR = 1
         private const val DEFAULT_VIBRATE_DURATION = 20L
         private const val PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1
-        private const val COLOR_TRANSITIONS_ENABLED = "appintro_color_transitions_enabled"
+
+        private const val ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED = "colorTransitionEnabled"
+        private const val ARG_BUNDLE_CURRENT_ITEM = "currentItem"
+        private const val ARG_BUNDLE_IS_BUTTON_ENABLED = "isButtonsEnabled"
+        private const val ARG_BUNDLE_IS_FULL_PAGING_ENABLED = "isFullPagingEnabled"
+        private const val ARG_BUNDLE_IS_INDICATOR_ENABLED = "isIndicatorEnabled"
+        private const val ARG_BUNDLE_IS_NEXT_PAGING_ENABLED = "isNextPagingEnabled"
+        private const val ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED = "isSkipButtonsEnabled"
+        private const val ARG_BUNDLE_LOCK_PAGE = "lockPage"
+        private const val ARG_BUNDLE_PERMISSION_MAP = "permissionMap"
+        private const val ARG_BUNDLE_RETAIN_IS_BUTTON_ENABLED = "retainIsButtonEnabled"
+        private const val ARG_BUNDLE_SLIDES_NUMBER = "slidesNumber"
     }
 }
 
