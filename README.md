@@ -1,275 +1,453 @@
-[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Pre Merge Checks](https://github.com/AppIntro/AppIntro/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+<p align="center">
+    <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="40%"/>
+</p>
 
 # AppIntro
-AppIntro is an Android Library that helps you make a **cool intro** for your app, like the ones in Google apps.
 
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/intro.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2.png" width="300">
+[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Pre Merge Checks](https://github.com/AppIntro/AppIntro/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
-*Watch the [demo video](https://www.youtube.com/watch?v=-KgAAbZz248) on YouTube*
+AppIntro is an Android Library that helps you build a **cool carousel intro** for your App. AppIntro has support for **requesting permissions** and helps you create a great onboarding experience in just a couple of minutes.
 
-## Usage
+<p align="center">
+    <img src="assets/appintro.gif" alt="appintro sample" width="40%"/>
+</p>
+   
+  * [Getting Started <g-emoji class="g-emoji" alias="footprints" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f463.png">👣</g-emoji>](#getting-started-)
+     * [Adding a dependency](#adding-a-dependency)
+     * [Basic usage](#basic-usage)
+  * [Features <g-emoji class="g-emoji" alias="toolbox" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f9f0.png">🧰</g-emoji>](#features-)
+  * [Creating Slides <g-emoji class="g-emoji" alias="woman_artist" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f469-1f3a8.png">👩‍🎨</g-emoji>](#creating-slides-)
+     * [AppIntroFragment](#appintrofragment)
+     * [AppIntroCustomLayoutFragment](#appintrocustomlayoutfragment)
+  * [Configure <g-emoji class="g-emoji" alias="art" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3a8.png">🎨</g-emoji>](#configure-)
+     * [Slide Transformer](#slide-transformer)
+        * [Custom Slide Transformer](#custom-slide-transformer)
+     * [Color Transition](#color-transition)
+     * [Multiple Windows Layout](#multiple-windows-layout)
+     * [Indicators](#indicators)
+     * [Vibration](#vibration)
+     * [Wizard Mode](#wizard-mode)
+     * [Immersive Mode](#immersive-mode)
+     * [System Back button](#system-back-button)
+     * [System UI (Status Bar and Navigation Bar)](#system-ui-status-bar-and-navigation-bar)
+  * [Permission <g-emoji class="g-emoji" alias="lock" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f512.png">🔒</g-emoji>](#permission-)
+     * [Slide Policy](#slide-policy)
+  * [Example App <g-emoji class="g-emoji" alias="bulb" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png">💡</g-emoji>](#example-app-)
+  * [Translating <g-emoji class="g-emoji" alias="earth_africa" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png">🌍</g-emoji>](#translating-)
+  * [Migrating <g-emoji class="g-emoji" alias="car" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f697.png">🚗</g-emoji>](#migrating-)
+  * [Snapshots <g-emoji class="g-emoji" alias="package" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4e6.png">📦</g-emoji>](#snapshots-)
+  * [Contributing <g-emoji class="g-emoji" alias="handshake" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f91d.png">🤝</g-emoji>](#contributing-)
+  * [Acknowledgments <g-emoji class="g-emoji" alias="cherry_blossom" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f338.png">🌸</g-emoji>](#acknowledgments-)
+     * [Maintainers](#maintainers)
+     * [Libraries](#libraries)
+  * [License <g-emoji class="g-emoji" alias="page_facing_up" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c4.png">📄</g-emoji>](#license-)
+  * [Apps using AppIntro <g-emoji class="g-emoji" alias="iphone" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4f1.png">📱</g-emoji>](#apps-using-appintro-)
+
+
+## Getting Started 👣
+
+AppIntro is distributed through [JitPack](https://jitpack.io/#AppIntro/AppIntro).
+
+### Adding a dependency
+
+To use it you need to add the following gradle dependency to your `build.gradle` file of the module where you want to use AppIntro (NOT the root file).
+
+```groovy
+repositories {
+    maven { url "https://jitpack.io" }
+}
+```
+
+```groovy
+dependencies {
+    // AndroidX Capable version
+    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    
+    // *** OR ***
+    
+    // Latest version compatible with the old Support Library
+    implementation 'com.github.AppIntro:AppIntro:4.2.3'
+}
+```
+
+Please note that since AppIntro 5.x, the library supports [Android X](https://developer.android.com/jetpack/androidx/). If you haven't migrated yet, you probably want to use a previous version of the library that uses the **old Support Library** packages (or try [Jetifier Reverse mode](https://ncorti.com/blog/jetifier-reverse)).
 
 ### Basic usage
 
-1. **Add the JitPack repository to your build file**
+To use AppIntro, you simply have to create a new **Activity that extends AppIntro** like the following:
 
- Add it in your root build.gradle at the end of repositories:
-```gradle
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-```
+```kotlin
+class MyCustomAppIntro : AppIntro() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Make sure you don't call setContentView!
 
-2. **Add the dependency**
-
-Please note that AppIntro supports [Android X](https://developer.android.com/jetpack/androidx/). If you haven't migrated yet, you probably want to use
-a previous version of the library that uses the **old Support Library** packages (or try [Jetifier Reverse mode](https://ncorti.com/blog/jetifier-reverse)).
-
-```gradle
-	dependencies {
-	        // AndroidX Capable version
-	        implementation 'com.github.AppIntro:AppIntro:5.1.0'
-	        
-	        // *** OR ***
-	        
-	        // Support Library compatibility version 
-	        implementation 'com.github.AppIntro:AppIntro:4.2.3'
-	}
-```
-
-Create a new **Activity that extends AppIntro**:
-
-```java
-public class IntroActivity extends AppIntro {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Note here that we DO NOT use setContentView();
-
-        // Add your slide fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(firstFragment);
-        addSlide(secondFragment);
-        addSlide(thirdFragment);
-        addSlide(fourthFragment);
-
-        // Instead of fragments, you can also use our default slide.
-        // Just create a `SliderPage` and provide title, description, background and image.
-        // AppIntro will do the rest.
-        SliderPage sliderPage = new SliderPage();
-        sliderPage.setTitle(title);
-        sliderPage.setDescription(description);
-        sliderPage.setImageDrawable(image);
-        sliderPage.setBgColor(backgroundColor);
-        addSlide(AppIntroFragment.newInstance(sliderPage));
-
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        setBarColor(Color.parseColor("#3F51B5"));
-        setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
-        showSkipButton(false);
-        setButtonsEnabled(false);
-
-        // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
-        setVibrate(true);
-        setVibrateIntensity(30);
+        // Call addSlide passing your Fragments.
+        // You can use AppIntroFragment to use a pre-built fragment
+        addSlide(AppIntroFragment.newInstance(
+                title = "Welcome...",
+                description = "This is the first slide of the example"
+        ))
+        addSlide(AppIntroFragment.newInstance(
+                title = "...Let's get started!",
+                description = "This is the last slide, I won't annoy you more :)"
+        ))
     }
 
-    @Override
-    public void onSkipPressed(Fragment currentFragment) {
-        super.onSkipPressed(currentFragment);
-        // Do something when users tap on Skip button.
+    override fun onSkipPressed(currentFragment: Fragment?) {
+        super.onSkipPressed(currentFragment)
+        // Decide what to do when the user clicks on "Skip"
+        finish()
     }
 
-    @Override
-    public void onDonePressed(Fragment currentFragment) {
-        super.onDonePressed(currentFragment);
-        // Do something when users tap on Done button.
-    }
-
-    @Override
-    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
-        super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
+    override fun onDonePressed(currentFragment: Fragment?) {
+        super.onDonePressed(currentFragment)
+        // Decide what to do when the user clicks on "Done"
+        finish()
     }
 }
 ```
 
-_Note above that we DID NOT use setContentView();_
+Please note that you **must NOT call** setContentView. The `AppIntro` superclass is taking care of it for you.
 
 Finally, declare the activity in your Manifest like so:
 
 ``` xml
-<activity android:name="com.example.example.intro"
-    android:label="@string/app_intro" />
+<activity android:name="com.example.MyCustomAppIntro"
+    android:label="My Custom AppIntro" />
 ```
 
-Do not declare the intro as your main app launcher unless you want the intro to launch every time your app starts.
-Refer to the [wiki](https://github.com/AppIntro/AppIntro/wiki/How-to-Use#show-the-intro-once) for an example of how to launch the intro once from your main activity.
+We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
 
-#### Alternative layout
-If you want to try an alternative layout (as seen in Google's Photo app), just extend **AppIntro2** in your Activity. That's all :)
+## Features 🧰
 
-```java
-public class IntroActivity extends AppIntro2 {
-    // ...
+Don't forget to check the [changelog](CHANGELOG.md) to have a look at all the changes in the latest version of AppIntro.
+
+* **API >= 14** compatible.
+* 100% Kotlin Library.
+* **AndroidX** Compatible.
+* Support for **runtime permissions**.
+* Dependent only on AndroidX AppCompat/Annotations, ConstraintLayout and Kotlin JDK.
+* Full RTL support.
+
+## Creating Slides 👩‍🎨
+
+The entry point to add a new slide is the `addSlide(fragment: Fragment)` function on the `AppIntro` class.
+You can easily use it to add a new `Fragment` to the carousel.
+
+The library comes with several util classes to help you create your Slide with just a couple lines:
+
+### `AppIntroFragment`
+
+You can use the `AppIntroFragment` if you just want to customize title, description, image and colors.
+That's the suggested approach if you want to create a quick intro:
+
+```kotlin
+addSlide(AppIntroFragment.newInstance(
+    title = "The title of your slide",
+    description = "A description that will be shown on the bottom",
+    imageDrawable = R.drawable.the_central_icon,
+    backgroundDrawable = R.drawable.the_background_image,
+    titleColor = Color.YELLOW,
+    descriptionColor = Color.RED,
+    backgroundColor = Color.BLUE,
+    titleTypefaceFontRes = R.font.opensans_regular,
+    descriptionTypefaceFontRes = R.font.opensans_regular,
+))
+```
+
+All the parameters are optional, so you're free to customize your slide as you wish.
+
+If you need to programmatically create several slides you can also use the `SliderPage` class.
+This class can be passed to `AppIntroFragment.newInstance(sliderPage: SliderPage)` that will create
+a new slide starting from that instance.
+
+### `AppIntroCustomLayoutFragment`
+
+If you need further control on the customization of your slide, you can use the `AppIntroCustomLayoutFragment`.
+This will allow you pass your custom Layout Resource file:
+
+```kotlin
+AppIntroCustomLayoutFragment.newInstance(R.layout.intro_custom_layout1)
+```
+
+This allows you to achieve complex layout and include your custom logic in the Intro (see also [Slide Policy](#slide-policy)):
+
+<p align="center">
+    <img src="assets/custom-layout.png" alt="appintro custom-layout" width="30%"/>
+</p>
+
+## Configure 🎨
+
+AppIntro offers several configuration option to help you customize your onboarding experience.
+
+### Slide Transformer
+
+AppIntro comes with a set of _Slide Transformer_ that you can use out of the box to animate your Slide transition.
+
+| Name | Preview |
+| ---: | :-----: |
+| Fade | <img src="assets/fade.gif" alt="fade" width="50%"/> |
+| Zoom | <img src="assets/zoom.gif" alt="zoom" width="50%"/> |
+| Flow | <img src="assets/flow.gif" alt="flow" width="50%"/> |
+| Slide Over | <img src="assets/slideover.gif" alt="slideover" width="50%"/> |
+| Depth | <img src="assets/depth.gif" alt="depth" width="50%"/> |
+| Parallax | <img src="assets/parallax.gif" alt="parallax" width="50%"/> |
+
+You can simply call `setTransformer()` and pass one of the subclass of the sealed class `AppIntroPageTransformerType`: 
+
+```kotlin
+setTransformer(AppIntroPageTransformerType.Fade)
+setTransformer(AppIntroPageTransformerType.Zoom)
+setTransformer(AppIntroPageTransformerType.Flow)
+setTransformer(AppIntroPageTransformerType.SlideOver)
+setTransformer(AppIntroPageTransformerType.Depth)
+
+// You can customize your parallax parameters in the constructors. 
+setTransformer(AppIntroPageTransformerType.Parallax(
+                titleParallaxFactor = 1.0,
+                imageParallaxFactor = -1.0,
+                descriptionParallaxFactor = 2.0
+))
+```
+
+#### Custom Slide Transformer
+
+You can also provide your custom Slide Transformer (implementing the `ViewPager.PageTransformer` interface) with:
+
+```kotlin
+setCustomTransformer(ViewPager.PageTransformer)
+```
+
+### Color Transition
+
+<p align="center">
+    <img src="assets/color-transition.gif" alt="appintro sample" width="30%"/>
+</p>
+
+AppIntro offers the possibility to animate the **color transition** between two slides background.
+This feature is disabled by default, and you need to enable it on your AppIntro with:
+
+```kotlin
+isColorTransitionsEnabled = true
+```
+
+Once you enable it, the color will be animated between slides with a gradient.
+Make sure you provide a `backgroundColor` parameter in your slides.
+
+If you're providing custom Fragments, you can let them support the color transition by implementing
+the `SlideBackgroundColorHolder` interface.
+
+### Multiple Windows Layout
+
+AppIntro is shipped with two top-level layouts that you can use.
+The default layout (`AppIntro`) has textual buttons, while the alternative
+layout has buttons with icons.
+
+To change the Window layout, you can simply change your superclass to `AppIntro2`.
+The methods to add and customize the AppIntro are unchanged.
+
+```kotlin
+class MyCustomAppIntro : AppIntro2() {
+    // Same code as displayed in the `Basic Usage` section of this README
 }
 ```
 
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/layout2_2.png" width="300">
-<br>
+| Page | `AppIntro` | `AppIntro2` |
+| ---: | :--------: | :---------: |
+| standard page | <img src="assets/layout1-start.png" alt="layout1-start" width="50%"/> | <img src="assets/layout2-start.png" alt="layout2-start" width="50%"/> |
+| last page | <img src="assets/layout1-end.png" alt="layout1-end" width="50%"/> | <img src="assets/layout2-end.png" alt="layout2-end" width="50%"/> |
 
-#### Slides
+### Indicators
 
-##### Basic slides
+AppIntro supports two indicators out of the box to show the progress of the Intro experience to the user:
 
-AppIntro provides two simple classes, `AppIntroFragment` and `AppIntro2Fragment` which one can use to build simple slides.
+* `DotIndicatorController` represented with a list of Dot (the default)
+* `ProgressIndicatorController` represented with a progress bar.
 
-```java
-@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    // ...
+| `DotIndicator` | `ProgressIndicator` |
+| ---------- | ----------- |
+| ![dotted indicator](assets/dotted-indicator.gif) | ![progress indicator](assets/progress-indicator.gif) |
 
-    addSlide(AppIntroFragment.newInstance(title, description, image, backgroundColor));
+Moreover, you can supply your own indicator by providing an implementation of the `IndicatorController` interface.
+
+You can customize the indicator with the following API on the `AppIntro` class:
+
+```kotlin
+// Toggle Indicator Visibility                
+isIndicatorEnabled = true
+
+// Change Indicator Color 
+setIndicatorColor(
+    selectedIndicatorColor = getColor(R.color.red),
+    unselectedIndicatorColor = getColor(R.color.blue)
+)
+
+// Switch from Dotted Indicator to Progress Indicator
+setProgressIndicator()
+
+// Supply your custom `IndicatorController` implementation
+indicatorController = MyCustomIndicator(/* initialize me */)
+```
+
+If you don't specify any customization, a `DotIndicatorController` will be shown.
+
+### Vibration
+
+AppIntro supports providing haptic _vibration_ feedback on button clicks. 
+Please note that you **need to specify the Vibration permission** in your app Manifest 
+(the library is not doing it). If you forget to specify the permission, the app will experience a crash.
+
+```xml
+<uses-permission android:name="android.permission.VIBRATE" />
+```
+
+You can enable and customize the vibration with:
+
+```kotlin
+// Enable vibration and set duration in ms
+isVibrate = true
+vibrateDuration = 50L
+```
+
+### Wizard Mode
+
+<p align="center">
+    <img src="assets/wizard1.png" alt="appintro wizard1" width="30%"/> <img src="assets/wizard2.png" alt="appintro wizard2" width="30%"/>
+</p>
+
+AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
+This comes handy if you're presenting a Wizard to your user with a set of skip they need to do,
+and they might frequently go back and forth.
+
+You can enable it with:
+
+```kotlin
+isWizardMode = true
+```
+
+### Immersive Mode
+
+<p align="center">
+    <img src="assets/immersive1.png" alt="appintro immersive1" width="30%"/> <img src="assets/immersive2.png" alt="appintro immersive2" width="30%"/>
+</p>
+
+If you want to display your Intro with a fullscreen experience, you can enable the _Immersive mode_. This will
+hide both the Status Bar and the Navigation bar and the user will have to scroll from the top of the screen to
+show them again.
+
+This allows you to have more space for your Intro content and graphics.
+
+You can enable it with:
+
+```kotlin
+setImmersiveMode()
+```
+
+### System Back button
+
+You can lock the System Back button if you don't want your user go bo back from intro.
+This could be useful if you need to request permission and the Intro experience is not optional.
+
+If this is the case, please set to true the following flag:
+
+```kotlin
+isSystemBackButtonLocked = true
+```
+
+### System UI (Status Bar and Navigation Bar)
+
+<p align="center">
+    <img src="assets/system-ui.png" alt="appintro system-ui" width="40%"/>
+</p>
+
+You can customize the _Status Bar_, and the _Navigation Bar_ visibility & color with the following methods:
+
+```kotlin
+// Hide/Show the status Bar
+showStatusBar(true)
+// Control the status bar color
+setStatusBarColor(Color.GREEN)
+setStatusBarColorRes(R.color.green)
+
+// Control the navigation bar color
+setNavBarColor(Color.RED)
+setNavBarColorRes(R.color.red)
+``` 
+
+## Permission 🔒
+
+<p align="center">
+    <img src="assets/permissions.gif" alt="appintro permissions" width="40%"/>
+</p>
+
+AppIntro simplifies the process of requesting **runtime permissions** to your user.
+You can integrate one or more permission request inside a slide with the `askForPermissions` method inside your activity.
+
+Please note that:
+* `slideNumber` is in a **One-based numbering** (it starts from 1)
+* You can specify more than one permission if needed
+* You can specify if the permission is required. If so, users can't proceed if he denies the permission.
+
+```kotlin
+// Ask for required CAMERA permission on the second slide. 
+askForPermissions(
+    permissions = arrayOf(Manifest.permission.CAMER),
+    slideNumber = 2, 
+    required = true)
+
+// Ask for both optional ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
+// permission on the third slide.
+askForPermissions(
+    permissions = arrayOf(Manifest.permission.CAMER),
+    slideNumber = 2, 
+    required = true)
+```
+
+Should you need further control on the permission request, you can override those two methods on the `AppIntro` class:
+
+```kotlin
+override fun onUserDeniedPermission(permissionName: String) {
+    // User pressed "Deny" on the permission dialog
+}
+override fun onUserDisabledPermission(permissionName: String) {
+    // User pressed "Deny" + "Don't ask again" on the permission dialog
 }
 ```
 
-##### Custom slides example
+### Slide Policy
 
-One may also define custom slides using the [AppIntroCustomLayoutSlide] class.
-You can just add a custom slides in this way:
+If you want to restrict navigation between your slides (i.e. the user has to toggle a checkbox in order to continue),
+the `SlidePolicy` feature might help you.
 
-```java
-addSlide(AppIntroCustomLayoutSlide.newInstance(R.layout.your_slide_here));
-```
+All you have to do is implement `SlidePolicy` in your slides.
 
-There's no need to create one class for fragment anymore. :)
+This interface contains the `isPolicyRespected` property and the `onUserIllegallyRequestedNextPage` method
+that you must implement with your custom logic
 
-### Extended usage
+```kotlin
+class MyFragment : Fragment(), SlidePolicy {
+    
+    // If user should be allowed to leave this slide
+    override val isPolicyRespected: Boolean
+        get() = false // Your custom logic here.
 
-#### Animations
-AppIntro comes with some pager animations.
-Choose the one you like and then activate it with:
-
-```java
-@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    // ...
-
-    setFadeAnimation();
-}
-```
-
-Available animations:
-```java
-setFadeAnimation()
-setZoomAnimation()
-setFlowAnimation()
-setSlideOverAnimation()
-setDepthAnimation()
-```
-
-If you want to create nice parallax effect or your own custom animation, create your own **PageTransformer** and call:
-
-```java
-@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    // ...
-
-    setCustomTransformer(transformer);
-}
-```
-
-Click [here](https://github.com/AppIntro/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/appintro/example/animations/CustomAnimation.java) to see how I did it in the example app.
-
-#### Background color transitions
-
-AppIntro supports background color transitions:
-
-<img src="art/background_color_transition.gif" style="width: 250px">
-
-In order to setup the transitions, simply implement `ISlideBackgroundColorHolder`:
-```java
-public final class MySlide extends Fragment implements ISlideBackgroundColorHolder {
-    @Override
-    public int getDefaultBackgroundColor() {
-        // Return the default background color of the slide.
-        return Color.parseColor("#000000");
+    override fun onUserIllegallyRequestedNextPage() {
+        // User illegally requested next slide.
+        // Show a toast or an informative message to the user.
     }
-
-    @Override
-    public void setBackgroundColor(@ColorInt int backgroundColor) {
-        // Set the background color of the view within your slide to which the transition should be applied.
-        if (layoutContainer != null) {
-            layoutContainer.setBackgroundColor(backgroundColor);
-        }
-    }
 }
 ```
 
-The API is quite low-level, therefore highly customizable. The interface contains two methods:
+## Example App 💡
 
-- `getDefaultBackgroundColor`: Return the default background color (i.e. the background color the slide has in non-sliding state) of the slide here.
-- `setBackgroundColor(int)`: This method will be called while swiping between two slides. Update the background color of the view to which the transition should be applied.
-This is normally the root view of your Fragment's layout. But one may also apply the color transition to some other view only (i.e. a Button).
+AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/master/example).
 
-#### Runtime Permissions (Android 6.0+)
+<p align="center">
+    <img src="assets/sample-app.png" alt="appintro sample app" width="40%"/>
+</p>
 
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/permissions.png" width="300">
-
-Android 6.0 introduced a new permissions model for developers. Now all your apps have to request permissions which can be a tedious thing to implement.
-
-However, AppIntro simplifies this down to one single line of code!
-
-```java
-@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    // ...
-
-    // Ask for CAMERA permission on the second slide
-    askForPermissions(new String[]{Manifest.permission.CAMERA}, 2); // OR
-
-    // This will ask for the camera permission AND the contacts permission on the same slide.
-    // Ensure your slide talks about both so as not to confuse the user.
-    askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS}, 2);
-}
-```
-
-**NOTE:** It is advised that you only put one permission in the String array unless you want the app to ask for multiple permissions on the same slide.
-
-**NOTE 2:** Requesting permissions automatically disables sliding, and users will have to result to pressing the buttons. Please do not open any issues regarding this, as they will be immmediately closed. Thanks!
-
-#### Slide Policies
-
-If you want to restrict navigation between your slides (i.e. the user has to toggle a checkbox in order to continue), our **Slide Policy** feature might help you.
-
-All you have to do is implement `ISlidePolicy` in your slides:
-```java
-public final class MySlide extends Fragment implements ISlidePolicy {
-    @Override
-    public boolean isPolicyRespected() {
-        return // If user should be allowed to leave this slide
-    }
-
-    @Override
-    public void onUserIllegallyRequestedNextPage() {
-        // User illegally requested next slide
-    }
-}
-```
-The interface contains two methods:
-
-- `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
-- `onUserIllegallyRequestedNextPage`: This method gets called if the user tries to leave the slide although `isPolicyRespected` returned false. One may show some error message here.
-
-## Translating
+## Translating 🌍
 
 Do you want to help AppIntro becoming international 🌍? We are more than happy!
 AppIntro currently supports [the following languages](appintro/src/main/res).
@@ -289,81 +467,140 @@ In order to provide the translation, your file needs to contain the following st
 </resources>
 ```
 
-An updated version of the english version translation is [available here](appintro/src/main/res/values/strings.xml).
+An updated version of the English version translation is [available here](appintro/src/main/res/values/strings.xml).
 
-## Example App
-A working example app is available [here](https://github.com/AppIntro/AppIntro/tree/master/example).
+If a translation in your language is already available, please check it and eventually fix it (all the strings should be listed, not just a subset).
 
-## Real life examples
-Do you need inspiration? A lot of apps are using AppIntro out there:
+## Migrating 🚗
 
-**Planets**
+If you're migrating **from AppIntro v5.x to v6.x**, please expect multiple breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
 
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/planets.png">
+## Snapshots 📦
 
-**Hermes - Material IRC Client**
+Development of AppIntro happens on the [master](https://github.com/AppIntro/AppIntro/tree/master) branch. You can get `SNAPSHOT` versions directly from JitPack if needed.
 
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-41-59.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-02.png" width="300">
-<img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-07.png" width="300"> <img src="https://github.com/AppIntro/AppIntro/blob/master/art/Screenshot_2015-06-03-12-42-10.png" width="300">
+```gradle
+repositories {
+    maven { url "https://jitpack.io" }
+}
+```
 
-## Apps using AppIntro
-If you are using AppIntro in your app and would like to be listed here, please let us know by commenting in [this issue](https://github.com/AppIntro/AppIntro/issues/325)!
+```gradle
+dependencies {
+  implementation "com.github.AppIntro:AppIntro:master-SNAPSHOT"
+}
+```
 
- * [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes)
- * [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)
- * [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp)
- * [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets)
- * [Weather Delta](https://play.google.com/store/apps/details?id=com.felkertech.n.weatherdelta)
- * [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme)
- * [Circles](https://play.google.com/store/apps/details?id=com.felipejoglar.circles)
- * [Task Master](https://play.google.com/store/apps/details?id=com.cr5315.taskmaster)
- * [Smoothie Recipes](https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes)
- * [SideBar Notes](https://play.google.com/store/apps/details?id=com.app.floating.notes)
- * [just food](https://play.google.com/store/apps/details?id=scientist.jobless.foodmana)
- * [AlarmSMS](https://play.google.com/store/apps/details?id=com.qhutch.alarmsms)
- * [Aware](https://play.google.com/store/apps/details?id=com.bunemekyakilika.aware)  <!-- App is region restricted - please confirm avail. region -->
- * [neutriNote](https://play.google.com/store/apps/details?id=com.appmindlab.nano)
- * [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote)
- * [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette)
- * [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity)
- * [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary)
- * [Sifter](https://play.google.com/store/apps/details?id=sifter.social.network.archaeologist)
- * [#-ludus 2.0](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus)
- * [Snipit Text Grabber](https://play.google.com/store/apps/details?id=com.om.snipit)
- * [Service Notes](https://play.google.com/store/apps/details?id=notes.service.com.servicenotes)
- * [Salary Barometer](https://play.google.com/store/apps/details?id=anaware.salarybarometer)
- * [Best Business Idea!](https://play.google.com/store/apps/details?id=anaware.bestidea)
- * [Wi-Fi password reminder](https://play.google.com/store/apps/details?id=com.rusdelphi.wifipassword)
- * [Safe Notes](https://play.google.com/store/apps/details?id=software.codeplus.safenotes)
- * [Xpaper - Moto X Wallpapers](https://play.google.com/store/apps/details?id=com.dunrite.xpaper)
- * [Find My Parked Car](https://play.google.com/store/apps/details?id=com.ofirmiron.findmycarandroidwear)
- * [BoxPlay Music Player](https://play.google.com/store/apps/details?id=de.luckyworks.boxplay)
- * [Vape Tool Pro](https://play.google.com/store/apps/details?id=com.stasbar.vapetoolpro)
- * [NebelNiek Soundboard](https://play.google.com/store/apps/details?id=de.logtainment.nebelnieksoundboard)
- * [sdiwi | Win your purchase!](https://play.google.com/store/apps/details?id=com.sdiwi.app)
- * [Helal ve Sağlıklı Yaşam](https://play.google.com/store/apps/details?id=org.yasam.hsy.helalvesaglikliyasam)
- * [HipCar - Car Rental](https://play.google.com/store/apps/details?id=com.hipcar.android)
- * [Schematiskt Skolschema](https://play.google.com/store/apps/details?id=se.zinokader.schematiskt)
- * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
- * [Crypton - Password Manager](https://play.google.com/store/apps/details?id=mindstorm.crypton)
- * [Web Video Cast](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
- * [Sask. Geo-Memorial](https://play.google.com/store/apps/details?id=com.github.dstaflund.geomemorial)
- * [SchoolBox](https://play.google.com/store/apps/details?id=com.deenysoft.schoolbox)
- * [Fitness Challenge](https://play.google.com/store/apps/details?id=com.isidroid.fitchallenge)
- * [Crunch (ICE)](https://play.google.com/store/apps/details?id=com.figsandolives.ice.free)
- * [Filmy - Your Movie Guide](https://play.google.com/store/apps/details?id=tech.salroid.filmy)
- * [HEBF Optimizer ▪ Root](https://play.google.com/store/apps/details?id=com.androidvip.hebf)
- * [Wifi Captive Login](https://play.google.com/store/apps/details?id=com.anantharam.wificaptivelogin)
- * [IIFYM](https://play.google.com/store/apps/details?id=com.javierd.iifym)
- * [Ampwifi Winamp Remote](https://play.google.com/store/apps/details?id=com.blitterhead.ampwifi)
- * [AaiKya: Leave Tracker](https://play.google.com/store/apps/details?id=com.ranveeraggarwal.letrack)
- * [Angopapo - People around you](https://play.google.com/store/apps/details?id=com.msingapro.angopapofb)
- * [Hugetwit](https://play.google.com/store/apps/details?id=com.halilibo.hugetwit)
- * [Wake Me Up (Mumbai Railway)](https://play.google.com/store/apps/details?id=com.catacomblabs.wakemeup)
- * [SelfMote - Wireless Remote app](https://play.google.com/store/apps/details?id=com.dmicse.selfmote.free)
- * [Boo Music Player](https://play.google.com/store/apps/details?id=cdn.BooPlayer)
- * [BeatPrompter](https://play.google.com/store/apps/details?id=com.stevenfrew.beatprompter)
- * [Orario Treni Trenitalia](https://play.google.com/store/apps/details?id=com.jaus.albertogiunta.justintrain_oraritreni)
- * [Tipsy for Gardaland](https://play.google.com/store/apps/details?id=com.MonkeyLab.MyGardaland&hl=it)
- * [BlueWords](https://play.google.com/store/apps/details?id=com.thesrb.bluewords&referrer=utm_source%3Dappintro%26utm_medium%3Dgithub%26utm_campaign%3Dreadme)
-  * [Best Quotes & Status 2019 (99000+ Collection)](https://play.google.com/store/apps/details?id=com.swastik.quotesandstatus&hl=en_IN)
+⚠️ Please note that the latest snapshot might be **unstable**. Use it at your own risk ⚠️
+
+## Contributing 🤝
+
+We're offering support for [AppIntro on Gitter](https://gitter.im/AppIntro/Lobby). Come and join the conversation over there.
+
+**We're looking for contributors! Don't be shy.** 👍 Feel free to open issues/pull requests to help me improve this project.
+
+* When reporting a new Issue, make sure to attach **Screenshots**, **Videos** or **GIFs** of the problem you are reporting.
+* When submitting a new PR, make sure tests are all green. Write new tests if necessary.
+
+## Acknowledgments 🌸
+
+### Maintainers
+
+AppIntro is currently developed and maintained by the [AppIntro Github Org](https://github.com/AppIntro). When submitting a new PR, please ping one of:
+
+- [@paolorotolo](https://github.com/paolorotolo)
+- [@cortinico](https://github.com/cortinico)
+
+### Libraries
+
+AppIntro is not relying on any third party library other than those from AndroidX: 
+
+- `androidx.appcompat:appcompat`
+- `androidx.annotation:annotation`
+- `androidx.constraintlayout:constraintlayout`
+
+## License 📄
+
+```
+    Copyright (C) 2015-2020 AppIntro Developers
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+```
+
+## Apps using AppIntro 📱
+
+If you are using AppIntro in your app and would like to be listed here, please open a pull request and we will more than app to include you:
+
+<details>
+  <summary>List of Apps using AppIntro</summary>
+
+* [Numix Hermes](https://play.google.com/store/apps/details?id=org.numixproject.hermes)
+* [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)
+* [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp)
+* [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets)
+* [Weather Delta](https://play.google.com/store/apps/details?id=com.felkertech.n.weatherdelta)
+* [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme)
+* [Circles](https://play.google.com/store/apps/details?id=com.felipejoglar.circles)
+* [Task Master](https://play.google.com/store/apps/details?id=com.cr5315.taskmaster)
+* [Smoothie Recipes](https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes)
+* [SideBar Notes](https://play.google.com/store/apps/details?id=com.app.floating.notes)
+* [just food](https://play.google.com/store/apps/details?id=scientist.jobless.foodmana)
+* [AlarmSMS](https://play.google.com/store/apps/details?id=com.qhutch.alarmsms)
+* [Aware](https://play.google.com/store/apps/details?id=com.bunemekyakilika.aware)  <!-- App is region restricted - please confirm avail. region -->
+* [neutriNote](https://play.google.com/store/apps/details?id=com.appmindlab.nano)
+* [Handwriting Note](https://play.google.com/store/apps/details?id=com.lyk.immersivenote)
+* [Friends Roulette](https://play.google.com/store/apps/details?id=com.crioltech.roulette)
+* [Karting Tools](https://play.google.com/store/apps/details?id=com.fabreax.android.kartingtools.activity)
+* [ChineseDictionary (粵韻漢典離線粵語普通話發聲中文字典)](https://play.google.com/store/apps/details?id=com.jonasng.chinesedictionary)
+* [Sifter](https://play.google.com/store/apps/details?id=sifter.social.network.archaeologist)
+* [#-ludus 2.0](https://play.google.com/store/apps/details?id=com.fallenritemonk.ludus)
+* [Snipit Text Grabber](https://play.google.com/store/apps/details?id=com.om.snipit)
+* [Service Notes](https://play.google.com/store/apps/details?id=notes.service.com.servicenotes)
+* [Salary Barometer](https://play.google.com/store/apps/details?id=anaware.salarybarometer)
+* [Best Business Idea!](https://play.google.com/store/apps/details?id=anaware.bestidea)
+* [Wi-Fi password reminder](https://play.google.com/store/apps/details?id=com.rusdelphi.wifipassword)
+* [Safe Notes](https://play.google.com/store/apps/details?id=software.codeplus.safenotes)
+* [Xpaper - Moto X Wallpapers](https://play.google.com/store/apps/details?id=com.dunrite.xpaper)
+* [Find My Parked Car](https://play.google.com/store/apps/details?id=com.ofirmiron.findmycarandroidwear)
+* [BoxPlay Music Player](https://play.google.com/store/apps/details?id=de.luckyworks.boxplay)
+* [Vape Tool Pro](https://play.google.com/store/apps/details?id=com.stasbar.vapetoolpro)
+* [NebelNiek Soundboard](https://play.google.com/store/apps/details?id=de.logtainment.nebelnieksoundboard)
+* [sdiwi | Win your purchase!](https://play.google.com/store/apps/details?id=com.sdiwi.app)
+* [Helal ve Sağlıklı Yaşam](https://play.google.com/store/apps/details?id=org.yasam.hsy.helalvesaglikliyasam)
+* [HipCar - Car Rental](https://play.google.com/store/apps/details?id=com.hipcar.android)
+* [Schematiskt Skolschema](https://play.google.com/store/apps/details?id=se.zinokader.schematiskt)
+* [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
+* [Crypton - Password Manager](https://play.google.com/store/apps/details?id=mindstorm.crypton)
+* [Web Video Cast](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
+* [Sask. Geo-Memorial](https://play.google.com/store/apps/details?id=com.github.dstaflund.geomemorial)
+* [SchoolBox](https://play.google.com/store/apps/details?id=com.deenysoft.schoolbox)
+* [Fitness Challenge](https://play.google.com/store/apps/details?id=com.isidroid.fitchallenge)
+* [Crunch (ICE)](https://play.google.com/store/apps/details?id=com.figsandolives.ice.free)
+* [Filmy - Your Movie Guide](https://play.google.com/store/apps/details?id=tech.salroid.filmy)
+* [HEBF Optimizer ▪ Root](https://play.google.com/store/apps/details?id=com.androidvip.hebf)
+* [Wifi Captive Login](https://play.google.com/store/apps/details?id=com.anantharam.wificaptivelogin)
+* [IIFYM](https://play.google.com/store/apps/details?id=com.javierd.iifym)
+* [Ampwifi Winamp Remote](https://play.google.com/store/apps/details?id=com.blitterhead.ampwifi)
+* [AaiKya: Leave Tracker](https://play.google.com/store/apps/details?id=com.ranveeraggarwal.letrack)
+* [Angopapo - People around you](https://play.google.com/store/apps/details?id=com.msingapro.angopapofb)
+* [Hugetwit](https://play.google.com/store/apps/details?id=com.halilibo.hugetwit)
+* [Wake Me Up (Mumbai Railway)](https://play.google.com/store/apps/details?id=com.catacomblabs.wakemeup)
+* [SelfMote - Wireless Remote app](https://play.google.com/store/apps/details?id=com.dmicse.selfmote.free)
+* [Boo Music Player](https://play.google.com/store/apps/details?id=cdn.BooPlayer)
+* [BeatPrompter](https://play.google.com/store/apps/details?id=com.stevenfrew.beatprompter)
+* [Orario Treni Trenitalia](https://play.google.com/store/apps/details?id=com.jaus.albertogiunta.justintrain_oraritreni)
+* [Tipsy for Gardaland](https://play.google.com/store/apps/details?id=com.MonkeyLab.MyGardaland&hl=it)
+* [BlueWords](https://play.google.com/store/apps/details?id=com.thesrb.bluewords&referrer=utm_source%3Dappintro%26utm_medium%3Dgithub%26utm_campaign%3Dreadme)
+* [Best Quotes & Status 2019 (99000+ Collection)](https://play.google.com/store/apps/details?id=com.swastik.quotesandstatus&hl=en_IN)
+
+</details>
