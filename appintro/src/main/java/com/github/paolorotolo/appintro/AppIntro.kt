@@ -154,17 +154,6 @@ abstract class AppIntro : AppIntroBase() {
     }
 
     /**
-     * Shows or hides Done button, replaced with setButtonsEnabled();
-     */
-    @Deprecated(
-        "use {@link #setButtonsEnabled(boolean)} instead.",
-        ReplaceWith("setButtonsEnabled = showDone")
-    )
-    fun showDoneButton(showDone: Boolean) {
-        isButtonsEnabled = showDone
-    }
-
-    /**
      * Show or hide the Separator line.
      * This is a static setting and Separator state is maintained across slides
      * until explicitly changed.

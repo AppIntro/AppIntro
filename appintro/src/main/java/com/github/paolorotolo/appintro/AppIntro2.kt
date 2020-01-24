@@ -47,17 +47,6 @@ abstract class AppIntro2 : AppIntroBase() {
     }
 
     /**
-     * Shows or hides Done button, replaced with setButtonsEnabled
-     */
-    @Deprecated(
-        "use {@link #setButtonsEnabled(boolean)} instead.",
-        ReplaceWith("setButtonsEnabled = showDone")
-    )
-    fun showDoneButton(showDone: Boolean) {
-        isButtonsEnabled = showDone
-    }
-
-    /**
      * Override viewpager bar color
      * @param color your color resource
      */

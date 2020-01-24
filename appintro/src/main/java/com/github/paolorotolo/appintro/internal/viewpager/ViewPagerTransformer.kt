@@ -116,7 +116,7 @@ internal class ViewPagerTransformer(
     }
 }
 
-enum class TransformType {
+internal enum class TransformType {
     FLOW,
     DEPTH,
     ZOOM,

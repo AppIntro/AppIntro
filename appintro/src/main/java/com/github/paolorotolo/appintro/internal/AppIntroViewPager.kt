@@ -1,12 +1,12 @@
-package com.github.paolorotolo.appintro
+package com.github.paolorotolo.appintro.internal
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.animation.Interpolator
 import androidx.viewpager.widget.ViewPager
-import com.github.paolorotolo.appintro.internal.LayoutUtil
-import com.github.paolorotolo.appintro.internal.ScrollerCustomDuration
+import com.github.paolorotolo.appintro.AppIntroBase
+import com.github.paolorotolo.appintro.AppIntroViewPagerListener
 import kotlin.math.absoluteValue
 
 /**
@@ -19,12 +19,12 @@ import kotlin.math.absoluteValue
  * @property onNextPageRequestedListener Listener for Next Page events.
  * @property isNextPagingEnabled Enable or disable swiping to the next page.
  */
-class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
+internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
 
     var isFullPagingEnabled = true
     var isPermissionSlide = false
     var lockPage = 0
-    var onNextPageRequestedListener: OnNextPageRequestedListener? = null
+    var onNextPageRequestedListener: AppIntroViewPagerListener? = null
     var isNextPagingEnabled: Boolean = true
         set(value) {
             field = value
@@ -199,26 +199,7 @@ class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(conte
             (startPoint.y - y).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y
         )
 
-    /**
-     * Register an instance of OnNextPageRequestedListener.
-     * Before the user swipes to the next page, this listener will be called and
-     * can interrupt swiping by returning false to [onCanRequestNextPage]
-     *
-     * [onIllegallyRequestedNextPage] will be called if the user tries to swipe and was not allowed
-     * to do so (useful for showing a toast or something similar).
-     *
-     * [onUserRequestedPermissionsDialog] will be called when the user swipes forward on a slide
-     * that contains permissions.
-     */
-    interface OnNextPageRequestedListener {
-        fun onCanRequestNextPage(): Boolean
-
-        fun onIllegallyRequestedNextPage()
-
-        fun onUserRequestedPermissionsDialog()
-    }
-
-    companion object {
+    private companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
         private const val VALID_SWIPE_THRESHOLD_PX_X = 25
         private const val VALID_SWIPE_THRESHOLD_PX_Y = 25
