@@ -489,6 +489,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
+        slidesNumber = fragments.size
+        initializeIndicator()
+
         // Required for triggering onPageSelected and onSlideChanged for the first page.
         if (isRtl) {
             pager.currentItem = fragments.size - savedCurrentItem
@@ -510,8 +513,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
                 finish()
             }
         }
-        slidesNumber = fragments.size
-        initializeIndicator()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
