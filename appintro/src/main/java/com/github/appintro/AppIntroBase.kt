@@ -58,6 +58,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             updateButtonsVisibility()
         }
 
+    /** Toggles all the buttons visibility (between visible and invisible). */
+    protected var isNavBarTranslucent: Boolean = false
+        set(value) {
+            field = value
+            if (value && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    )
+            }
+        }
+
     /** Toggles only the SKIP button visibility (allows the user to skip the Intro). */
     protected var isSkipButtonEnabled = true
         set(value) {
@@ -109,6 +121,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private var currentlySelectedItem = -1
     private val fragments: MutableList<Fragment> = mutableListOf()
 
+    private lateinit var background: ViewGroup
     private lateinit var nextButton: View
     private lateinit var doneButton: View
     private lateinit var skipButton: View
@@ -445,6 +458,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
         indicatorContainer = findViewById(R.id.indicator_container)
             ?: error("Missing Indicator Container: R.id.indicator_container")
+        background = findViewById(R.id.background)
         nextButton = findViewById(R.id.next) ?: error("Missing Next button: R.id.next")
         doneButton = findViewById(R.id.done) ?: error("Missing Done button: R.id.done")
         skipButton = findViewById(R.id.skip) ?: error("Missing Skip button: R.id.skip")
@@ -484,6 +498,21 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         pager.onNextPageRequestedListener = this
 
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (isNavBarTranslucent) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                background.setOnApplyWindowInsetsListener { v, insets ->
+                    val bottomBar = background.findViewById<View>(R.id.bottom)
+                    val layoutParams = bottomBar.layoutParams
+                    layoutParams.height += insets.systemWindowInsetBottom
+                    bottomBar.layoutParams = layoutParams
+                    insets
+                }
+            }
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

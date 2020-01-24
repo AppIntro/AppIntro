@@ -6,19 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
-    android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
     <com.github.appintro.internal.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="false"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/bottom_separator"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@color/appintro_separator_color"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/bottom"
@@ -33,8 +40,8 @@
         android:id="@+id/skip"
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_skip_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_skip" />
 
     <ImageButton
@@ -43,15 +50,15 @@
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_next" />
 
     <FrameLayout
         android:id="@+id/indicator_container"
         style="@style/AppIntroIndicatorContainer"
+        android:layout_margin="@dimen/appintro2_indicator_margin"
         android:layoutDirection="ltr"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottom"
@@ -61,8 +68,8 @@
         android:id="@+id/next"
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_next" />
 
     <ImageButton
@@ -70,8 +77,8 @@
         style="@style/AppIntro2ButtonStyleCompat"
         android:contentDescription="@string/app_intro_done_button"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_done" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

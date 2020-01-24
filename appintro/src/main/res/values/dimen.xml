@@ -16,7 +16,9 @@
 
     <dimen name="appintro_indicator_inset">3dp</dimen>
     <dimen name="appintro_indicator_size">10dp</dimen>
-    <dimen name="appintro_indicator_margin">12dp</dimen>
+    <dimen name="appintro_indicator_margin">25dp</dimen>
+    <dimen name="appintro2_indicator_margin">39dp</dimen>
+
 
     <dimen name="appintro_desctext_size">16sp</dimen>
     <dimen name="appintro_desc_padding">16dp</dimen>

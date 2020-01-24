@@ -6,14 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appintro_background_color"
-    android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
     <com.github.appintro.internal.AppIntroViewPager
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="false"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +42,8 @@
         android:labelFor="@string/app_intro_skip_button"
         android:text="@string/app_intro_skip_button"
         android:textColor="@color/appintro_icon_tint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom" />
 
     <ImageButton
         android:id="@+id/back"
@@ -53,15 +51,15 @@
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_next" />
 
     <FrameLayout
         android:id="@+id/indicator_container"
         style="@style/AppIntroIndicatorContainer"
+        android:layout_margin="@dimen/appintro_indicator_margin"
         android:layoutDirection="ltr"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottom"
@@ -71,8 +69,8 @@
         android:id="@+id/next"
         style="@style/AppIntroButtonStyleCompat"
         android:contentDescription="@string/app_intro_next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_next" />
 
     <Button
@@ -82,7 +80,7 @@
         android:text="@string/app_intro_done_button"
         android:textColor="@color/appintro_icon_tint"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
