@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.mainTabs;
+package com.github.appintro.example.ui.mainTabs;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

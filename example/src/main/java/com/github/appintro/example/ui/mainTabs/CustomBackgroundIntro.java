@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.mainTabs;
+package com.github.appintro.example.ui.mainTabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,21 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.amqtech.opensource.appintroexample.ui.mainTabs.intro.DefaultIntro2;
 import com.github.paolorotolo.appintroexample.R;
 
-public class DefaultLayout2Intro extends Fragment {
+public class CustomBackgroundIntro extends Fragment {
 
     @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button demo = getView().findViewById(R.id.intro2);
+        Button demo = getView().findViewById(R.id.intro4);
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity().getBaseContext(), DefaultIntro2.class));
+                startActivity(new Intent(getActivity().getBaseContext(), com.github.appintro.example.ui.mainTabs.intro.CustomBackgroundIntro.class));
             }
         });
     }
@@ -31,6 +30,6 @@ public class DefaultLayout2Intro extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_default_intro2, container, false);
+        return inflater.inflate(R.layout.tab_custom_background_intro, container, false);
     }
 }

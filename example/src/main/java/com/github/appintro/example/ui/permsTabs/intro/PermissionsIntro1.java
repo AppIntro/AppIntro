@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.permsTabs.intro;
+package com.github.appintro.example.ui.permsTabs.intro;
 
 import android.Manifest;
 import android.graphics.Color;

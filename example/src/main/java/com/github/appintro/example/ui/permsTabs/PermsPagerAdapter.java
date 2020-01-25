@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.permsTabs;
+package com.github.appintro.example.ui.permsTabs;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

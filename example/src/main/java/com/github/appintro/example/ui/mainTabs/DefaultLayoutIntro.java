@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.permsTabs;
+package com.github.appintro.example.ui.mainTabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro1;
+import com.github.appintro.example.ui.mainTabs.intro.DefaultIntro;
 import com.github.paolorotolo.appintroexample.R;
 
-public class PermissionsLayout1Intro extends Fragment {
+public class DefaultLayoutIntro extends Fragment {
 
     @SuppressWarnings("ConstantConditions")
     @Override
@@ -23,7 +23,7 @@ public class PermissionsLayout1Intro extends Fragment {
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity().getBaseContext(), PermissionsIntro1.class));
+                startActivity(new Intent(getActivity().getBaseContext(), DefaultIntro.class));
             }
         });
     }
@@ -31,6 +31,6 @@ public class PermissionsLayout1Intro extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_permissions_1, container, false);
+        return inflater.inflate(R.layout.tab_default_intro, container, false);
     }
 }

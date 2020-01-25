@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.permsTabs;
+package com.github.appintro.example.ui.permsTabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.amqtech.opensource.appintroexample.ui.permsTabs.intro.PermissionsIntro2;
+import com.github.appintro.example.ui.permsTabs.intro.PermissionsIntro2;
 import com.github.paolorotolo.appintroexample.R;
 
 public class PermissionsLayout2Intro extends Fragment {

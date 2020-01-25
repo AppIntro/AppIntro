@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.amqtech.opensource.appintroexample.util.TabLayout
+    <com.github.appintro.example.util.TabLayout
         android:id="@+id/permTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
