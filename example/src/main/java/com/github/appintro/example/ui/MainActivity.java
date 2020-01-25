@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui;
+package com.github.appintro.example.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
-import com.amqtech.opensource.appintroexample.ui.fragment.MainTabsFragment;
-import com.amqtech.opensource.appintroexample.ui.fragment.PermissionTabsFragment;
+import com.github.appintro.example.ui.fragment.MainTabsFragment;
+import com.github.appintro.example.ui.fragment.PermissionTabsFragment;
 import com.github.paolorotolo.appintroexample.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;

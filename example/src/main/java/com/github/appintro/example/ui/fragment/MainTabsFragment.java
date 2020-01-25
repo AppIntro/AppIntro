@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.fragment;
+package com.github.appintro.example.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,19 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.amqtech.opensource.appintroexample.ui.permsTabs.PermsPagerAdapter;
-import com.amqtech.opensource.appintroexample.util.TabLayout;
+import com.github.appintro.example.ui.mainTabs.MainPagerAdapter;
+import com.github.appintro.example.util.TabLayout;
 import com.github.paolorotolo.appintroexample.R;
 
-public class PermissionTabsFragment extends Fragment {
+public class MainTabsFragment extends Fragment {
 
     ViewPager pager;
-    PermsPagerAdapter adapter;
+    MainPagerAdapter adapter;
     TabLayout tabs;
-    CharSequence Titles[] = {"Layout 1", "Layout 2"};
-    int Numboftabs = 2;
+    CharSequence Titles[] = {"Layout 1", "Layout 2", "Custom Layout", "Custom Background"};
+    int Numboftabs = 4;
 
-    public PermissionTabsFragment() {
+    public MainTabsFragment() {
         //required empty constructor
     }
 
@@ -30,14 +30,14 @@ public class PermissionTabsFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        adapter = new PermsPagerAdapter(getChildFragmentManager(), Titles, Numboftabs);
+        adapter = new MainPagerAdapter(getChildFragmentManager(), Titles, Numboftabs);
 
-        pager = getView().findViewById(R.id.permPager);
+        pager = getView().findViewById(R.id.mainPager);
         pager.setAdapter(adapter);
 
-        tabs = getView().findViewById(R.id.permTabs);
+        tabs = getView().findViewById(R.id.mainTabs);
         tabs.setBackgroundColor(Color.parseColor("#1976D2"));
-        tabs.setDistributeEvenly(true);
+        tabs.setDistributeEvenly(false);
         tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
@@ -50,6 +50,6 @@ public class PermissionTabsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_permission_tabs, container, false);
+        return inflater.inflate(R.layout.fragment_main_tabs, container, false);
     }
 }

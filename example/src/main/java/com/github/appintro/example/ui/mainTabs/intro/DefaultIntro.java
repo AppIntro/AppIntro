@@ -1,18 +1,16 @@
-package com.amqtech.opensource.appintroexample.ui.permsTabs.intro;
+package com.github.appintro.example.ui.mainTabs.intro;
 
-import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
 
-public class PermissionsIntro2 extends AppIntro2 {
+public class DefaultIntro extends AppIntro {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,14 +18,14 @@ public class PermissionsIntro2 extends AppIntro2 {
 
         SliderPage sliderPage1 = new SliderPage();
         sliderPage1.setTitle("Welcome!");
-        sliderPage1.setDescription("This is a demo of the AppIntro library, with permissions being requested on a slide!");
+        sliderPage1.setDescription("This is a demo of the AppIntro library.");
         sliderPage1.setImageDrawable(R.drawable.ic_slide1);
         sliderPage1.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage1));
 
         SliderPage sliderPage2 = new SliderPage();
-        sliderPage2.setTitle("Permission Request");
-        sliderPage2.setDescription("In order to access your camera, you must give permissions.");
+        sliderPage2.setTitle("Clean App Intros");
+        sliderPage2.setDescription("This library offers developers the ability to add clean app intros at the start of their apps.");
         sliderPage2.setImageDrawable(R.drawable.ic_slide2);
         sliderPage2.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage2));
@@ -45,11 +43,6 @@ public class PermissionsIntro2 extends AppIntro2 {
         sliderPage4.setImageDrawable(R.drawable.ic_slide4);
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
-
-        // Here we tell the library to request camera and location permission that are both required.
-        askForPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION}, 2, true);
-        // Here we request another permission that is instead not required.
-        askForPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 3, false);
     }
 
     @Override

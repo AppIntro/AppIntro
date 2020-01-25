@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
+package com.github.appintro.example.ui.mainTabs.intro;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

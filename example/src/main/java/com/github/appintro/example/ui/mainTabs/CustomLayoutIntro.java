@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.ui.mainTabs;
+package com.github.appintro.example.ui.mainTabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,18 +11,18 @@ import android.widget.Button;
 
 import com.github.paolorotolo.appintroexample.R;
 
-public class CustomBackgroundIntro extends Fragment {
+public class CustomLayoutIntro extends Fragment {
 
     @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button demo = getView().findViewById(R.id.intro4);
+        Button demo = getView().findViewById(R.id.intro3);
         demo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity().getBaseContext(), com.amqtech.opensource.appintroexample.ui.mainTabs.intro.CustomBackgroundIntro.class));
+                startActivity(new Intent(getActivity().getBaseContext(), com.github.appintro.example.ui.mainTabs.intro.CustomLayoutIntro.class));
             }
         });
     }
@@ -30,6 +30,6 @@ public class CustomBackgroundIntro extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab_custom_background_intro, container, false);
+        return inflater.inflate(R.layout.tab_custom_layout_intro, container, false);
     }
 }

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.amqtech.opensource.appintroexample"
+        applicationId "com.github.appintro.example.appintroexample"
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 2
@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation project(':appintro')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation "com.mikepenz:materialdrawer:6.1.2"

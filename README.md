@@ -292,7 +292,7 @@ In order to provide the translation, your file needs to contain the following st
 An updated version of the english version translation is [available here](appintro/src/main/res/values/strings.xml).
 
 ## Example App
-See example code [here](https://github.com/AppIntro/AppIntro/tree/master/example) on GitHub. You can also see it live by downloading our example on [Google Play](https://play.google.com/store/apps/details?id=com.amqtech.opensource.appintroexample).
+A working example app is available [here](https://github.com/AppIntro/AppIntro/tree/master/example).
 
 ## Real life examples
 Do you need inspiration? A lot of apps are using AppIntro out there:

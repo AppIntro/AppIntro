@@ -1,16 +1,17 @@
-package com.amqtech.opensource.appintroexample.ui.mainTabs.intro;
+package com.github.appintro.example.ui.mainTabs.intro;
 
 import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.github.paolorotolo.appintroexample.R;
 
-public class DefaultIntro extends AppIntro {
+public class CustomBackgroundIntro extends AppIntro2 {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,7 +19,7 @@ public class DefaultIntro extends AppIntro {
 
         SliderPage sliderPage1 = new SliderPage();
         sliderPage1.setTitle("Welcome!");
-        sliderPage1.setDescription("This is a demo of the AppIntro library.");
+        sliderPage1.setDescription("This is a demo of the AppIntro library, with a custom background on each slide!");
         sliderPage1.setImageDrawable(R.drawable.ic_slide1);
         sliderPage1.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage1));
@@ -43,6 +44,9 @@ public class DefaultIntro extends AppIntro {
         sliderPage4.setImageDrawable(R.drawable.ic_slide4);
         sliderPage4.setBgColor(Color.TRANSPARENT);
         addSlide(AppIntroFragment.newInstance(sliderPage4));
+
+        // Bind the background to the intro
+        setBackgroundResource(R.drawable.ic_drawer_header);
     }
 
     @Override

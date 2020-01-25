@@ -1,4 +1,4 @@
-package com.amqtech.opensource.appintroexample.util;
+package com.github.appintro.example.util;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
