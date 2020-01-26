@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.github.appintro.example.ui.fragment.MainTabsFragment;
 import com.github.appintro.example.ui.fragment.PermissionTabsFragment;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.appintroexample.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;

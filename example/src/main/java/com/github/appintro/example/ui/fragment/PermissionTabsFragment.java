@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.appintro.example.ui.permsTabs.PermsPagerAdapter;
 import com.github.appintro.example.util.TabLayout;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.appintroexample.R;
 
 public class PermissionTabsFragment extends Fragment {
 

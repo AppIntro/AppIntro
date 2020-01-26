@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.github.appintro.example.ui.permsTabs.intro.PermissionsIntro2;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.appintroexample.R;
 
 public class PermissionsLayout2Intro extends Fragment {
 
