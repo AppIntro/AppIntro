@@ -1,1 +1,1 @@
--keep class com.github.paolorotolo.** {*;}
+-keep class com.github.appintro.** {*;}
