@@ -6,10 +6,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-import com.github.paolorotolo.appintro.model.SliderPage;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.AppIntro2;
+import com.github.appintro.AppIntroFragment;
+import com.github.appintro.model.SliderPage;
+import com.github.appintro.appintroexample.R;
 
 public class CustomBackgroundIntro extends AppIntro2 {
 

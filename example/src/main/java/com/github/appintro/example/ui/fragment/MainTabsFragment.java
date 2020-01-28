@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.appintro.example.ui.mainTabs.MainPagerAdapter;
 import com.github.appintro.example.util.TabLayout;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.appintroexample.R;
 
 public class MainTabsFragment extends Fragment {
 

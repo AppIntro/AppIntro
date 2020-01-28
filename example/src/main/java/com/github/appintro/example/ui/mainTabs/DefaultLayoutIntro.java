@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.github.appintro.example.ui.mainTabs.intro.DefaultIntro;
-import com.github.paolorotolo.appintroexample.R;
+import com.github.appintro.appintroexample.R;
 
 public class DefaultLayoutIntro extends Fragment {
 
