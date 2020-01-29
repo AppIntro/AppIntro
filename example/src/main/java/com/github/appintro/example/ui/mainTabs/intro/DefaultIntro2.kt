@@ -1,5 +1,6 @@
 package com.github.appintro.example.ui.mainTabs.intro
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
@@ -11,6 +12,8 @@ class DefaultIntro2 : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        isNavBarTranslucent = true
+        setNavBarColor(Color.parseColor("#80000000"))
         addSlide(AppIntroFragment.newInstance(
                 "Welcome!",
                 "This is a demo of the AppIntro library, using the second layout.",
