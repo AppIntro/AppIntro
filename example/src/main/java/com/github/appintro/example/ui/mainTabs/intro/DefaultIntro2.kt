@@ -2,46 +2,48 @@ package com.github.appintro.example.ui.mainTabs.intro
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.github.appintro.example.util.AppIntroFragmentFactory
 import com.github.paolorotolo.appintro.AppIntro2
+import com.github.paolorotolo.appintro.AppIntroFragment
+import com.github.paolorotolo.appintro.model.SliderPage
 import com.github.paolorotolo.appintroexample.R
 
 class DefaultIntro2 : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragmentFactory.makeFragment(
+        addSlide(AppIntroFragment.newInstance(
                 "Welcome!",
                 "This is a demo of the AppIntro library, using the second layout.",
-                R.drawable.ic_slide1,
-                backgroundDrawable = R.drawable.back_slide1,
-                titleFont = R.font.lato,
-                descFont = R.font.lato
+                imageDrawable = R.drawable.ic_slide1,
+                bgDrawable = R.drawable.back_slide1,
+                titleTypefaceFontRes = R.font.lato,
+                descTypefaceFontRes = R.font.lato
         ))
 
-        addSlide(AppIntroFragmentFactory.makeFragment(
+        addSlide(AppIntroFragment.newInstance(SliderPage(
                 "Gradients!",
                 "This text is written on a gradient background",
-                R.drawable.ic_slide2,
-                backgroundDrawable = R.drawable.back_slide3,
+                imageDrawable =R.drawable.ic_slide2,
+                bgDrawable = R.drawable.back_slide3,
                 titleTypeface = "OpenSans-Light.ttf",
                 descTypeface = "OpenSans-Light.ttf"
+        )
         ))
 
-        addSlide(AppIntroFragmentFactory.makeFragment(
+        addSlide(AppIntroFragment.newInstance(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
-                R.drawable.ic_slide4,
-                backgroundDrawable = R.drawable.back_slide4,
-                titleFont = R.font.opensans_regular,
-                descFont = R.font.opensans_regular
+                imageDrawable =R.drawable.ic_slide3,
+                bgDrawable = R.drawable.back_slide4,
+                titleTypefaceFontRes = R.font.opensans_regular,
+                descTypefaceFontRes = R.font.opensans_regular
         ))
 
-        addSlide(AppIntroFragmentFactory.makeFragment(
+        addSlide(AppIntroFragment.newInstance(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
-                R.drawable.ic_slide4,
-                backgroundDrawable = R.drawable.back_slide5
+                imageDrawable =R.drawable.ic_slide4,
+                bgDrawable = R.drawable.back_slide5
         ))
 
         setParallaxAnimation()

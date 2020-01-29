@@ -8,7 +8,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment
 import com.github.paolorotolo.appintro.model.SliderPage
 
 object AppIntroFragmentFactory {
-    fun makeFragment(title: String, desc: String,
+    fun makeFragmentt(title: String, desc: String,
                      @DrawableRes drawable: Int,
                      @ColorInt background: Int = Color.TRANSPARENT,
                      @FontRes titleFont: Int? = null,
