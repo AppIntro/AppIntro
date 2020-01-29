@@ -5,12 +5,12 @@ import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 <#if layoutType == "type1">
-import com.github.paolorotolo.appintro.${activityClassSuper1};
-import com.github.paolorotolo.appintro.${appIntroFragment1};
+import com.github.appintro.${activityClassSuper1};
+import com.github.appintro.${appIntroFragment1};
 </#if>
 <#if layoutType == "type2">
-import com.github.paolorotolo.appintro.${activityClassSuper2};
-import com.github.paolorotolo.appintro.${appIntroFragment2};
+import com.github.appintro.${activityClassSuper2};
+import com.github.appintro.${appIntroFragment2};
 </#if>
 
 // Add in your root build.gradle at the end of repositories:

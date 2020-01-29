@@ -187,7 +187,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-Click [here](https://github.com/AppIntro/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/paolorotolo/appintroexample/animations/CustomAnimation.java) to see how I did it in the example app.
+Click [here](https://github.com/AppIntro/AppIntro/blob/90a513fda9b70a5e5df35435a7f2984832727eeb/AppIntroExample/app/src/main/java/com/github/appintro/example/animations/CustomAnimation.java) to see how I did it in the example app.
 
 #### Background color transitions
 
