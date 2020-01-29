@@ -577,10 +577,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         requestApplyInsetsWhenAttached()
     }
 
-    data class InitialDimens(val height: Int, val width: Int)
+    data class InitialDimens(val height: Int, val width: Int, val paddingLeft: Int, val paddingTop: Int, val paddingRight: Int, val paddingBottom: Int)
 
     private fun recordInitialDimensForView(view: View) = InitialDimens(
-            view.height, view.width
+            view.height, view.width, view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
     )
 
     @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)

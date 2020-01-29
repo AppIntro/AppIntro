@@ -161,8 +161,8 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val bg = getView()?.findViewById<ViewGroup>(R.id.main)
-        bg?.doOnApplyWindowInsets { view, windowInsets, initialPadding ->
-            view.setPadding(initialPadding.left + windowInsets.systemWindowInsetLeft, initialPadding.top + windowInsets.systemWindowInsetTop,initialPadding.right + windowInsets.systemWindowInsetRight,initialPadding.bottom + windowInsets.systemWindowInsetBottom)
+        bg?.doOnApplyWindowInsets { view, windowInsets, initialDimens ->
+            view.setPadding(initialDimens.paddingLeft + windowInsets.systemWindowInsetLeft, initialDimens.paddingTop + windowInsets.systemWindowInsetTop,initialDimens.paddingRight + windowInsets.systemWindowInsetRight,initialDimens.paddingBottom + windowInsets.systemWindowInsetBottom)
         }
         super.onViewCreated(view, savedInstanceState)
     }
@@ -172,8 +172,8 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
-    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
-        val initialPadding = recordInitialPaddingForView(this)
+    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialDimens) -> Unit) {
+        val initialPadding = recordInitialDimensForView(this)
 
         setOnApplyWindowInsetsListener { v, insets ->
             f(v, insets, initialPadding)
@@ -183,10 +183,10 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         requestApplyInsetsWhenAttached()
     }
 
-    data class InitialPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
+    data class InitialDimens(val height: Int, val width: Int, val paddingLeft: Int, val paddingTop: Int, val paddingRight: Int, val paddingBottom: Int)
 
-    private fun recordInitialPaddingForView(view: View) = InitialPadding(
-            view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
+    private fun recordInitialDimensForView(view: View) = InitialDimens(
+            view.height, view.width, view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
     )
 
     @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
