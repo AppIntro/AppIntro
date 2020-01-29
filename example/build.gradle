@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 
-    implementation "com.mikepenz:materialdrawer:6.1.2"
+    implementation "com.mikepenz:materialdrawer:7.0.0"
     implementation "androidx.core:core-ktx:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
