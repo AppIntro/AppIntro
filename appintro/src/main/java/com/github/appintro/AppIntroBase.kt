@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -62,9 +63,42 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             field = value
             if (value && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
                 window.decorView.systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    )
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        )
+
+                bottom.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        bottom.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        val bottomHeight = bottom.height
+                        val nmargin = (nextButton.layoutParams as ConstraintLayout.LayoutParams).marginEnd
+                        val smargin = (skipButton.layoutParams as ConstraintLayout.LayoutParams).marginStart
+                        val bmargin = (skipButton.layoutParams as ConstraintLayout.LayoutParams).marginStart
+                        val dmargin = (skipButton.layoutParams as ConstraintLayout.LayoutParams).marginStart
+
+
+                        background.doOnApplyWindowInsets { view, windowInsets, initialDimens ->
+                            val layoutParams = bottom.layoutParams
+                            layoutParams.height = bottomHeight + windowInsets.systemWindowInsetBottom
+                            val nlp = nextButton.layoutParams as ConstraintLayout.LayoutParams
+                            nlp.marginEnd = if (LayoutUtil.isRtl(this@AppIntroBase) ) nmargin+windowInsets.systemWindowInsetLeft else nmargin+windowInsets.systemWindowInsetRight
+                            val slp = skipButton.layoutParams as ConstraintLayout.LayoutParams
+                            slp.marginStart = if (LayoutUtil.isRtl(this@AppIntroBase) ) smargin+windowInsets.systemWindowInsetRight else smargin+windowInsets.systemWindowInsetLeft
+                            val blp = backButton.layoutParams as ConstraintLayout.LayoutParams
+                            slp.marginStart = if (LayoutUtil.isRtl(this@AppIntroBase) ) bmargin+windowInsets.systemWindowInsetRight else bmargin+windowInsets.systemWindowInsetLeft
+                            val dlp = doneButton.layoutParams as ConstraintLayout.LayoutParams
+                            dlp.marginEnd = if (LayoutUtil.isRtl(this@AppIntroBase) ) dmargin+windowInsets.systemWindowInsetLeft else dmargin+windowInsets.systemWindowInsetRight
+
+
+                            nextButton.layoutParams = nlp
+                            skipButton.layoutParams = slp
+                            backButton.layoutParams = blp
+                            doneButton.layoutParams = dlp
+                            bottom.layoutParams = layoutParams
+
+                        }
+                    }
+                })
             }
         }
 
@@ -120,6 +154,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private val fragments: MutableList<Fragment> = mutableListOf()
 
     private lateinit var background: ViewGroup
+    private lateinit var bottom: View
     private lateinit var nextButton: View
     private lateinit var doneButton: View
     private lateinit var skipButton: View
@@ -457,6 +492,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         indicatorContainer = findViewById(R.id.indicator_container)
             ?: error("Missing Indicator Container: R.id.indicator_container")
         background = findViewById(R.id.background)
+        bottom = findViewById(R.id.bottom)
         nextButton = findViewById(R.id.next) ?: error("Missing Next button: R.id.next")
         doneButton = findViewById(R.id.done) ?: error("Missing Done button: R.id.done")
         skipButton = findViewById(R.id.skip) ?: error("Missing Skip button: R.id.skip")
@@ -528,36 +564,23 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (isNavBarTranslucent) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                background.doOnApplyWindowInsets { view, windowInsets, initialPadding ->
-                    val bottomBar = view.findViewById<View>(R.id.bottom)
-                    val layoutParams = bottomBar.layoutParams
-                    layoutParams.height += windowInsets.systemWindowInsetBottom
-                    bottomBar.layoutParams = layoutParams
-                }
-            }
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
-    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
-        val initialPadding = recordInitialPaddingForView(this)
+    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialDimens) -> Unit) {
+        val initialDimens = recordInitialDimensForView(this)
 
         setOnApplyWindowInsetsListener { v, insets ->
-            f(v, insets, initialPadding)
+            f(v, insets, initialDimens)
             insets
         }
 
         requestApplyInsetsWhenAttached()
     }
 
-    data class InitialPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
+    data class InitialDimens(val height: Int, val width: Int)
 
-    private fun recordInitialPaddingForView(view: View) = InitialPadding(
-            view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
+    private fun recordInitialDimensForView(view: View) = InitialDimens(
+            view.height, view.width
     )
 
     @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
