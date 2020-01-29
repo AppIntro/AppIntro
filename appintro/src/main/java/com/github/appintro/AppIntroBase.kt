@@ -4,20 +4,18 @@ package com.github.appintro
 
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
-import android.view.KeyEvent
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
@@ -500,20 +498,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR)
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (isNavBarTranslucent) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                background.setOnApplyWindowInsetsListener { v, insets ->
-                    val bottomBar = background.findViewById<View>(R.id.bottom)
-                    val layoutParams = bottomBar.layoutParams
-                    layoutParams.height += insets.systemWindowInsetBottom
-                    bottomBar.layoutParams = layoutParams
-                    insets
-                }
-            }
-        }
-    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -544,6 +528,53 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isNavBarTranslucent) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                background.doOnApplyWindowInsets { view, windowInsets, initialPadding ->
+                    val bottomBar = view.findViewById<View>(R.id.bottom)
+                    val layoutParams = bottomBar.layoutParams
+                    layoutParams.height += windowInsets.systemWindowInsetBottom
+                    bottomBar.layoutParams = layoutParams
+                }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
+    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
+        val initialPadding = recordInitialPaddingForView(this)
+
+        setOnApplyWindowInsetsListener { v, insets ->
+            f(v, insets, initialPadding)
+            insets
+        }
+
+        requestApplyInsetsWhenAttached()
+    }
+
+    data class InitialPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
+
+    private fun recordInitialPaddingForView(view: View) = InitialPadding(
+            view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
+    )
+
+    @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+    fun View.requestApplyInsetsWhenAttached(){
+        if(isAttachedToWindow){
+            requestApplyInsets()
+        }else{
+            addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+                override fun onViewDetachedFromWindow(v: View?)  = Unit
+
+                override fun onViewAttachedToWindow(v: View?) {
+                    v?.removeOnAttachStateChangeListener(this)
+                    v?.requestApplyInsets()
+                }
+            })
+        }
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.apply {

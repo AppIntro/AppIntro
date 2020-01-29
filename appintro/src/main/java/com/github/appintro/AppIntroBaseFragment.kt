@@ -1,13 +1,17 @@
 package com.github.appintro
 
+import android.annotation.TargetApi
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.github.appintro.internal.LogHelper
@@ -80,12 +84,12 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             description = savedInstanceState.getString(ARG_DESC)
 
             titleTypeface = TypefaceContainer(
-                savedInstanceState.getString(ARG_TITLE_TYPEFACE),
-                savedInstanceState.getInt(ARG_TITLE_TYPEFACE_RES, 0)
+                    savedInstanceState.getString(ARG_TITLE_TYPEFACE),
+                    savedInstanceState.getInt(ARG_TITLE_TYPEFACE_RES, 0)
             )
             descTypeface = TypefaceContainer(
-                savedInstanceState.getString(ARG_DESC_TYPEFACE),
-                savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0)
+                    savedInstanceState.getString(ARG_DESC_TYPEFACE),
+                    savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0)
             )
 
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
@@ -96,9 +100,9 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(layoutId, container, false)
         val titleText = view.findViewById<TextView>(R.id.title)
@@ -154,7 +158,50 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         LogHelper.d(logTAG, "Slide $title has been selected.")
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val bg = getView()?.findViewById<ViewGroup>(R.id.main)
+        bg?.doOnApplyWindowInsets { view, windowInsets, initialPadding ->
+            view.setPadding(initialPadding.left + windowInsets.systemWindowInsetLeft, initialPadding.top + windowInsets.systemWindowInsetTop,initialPadding.right + windowInsets.systemWindowInsetRight,initialPadding.bottom + windowInsets.systemWindowInsetBottom)
+        }
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     override fun setBackgroundColor(@ColorInt backgroundColor: Int) {
         mainLayout?.setBackgroundColor(backgroundColor)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
+    fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
+        val initialPadding = recordInitialPaddingForView(this)
+
+        setOnApplyWindowInsetsListener { v, insets ->
+            f(v, insets, initialPadding)
+            insets
+        }
+
+        requestApplyInsetsWhenAttached()
+    }
+
+    data class InitialPadding(val left: Int, val top: Int, val right: Int, val bottom: Int)
+
+    private fun recordInitialPaddingForView(view: View) = InitialPadding(
+            view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
+    )
+
+    @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+    fun View.requestApplyInsetsWhenAttached(){
+        if(isAttachedToWindow){
+            requestApplyInsets()
+        }else{
+            addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+                override fun onViewDetachedFromWindow(v: View?)  = Unit
+
+                override fun onViewAttachedToWindow(v: View?) {
+                    v?.removeOnAttachStateChangeListener(this)
+                    v?.requestApplyInsets()
+                }
+            })
+        }
     }
 }
