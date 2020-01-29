@@ -4,9 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.github.appintro.appintroexample.R
 import com.github.appintro.example.ui.fragment.MainTabsFragment
 import com.github.appintro.example.ui.fragment.PermissionTabsFragment
-import com.github.paolorotolo.appintroexample.R
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*

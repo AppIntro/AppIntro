@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.appintro.appintroexample.R
 import com.github.appintro.example.ui.mainTabs.intro.DefaultIntro2
-import com.github.paolorotolo.appintroexample.R
 import kotlinx.android.synthetic.main.tab_default_intro2.*
 
 class DefaultLayout2Intro : Fragment() {

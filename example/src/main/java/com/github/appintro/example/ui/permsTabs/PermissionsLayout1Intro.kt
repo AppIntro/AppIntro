@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.appintro.appintroexample.R
 import com.github.appintro.example.ui.permsTabs.intro.PermissionsIntro1
-import com.github.paolorotolo.appintroexample.R
 import kotlinx.android.synthetic.main.tab_permissions_1.*
 
 class PermissionsLayout1Intro : Fragment() {

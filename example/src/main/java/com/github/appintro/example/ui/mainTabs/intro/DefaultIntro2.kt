@@ -2,10 +2,10 @@ package com.github.appintro.example.ui.mainTabs.intro
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.github.paolorotolo.appintro.AppIntro2
-import com.github.paolorotolo.appintro.AppIntroFragment
-import com.github.paolorotolo.appintro.model.SliderPage
-import com.github.paolorotolo.appintroexample.R
+import com.github.appintro.AppIntro2
+import com.github.appintro.AppIntroFragment
+import com.github.appintro.appintroexample.R
+import com.github.appintro.model.SliderPage
 
 class DefaultIntro2 : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {

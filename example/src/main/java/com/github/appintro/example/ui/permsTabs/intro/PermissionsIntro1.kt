@@ -3,9 +3,9 @@ package com.github.appintro.example.ui.permsTabs.intro
 import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.github.paolorotolo.appintro.AppIntro
-import com.github.paolorotolo.appintro.AppIntroFragment
-import com.github.paolorotolo.appintroexample.R
+import com.github.appintro.AppIntro
+import com.github.appintro.AppIntroFragment
+import com.github.appintro.appintroexample.R
 
 class PermissionsIntro1 : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {

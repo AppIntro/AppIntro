@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.appintro.appintroexample.R
 import com.github.appintro.example.ui.mainTabs.MainPagerAdapter
-import com.github.appintro.example.util.TabLayout.TabColorizer
-import com.github.paolorotolo.appintroexample.R
 import kotlinx.android.synthetic.main.fragment_main_tabs.*
 
 class MainTabsFragment : Fragment() {
