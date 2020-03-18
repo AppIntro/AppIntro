@@ -38,6 +38,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int = 0,
             @FontRes descTypefaceFontRes: Int = 0,
             @DrawableRes imageDrawable: Int = 0,
+            @DrawableRes nextbuttonimg: Int = 0,
             @ColorInt bgColor: Int = 0,
             @DrawableRes bgDrawable: Int = 0,
             @ColorInt titleColor: Int = 0,
@@ -53,7 +54,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     titleColor = titleColor,
                     descColor = descColor,
                     titleTypefaceFontRes = titleTypefaceFontRes,
-                    descTypefaceFontRes = descTypefaceFontRes
+                    descTypefaceFontRes = descTypefaceFontRes,
+                    nextbuttonimg = nextbuttonimg
                 )
             )
         }
