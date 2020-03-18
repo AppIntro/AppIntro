@@ -24,6 +24,8 @@ internal const val ARG_BG_COLOR = "bg_color"
 internal const val ARG_TITLE_COLOR = "title_color"
 internal const val ARG_DESC_COLOR = "desc_color"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
+internal const val ARG_Next_IMG = "next_buttonimg"
+internal const val ARG_Next_Text = "next_buttontext"
 
 abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlideBackgroundColorHolder {
 
@@ -34,6 +36,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
 
     private var drawable: Int = 0
     private var bgDrawable: Int = 0
+     private var nextbuttonimg: Int = 0
 
     private var titleColor: Int = 0
     private var descColor: Int = 0
@@ -41,6 +44,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         private set
 
     private var title: String? = null
+    private var nextbuttontxt: String? = null
     private var description: String? = null
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
@@ -55,8 +59,10 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         if (args != null && args.size() != 0) {
             drawable = args.getInt(ARG_DRAWABLE)
             title = args.getString(ARG_TITLE)
+            nextbuttontxt = args.getString(ARG_Next_Text)
             description = args.getString(ARG_DESC)
             bgDrawable = args.getInt(ARG_BG_DRAWABLE)
+            nextbuttonimg = args.getInt(ARG_Next_IMG)
 
             val argsTitleTypeface = args.getString(ARG_TITLE_TYPEFACE)
             val argsDescTypeface = args.getString(ARG_DESC_TYPEFACE)
@@ -90,6 +96,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
 
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
             bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
+            nextbuttonimg = savedInstanceState.getInt(ARG_Next_IMG)
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR)
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR)
         }
