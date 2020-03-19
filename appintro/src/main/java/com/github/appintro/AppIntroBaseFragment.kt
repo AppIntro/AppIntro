@@ -36,7 +36,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
 
     private var drawable: Int = 0
     private var bgDrawable: Int = 0
-     private var nextbuttonimg: Int = 0
+    private var nextbuttonimg: Int = 0
 
     private var titleColor: Int = 0
     private var descColor: Int = 0
