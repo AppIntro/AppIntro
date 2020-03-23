@@ -24,8 +24,7 @@ internal const val ARG_BG_COLOR = "bg_color"
 internal const val ARG_TITLE_COLOR = "title_color"
 internal const val ARG_DESC_COLOR = "desc_color"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
-internal const val ARG_Next_IMG = "next_buttonimg"
-internal const val ARG_Next_Text = "next_buttontext"
+internal const val ARG_Next_IMG = "next_button_img"
 
 abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlideBackgroundColorHolder {
 
@@ -41,10 +40,8 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
     private var titleColor: Int = 0
     private var descColor: Int = 0
     final override var defaultBackgroundColor: Int = 0
-        private set
 
     private var title: String? = null
-    private var nextbuttontxt: String? = null
     private var description: String? = null
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
@@ -59,11 +56,9 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         if (args != null && args.size() != 0) {
             drawable = args.getInt(ARG_DRAWABLE)
             title = args.getString(ARG_TITLE)
-            nextbuttontxt = args.getString(ARG_Next_Text)
             description = args.getString(ARG_DESC)
             bgDrawable = args.getInt(ARG_BG_DRAWABLE)
             nextbuttonimg = args.getInt(ARG_Next_IMG)
-
             val argsTitleTypeface = args.getString(ARG_TITLE_TYPEFACE)
             val argsDescTypeface = args.getString(ARG_DESC_TYPEFACE)
             val argsTitleTypefaceRes = args.getInt(ARG_TITLE_TYPEFACE_RES)
@@ -142,6 +137,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         outState.putInt(ARG_BG_COLOR, defaultBackgroundColor)
         outState.putInt(ARG_TITLE_COLOR, titleColor)
         outState.putInt(ARG_DESC_COLOR, descColor)
+        outState.putInt(ARG_Next_IMG, nextbuttonimg)
         if (titleTypeface != null) {
             outState.putString(ARG_TITLE_TYPEFACE, titleTypeface?.typeFaceUrl)
             outState.putInt(ARG_TITLE_TYPEFACE_RES, titleTypeface?.typeFaceResource ?: 0)
