@@ -106,9 +106,11 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
         val slideImage = view.findViewById<ImageView>(R.id.image)
+        val nextButton = view.findViewById<ImageView>(R.id.next)
         mainLayout = view.findViewById(R.id.main)
 
         titleText.text = title
+        nextButton.setImageResource(nextbuttonimg)
         descriptionText.text = description
         if (titleColor != 0) {
             titleText.setTextColor(titleColor)

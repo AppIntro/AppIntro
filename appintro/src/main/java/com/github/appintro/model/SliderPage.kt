@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
+import com.github.appintro.*
 import com.github.appintro.ARG_BG_COLOR
 import com.github.appintro.ARG_BG_DRAWABLE
 import com.github.appintro.ARG_DESC
@@ -11,6 +12,7 @@ import com.github.appintro.ARG_DESC_COLOR
 import com.github.appintro.ARG_DESC_TYPEFACE
 import com.github.appintro.ARG_DESC_TYPEFACE_RES
 import com.github.appintro.ARG_DRAWABLE
+import com.github.appintro.ARG_Next_IMG
 import com.github.appintro.ARG_TITLE
 import com.github.appintro.ARG_TITLE_COLOR
 import com.github.appintro.ARG_TITLE_TYPEFACE
@@ -32,7 +34,8 @@ data class SliderPage @JvmOverloads constructor(
     @FontRes var descTypefaceFontRes: Int = 0,
     var titleTypeface: String? = null,
     var descTypeface: String? = null,
-    @DrawableRes var bgDrawable: Int = 0
+    @DrawableRes var bgDrawable: Int = 0,
+    @DrawableRes var nextbuttonimg: Int = 0
 ) {
     val titleString: String? get() = title?.toString()
     val descriptionString: String? get() = description?.toString()
@@ -54,6 +57,7 @@ data class SliderPage @JvmOverloads constructor(
         newBundle.putInt(ARG_DRAWABLE, this.imageDrawable)
         newBundle.putInt(ARG_BG_COLOR, this.bgColor)
         newBundle.putInt(ARG_BG_DRAWABLE, this.bgDrawable)
+        newBundle.putInt(ARG_Next_IMG, this.nextbuttonimg)
         return newBundle
     }
 }
