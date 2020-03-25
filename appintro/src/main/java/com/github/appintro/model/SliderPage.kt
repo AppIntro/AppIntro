@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
-import com.github.appintro.*
 import com.github.appintro.ARG_BG_COLOR
 import com.github.appintro.ARG_BG_DRAWABLE
 import com.github.appintro.ARG_DESC
@@ -40,9 +39,9 @@ data class SliderPage @JvmOverloads constructor(
     val titleString: String? get() = title?.toString()
     val descriptionString: String? get() = description?.toString()
 
-    /**
-     * Util method to convert a [SliderPage] into an Android [Bundle].
-     * This method will be used to pass the [SliderPage] to [AppIntroBaseFragment] implementations.
+    /*
+      Util method to convert a [SliderPage] into an Android [Bundle].
+      This method will be used to pass the [SliderPage] to [AppIntroBaseFragment] implementations.
      */
     fun toBundle(): Bundle {
         val newBundle = Bundle()
