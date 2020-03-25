@@ -128,7 +128,7 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             mainLayout?.setBackgroundColor(defaultBackgroundColor)
         }
 
-        if (nextbuttonimg != 0){
+        if (nextbuttonimg != 0) {
             nextButton.setImageResource(nextbuttonimg)
         }
         // Enabling Hyper links

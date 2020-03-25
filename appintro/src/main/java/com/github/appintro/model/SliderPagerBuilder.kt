@@ -69,7 +69,7 @@ class SliderPagerBuilder {
     }
 
     fun nextbuttonimg(nextbuttonimg: Int): SliderPagerBuilder {
-        this.nextbuttonimg  = nextbuttonimg
+        this.nextbuttonimg = nextbuttonimg
         return this
     }
 
