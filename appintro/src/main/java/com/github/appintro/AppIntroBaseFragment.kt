@@ -1,6 +1,7 @@
 package com.github.appintro
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,7 +111,6 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
         mainLayout = view.findViewById(R.id.main)
 
         titleText.text = title
-        nextButton.setImageResource(nextbuttonimg)
         descriptionText.text = description
         if (titleColor != 0) {
             titleText.setTextColor(titleColor)
@@ -128,6 +128,12 @@ abstract class AppIntroBaseFragment : Fragment(), ISlideSelectionListener, ISlid
             mainLayout?.setBackgroundColor(defaultBackgroundColor)
         }
 
+        if (nextbuttonimg != 0){
+            nextButton.setImageResource(nextbuttonimg)
+        }
+        // Enabling Hyper links
+        titleText.movementMethod = LinkMovementMethod.getInstance()
+        descriptionText.movementMethod = LinkMovementMethod.getInstance()
         return view
     }
 
