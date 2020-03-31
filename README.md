@@ -253,17 +253,44 @@ If you want to restrict navigation between your slides (i.e. the user has to tog
 All you have to do is implement `ISlidePolicy` in your slides:
 ```java
 public final class MySlide extends Fragment implements ISlidePolicy {
+/* Usage Example part 1 (Create a public variable for Checkbox):
+ * private CheckBox checkBox;
+ */
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.myslide_layout, container, false);
+	
+	/* Usage Example part 2 (assign the checkbox view to the variable) :
+	 * checkBox = view.findViewById(R.id.checkboxid);
+	 * 
+	 */
+	
+	
+        return view;
+    }
     @Override
     public boolean isPolicyRespected() {
-        return // If user should be allowed to leave this slide
+    /* Example part 3 (Return true if the user checked the checkbox and false if he didn't):
+     * return checkBox.isChecked();
+     */
+        return // You should return true if policy is respected or false if it isn't
     }
 
     @Override
     public void onUserIllegallyRequestedNextPage() {
-        // User illegally requested next slide
+    /* Example part 4 (Display a toast when user doesn't click on checkbox and attempts to move to next slide) :
+     * Toast.makeText(getContext(), "Please click on the checkbox to continue", Toast.LENGTH_SHORT).show();
+     */
+        // When user attempts to continue without fulfilling the policy this function gets run
     }
 }
 ```
+Then add your slide to your intro by using the following method :
+```
+addSlide(getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(),MySlide.class.getName()));
+```
+
 The interface contains two methods:
 
 - `isPolicyRespected`: The return value of this method defines if the user can leave this slide, i.e. navigate to another one
