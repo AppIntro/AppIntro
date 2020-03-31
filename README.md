@@ -263,7 +263,6 @@ public final class MySlide extends Fragment implements ISlidePolicy {
 	
 	/* Usage Example part 2 (assign the checkbox view to the variable) :
 	 * checkBox = view.findViewById(R.id.checkboxid);
-	 * 
 	 */
 	
 	
