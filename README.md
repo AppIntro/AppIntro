@@ -253,7 +253,7 @@ If you want to restrict navigation between your slides (i.e. the user has to tog
 All you have to do is implement `ISlidePolicy` in your slides:
 ```java
 public final class MySlide extends Fragment implements ISlidePolicy {
-/* Usage Example part 1 (Create a public variable for Checkbox):
+/* Usage Example part 1 (Create a public variable for the CheckBox):
  * private CheckBox checkBox;
  */
     @Override
@@ -261,7 +261,7 @@ public final class MySlide extends Fragment implements ISlidePolicy {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.myslide_layout, container, false);
 	
-	/* Usage Example part 2 (assign the checkbox view to the variable) :
+	/* Usage Example part 2 (Assign the CheckBox view to the variable) :
 	 * checkBox = view.findViewById(R.id.checkboxid);
 	 */
 	
@@ -270,10 +270,11 @@ public final class MySlide extends Fragment implements ISlidePolicy {
     }
     @Override
     public boolean isPolicyRespected() {
-    /* Example part 3 (Return true if the user checked the checkbox and false if he didn't):
+    /* Example part 3 (Returns true if the user checked the checkbox and false if he didn't):
      * return checkBox.isChecked();
      */
-        return // You should return true if policy is respected or false if it isn't
+        return // You should return true if policy is respected or false if it isn't.
+	// Once return value is true the user will be allowed to the next slide and vice versa.
     }
 
     @Override
@@ -281,11 +282,11 @@ public final class MySlide extends Fragment implements ISlidePolicy {
     /* Example part 4 (Display a toast when user doesn't click on checkbox and attempts to move to next slide) :
      * Toast.makeText(getContext(), "Please click on the checkbox to continue", Toast.LENGTH_SHORT).show();
      */
-        // When user attempts to continue without fulfilling the policy this function gets run
+        // When user attempts to continue without fulfilling the policy this function is runned.
     }
 }
 ```
-Then add your slide to your intro by using the following method :
+Finally add the slide to your intro by using the following method :
 ```
 addSlide(getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(),MySlide.class.getName()));
 ```
