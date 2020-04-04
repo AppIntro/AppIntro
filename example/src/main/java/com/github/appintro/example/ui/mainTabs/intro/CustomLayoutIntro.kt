@@ -10,6 +10,7 @@ class CustomLayoutIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        addSlide(PrivacyPolicyFragment.newInstance())
         addSlide(newInstance(R.layout.intro_custom_layout1))
         addSlide(newInstance(R.layout.intro_custom_layout2))
         addSlide(newInstance(R.layout.intro_custom_layout3))
