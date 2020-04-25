@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.R
 
 private const val MIN_SCALE_DEPTH = 0.75f
@@ -15,22 +16,28 @@ private const val MIN_ALPHA_SLIDE = 0.35f
 private const val FLOW_ROTATION_ANGLE = -30f
 
 internal class ViewPagerTransformer(
-    private val transformType: TransformType
+    private val transformType: AppIntroPageTransformerType
 ) : ViewPager.PageTransformer {
-    var titlePF: Double = 0.0
-    var imagePF: Double = 0.0
-    var descriptionPF: Double = 0.0
+
+    private var titlePF: Double = 0.0
+    private var imagePF: Double = 0.0
+    private var descriptionPF: Double = 0.0
 
     override fun transformPage(page: View, position: Float) {
         when (transformType) {
-            TransformType.FLOW -> {
+            AppIntroPageTransformerType.Flow -> {
                 page.rotationY = position * FLOW_ROTATION_ANGLE
             }
-            TransformType.SLIDE_OVER -> transformSlideOver(position, page)
-            TransformType.DEPTH -> transformDepth(position, page)
-            TransformType.ZOOM -> transformZoom(position, page)
-            TransformType.FADE -> transformFade(position, page)
-            TransformType.PARALLAX -> transformParallax(position, page)
+            AppIntroPageTransformerType.SlideOver -> transformSlideOver(position, page)
+            AppIntroPageTransformerType.Depth -> transformDepth(position, page)
+            AppIntroPageTransformerType.Zoom -> transformZoom(position, page)
+            AppIntroPageTransformerType.Fade -> transformFade(position, page)
+            is AppIntroPageTransformerType.Parallax -> {
+                titlePF = transformType.titleParallaxFactor
+                imagePF = transformType.imageParallaxFactor
+                descriptionPF = transformType.descriptionParallaxFactor
+                transformParallax(position, page)
+            }
         }
     }
 
@@ -114,15 +121,6 @@ internal class ViewPagerTransformer(
             page.transformDefaults()
         }
     }
-}
-
-internal enum class TransformType {
-    FLOW,
-    DEPTH,
-    ZOOM,
-    SLIDE_OVER,
-    FADE,
-    PARALLAX
 }
 
 private fun View.transformDefaults() {

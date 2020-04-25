@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
+import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.appintroexample.R
 import com.github.appintro.model.SliderPage
 
@@ -46,7 +47,7 @@ class DefaultIntro2 : AppIntro2() {
                 bgDrawable = R.drawable.back_slide5
         ))
 
-        setParallaxAnimation()
+        setTransformer(AppIntroPageTransformerType.Parallax())
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

@@ -6,7 +6,9 @@ import android.view.MotionEvent
 import android.view.animation.Interpolator
 import androidx.viewpager.widget.ViewPager
 import com.github.appintro.AppIntroBase
+import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.AppIntroViewPagerListener
+import com.github.appintro.internal.viewpager.ViewPagerTransformer
 import kotlin.math.absoluteValue
 
 /**
@@ -198,6 +200,10 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
         (startPoint.x - x).absoluteValue >= VALID_SWIPE_THRESHOLD_PX_X &&
             (startPoint.y - y).absoluteValue <= VALID_SWIPE_THRESHOLD_PX_Y
         )
+
+    fun setAppIntroPageTransformer(appIntroTransformer: AppIntroPageTransformerType) {
+        setPageTransformer(true, ViewPagerTransformer(appIntroTransformer))
+    }
 
     private companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
