@@ -23,25 +23,25 @@ class SliderPageTest {
             title = title,
             description = description,
             imageDrawable = imageDrawable,
-            bgColor = bgColor,
+            backgroundColor = bgColor,
             titleColor = titleColor,
-            descColor = descColor,
+            descriptionColor = descColor,
             titleTypeface = titleTypeface,
             titleTypefaceFontRes = titleTypefaceRes,
-            descTypeface = descTypeface,
-            descTypefaceFontRes = descTypefaceRes
+            descriptionTypeface = descTypeface,
+            descriptionTypefaceFontRes = descTypefaceRes
         )
 
         assertEquals(sliderPage.title, title)
         assertEquals(sliderPage.description, description)
         assertEquals(sliderPage.imageDrawable, imageDrawable)
-        assertEquals(sliderPage.bgColor, bgColor)
+        assertEquals(sliderPage.backgroundColor, bgColor)
         assertEquals(sliderPage.titleColor, titleColor)
-        assertEquals(sliderPage.descColor, descColor)
+        assertEquals(sliderPage.descriptionColor, descColor)
         assertEquals(sliderPage.titleTypeface, titleTypeface)
-        assertEquals(sliderPage.descTypeface, descTypeface)
+        assertEquals(sliderPage.descriptionTypeface, descTypeface)
         assertEquals(sliderPage.titleTypefaceFontRes, titleTypefaceRes)
-        assertEquals(sliderPage.descTypefaceFontRes, descTypefaceRes)
+        assertEquals(sliderPage.descriptionTypefaceFontRes, descTypefaceRes)
     }
 
     @Test
@@ -51,13 +51,13 @@ class SliderPageTest {
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
         assertEquals(sliderPage.imageDrawable, 0)
-        assertEquals(sliderPage.bgColor, 0)
+        assertEquals(sliderPage.backgroundColor, 0)
         assertEquals(sliderPage.titleColor, 0)
-        assertEquals(sliderPage.descColor, 0)
+        assertEquals(sliderPage.descriptionColor, 0)
         assertEquals(sliderPage.titleTypeface, null)
-        assertEquals(sliderPage.descTypeface, null)
+        assertEquals(sliderPage.descriptionTypeface, null)
         assertEquals(sliderPage.titleTypefaceFontRes, 0)
-        assertEquals(sliderPage.descTypefaceFontRes, 0)
+        assertEquals(sliderPage.descriptionTypefaceFontRes, 0)
     }
 
     @Test
