@@ -699,6 +699,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             // At least one or all of the permissions have been denied.
             deniedPermissions.forEach(::handleDeniedPermission)
+            // Let's force a recenter of the current slide.
+            pager.reCenterCurrentSlide()
         }
     }
 

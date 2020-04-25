@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager
 import com.github.appintro.AppIntroBase
 import com.github.appintro.AppIntroViewPagerListener
 import kotlin.math.absoluteValue
+import kotlin.math.max
 
 /**
  * Class that controls the [AppIntro] of AppIntro.
@@ -66,6 +67,16 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
 
     fun goToPreviousSlide() {
         currentItem += if (!LayoutUtil.isRtl(context)) -1 else 1
+    }
+
+    internal fun reCenterCurrentSlide() {
+        // Hacky way to force a recenter of the ViewPager to the current slide.
+        // We perform a page back and forward to recenter the ViewPager at the current position.
+        // This is needed as we're interrupting the user Swipe due to Permissions.
+        // If the user denies a permission, we want to recenter the slide.
+        val item = currentItem
+        setCurrentItem(max(item - 1, 0), false)
+        setCurrentItem(item, false)
     }
 
     fun isFirstSlide(size: Int): Boolean {
