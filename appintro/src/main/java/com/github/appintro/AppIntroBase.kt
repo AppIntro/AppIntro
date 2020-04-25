@@ -88,7 +88,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     protected var isSystemBackButtonLocked = false
 
     /** Toggles color cross-fading between slides.
-     * Please note that slides should implement [ISlideBackgroundColorHolder] */
+     * Please note that slides should implement [SlideBackgroundColorHolder] */
     protected var isColorTransitionsEnabled = false
 
     /** Vibration duration in milliseconds */
@@ -632,8 +632,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     override fun onCanRequestNextPage(): Boolean {
         val currentFragment = pagerAdapter.getItem(pager.currentItem)
 
-        // Check if the current fragment implements ISlidePolicy, else a change is always allowed.
-        return if (currentFragment is ISlidePolicy && !currentFragment.isPolicyRespected) {
+        // Check if the current fragment implements SlidePolicy, else a change is always allowed.
+        return if (currentFragment is SlidePolicy && !currentFragment.isPolicyRespected) {
             LogHelper.d(TAG, "Slide policy not respected, denying change request.")
             false
         } else {
@@ -644,7 +644,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     override fun onIllegallyRequestedNextPage() {
         val currentFragment = pagerAdapter.getItem(pager.currentItem)
-        if (currentFragment is ISlidePolicy) {
+        if (currentFragment is SlidePolicy) {
             if (!currentFragment.isPolicyRespected) {
                 currentFragment.onUserIllegallyRequestedNextPage()
             }
@@ -752,10 +752,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Takes care of calling all the necessary callbacks on Slide Changing. */
     private fun dispatchSlideChangedCallbacks(oldFragment: Fragment?, newFragment: Fragment?) {
-        if (oldFragment is ISlideSelectionListener) {
+        if (oldFragment is SlideSelectionListener) {
             oldFragment.onSlideDeselected()
         }
-        if (newFragment is ISlideSelectionListener) {
+        if (newFragment is SlideSelectionListener) {
             newFragment.onSlideSelected()
         }
         onSlideChanged(oldFragment, newFragment)
@@ -763,8 +763,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Performs color interpolation between two slides.. */
     private fun performColorTransition(currentSlide: Fragment?, nextSlide: Fragment?, positionOffset: Float) {
-        if (currentSlide is ISlideBackgroundColorHolder &&
-            nextSlide is ISlideBackgroundColorHolder
+        if (currentSlide is SlideBackgroundColorHolder &&
+            nextSlide is SlideBackgroundColorHolder
         ) {
             // Check if both fragments are attached to an activity,
             // otherwise getDefaultBackgroundColor may fail.
@@ -778,7 +778,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
                 nextSlide.setBackgroundColor(newColor)
             }
         } else {
-            error("Color transitions are only available if all slides implement ISlideBackgroundColorHolder.")
+            error("Color transitions are only available if all slides implement SlideBackgroundColorHolder.")
         }
     }
 

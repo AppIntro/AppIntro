@@ -1,6 +1,6 @@
 package com.github.appintro
 
-interface ISlidePolicy {
+interface SlidePolicy {
 
     /**
      * Whether the user has fulfilled the slides policy and should be allowed to navigate through the intro further.
