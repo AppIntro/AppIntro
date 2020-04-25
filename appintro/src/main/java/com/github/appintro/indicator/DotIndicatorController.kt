@@ -32,7 +32,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
     private var slideCount = 0
 
     override fun newInstance(context: Context): View {
-        val newLayoutParams = LinearLayout.LayoutParams(
+        val newLayoutParams = LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT
         )
         newLayoutParams.gravity = Gravity.CENTER_VERTICAL
@@ -54,9 +54,9 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
                 )
             )
 
-            val params = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+            val params = LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
             )
             this.addView(dot, params)
         }
