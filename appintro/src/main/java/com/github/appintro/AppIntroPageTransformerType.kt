@@ -28,8 +28,8 @@ sealed class AppIntroPageTransformerType {
      * @property descriptionParallaxFactor Parallax factor of description
      */
     class Parallax(
-            val titleParallaxFactor: Double = 1.0,
-            val imageParallaxFactor: Double = -1.0,
-            val descriptionParallaxFactor: Double = 2.0
+        val titleParallaxFactor: Double = 1.0,
+        val imageParallaxFactor: Double = -1.0,
+        val descriptionParallaxFactor: Double = 2.0
     ) : AppIntroPageTransformerType()
 }
