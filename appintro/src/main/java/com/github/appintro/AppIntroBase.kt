@@ -33,7 +33,6 @@ import com.github.appintro.internal.LayoutUtil
 import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.PermissionWrapper
 import com.github.appintro.internal.viewpager.PagerAdapter
-import com.github.appintro.internal.viewpager.TransformType
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
 
 /**
@@ -296,7 +295,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /*
-     ANIMATIONS
+     TRANSFORMERS
      =================================== */
 
     /**
@@ -308,58 +307,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         pager.setScrollDurationFactor(factor.toDouble())
     }
 
-    /** Sets the animation of the intro to a fade animation */
-    protected fun setFadeAnimation() {
-        pager.setPageTransformer(true, ViewPagerTransformer(TransformType.FADE))
-    }
-
-    /**
-     * Sets the animation of the intro to a parallax animation
-     * @param titleParallaxFactor Parallax factor of title
-     * @param imageParallaxFactor Parallax factor of image
-     * @param descriptionParallaxFactor Parallax factor of description
-     */
-    @JvmOverloads
-    protected fun setParallaxAnimation(
-        titleParallaxFactor: Double = 1.0,
-        imageParallaxFactor: Double = -1.0,
-        descriptionParallaxFactor: Double = 2.0
-    ) {
-        val transformer = ViewPagerTransformer(TransformType.PARALLAX).apply {
-            titlePF = titleParallaxFactor
-            imagePF = imageParallaxFactor
-            descriptionPF = descriptionParallaxFactor
-        }
-        pager.setPageTransformer(true, transformer)
-    }
-
-    /** Sets the animation of the intro to a zoom animation */
-    protected fun setZoomAnimation() {
-        pager.setPageTransformer(true, ViewPagerTransformer(TransformType.ZOOM))
-    }
-
-    /** Sets the animation of the intro to a flow animation */
-    protected fun setFlowAnimation() {
-        pager.setPageTransformer(
-            true,
-            ViewPagerTransformer(TransformType.FLOW)
-        )
-    }
-
-    /** Sets the animation of the intro to a slide over animation */
-    protected fun setSlideOverAnimation() {
-        pager.setPageTransformer(
-            true,
-            ViewPagerTransformer(TransformType.SLIDE_OVER)
-        )
-    }
-
-    /** Sets the animation of the intro to a depth animation */
-    protected fun setDepthAnimation() {
-        pager.setPageTransformer(
-            true,
-            ViewPagerTransformer(TransformType.DEPTH)
-        )
+    /** Allows to specify one of the [AppIntroPageTransformerType] for the ViewPager */
+    protected fun setTransformer(appIntroTransformer: AppIntroPageTransformerType) {
+        pager.setAppIntroPageTransformer(appIntroTransformer)
     }
 
     /** Overrides viewpager transformer with you custom [ViewPagerTransformer] */
