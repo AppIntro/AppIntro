@@ -288,8 +288,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * @param unselectedIndicatorColor your unselected color
      */
     protected fun setIndicatorColor(
-        selectedIndicatorColor: Int,
-        unselectedIndicatorColor: Int
+        @ColorInt selectedIndicatorColor: Int,
+        @ColorInt unselectedIndicatorColor: Int
     ) {
         indicatorController.selectedIndicatorColor = selectedIndicatorColor
         indicatorController.unselectedIndicatorColor = unselectedIndicatorColor
