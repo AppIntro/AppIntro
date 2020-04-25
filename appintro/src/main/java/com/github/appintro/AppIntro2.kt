@@ -55,7 +55,7 @@ abstract class AppIntro2 : AppIntroBase() {
     }
 
     /**
-     * Override Next button
+     * Override Skip button drawable
      * @param imageSkipButton your drawable resource
      */
     fun setImageSkipButton(imageSkipButton: Drawable) {
