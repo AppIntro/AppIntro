@@ -1,6 +1,6 @@
 package com.github.appintro
 
-interface ISlideSelectionListener {
+interface SlideSelectionListener {
     /**
      * Called when this slide becomes selected
      */
