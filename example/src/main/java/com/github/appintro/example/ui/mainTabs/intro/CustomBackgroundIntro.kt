@@ -1,5 +1,6 @@
 package com.github.appintro.example.ui.mainTabs.intro
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
@@ -36,6 +37,9 @@ class CustomBackgroundIntro : AppIntro2() {
 
         // Set intro custom background
         backgroundResource = R.drawable.ic_drawer_header
+
+        // Change the color of the dot indicator.
+        setIndicatorColor(Color.RED, Color.BLACK)
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

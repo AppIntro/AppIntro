@@ -49,7 +49,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     /**
      * A subclass of [IndicatorController] to show the progress.
      * If not provided will be initialized with a [DotIndicatorController] */
-    protected lateinit var indicatorController: IndicatorController
+    protected var indicatorController: IndicatorController? = null
 
     /** Toggles all the buttons visibility (between visible and invisible). */
     protected var isButtonsEnabled: Boolean = true
@@ -291,8 +291,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         selectedIndicatorColor: Int,
         unselectedIndicatorColor: Int
     ) {
-        indicatorController.selectedIndicatorColor = selectedIndicatorColor
-        indicatorController.unselectedIndicatorColor = unselectedIndicatorColor
+        indicatorController?.selectedIndicatorColor = selectedIndicatorColor
+        indicatorController?.unselectedIndicatorColor = unselectedIndicatorColor
     }
 
     /*
@@ -438,6 +438,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
 
+        // We default the indicator controller to the Dotted one.
+        indicatorController = DotIndicatorController(this)
+
         // We default to don't show the Status Bar. User can override this.
         showStatusBar(false)
 
@@ -558,13 +561,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     private fun initializeIndicator() {
-        if (!::indicatorController.isInitialized) {
-            // Let's default the indicator to the Dotted one.
-            indicatorController = DotIndicatorController(this)
-        }
-        indicatorContainer.addView(indicatorController.newInstance(this))
-        indicatorController.initialize(slidesNumber)
-        indicatorController.selectPosition(currentlySelectedItem)
+        indicatorContainer.addView(indicatorController?.newInstance(this))
+        indicatorController?.initialize(slidesNumber)
+        indicatorController?.selectPosition(currentlySelectedItem)
     }
 
     override fun onKeyDown(code: Int, event: KeyEvent): Boolean {
@@ -826,7 +825,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
         override fun onPageSelected(position: Int) {
             if (slidesNumber >= 1) {
-                indicatorController.selectPosition(position)
+                indicatorController?.selectPosition(position)
             }
 
             // Allow the swipe to be re-enabled if a user swipes to a previous slide. Restore
