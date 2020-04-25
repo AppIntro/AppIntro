@@ -158,7 +158,6 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
                 if (isPermissionSlide && isSwipeForward(currentTouchDownX, event.x)) {
                     onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
                 }
-                currentTouchDownX = event.x
             }
         }
         return isFullPagingEnabled

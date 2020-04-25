@@ -722,7 +722,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             // Permission is disabled (never ask again is checked)
             // Ask the user to go to settings to enable permission.
-            setSwipeLock(true)
             onUserDisabledPermission(permission)
         }
     }
