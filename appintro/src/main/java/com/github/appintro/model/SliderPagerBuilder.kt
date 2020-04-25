@@ -19,26 +19,26 @@ class SliderPagerBuilder {
     private var imageDrawable: Int = 0
 
     @ColorInt
-    private var bgColor: Int = 0
-
-    @DrawableRes
-    private var bgDrawable: Int = 0
+    private var backgroundColor: Int = 0
 
     @ColorInt
     private var titleColor: Int = 0
 
     @ColorInt
-    private var descColor: Int = 0
+    private var descriptionColor: Int = 0
+
+    @FontRes
+    private var titleTypefaceFontRes: Int = 0
+
+    @FontRes
+    private var descriptionTypefaceFontRes: Int = 0
 
     private var titleTypeface: String? = null
 
-    private var descTypeface: String? = null
+    private var descriptionTypeface: String? = null
 
-    @FontRes
-    private var titleTypefaceRes: Int = 0
-
-    @FontRes
-    private var descTypefaceRes: Int = 0
+    @DrawableRes
+    private var backgroundDrawable: Int = 0
 
     fun title(title: CharSequence): SliderPagerBuilder {
         this.title = title
@@ -55,13 +55,8 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun bgColor(@ColorInt bgColor: Int): SliderPagerBuilder {
-        this.bgColor = bgColor
-        return this
-    }
-
-    fun bgDrawable(@DrawableRes bgDrawable: Int): SliderPagerBuilder {
-        this.bgDrawable = bgDrawable
+    fun backgroundColor(@ColorInt backgroundColor: Int): SliderPagerBuilder {
+        this.backgroundColor = backgroundColor
         return this
     }
 
@@ -70,8 +65,18 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun descColor(@ColorInt descColor: Int): SliderPagerBuilder {
-        this.descColor = descColor
+    fun descriptionColor(@ColorInt descriptionColor: Int): SliderPagerBuilder {
+        this.descriptionColor = descriptionColor
+        return this
+    }
+
+    fun titleTypefaceFontRes(@FontRes titleTypefaceFontRes: Int): SliderPagerBuilder {
+        this.titleTypefaceFontRes = titleTypefaceFontRes
+        return this
+    }
+
+    fun descriptionTypefaceFontRes(@FontRes descriptionTypefaceFontRes: Int): SliderPagerBuilder {
+        this.descriptionTypefaceFontRes = descriptionTypefaceFontRes
         return this
     }
 
@@ -80,18 +85,13 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun titleTypefaceRes(@FontRes titleTypefaceRes: Int): SliderPagerBuilder {
-        this.titleTypefaceRes = titleTypefaceRes
+    fun descriptionTypeface(descriptionTypeface: String): SliderPagerBuilder {
+        this.descriptionTypeface = descriptionTypeface
         return this
     }
 
-    fun descTypeface(descTypeface: String): SliderPagerBuilder {
-        this.descTypeface = descTypeface
-        return this
-    }
-
-    fun descTypefaceRes(@FontRes descTypefaceRes: Int): SliderPagerBuilder {
-        this.descTypefaceRes = descTypefaceRes
+    fun backgroundDrawable(@DrawableRes backgroundDrawable: Int): SliderPagerBuilder {
+        this.backgroundDrawable = backgroundDrawable
         return this
     }
 
@@ -99,13 +99,13 @@ class SliderPagerBuilder {
         title = this.title,
         description = this.description,
         imageDrawable = this.imageDrawable,
-        bgDrawable = this.bgDrawable,
-        bgColor = this.bgColor,
+        backgroundColor = this.backgroundColor,
         titleColor = this.titleColor,
-        descColor = this.descColor,
+        descriptionColor = this.descriptionColor,
+        titleTypefaceFontRes = this.titleTypefaceFontRes,
+        descriptionTypeface = this.descriptionTypeface,
         titleTypeface = this.titleTypeface,
-        titleTypefaceFontRes = this.titleTypefaceRes,
-        descTypeface = this.descTypeface,
-        descTypefaceFontRes = this.descTypefaceRes
+        descriptionTypefaceFontRes = this.descriptionTypefaceFontRes,
+        backgroundDrawable = this.backgroundDrawable
     )
 }

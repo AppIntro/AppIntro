@@ -25,9 +25,9 @@ class DefaultIntro2 : AppIntro2() {
                 "Gradients!",
                 "This text is written on a gradient background",
                 imageDrawable =R.drawable.ic_slide2,
-                bgDrawable = R.drawable.back_slide3,
+                backgroundDrawable = R.drawable.back_slide3,
                 titleTypeface = "OpenSans-Light.ttf",
-                descTypeface = "OpenSans-Light.ttf"
+                descriptionTypeface = "OpenSans-Light.ttf"
         )
         ))
 
