@@ -50,27 +50,27 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun imageDrawable(imageDrawable: Int): SliderPagerBuilder {
+    fun imageDrawable(@DrawableRes imageDrawable: Int): SliderPagerBuilder {
         this.imageDrawable = imageDrawable
         return this
     }
 
-    fun bgColor(bgColor: Int): SliderPagerBuilder {
+    fun bgColor(@ColorInt bgColor: Int): SliderPagerBuilder {
         this.bgColor = bgColor
         return this
     }
 
-    fun bgDrawable(bgDrawable: Int): SliderPagerBuilder {
+    fun bgDrawable(@DrawableRes bgDrawable: Int): SliderPagerBuilder {
         this.bgDrawable = bgDrawable
         return this
     }
 
-    fun titleColor(titleColor: Int): SliderPagerBuilder {
+    fun titleColor(@ColorInt titleColor: Int): SliderPagerBuilder {
         this.titleColor = titleColor
         return this
     }
 
-    fun descColor(descColor: Int): SliderPagerBuilder {
+    fun descColor(@ColorInt descColor: Int): SliderPagerBuilder {
         this.descColor = descColor
         return this
     }
