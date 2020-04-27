@@ -3,7 +3,7 @@ package com.github.appintro.example.ui.mainTabs.intro
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
-import com.github.appintro.AppIntroCustomLayoutSlide.Companion.newInstance
+import com.github.appintro.AppIntroCustomLayoutFragment.Companion.newInstance
 import com.github.appintro.appintroexample.R
 
 class CustomLayoutIntro : AppIntro() {
