@@ -648,6 +648,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             // At least one or all of the permissions have been denied.
             deniedPermissions.forEach(::handleDeniedPermission)
+            // Let's force a recenter of the current slide.
+            pager.reCenterCurrentSlide()
         }
     }
 
@@ -671,7 +673,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             // Permission is disabled (never ask again is checked)
             // Ask the user to go to settings to enable permission.
-            setSwipeLock(true)
             onUserDisabledPermission(permission)
         }
     }
