@@ -15,6 +15,9 @@ class CustomLayoutIntro : AppIntro() {
         addSlide(newInstance(R.layout.intro_custom_layout3))
         addSlide(newInstance(R.layout.intro_custom_layout4))
 
+        showStatusBar(true)
+        setStatusBarColorRes(R.color.accent)
+        setNavBarColorRes(R.color.accent)
         setProgressIndicator()
     }
 
