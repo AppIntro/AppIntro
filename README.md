@@ -11,6 +11,7 @@ AppIntro is an Android Library that helps you build a **cool carousel intro** fo
   * [Getting Started <g-emoji class="g-emoji" alias="footprints" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f463.png">👣</g-emoji>](#getting-started-)
      * [Adding a dependency](#adding-a-dependency)
      * [Basic usage](#basic-usage)
+  * [Migrating <g-emoji class="g-emoji" alias="car" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f697.png">🚗</g-emoji>](#migrating-)
   * [Features <g-emoji class="g-emoji" alias="toolbox" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f9f0.png">🧰</g-emoji>](#features-)
   * [Creating Slides <g-emoji class="g-emoji" alias="woman_artist" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f469-1f3a8.png">👩‍🎨</g-emoji>](#creating-slides-)
      * [AppIntroFragment](#appintrofragment)
@@ -30,7 +31,6 @@ AppIntro is an Android Library that helps you build a **cool carousel intro** fo
      * [Slide Policy](#slide-policy)
   * [Example App <g-emoji class="g-emoji" alias="bulb" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png">💡</g-emoji>](#example-app-)
   * [Translating <g-emoji class="g-emoji" alias="earth_africa" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png">🌍</g-emoji>](#translating-)
-  * [Migrating <g-emoji class="g-emoji" alias="car" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f697.png">🚗</g-emoji>](#migrating-)
   * [Snapshots <g-emoji class="g-emoji" alias="package" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4e6.png">📦</g-emoji>](#snapshots-)
   * [Contributing <g-emoji class="g-emoji" alias="handshake" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f91d.png">🤝</g-emoji>](#contributing-)
   * [Acknowledgments <g-emoji class="g-emoji" alias="cherry_blossom" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f338.png">🌸</g-emoji>](#acknowledgments-)
@@ -114,6 +114,10 @@ Finally, declare the activity in your Manifest like so:
 ```
 
 We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
+
+## Migrating 🚗
+
+If you're migrating **from AppIntro v5.x to v6.x**, please expect multiple breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
 
 ## Features 🧰
 
@@ -466,10 +470,6 @@ In order to provide the translation, your file needs to contain the following st
 An updated version of the English version translation is [available here](appintro/src/main/res/values/strings.xml).
 
 If a translation in your language is already available, please check it and eventually fix it (all the strings should be listed, not just a subset).
-
-## Migrating 🚗
-
-If you're migrating **from AppIntro v5.x to v6.x**, please expect multiple breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
 
 ## Snapshots 📦
 
