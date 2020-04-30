@@ -1,7 +1,3 @@
-<p align="center">
-    <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="40%"/>
-</p>
-
 # AppIntro
 
 [![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Pre Merge Checks](https://github.com/AppIntro/AppIntro/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939) [![Join the chat at https://gitter.im/AppIntro/Lobby](https://badges.gitter.im/AppIntro/Lobby.svg)](https://gitter.im/AppIntro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
@@ -9,7 +5,7 @@
 AppIntro is an Android Library that helps you build a **cool carousel intro** for your App. AppIntro has support for **requesting permissions** and helps you create a great onboarding experience in just a couple of minutes.
 
 <p align="center">
-    <img src="assets/appintro.gif" alt="appintro sample" width="40%"/>
+    <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="30%"/> <img src="assets/appintro.gif" alt="appintro sample" width="30%"/>
 </p>
    
   * [Getting Started <g-emoji class="g-emoji" alias="footprints" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f463.png">👣</g-emoji>](#getting-started-)
