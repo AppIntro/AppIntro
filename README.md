@@ -5,7 +5,7 @@
 AppIntro is an Android Library that helps you build a **cool carousel intro** for your App. AppIntro has support for **requesting permissions** and helps you create a great onboarding experience in just a couple of minutes.
 
 <p align="center">
-    <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="30%"/> <img src="assets/appintro.gif" alt="appintro sample" width="30%"/>
+    <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="60%"/> <img src="assets/appintro.gif" alt="appintro sample" width="30%"/>
 </p>
    
   * [Getting Started <g-emoji class="g-emoji" alias="footprints" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f463.png">👣</g-emoji>](#getting-started-)
