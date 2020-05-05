@@ -103,7 +103,7 @@ To get a deeper overview of the breaking changes, please read the [migration doc
 
 This release was possible thanks to the contribution of:
 
-@AnuthaDev @bartekpacia @chihung93 @cortinico @dragstor @elegktara37 @fchauveau @Goopher @GuilhE @ivaniskandar @ivaniskandar @Kimjio @maxee @moxspoy @MTRNord @paolorotolo @perchrh @vzahradnik @Younes-Charfaoui @zpapez
+[@AnuthaDev](https://github.com/AnuthaDev) [@bartekpacia](https://github.com/bartekpacia) [@chihung93](https://github.com/chihung93) [@cortinico](https://github.com/cortinico) [@dragstor](https://github.com/dragstor) [@elegktara37](https://github.com/elegktara37) [@fchauveau](https://github.com/fchauveau) [@Goopher](https://github.com/Goopher) [@GuilhE](https://github.com/GuilhE) [@ivaniskandar](https://github.com/ivaniskandar) [@ivaniskandar](https://github.com/ivaniskandar) [@Kimjio](https://github.com/Kimjio) [@maxee](https://github.com/maxee) [@moxspoy](https://github.com/moxspoy) [@MTRNord](https://github.com/MTRNord) [@paolorotolo](https://github.com/paolorotolo) [@perchrh](https://github.com/perchrh) [@vzahradnik](https://github.com/vzahradnik) [@Younes-Charfaoui](https://github.com/Younes-Charfaoui) [@zpapez](https://github.com/zpapez)
 
 ## Version 5.1.0 *(2018-10-23)*
 
