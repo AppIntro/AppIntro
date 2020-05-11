@@ -535,7 +535,7 @@ AppIntro is not relying on any third party library other than those from Android
 
 ## Apps using AppIntro 📱
 
-If you are using AppIntro in your app and would like to be listed here, please open a pull request and we will more than app to include you:
+If you are using AppIntro in your app and would like to be listed here, please open a pull request and we will be more than happy to include you:
 
 <details>
   <summary>List of Apps using AppIntro</summary>
@@ -573,5 +573,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [BeatPrompter](https://play.google.com/store/apps/details?id=com.stevenfrew.beatprompter)
 * [BlueWords](https://play.google.com/store/apps/details?id=com.thesrb.bluewords&referrer=utm_source%3Dappintro%26utm_medium%3Dgithub%26utm_campaign%3Dreadme)
 * [Best Quotes & Status 2019 (99000+ Collection)](https://play.google.com/store/apps/details?id=com.swastik.quotesandstatus&hl=en_IN)
+* [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android)
 
 </details>
