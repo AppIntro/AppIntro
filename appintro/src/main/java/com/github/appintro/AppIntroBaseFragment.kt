@@ -126,6 +126,12 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         return view
     }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        mainLayout = null
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(ARG_DRAWABLE, drawable)
