@@ -126,7 +126,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         return view
     }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
 
