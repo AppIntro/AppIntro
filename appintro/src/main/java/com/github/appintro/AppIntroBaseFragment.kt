@@ -45,8 +45,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
 
-    private var mainLayout: ConstraintLayout? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -104,7 +102,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
         val slideImage = view.findViewById<ImageView>(R.id.image)
-        mainLayout = view.findViewById(R.id.main)
+        val mainLayout = view.findViewById<ConstraintLayout>(R.id.main)
 
         titleText.text = title
         descriptionText.text = description
@@ -125,12 +123,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         }
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        mainLayout = null
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -161,6 +153,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     }
 
     override fun setBackgroundColor(@ColorInt backgroundColor: Int) {
-        mainLayout?.setBackgroundColor(backgroundColor)
+        view?.findViewById<ConstraintLayout>(R.id.main)?.setBackgroundColor(backgroundColor)
     }
 }
