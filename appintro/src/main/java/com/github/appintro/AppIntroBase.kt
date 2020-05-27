@@ -169,7 +169,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /** Moves the AppIntro to the previous slide */
-    private fun goToPreviousSlide() {
+    protected fun goToPreviousSlide() {
         pager.goToPreviousSlide()
     }
 
