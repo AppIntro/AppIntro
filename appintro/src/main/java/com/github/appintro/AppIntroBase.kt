@@ -174,7 +174,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /** Moves the AppIntro to the next slide */
-    protected fun goToNextSlide(isLastSlide: Boolean = pager.currentItem + 1 == slidesNumber) {
+    protected fun goToNextSlide(isLastSlide: Boolean = pager.isLastSlide(fragments.size)) {
         if (isLastSlide) {
             onIntroFinished()
         } else {
@@ -524,7 +524,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             code == KeyEvent.KEYCODE_BUTTON_A ||
             code == KeyEvent.KEYCODE_DPAD_CENTER
         ) {
-            val isLastSlide = pager.currentItem == pagerAdapter.count - 1
+            val isLastSlide = pager.isLastSlide(fragments.size)
             goToNextSlide(isLastSlide)
             if (isLastSlide) {
                 // We emulate the onDonePressed here to keep backward compatibility
@@ -555,9 +555,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     private fun updateButtonsVisibility() {
         if (isButtonsEnabled) {
-            val isLastSlide =
-                !isRtl && pager.currentItem == slidesNumber - 1 ||
-                    isRtl && pager.currentItem == 0
+            val isLastSlide = pager.isLastSlide(fragments.size)
             nextButton.isVisible = !isLastSlide
             doneButton.isVisible = isLastSlide
             skipButton.isVisible = isSkipButtonEnabled && !isLastSlide
