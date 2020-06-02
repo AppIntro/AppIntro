@@ -99,6 +99,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * */
     protected var isVibrate = false
 
+    /**
+     * Util property to check if the AppIntro is rendered in a RTL layout or not.
+     */
+    protected val isRtl: Boolean
+        get() = LayoutUtil.isRtl(applicationContext)
+
     // Private Fields
 
     private lateinit var pagerAdapter: PagerAdapter
@@ -126,9 +132,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     // Android SDK
     private lateinit var vibrator: Vibrator
     private val argbEvaluator = ArgbEvaluator()
-
-    internal val isRtl: Boolean
-        get() = LayoutUtil.isRtl(applicationContext)
 
     /*
      PUBLIC API
