@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
@@ -37,6 +38,8 @@ dependencies {
     implementation "com.mikepenz:materialdrawer:6.1.2"
     implementation "androidx.core:core-ktx:1.2.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.navigation:navigation-fragment:2.3.0-beta01'
+    implementation 'androidx.navigation:navigation-ui:2.3.0-beta01'
 }
 repositories {
     mavenCentral()

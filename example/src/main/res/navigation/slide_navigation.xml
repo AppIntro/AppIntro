@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appintro_navigation"
+    app:startDestination="@+id/nav_appintro_fragment">
+
+    <fragment
+        android:id="@+id/nav_appintro_fragment"
+        android:name="com.github.appintro.AppIntroFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.github.appintro.example.ui.fragment.TestFragment"
+        android:label="TestFragment" />
+    <fragment
+        android:id="@+id/introCustomLayout1"
+        android:name="com.github.appintro.example.ui.mainTabs.intro.IntroCustomLayout1"
+        android:label="IntroCustomLayout1" >
+        <action
+            android:id="@+id/action_introCustomLayout1_to_testFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
+</navigation>

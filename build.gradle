@@ -12,6 +12,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.7.4"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.0-beta01"
     }
 }
 
