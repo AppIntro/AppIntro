@@ -15,7 +15,7 @@ class PermissionsLayout2Intro : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         intro2.setOnClickListener {
-            startActivity(Intent(activity!!.baseContext, PermissionsIntro2::class.java))
+            startActivity(Intent(requireActivity().baseContext, PermissionsIntro2::class.java))
         }
     }
 
