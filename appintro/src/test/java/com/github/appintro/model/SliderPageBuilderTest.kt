@@ -1,7 +1,6 @@
 package com.github.appintro.model
 
 import android.graphics.Color
-import com.github.appintro.model.SliderPagerBuilder
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
