@@ -1,4 +1,4 @@
-package com.github.appintro.appintroexample
+package com.github.appintro.model
 
 import android.graphics.Color
 import com.github.appintro.model.SliderPagerBuilder

@@ -1,12 +1,6 @@
 <resources>
 
-    <style name="CustomTheme" parent="MaterialDrawerTheme.Light.DarkToolbar">
-        <item name="colorPrimary">#1976D2</item>
-        <item name="colorPrimaryDark">#1565C0</item>
-        <item name="colorAccent">#E91E63</item>
-    </style>
-
-    <style name="AppIntroTheme" parent="MaterialTheme.TranslucentStatus">
+    <style name="AppIntroTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#1976D2</item>
         <item name="colorPrimaryDark">#1565C0</item>
         <item name="colorAccent">#E91E63</item>

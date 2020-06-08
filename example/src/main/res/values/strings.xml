@@ -1,18 +1,26 @@
 <resources>
     <!-- Main Strings -->
-    <string name="app_name">AppIntro Example</string>
-    <string name="drawer_header">Drawer Header</string>
-    <string name="launch_demo">Launch Demo</string>
+    <string name="app_name">AppIntro Sample App</string>
+    <string name="appintro_logo">appintro_logo</string>
+    <string name="start">Start</string>
+    <string name="welcome_body">This app will show you some of the features of AppIntro. You can find more documentation on github.com/AppIntro/AppIntro</string>
+
+    <!-- Titles -->
+    <string name="default_intro_title">Default Intro</string>
+    <string name="default_intro2_title">Default Intro 2</string>
+    <string name="custom_layout_intro_title">Custom Layout Intro</string>
+    <string name="custom_background_intro_title">Custom Background Intro</string>
+    <string name="perms_intro1_title">Permissions Intro</string>
+    <string name="perms_intro2_title">Permissions Intro 2</string>
 
     <!-- 1st Tab Group -->
-    <string name="default_intro">This is the most basic form of the AppIntro library. Minimal code is required to achieve this, and there are two layout options available. Tap the button below to launch the demo.</string>
-    <string name="default_intro2">This is the second most basic form of the AppIntro library. Minimal code is required to achieve ths, and this is the second layout option that the library offers. Tap the button below to launch the demo.</string>
-    <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization. Tap the button below to launch the demo.</string>
-    <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds. Tap the button below to launch the demo.</string>
+    <string name="default_intro">This is the basic layout of the AppIntro library.</string>
+    <string name="default_intro2">This is the second layout provided by AppIntro library, with icons instead of text</string>
+    <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization.</string>
+    <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds.</string>
 
     <!-- 2nd Tab Group -->
-    <string name="perms_intro1">This demonstrates the ability to request permission on any slide specified. Tap the button below to launch the demo.</string>
-    <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified, only it\'s using the second slide layout. Tap the button below to launch the demo.</string>
+    <string name="perms_intro1">This demonstrates the ability to request runtime permission on any desired slide.</string>
+    <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified using the second slide layout.</string>
 
-    <!-- 3rd Tab Group -->
 </resources>
