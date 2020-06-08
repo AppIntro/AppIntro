@@ -161,13 +161,13 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
                 val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
 
                 // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
-                // We need to return false, and also call onIllegallyRequestedNextPage if the
-                // threshold was too high (so the user can be informed).
-                if (!canRequestNextPage) {
+                // We need to return false if we detect that the user swipes forward,
+                // and also call onIllegallyRequestedNextPage if the threshold was too high
+                // (so the user can be informed).
+                if (!canRequestNextPage && isSwipeForward(currentTouchDownX, event.x)) {
                     if (userIllegallyRequestNextPage(event)) {
                         onNextPageRequestedListener?.onIllegallyRequestedNextPage()
                     }
-
                     return false
                 }
 
