@@ -1,10 +1,10 @@
-package com.github.appintro.example.ui.mainTabs.intro
+package com.github.appintro.example.ui.custom
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroCustomLayoutFragment.Companion.newInstance
-import com.github.appintro.appintroexample.R
+import com.github.appintro.example.R
 
 class CustomLayoutIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +16,8 @@ class CustomLayoutIntro : AppIntro() {
         addSlide(newInstance(R.layout.intro_custom_layout4))
 
         showStatusBar(true)
-        setStatusBarColorRes(R.color.accent)
-        setNavBarColorRes(R.color.accent)
+        setStatusBarColorRes(R.color.orange)
+        setNavBarColorRes(R.color.orange)
         setProgressIndicator()
     }
 

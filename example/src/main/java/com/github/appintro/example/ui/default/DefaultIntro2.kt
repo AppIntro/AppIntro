@@ -1,11 +1,11 @@
-package com.github.appintro.example.ui.mainTabs.intro
+package com.github.appintro.example.ui.default
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
-import com.github.appintro.appintroexample.R
+import com.github.appintro.example.R
 import com.github.appintro.model.SliderPage
 
 class DefaultIntro2 : AppIntro2() {
@@ -25,17 +25,16 @@ class DefaultIntro2 : AppIntro2() {
                 "Gradients!",
                 "This text is written on a gradient background",
                 imageDrawable = R.drawable.ic_slide2,
-                backgroundDrawable = R.drawable.back_slide3,
+                backgroundDrawable = R.drawable.back_slide2,
                 titleTypeface = "OpenSans-Light.ttf",
                 descriptionTypeface = "OpenSans-Light.ttf"
-        )
-        ))
+        )))
 
         addSlide(AppIntroFragment.newInstance(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3,
-                backgroundDrawable = R.drawable.back_slide4,
+                backgroundDrawable = R.drawable.back_slide3,
                 titleTypefaceFontRes = R.font.opensans_regular,
                 descriptionTypefaceFontRes = R.font.opensans_regular
         ))
@@ -44,6 +43,13 @@ class DefaultIntro2 : AppIntro2() {
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4,
+                backgroundDrawable = R.drawable.back_slide4
+        ))
+
+        addSlide(AppIntroFragment.newInstance(
+                ":)",
+                "...gradients are awesome!",
+                imageDrawable = R.mipmap.ic_launcher,
                 backgroundDrawable = R.drawable.back_slide5
         ))
 

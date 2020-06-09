@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">#1976D2</color>
-    <color name="tabsScrollColor">#96ffffff</color>
+    <color name="orange">#EF6C00</color>
 </resources>
