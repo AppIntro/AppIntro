@@ -42,8 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start"
+            app:layout_constraintBottom_toBottomOf="@+id/item_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/item_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
