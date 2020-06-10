@@ -689,19 +689,11 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /**
-     * Called by [ViewPager.OnPageChangeListener.onPageSelected] to tell [AppIntroViewPager]
-     * to request permissions on swipe.
-     * This method notifies [AppIntroViewPager] that the currently selected slide
+     * Getter used to notify [AppIntroViewPager] if the currently selected slide
      * has permissions attached to it.
      */
-    private fun setPermissionSlide() {
-        if (pager.getCurrentSlideNumber(fragments.size) in permissionsMap) {
-            pager.isPermissionSlide = true
-        } else {
-            pager.isPermissionSlide = false
-            setSwipeLock(false)
-        }
-    }
+    private val isPermissionSlide : Boolean
+        get() = pager.getCurrentSlideNumber(fragments.size) in permissionsMap
 
     /** Takes care of calling all the necessary callbacks on Slide Changing. */
     private fun dispatchSlideChangedCallbacks(oldFragment: Fragment?, newFragment: Fragment?) {
@@ -792,7 +784,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             }
             updateButtonsVisibility()
 
-            setPermissionSlide()
+            pager.isPermissionSlide = this@AppIntroBase.isPermissionSlide
 
             // Firing all the necessary Callbacks
             this@AppIntroBase.onPageSelected(position)
