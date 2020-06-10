@@ -692,7 +692,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * Getter used to notify [AppIntroViewPager] if the currently selected slide
      * has permissions attached to it.
      */
-    private val isPermissionSlide : Boolean
+    private val isPermissionSlide: Boolean
         get() = pager.getCurrentSlideNumber(fragments.size) in permissionsMap
 
     /** Takes care of calling all the necessary callbacks on Slide Changing. */
