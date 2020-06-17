@@ -185,14 +185,11 @@ AppIntro offers several configuration option to help you customize your onboardi
 
 AppIntro comes with a set of _Slide Transformer_ that you can use out of the box to animate your Slide transition.
 
-| Name | Preview |
-| ---: | :-----: |
-| Fade | <img src="assets/fade.gif" alt="fade" width="50%"/> |
-| Zoom | <img src="assets/zoom.gif" alt="zoom" width="50%"/> |
-| Flow | <img src="assets/flow.gif" alt="flow" width="50%"/> |
-| Slide Over | <img src="assets/slideover.gif" alt="slideover" width="50%"/> |
-| Depth | <img src="assets/depth.gif" alt="depth" width="50%"/> |
-| Parallax | <img src="assets/parallax.gif" alt="parallax" width="50%"/> |
+| Slide Transformers | Slide Transformers |
+| :---: | :---: |
+| Fade<br/><img src="assets/fade.gif" alt="fade" width="50%"/> | Zoom<br/><img src="assets/zoom.gif" alt="zoom" width="50%"/> |
+| Flow<br/><img src="assets/flow.gif" alt="flow" width="50%"/> | Slide Over<br/><img src="assets/slideover.gif" alt="slideover" width="50%"/> |
+| Depth<br/><img src="assets/depth.gif" alt="depth" width="50%"/> | Parallax<br/><img src="assets/parallax.gif" alt="parallax" width="50%"/> |
 
 You can simply call `setTransformer()` and pass one of the subclass of the sealed class `AppIntroPageTransformerType`: 
 
