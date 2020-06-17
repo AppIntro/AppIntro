@@ -39,8 +39,8 @@ abstract class AppIntro : AppIntroBase() {
      * @param color your color
      */
     fun setBackArrowColor(@ColorInt color: Int) {
-        val nextButton = findViewById<ImageButton>(R.id.back)
-        nextButton.setColorFilter(color)
+        val backButton = findViewById<ImageButton>(R.id.back)
+        backButton.setColorFilter(color)
     }
 
     /**
@@ -141,16 +141,6 @@ abstract class AppIntro : AppIntroBase() {
     fun setColorDoneText(@ColorInt colorDoneText: Int) {
         val doneText = findViewById<TextView>(R.id.done)
         doneText.setTextColor(colorDoneText)
-    }
-
-    /**
-     * Override done button background color
-     *
-     * @param color your color resource
-     */
-    fun setDoneButtonColor(@ColorInt color: Int) {
-        val doneButton = findViewById<TextView>(R.id.done)
-        doneButton.setBackgroundColor(color)
     }
 
     /**
