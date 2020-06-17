@@ -2,42 +2,89 @@ name: Pre Merge Checks
 on:
   push:
     branches:
-      - '*'
+      - 'master'
   pull_request:
     branches:
       - '*'
 
 jobs:
-  gradle:
+  ktlint:
     runs-on: [ubuntu-latest]
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Cache Gradle Caches
-        uses: actions/cache@v1
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches/
-          key: cache-clean-gradle-${{ matrix.os }}-${{ matrix.jdk }}
-      - name: Cache Gradle Wrapper
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/wrapper/
-          key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
 
       - name: Run ktlint
         run: ./gradlew ktlintCheck
 
+  detekt:
+    runs-on: [ubuntu-latest]
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
+
       - name: Run detekt
         run: ./gradlew detekt
+
+  test:
+    runs-on: [ubuntu-latest]
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
 
       - name: Run all the tests
         run: ./gradlew test
 
-      - name: Build everything
-        run: ./gradlew build
+  build-debug-apk:
+    runs-on: [ubuntu-latest]
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-      # We stop gradle at the end to make sure the cache folders
-      # don't contain any lock files and are free to be cached.
-      - name: Stop Gradle
-        run: ./gradlew --stop
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
+
+      - name: Build the Debug APK
+        run: ./gradlew assembleDebug
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: appintro-sample-app.apk
+          path: example/build/outputs/apk/debug/example-debug.apk
