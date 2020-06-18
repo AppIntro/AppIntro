@@ -443,6 +443,8 @@ class MyFragment : Fragment(), SlidePolicy {
 
 AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/master/example).
 
+You can get a **debug APK** of the sample app from the **Pre Merge** Github Actions job as an [output artifact here](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22).
+
 <p align="center">
     <img src="assets/sample-app.png" alt="appintro sample app" width="40%"/>
 </p>
