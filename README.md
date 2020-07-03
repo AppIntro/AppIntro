@@ -574,5 +574,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [Best Quotes & Status 2019 (99000+ Collection)](https://play.google.com/store/apps/details?id=com.swastik.quotesandstatus&hl=en_IN)
 * [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android)
 * [PhotoGuard Photo Vault](https://play.google.com/store/apps/details?id=com.photovault.photoguard)
+* [Ride My Park - Best Spots, Skateparks Map](https://play.google.com/store/apps/details?id=com.andrieutom.rmp)
 
 </details>
