@@ -436,6 +436,8 @@ class MyFragment : Fragment(), SlidePolicy {
 }
 ```
 
+You can find a full working example of `SlidePolicy` in the [example app - CustomSlidePolicyFragment.kt](example/src/main/java/com/github/appintro/example/ui/custom/fragments/CustomSlidePolicyFragment.kt)
+
 ## Example App 💡
 
 AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/master/example).
