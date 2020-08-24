@@ -577,5 +577,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android)
 * [PhotoGuard Photo Vault](https://play.google.com/store/apps/details?id=com.photovault.photoguard)
 * [Ride My Park - Best Spots, Skateparks Map](https://play.google.com/store/apps/details?id=com.andrieutom.rmp)
+* [Shopping list](https://play.google.com/store/apps/details?id=de.vanse.shoppinglist) and [Shopping list pro](https://play.google.com/store/apps/details?id=de.vanse.shoppinglist.pro)
 
 </details>
