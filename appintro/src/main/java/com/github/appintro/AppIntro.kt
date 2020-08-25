@@ -1,13 +1,12 @@
 package com.github.appintro
 
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.ColorInt
-import androidx.annotation.FontRes
-import androidx.annotation.StringRes
+import androidx.annotation.*
 import com.github.appintro.internal.TypefaceContainer
 
 abstract class AppIntro : AppIntroBase() {
@@ -161,6 +160,18 @@ abstract class AppIntro : AppIntroBase() {
     fun setImageNextButton(imageNextButton: Drawable) {
         val nextButton = findViewById<ImageView>(R.id.next)
         nextButton.setImageDrawable(imageNextButton)
+    }
+
+    /**
+     * Override done and skip buttons text size
+     *
+     * @param sizeText your text size from resource (in sp)
+     */
+    fun setTextSizeButtons(@DimenRes sizeText: Int) {
+        val doneText = findViewById<TextView>(R.id.done)
+        val skip = findViewById<TextView>(R.id.skip)
+        doneText.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(sizeText))
+        skip.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(sizeText))
     }
 
     /**
