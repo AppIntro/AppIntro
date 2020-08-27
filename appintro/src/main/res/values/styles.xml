@@ -12,6 +12,15 @@
         <item name="android:layout_margin">@dimen/appintro_button_margin</item>
     </style>
 
+    <style name="AppIntroImageButtonStyleCompat" parent="AppIntroButtonStyleCompat">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:minHeight">@dimen/appintro_button_minheight</item>
+        <item name="android:minWidth">@dimen/appintro_button_minwidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">@dimen/appintro_button_margin</item>
+    </style>
+
     <style name="AppIntro2ButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/ic_appintro_ripple</item>
         <item name="android:layout_height">@dimen/appintro2_fab_size</item>
