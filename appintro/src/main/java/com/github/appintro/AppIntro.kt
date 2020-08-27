@@ -147,6 +147,11 @@ abstract class AppIntro : AppIntroBase() {
         doneText.setTextColor(colorDoneText)
     }
 
+    /**
+     * Override done button text overall style
+     *
+     * @param textAppearance your text style from resource
+     */
     fun setDoneTextAppearance(@StyleRes textAppearance: Int) {
         val doneText = findViewById<TextView>(R.id.done)
         TextViewCompat.setTextAppearance(doneText, textAppearance)
@@ -162,6 +167,11 @@ abstract class AppIntro : AppIntroBase() {
         skip.setTextColor(colorSkipButton)
     }
 
+    /**
+     * Override skip button text overall style
+     *
+     * @param textAppearance your text style from resource
+     */
     fun setSkipTextAppearance(@StyleRes textAppearance: Int) {
         val skip = findViewById<TextView>(R.id.skip)
         TextViewCompat.setTextAppearance(skip, textAppearance)
@@ -175,18 +185,6 @@ abstract class AppIntro : AppIntroBase() {
     fun setImageNextButton(imageNextButton: Drawable) {
         val nextButton = findViewById<ImageView>(R.id.next)
         nextButton.setImageDrawable(imageNextButton)
-    }
-
-    /**
-     * Override done and skip buttons text size
-     *
-     * @param sizeText your text size from resource (in sp)
-     */
-    fun setTextSizeButtons(@DimenRes sizeText: Int) {
-        val doneText = findViewById<TextView>(R.id.done)
-        val skip = findViewById<TextView>(R.id.skip)
-        doneText.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(sizeText))
-        skip.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(sizeText))
     }
 
     /**
