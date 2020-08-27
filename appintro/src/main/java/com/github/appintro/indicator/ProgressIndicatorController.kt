@@ -5,6 +5,8 @@ import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.widget.ProgressBar
 
+internal const val DEFAULT_COLOR = 1
+
 /**
  * An [IndicatorController] that shows a [ProgressBar] for express the number of
  * page that have been completed.

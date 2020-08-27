@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.View
 import androidx.annotation.ColorInt
 
-internal const val DEFAULT_COLOR = 1
-
 /**
  * A controller that is used to provide custom indicator implementations and to control
  * their behaviour. This is used for [AppIntro.setCustomIndicator] and

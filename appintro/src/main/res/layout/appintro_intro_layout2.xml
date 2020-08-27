@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottom"
-        tools:background="@drawable/ic_appintro_indicator_selected" />
+        tools:background="@drawable/ic_appintro_indicator" />
 
     <ImageButton
         android:id="@+id/next"
