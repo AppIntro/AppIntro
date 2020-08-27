@@ -1,13 +1,11 @@
 package com.github.appintro
 
 import android.graphics.drawable.Drawable
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
-import androidx.annotation.DimenRes
 import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
