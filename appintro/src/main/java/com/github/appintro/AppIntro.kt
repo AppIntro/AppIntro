@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.*
+import androidx.core.widget.TextViewCompat
 import com.github.appintro.internal.TypefaceContainer
 
 abstract class AppIntro : AppIntroBase() {
@@ -142,6 +143,11 @@ abstract class AppIntro : AppIntroBase() {
         doneText.setTextColor(colorDoneText)
     }
 
+    fun setDoneTextAppearance(@StyleRes textAppearance: Int) {
+        val doneText = findViewById<TextView>(R.id.done)
+        TextViewCompat.setTextAppearance(doneText, textAppearance)
+    }
+
     /**
      * Override skip button color
      *
@@ -150,6 +156,11 @@ abstract class AppIntro : AppIntroBase() {
     fun setColorSkipButton(@ColorInt colorSkipButton: Int) {
         val skip = findViewById<TextView>(R.id.skip)
         skip.setTextColor(colorSkipButton)
+    }
+
+    fun setSkipTextAppearance(@StyleRes textAppearance: Int) {
+        val skip = findViewById<TextView>(R.id.skip)
+        TextViewCompat.setTextAppearance(skip, textAppearance)
     }
 
     /**
