@@ -6,7 +6,11 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.DimenRes
+import androidx.annotation.FontRes
+import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
 import androidx.core.widget.TextViewCompat
 import com.github.appintro.internal.TypefaceContainer
 
