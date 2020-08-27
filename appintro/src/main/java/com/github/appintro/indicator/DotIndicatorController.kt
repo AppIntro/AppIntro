@@ -1,13 +1,13 @@
 package com.github.appintro.indicator
 
 import android.content.Context
-import android.graphics.PorterDuff
 import android.view.Gravity
 import android.view.Gravity.CENTER
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.github.appintro.R
 
 /**
@@ -16,13 +16,13 @@ import com.github.appintro.R
  */
 class DotIndicatorController(context: Context) : IndicatorController, LinearLayout(context) {
 
-    override var selectedIndicatorColor = -1
+    override var selectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_selected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
         }
 
-    override var unselectedIndicatorColor = -1
+    override var unselectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_unselected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
@@ -48,12 +48,8 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
-                ContextCompat.getDrawable(
-                    this.context,
-                    R.drawable.ic_appintro_indicator_unselected
-                )
+                ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator)
             )
-
             val params = LayoutParams(
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
@@ -66,24 +62,12 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
     override fun selectPosition(index: Int) {
         currentPosition = index
         for (i in 0 until slideCount) {
-            val drawableId = if (i == index) {
-                R.drawable.ic_appintro_indicator_selected
-            } else { R.drawable.ic_appintro_indicator_unselected }
-            val drawable = ContextCompat.getDrawable(this.context, drawableId)
-
-            if (selectedIndicatorColor != DEFAULT_COLOR && i == index) {
-                drawable!!.mutate().setColorFilter(
-                    selectedIndicatorColor,
-                    PorterDuff.Mode.SRC_IN
-                )
+            val tint = if (i == index) {
+                selectedIndicatorColor
+            } else {
+                unselectedIndicatorColor
             }
-            if (unselectedIndicatorColor != DEFAULT_COLOR && i != index) {
-                drawable!!.mutate().setColorFilter(
-                    unselectedIndicatorColor,
-                    PorterDuff.Mode.SRC_IN
-                )
-            }
-            (getChildAt(i) as ImageView).setImageDrawable(drawable)
+            (getChildAt(i) as ImageView).let { DrawableCompat.setTint(it.drawable, tint) }
         }
     }
 }
