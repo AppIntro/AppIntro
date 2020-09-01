@@ -49,7 +49,7 @@
 
     <ImageButton
         android:id="@+id/back"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroImageButtonStyleCompat"
         android:contentDescription="@string/app_intro_back_button"
         android:rotation="180"
         android:visibility="invisible"
@@ -69,7 +69,7 @@
 
     <ImageButton
         android:id="@+id/next"
-        style="@style/AppIntroButtonStyleCompat"
+        style="@style/AppIntroImageButtonStyleCompat"
         android:contentDescription="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
