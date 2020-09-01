@@ -11,7 +11,6 @@ import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import androidx.core.widget.TextViewCompat
 import com.github.appintro.internal.TypefaceContainer
-
 abstract class AppIntro : AppIntroBase() {
 
     override val layoutId = R.layout.appintro_intro_layout

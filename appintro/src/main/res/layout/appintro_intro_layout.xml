@@ -33,7 +33,6 @@
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/appintro_bottombar_height"
-        android:padding="0dp"
         android:background="@color/appintro_bar_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
