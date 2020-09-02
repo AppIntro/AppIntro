@@ -389,14 +389,14 @@ Please note that:
 ```kotlin
 // Ask for required CAMERA permission on the second slide. 
 askForPermissions(
-    permissions = arrayOf(Manifest.permission.CAMER),
+    permissions = arrayOf(Manifest.permission.CAMERA),
     slideNumber = 2, 
     required = true)
 
 // Ask for both optional ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
 // permission on the third slide.
 askForPermissions(
-    permissions = arrayOf(Manifest.permission.CAMER),
+    permissions = arrayOf(Manifest.permission.CAMERA),
     slideNumber = 2, 
     required = true)
 ```
