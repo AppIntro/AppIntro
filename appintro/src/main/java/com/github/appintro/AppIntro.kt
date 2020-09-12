@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FontRes
 import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
+import androidx.core.widget.TextViewCompat
 import com.github.appintro.internal.TypefaceContainer
-
 abstract class AppIntro : AppIntroBase() {
 
     override val layoutId = R.layout.appintro_intro_layout
@@ -144,6 +145,16 @@ abstract class AppIntro : AppIntroBase() {
     }
 
     /**
+     * Override done button text overall style
+     *
+     * @param textAppearance your text style from resource
+     */
+    fun setDoneTextAppearance(@StyleRes textAppearance: Int) {
+        val doneText = findViewById<TextView>(R.id.done)
+        TextViewCompat.setTextAppearance(doneText, textAppearance)
+    }
+
+    /**
      * Override skip button color
      *
      * @param colorSkipButton your color resource
@@ -151,6 +162,16 @@ abstract class AppIntro : AppIntroBase() {
     fun setColorSkipButton(@ColorInt colorSkipButton: Int) {
         val skip = findViewById<TextView>(R.id.skip)
         skip.setTextColor(colorSkipButton)
+    }
+
+    /**
+     * Override skip button text overall style
+     *
+     * @param textAppearance your text style from resource
+     */
+    fun setSkipTextAppearance(@StyleRes textAppearance: Int) {
+        val skip = findViewById<TextView>(R.id.skip)
+        TextViewCompat.setTextAppearance(skip, textAppearance)
     }
 
     /**
