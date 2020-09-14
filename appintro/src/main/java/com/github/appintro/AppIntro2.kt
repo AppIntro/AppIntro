@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -61,4 +62,27 @@ abstract class AppIntro2 : AppIntroBase() {
     fun setImageSkipButton(imageSkipButton: Drawable) {
         skipImageButton.setImageDrawable(imageSkipButton)
     }
+
+    /**
+     * Override next button arrow color
+     *
+     * @param color your color
+     */
+    fun setNextArrowColor(@ColorInt color: Int) {
+        val nextButton = findViewById<ImageButton>(R.id.next)
+        nextButton.setColorFilter(color)
+    }
+
+
+    /**
+     * Override skip button color
+     *
+     * @param colorSkipButton your color resource
+     */
+    fun setSkipArrowColor(@ColorInt colorSkipButton: Int) {
+        val skip = findViewById<ImageButton>(R.id.skip)
+        skip.setColorFilter(colorSkipButton)
+    }
+
+
 }

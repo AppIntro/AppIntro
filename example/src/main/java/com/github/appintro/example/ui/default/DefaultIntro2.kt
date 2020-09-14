@@ -1,5 +1,6 @@
 package com.github.appintro.example.ui.default
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
@@ -53,6 +54,8 @@ class DefaultIntro2 : AppIntro2() {
                 backgroundDrawable = R.drawable.back_slide5
         ))
 
+        setNextArrowColor(Color.RED)
+        setSkipArrowColor(Color.BLUE)
         setTransformer(AppIntroPageTransformerType.Parallax())
     }
 
