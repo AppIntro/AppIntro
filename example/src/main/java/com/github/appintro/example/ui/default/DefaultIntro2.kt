@@ -54,8 +54,7 @@ class DefaultIntro2 : AppIntro2() {
                 backgroundDrawable = R.drawable.back_slide5
         ))
 
-        setNextArrowColor(Color.RED)
-        setSkipArrowColor(Color.BLUE)
+
         setTransformer(AppIntroPageTransformerType.Parallax())
     }
 
