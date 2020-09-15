@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +72,6 @@ abstract class AppIntro2 : AppIntroBase() {
         nextButton.setColorFilter(color)
     }
 
-
     /**
      * Override skip button color
      *
@@ -83,6 +81,4 @@ abstract class AppIntro2 : AppIntroBase() {
         val skip = findViewById<ImageButton>(R.id.skip)
         skip.setColorFilter(colorSkipButton)
     }
-
-
 }
