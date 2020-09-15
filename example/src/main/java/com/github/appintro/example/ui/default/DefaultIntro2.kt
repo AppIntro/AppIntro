@@ -1,5 +1,6 @@
 package com.github.appintro.example.ui.default
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
@@ -52,6 +53,7 @@ class DefaultIntro2 : AppIntro2() {
                 imageDrawable = R.mipmap.ic_launcher,
                 backgroundDrawable = R.drawable.back_slide5
         ))
+
 
         setTransformer(AppIntroPageTransformerType.Parallax())
     }

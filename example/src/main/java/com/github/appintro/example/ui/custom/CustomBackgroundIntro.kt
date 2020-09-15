@@ -35,6 +35,10 @@ class CustomBackgroundIntro : AppIntro2() {
                 imageDrawable = R.drawable.ic_slide4
         ))
 
+        //set color for the next and skip arrow
+        setNextArrowColor(Color.RED)
+        setSkipArrowColor(Color.BLUE)
+
         // Set intro custom background
         backgroundResource = R.drawable.ic_drawer_header
 
