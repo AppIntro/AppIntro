@@ -25,6 +25,12 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    maven { url 'https://kotlin.bintray.com/kotlinx' }
+}
+
 dependencies {
     implementation project(':appintro')
     implementation "androidx.cardview:cardview:1.0.0"

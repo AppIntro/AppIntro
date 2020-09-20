@@ -1,13 +1,18 @@
 buildscript {
-    ext.kotlin_version = '1.4.10'
+
+    ext {
+        kotlin_version = System.getenv("VERSION_KOTLIN") ?: '1.4.10'
+        agp_version = System.getenv("VERSION_AGP") ?: '4.1.0'
+    }
 
     repositories {
         google()
         jcenter()
         gradlePluginPortal()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "com.android.tools.build:gradle:$agp_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.14.2"

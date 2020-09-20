@@ -2,7 +2,7 @@ name: Pre Merge Checks
 on:
   push:
     branches:
-      - 'master'
+      - '*'
   pull_request:
     branches:
       - '*'
@@ -66,9 +66,29 @@ jobs:
         run: ./gradlew test
 
   build-debug-apk:
+    strategy:
+      fail-fast: false
+      matrix:
+        agp: [""]
+        kotlin: [""]
+        experimental: [false]
+        name: ["stable"]
+        include:
+          - agp: 4.2.+
+            experimental: true
+            name: AGP-4.2.+
+          - kotlin: 1.4.20+
+            experimental: true
+            name: kotlin-EAP-1.4.20+
+
     runs-on: [ubuntu-latest]
+    continue-on-error: ${{ matrix.experimental }}
+    name: Build Debug APK - ${{ matrix.name }} - Experimental ${{ matrix.experimental }}
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
+      VERSION_AGP: ${{ matrix.agp }}
+      VERSION_KOTLIN: ${{ matrix.kotlin }}
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -86,5 +106,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: appintro-sample-app.apk
+          name: appintro-sample-app-${{ matrix.name }}.apk
           path: example/build/outputs/apk/debug/example-debug.apk
