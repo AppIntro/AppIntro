@@ -13,7 +13,7 @@
         android:id="@+id/title"
         style="@style/AppIntroDefaultHeading"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintVertical_weight="2"
         app:layout_constraintBottom_toTopOf="@+id/image"
