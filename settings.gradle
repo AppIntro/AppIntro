@@ -1,1 +1,2 @@
+include ':example:javaexample'
 include ':appintro', ':example'

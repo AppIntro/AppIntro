@@ -1,0 +1,34 @@
+<resources>
+    <!-- Main Strings -->
+    <string name="app_name">AppIntro Sample App</string>
+    <string name="appintro_logo">appintro_logo</string>
+    <string name="start">Start</string>
+    <string name="welcome_body">This app will show you some of the features of AppIntro. You can find more documentation on github.com/AppIntro/AppIntro</string>
+
+    <!-- Titles -->
+    <string name="default_intro_title">Default Intro</string>
+    <string name="default_intro2_title">Default Intro 2</string>
+    <string name="custom_layout_intro_title">Custom Layout Intro</string>
+    <string name="custom_background_intro_title">Custom Background Intro</string>
+    <string name="slide_policy_intro_title">Slide Policy Intro</string>
+    <string name="perms_intro1_title">Permissions Intro</string>
+    <string name="perms_intro2_title">Permissions Intro 2</string>
+
+    <!-- 1st Tab Group -->
+    <string name="default_intro">This is the basic layout of the AppIntro library.</string>
+    <string name="default_intro2">This is the second layout provided by AppIntro library, with icons instead of text</string>
+    <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization.</string>
+    <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds.</string>
+    <string name="slide_policy_intro">This demonstrates the SlidePolicy feature, with the possibility to block a user during a Intro.</string>
+
+    <!-- 2nd Tab Group -->
+    <string name="perms_intro1">This demonstrates the ability to request runtime permission on any desired slide.</string>
+    <string name="perms_intro2">This demonstrates the ability to request permission on any slide specified using the second slide layout.</string>
+
+    <!-- SlidePolicy Example -->
+    <string name="please_select_the_checkbox_before_proceeding">Please select the Checkbox before proceeding</string>
+    <string name="slidepolicy_example_heading">SlidePolicy Example</string>
+    <string name="slidepolicy_example_description">This slide won\'t allow the user to proceed till you click the following checkbox</string>
+    <string name="please_check_to_continue">Please check to continue</string>
+
+</resources>
