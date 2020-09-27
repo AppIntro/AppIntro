@@ -1,4 +1,4 @@
-package com.github.appintro.example.ui.default
+package com.github.appintro.example.ui.defaullt
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
