@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_done_button">Ti pari</string>
+    <string name="app_intro_skip_button">Foo</string>
+    <string name="app_intro_next_button">Eyi to kan</string>
+    <string name="app_intro_back_button">Pada</string>
+    <string name="app_intro_image_content_description">Aworan</string>
+</resources>
