@@ -5,8 +5,8 @@ import com.github.appintro.example.R
 import com.github.appintro.example.ui.custom.CustomBackgroundIntro
 import com.github.appintro.example.ui.custom.CustomLayoutIntro
 import com.github.appintro.example.ui.custom.SlidePolicyIntro
-import com.github.appintro.example.ui.defaullt.DefaultIntro
-import com.github.appintro.example.ui.defaullt.DefaultIntro2
+import com.github.appintro.example.ui.default.DefaultIntro
+import com.github.appintro.example.ui.default.DefaultIntro2
 import com.github.appintro.example.ui.permissions.PermissionsIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro2
 
