@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">এড়িয়ে যান</string>
+    <string name="app_intro_done_button">সম্পন্ন</string>
+    <string name="app_intro_next_button" >পরবর্তী</string>
+    <string name="app_intro_back_button" >পেছনে</string>
+    <string name="app_intro_image_content_description" >চিত্র</string>
+</resources>
