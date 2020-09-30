@@ -7,6 +7,7 @@ import com.github.appintro.example.ui.custom.CustomLayoutIntro
 import com.github.appintro.example.ui.custom.SlidePolicyIntro
 import com.github.appintro.example.ui.default.DefaultIntro
 import com.github.appintro.example.ui.default.DefaultIntro2
+import com.github.appintro.example.ui.java.JavaIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro2
 
@@ -18,6 +19,7 @@ data class IntroEntry(
 
 val defaultEntries = listOf(
         IntroEntry(R.string.default_intro_title, R.string.default_intro, DefaultIntro::class.java),
+        IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java),
         IntroEntry(R.string.default_intro2_title, R.string.default_intro2, DefaultIntro2::class.java),
         IntroEntry(R.string.custom_layout_intro_title, R.string.custom_layout_intro, CustomLayoutIntro::class.java),
         IntroEntry(R.string.custom_background_intro_title, R.string.custom_background_intro, CustomBackgroundIntro::class.java),
