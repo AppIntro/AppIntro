@@ -5,7 +5,9 @@
 AppIntro is an Android Library that helps you build a **cool carousel intro** for your App. AppIntro has support for **requesting permissions** and helps you create a great onboarding experience in just a couple of minutes.
 
 <p align="center">
+    <kbd>
     <img src="assets/logo/logo-cropped.png" alt="appintro icon" width="60%"/> <img src="assets/appintro.gif" alt="appintro sample" width="30%"/>
+    </kbd>
 </p>
    
   * [Getting Started <g-emoji class="g-emoji" alias="footprints" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f463.png">👣</g-emoji>](#getting-started-)
@@ -174,7 +176,9 @@ AppIntroCustomLayoutFragment.newInstance(R.layout.intro_custom_layout1)
 This allows you to achieve complex layout and include your custom logic in the Intro (see also [Slide Policy](#slide-policy)):
 
 <p align="center">
-    <img src="assets/custom-layout.png" alt="appintro custom-layout" width="30%"/>
+    <kbd>
+    <img src="assets/custom-layout.png" alt="appintro custom-layout" width="30%" />
+    </kbd>
 </p>
 
 ## Configure 🎨
@@ -187,9 +191,9 @@ AppIntro comes with a set of _Slide Transformer_ that you can use out of the box
 
 | Slide Transformers | Slide Transformers |
 | :---: | :---: |
-| Fade<br/><img src="assets/fade.gif" alt="fade" width="50%"/> | Zoom<br/><img src="assets/zoom.gif" alt="zoom" width="50%"/> |
-| Flow<br/><img src="assets/flow.gif" alt="flow" width="50%"/> | Slide Over<br/><img src="assets/slideover.gif" alt="slideover" width="50%"/> |
-| Depth<br/><img src="assets/depth.gif" alt="depth" width="50%"/> | Parallax<br/><img src="assets/parallax.gif" alt="parallax" width="50%"/> |
+| Fade<br/><kbd><img src="assets/fade.gif" alt="fade" width="50%"/></kbd> | Zoom<br/><kbd><img src="assets/zoom.gif" alt="zoom" width="50%"/></kbd> |
+| Flow<br/><kbd><img src="assets/flow.gif" alt="flow" width="50%"/></kbd> | Slide Over<br/><kbd><img src="assets/slideover.gif" alt="slideover" width="50%"/></kbd> |
+| Depth<br/><kbd><img src="assets/depth.gif" alt="depth" width="50%"/></kbd> | Parallax<br/><kbd><img src="assets/parallax.gif" alt="parallax" width="50%"/></kbd> |
 
 You can simply call `setTransformer()` and pass one of the subclass of the sealed class `AppIntroPageTransformerType`: 
 
@@ -219,7 +223,9 @@ setCustomTransformer(ViewPager.PageTransformer)
 ### Color Transition
 
 <p align="center">
-    <img src="assets/color-transition.gif" alt="appintro sample" width="30%"/>
+    <kbd>
+    <img src="assets/color-transition.gif" alt="appintro sample" width="80%"/>
+    </kbd>
 </p>
 
 AppIntro offers the possibility to animate the **color transition** between two slides background.
@@ -252,8 +258,8 @@ class MyCustomAppIntro : AppIntro2() {
 
 | Page | `AppIntro` | `AppIntro2` |
 | ---: | :--------: | :---------: |
-| standard page | <img src="assets/layout1-start.png" alt="layout1-start" width="50%"/> | <img src="assets/layout2-start.png" alt="layout2-start" width="50%"/> |
-| last page | <img src="assets/layout1-end.png" alt="layout1-end" width="50%"/> | <img src="assets/layout2-end.png" alt="layout2-end" width="50%"/> |
+| standard page | <kbd><img src="assets/layout1-start.png" alt="layout1-start" width="50%"/> </kbd>| <kbd><img src="assets/layout2-start.png" alt="layout2-start" width="50%"/></kbd> |
+| last page | <kbd><img src="assets/layout1-end.png" alt="layout1-end" width="50%"/> </kbd>| <kbd><img src="assets/layout2-end.png" alt="layout2-end" width="50%"/></kbd> |
 
 ### Indicators
 
@@ -310,7 +316,9 @@ vibrateDuration = 50L
 ### Wizard Mode
 
 <p align="center">
+    <kbd>
     <img src="assets/wizard1.png" alt="appintro wizard1" width="30%"/> <img src="assets/wizard2.png" alt="appintro wizard2" width="30%"/>
+    </kbd>
 </p>
 
 AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
@@ -326,7 +334,9 @@ isWizardMode = true
 ### Immersive Mode
 
 <p align="center">
+    <kbd>
     <img src="assets/immersive1.png" alt="appintro immersive1" width="30%"/> <img src="assets/immersive2.png" alt="appintro immersive2" width="30%"/>
+    </kbd>
 </p>
 
 If you want to display your Intro with a fullscreen experience, you can enable the _Immersive mode_. This will
@@ -355,7 +365,9 @@ isSystemBackButtonLocked = true
 ### System UI (Status Bar and Navigation Bar)
 
 <p align="center">
+    <kbd>
     <img src="assets/system-ui.png" alt="appintro system-ui" width="40%"/>
+    </kbd>
 </p>
 
 You can customize the _Status Bar_, and the _Navigation Bar_ visibility & color with the following methods:
@@ -375,7 +387,9 @@ setNavBarColorRes(R.color.red)
 ## Permission 🔒
 
 <p align="center">
-    <img src="assets/permissions.gif" alt="appintro permissions" width="40%"/>
+    <kbd>
+    <img src="assets/permissions.gif" alt="appintro permissions" width="70%"/>
+    </kbd>
 </p>
 
 AppIntro simplifies the process of requesting **runtime permissions** to your user.
@@ -445,7 +459,9 @@ AppIntro comes with a **sample app** full of examples and use case that you can 
 You can get a **debug APK** of the sample app from the **Pre Merge** Github Actions job as an [output artifact here](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22).
 
 <p align="center">
+    <kbd>
     <img src="assets/sample-app.png" alt="appintro sample app" width="40%"/>
+    </kbd>
 </p>
 
 ## Translating 🌍
