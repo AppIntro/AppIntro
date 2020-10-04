@@ -7,6 +7,7 @@
 
     <!-- Titles -->
     <string name="default_intro_title">Default Intro</string>
+    <string name="default_java_intro_title">Java Default Intro</string>
     <string name="default_intro2_title">Default Intro 2</string>
     <string name="custom_layout_intro_title">Custom Layout Intro</string>
     <string name="custom_background_intro_title">Custom Background Intro</string>
@@ -16,6 +17,7 @@
 
     <!-- 1st Tab Group -->
     <string name="default_intro">This is the basic layout of the AppIntro library.</string>
+    <string name="default_java_intro">This is the basic layout of the AppIntro library in Java.</string>
     <string name="default_intro2">This is the second layout provided by AppIntro library, with icons instead of text</string>
     <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization.</string>
     <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds.</string>

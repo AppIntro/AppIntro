@@ -7,6 +7,7 @@ import com.github.appintro.example.ui.custom.CustomLayoutIntro
 import com.github.appintro.example.ui.custom.SlidePolicyIntro
 import com.github.appintro.example.ui.default.DefaultIntro
 import com.github.appintro.example.ui.default.DefaultIntro2
+import com.github.appintro.example.ui.java.JavaIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro2
 
@@ -23,6 +24,7 @@ val defaultEntries = listOf(
         IntroEntry(R.string.custom_background_intro_title, R.string.custom_background_intro, CustomBackgroundIntro::class.java),
         IntroEntry(R.string.slide_policy_intro_title, R.string.slide_policy_intro, SlidePolicyIntro::class.java),
         IntroEntry(R.string.perms_intro1_title, R.string.perms_intro1, PermissionsIntro::class.java),
-        IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java)
+        IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java),
+        IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java)
 )
 
