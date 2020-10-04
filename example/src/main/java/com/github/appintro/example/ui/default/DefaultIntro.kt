@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
-import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.example.R
 
 class DefaultIntro : AppIntro() {
@@ -34,7 +33,6 @@ class DefaultIntro : AppIntro() {
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4
         ))
-
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

@@ -1,8 +1,6 @@
 package com.github.appintro.example.ui.java;
 
 import android.os.Bundle;
-import android.transition.Fade;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.github.appintro.AppIntro;
@@ -40,17 +38,8 @@ public class JavaIntro extends AppIntro {
                 R.drawable.ic_slide4
         ));
 
-        /**You can add any one of the Transition*/
         // Fade Transition
         setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
-        // Depth Transition
-        setTransformer(AppIntroPageTransformerType.Depth.INSTANCE);
-        // SlideOver Transition
-        setTransformer(AppIntroPageTransformerType.SlideOver.INSTANCE);
-        // Zoom Transition
-        setTransformer(AppIntroPageTransformerType.Zoom.INSTANCE);
-        // You can customize your parallax parameters in the constructors.
-        setTransformer(new AppIntroPageTransformerType.Parallax(1.0,-1.0,2.0));
     }
 
     @Override

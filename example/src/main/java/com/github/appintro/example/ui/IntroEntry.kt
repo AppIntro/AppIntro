@@ -19,12 +19,12 @@ data class IntroEntry(
 
 val defaultEntries = listOf(
         IntroEntry(R.string.default_intro_title, R.string.default_intro, DefaultIntro::class.java),
-        IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java),
         IntroEntry(R.string.default_intro2_title, R.string.default_intro2, DefaultIntro2::class.java),
         IntroEntry(R.string.custom_layout_intro_title, R.string.custom_layout_intro, CustomLayoutIntro::class.java),
         IntroEntry(R.string.custom_background_intro_title, R.string.custom_background_intro, CustomBackgroundIntro::class.java),
         IntroEntry(R.string.slide_policy_intro_title, R.string.slide_policy_intro, SlidePolicyIntro::class.java),
         IntroEntry(R.string.perms_intro1_title, R.string.perms_intro1, PermissionsIntro::class.java),
-        IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java)
+        IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java),
+        IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java)
 )
 
