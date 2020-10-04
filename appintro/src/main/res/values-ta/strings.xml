@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_intro_skip_button">தவிர்</string>
+    <string name="app_intro_next_button">அடுத்து</string>
+    <string name="app_intro_back_button">பின்னால்</string>
+    <string name="app_intro_done_button">முடிந்தது</string>
+    <string name="app_intro_image_content_description">வரைகலை</string>
+</resources>
