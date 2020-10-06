@@ -46,6 +46,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         this.slideCount = slideCount
 
         for (i in 0 until slideCount) {
+            if (slideCount == 1) { break }
             val dot = ImageView(this.context)
             dot.setImageDrawable(
                 ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator)
@@ -67,7 +68,9 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
             } else {
                 unselectedIndicatorColor
             }
-            (getChildAt(i) as ImageView).let { DrawableCompat.setTint(it.drawable, tint) }
+            if (slideCount == 1) { break } else {
+                (getChildAt(i) as ImageView).let { DrawableCompat.setTint(it.drawable, tint) }
+            }
         }
     }
 }
