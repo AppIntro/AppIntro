@@ -541,9 +541,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 <details>
   <summary>List of Apps using AppIntro</summary>
 
-* [Audio Reminder Pro](https://play.google.com/store/apps/details?id=com.brandon.audioreminderpro)
-* [Wizr Daily Quotes](https://play.google.com/store/apps/details?id=com.wizrapp)
-* [Planets](https://play.google.com/store/apps/details?id=com.andrewq.planets)
 * [PDF Me](https://play.google.com/store/apps/details?id=com.pdfme)
 * [Smoothie Recipes](https://play.google.com/store/apps/details?id=com.skykonig.smoothierecipes)
 * [neutriNote](https://play.google.com/store/apps/details?id=com.appmindlab.nano)
@@ -558,7 +555,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [Xpaper - Moto X Wallpapers](https://play.google.com/store/apps/details?id=com.dunrite.xpaper)
 * [Find My Parked Car](https://play.google.com/store/apps/details?id=com.ofirmiron.findmycarandroidwear)
 * [Vape Tool Pro](https://play.google.com/store/apps/details?id=com.stasbar.vapetoolpro)
-* [sdiwi | Win your purchase!](https://play.google.com/store/apps/details?id=com.sdiwi.app)
 * [Schematiskt Skolschema](https://play.google.com/store/apps/details?id=se.zinokader.schematiskt)
 * [Third Eye](https://play.google.com/store/apps/details?id=com.miragestacks.thirdeye)
 * [Web Video Cast](https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo)
