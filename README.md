@@ -343,7 +343,7 @@ setImmersiveMode()
 
 ### System Back button
 
-You can lock the System Back button if you don't want your user go bo back from intro.
+You can lock the System Back button if you don't want your user to go back from intro.
 This could be useful if you need to request permission and the Intro experience is not optional.
 
 If this is the case, please set to true the following flag:
