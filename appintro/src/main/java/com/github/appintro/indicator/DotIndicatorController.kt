@@ -44,7 +44,6 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
     override fun initialize(slideCount: Int) {
         this.slideCount = slideCount
-
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
@@ -70,12 +69,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
             } else {
                 unselectedIndicatorColor
             }
-            (getChildAt(i) as ImageView).let {
-                DrawableCompat.setTint(it.drawable, tint)
-            }
-            if (slideCount == 1) {
-                (getChildAt(i) as ImageView).visibility = View.INVISIBLE
-            }
+            (getChildAt(i) as ImageView).let { DrawableCompat.setTint(it.drawable, tint) }
         }
     }
 }
