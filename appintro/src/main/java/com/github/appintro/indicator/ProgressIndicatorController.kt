@@ -36,7 +36,7 @@ class ProgressIndicatorController @JvmOverloads constructor(
 
     override fun initialize(slideCount: Int) {
         this.max = slideCount
-        if (max == 1) {
+        if (slideCount == 1) {
             this.visibility = View.INVISIBLE
         }
         selectPosition(0)
