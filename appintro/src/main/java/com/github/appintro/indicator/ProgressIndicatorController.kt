@@ -3,6 +3,7 @@ package com.github.appintro.indicator
 import android.content.Context
 import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.View
 import android.widget.ProgressBar
 
 internal const val DEFAULT_COLOR = 1
@@ -35,6 +36,9 @@ class ProgressIndicatorController @JvmOverloads constructor(
 
     override fun initialize(slideCount: Int) {
         this.max = slideCount
+        if (max == 1) {
+            this.visibility = View.INVISIBLE
+        }
         selectPosition(0)
     }
 
