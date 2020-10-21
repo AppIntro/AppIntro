@@ -44,7 +44,6 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
     override fun initialize(slideCount: Int) {
         this.slideCount = slideCount
-
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
@@ -54,6 +53,9 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
             )
+            if (slideCount == 1) {
+                dot.visibility = View.INVISIBLE
+            }
             this.addView(dot, params)
         }
         selectPosition(0)
