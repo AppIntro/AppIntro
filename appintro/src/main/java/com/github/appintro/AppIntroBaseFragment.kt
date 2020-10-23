@@ -1,5 +1,6 @@
 package com.github.appintro
 
+import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ internal const val ARG_DESC = "desc"
 internal const val ARG_DESC_TYPEFACE = "desc_typeface"
 internal const val ARG_DESC_TYPEFACE_RES = "desc_typeface_res"
 internal const val ARG_DRAWABLE = "drawable"
+internal const val ARG_START_ANIMATION = "start_animation"
 internal const val ARG_BG_COLOR = "bg_color"
 internal const val ARG_TITLE_COLOR = "title_color"
 internal const val ARG_DESC_COLOR = "desc_color"
@@ -33,6 +35,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     protected abstract val layoutId: Int
 
     private var drawable: Int = 0
+    private var startAnimation: Boolean = false
     private var bgDrawable: Int = 0
 
     private var titleColor: Int = 0
@@ -44,6 +47,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     private var description: String? = null
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
+    private lateinit var slideImage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         val args = arguments
         if (args != null && args.size() != 0) {
             drawable = args.getInt(ARG_DRAWABLE)
+            startAnimation = args.getBoolean(ARG_START_ANIMATION)
             title = args.getString(ARG_TITLE)
             description = args.getString(ARG_DESC)
             bgDrawable = args.getInt(ARG_BG_DRAWABLE)
@@ -74,6 +79,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         if (savedInstanceState != null) {
             drawable = savedInstanceState.getInt(ARG_DRAWABLE)
+            startAnimation = savedInstanceState.getBoolean(ARG_START_ANIMATION)
             title = savedInstanceState.getString(ARG_TITLE)
             description = savedInstanceState.getString(ARG_DESC)
 
@@ -101,7 +107,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         val view = inflater.inflate(layoutId, container, false)
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
-        val slideImage = view.findViewById<ImageView>(R.id.image)
+        slideImage = view.findViewById<ImageView>(R.id.image)
         val mainLayout = view.findViewById<ConstraintLayout>(R.id.main)
 
         titleText.text = title
@@ -125,8 +131,27 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val slideAnimation = slideImage.drawable
+        if (startAnimation && slideAnimation is Animatable) {
+            slideAnimation.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        val slideAnimation = slideImage.drawable
+        if (startAnimation && slideAnimation is Animatable) {
+            slideAnimation.stop()
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(ARG_DRAWABLE, drawable)
+        outState.putBoolean(ARG_START_ANIMATION, startAnimation)
         outState.putInt(ARG_BG_DRAWABLE, bgDrawable)
         outState.putString(ARG_TITLE, title)
         outState.putString(ARG_DESC, description)
