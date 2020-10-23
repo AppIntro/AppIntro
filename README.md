@@ -396,9 +396,12 @@ askForPermissions(
 // Ask for both optional ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
 // permission on the third slide.
 askForPermissions(
-    permissions = arrayOf(Manifest.permission.CAMERA),
-    slideNumber = 2, 
-    required = true)
+    permissions = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    ),
+    slideNumber = 3, 
+    required = false)
 ```
 
 Should you need further control on the permission request, you can override those two methods on the `AppIntro` class:
