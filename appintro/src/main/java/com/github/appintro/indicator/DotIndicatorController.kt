@@ -33,7 +33,8 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
 
     override fun newInstance(context: Context): View {
         val newLayoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.MATCH_PARENT
         )
         newLayoutParams.gravity = Gravity.CENTER_VERTICAL
         layoutParams = newLayoutParams
