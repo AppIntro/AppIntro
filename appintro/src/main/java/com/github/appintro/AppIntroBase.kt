@@ -559,10 +559,11 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private fun updateButtonsVisibility() {
         if (isButtonsEnabled) {
             val isLastSlide = pager.isLastSlide(fragments.size)
+            val isFirstSlide = pager.isFirstSlide(fragments.size)
             nextButton.isVisible = !isLastSlide
             doneButton.isVisible = isLastSlide
             skipButton.isVisible = isSkipButtonEnabled && !isLastSlide
-            backButton.isVisible = isWizardMode
+            backButton.isVisible = isWizardMode && !isFirstSlide
         } else {
             nextButton.isVisible = false
             doneButton.isVisible = false
