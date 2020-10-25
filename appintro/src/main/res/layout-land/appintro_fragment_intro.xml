@@ -27,6 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_intro_image_content_description"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/midline"
         app:layout_constraintStart_toStartOf="parent"
