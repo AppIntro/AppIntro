@@ -3,7 +3,8 @@
     <string name="app_name">AppIntro Sample App</string>
     <string name="appintro_logo">appintro_logo</string>
     <string name="start">Start</string>
-    <string name="welcome_body">This app will show you some of the features of AppIntro. You can find more documentation on github.com/AppIntro/AppIntro</string>
+    <string name="welcome_body">This app will show you some of the features of AppIntro. You can find more documentation on
+        <a href="https://github.com/AppIntro/AppIntro">github.com/AppIntro/AppIntro</a></string>
 
     <!-- Titles -->
     <string name="default_intro_title">Default Intro</string>

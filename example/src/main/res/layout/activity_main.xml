@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/doub_grid_size"
+        android:autoLink="web"
         android:gravity="center"
         android:text="@string/welcome_body"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
