@@ -25,7 +25,6 @@ class AnimatedDrawableFragment : Fragment() {
         view.findViewById<ImageView>(R.id.animated_image_view).apply {
             setBackgroundResource(R.drawable.animated_drawable)
             myAnimation = background as AnimationDrawable
-            width
         }
 
         myAnimation.start()
