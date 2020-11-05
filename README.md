@@ -579,5 +579,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [Shopping list](https://play.google.com/store/apps/details?id=de.vanse.shoppinglist) and [Shopping list pro](https://play.google.com/store/apps/details?id=de.vanse.shoppinglist.pro)
 * [PZPIC - Pan & Zoom Effect Video from Still Picture](https://play.google.com/store/apps/details?id=com.photo3dlab.pzpic)
 * [PrezziBenzina](https://play.google.com/store/apps/details?id=org.vernazza.androidfuel&hl=it)
+* [LogViewer for openHAB](https://github.com/cyb3rko/logviewer-for-openhab-app)
 
 </details>
