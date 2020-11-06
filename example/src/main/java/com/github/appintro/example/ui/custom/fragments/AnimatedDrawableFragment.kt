@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.github.appintro.example.R
 
@@ -17,14 +18,18 @@ class AnimatedDrawableFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.intro_animated_drawable, container, false)
+    ): View? = inflater.inflate(R.layout.appintro_fragment_intro, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<ImageView>(R.id.animated_image_view).apply {
-            setBackgroundResource(R.drawable.animated_drawable)
-            myAnimation = background as AnimationDrawable
+        view.findViewById<TextView>(R.id.title).text = getString(R.string.animated_drawable_example_heading)
+        view.findViewById<TextView>(R.id.description).text = getString(R.string.animated_drawable_example_description)
+
+        val imageView = view.findViewById<ImageView>(R.id.image)
+        imageView.apply {
+            setImageResource(R.drawable.animated_drawable)
+            myAnimation = drawable as AnimationDrawable
         }
 
         myAnimation.start()
