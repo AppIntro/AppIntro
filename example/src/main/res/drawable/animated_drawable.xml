@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false">
-    <item android:drawable="@drawable/ic_example1" android:duration="400" />
-    <item android:drawable="@drawable/ic_example2" android:duration="400" />
+    <item android:drawable="@drawable/ic_animation1" android:duration="400" />
+    <item android:drawable="@drawable/ic_animation2" android:duration="400" />
 </animation-list>
