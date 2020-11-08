@@ -43,6 +43,7 @@
         style="@style/AppIntroButtonStyleCompat"
         android:labelFor="@string/app_intro_skip_button"
         android:text="@string/app_intro_skip_button"
+        android:textSize="@dimen/appintro_skiptext_size"
         android:textColor="@color/appintro_icon_tint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,6 +56,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_next" />
 
     <FrameLayout
@@ -73,6 +75,7 @@
         android:contentDescription="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_next" />
 
     <Button
@@ -80,6 +83,7 @@
         style="@style/AppIntroButtonStyleCompat"
         android:labelFor="@string/app_intro_done_button"
         android:text="@string/app_intro_done_button"
+        android:textSize="@dimen/appintro_donetext_size"
         android:textColor="@color/appintro_icon_tint"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
