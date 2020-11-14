@@ -238,22 +238,19 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /**
-     * Setting to disable forward swiping right on current page and allow swiping left. If a swipe
-     * left occurs, the lock state is reset and swiping is re-enabled. (one shot disable) This also
-     * hides/shows the Next and Done buttons accordingly.
-     *
      * @param lock Set true to disable forward swiping. False to enable.
+     * @deprecated setNextPageSwipeLock has been deprecated in favor of setSwipeLock or SlidePolicy
      */
+    @Deprecated(
+        "setNextPageSwipeLock has been deprecated in favor of setSwipeLock or SlidePolicy",
+        ReplaceWith("setSwipeLock"),
+        DeprecationLevel.ERROR
+    )
     protected fun setNextPageSwipeLock(lock: Boolean) {
-        // We retain the button state in order to be able to restore
-        // it properly afterwards.
-        if (lock) {
-            retainIsButtonsEnabled = this.isButtonsEnabled
-            this.isButtonsEnabled = true
-        } else {
-            this.isButtonsEnabled = retainIsButtonsEnabled
-        }
-        pager.isNextPagingEnabled = !lock
+        LogHelper.w(
+            TAG,
+            "Calling setNextPageSwipeLock has not effect here. Please switch to setSwipeLock or SlidePolicy",
+        )
     }
 
     /**
@@ -482,10 +479,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             putBoolean(ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED, isSkipButtonEnabled)
             putBoolean(ARG_BUNDLE_IS_INDICATOR_ENABLED, isIndicatorEnabled)
 
-            putInt(ARG_BUNDLE_LOCK_PAGE, pager.lockPage)
             putInt(ARG_BUNDLE_CURRENT_ITEM, pager.currentItem)
             putBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED, pager.isFullPagingEnabled)
-            putBoolean(ARG_BUNDLE_IS_NEXT_PAGING_ENABLED, pager.isNextPagingEnabled)
 
             putSerializable(ARG_BUNDLE_PERMISSION_MAP, permissionsMap)
 
@@ -502,10 +497,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             isSkipButtonEnabled = getBoolean(ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED)
             isIndicatorEnabled = getBoolean(ARG_BUNDLE_IS_INDICATOR_ENABLED)
 
-            pager.lockPage = getInt(ARG_BUNDLE_LOCK_PAGE)
             savedCurrentItem = getInt(ARG_BUNDLE_CURRENT_ITEM)
             pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
-            pager.isNextPagingEnabled = getBoolean(ARG_BUNDLE_IS_NEXT_PAGING_ENABLED)
 
             permissionsMap = (
                 (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
@@ -774,15 +767,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             if (slidesNumber >= 1) {
                 indicatorController?.selectPosition(position)
             }
-
-            // Allow the swipe to be re-enabled if a user swipes to a previous slide. Restore
-            // state of progress button depending on global progress button setting
-            if (!pager.isNextPagingEnabled) {
-                if (pager.currentItem != pager.lockPage) {
-                    isButtonsEnabled = retainIsButtonsEnabled
-                    pager.isNextPagingEnabled = true
-                }
-            }
             updateButtonsVisibility()
 
             pager.isPermissionSlide = this@AppIntroBase.isPermissionSlide
@@ -817,9 +801,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         private const val ARG_BUNDLE_IS_BUTTONS_ENABLED = "isButtonsEnabled"
         private const val ARG_BUNDLE_IS_FULL_PAGING_ENABLED = "isFullPagingEnabled"
         private const val ARG_BUNDLE_IS_INDICATOR_ENABLED = "isIndicatorEnabled"
-        private const val ARG_BUNDLE_IS_NEXT_PAGING_ENABLED = "isNextPagingEnabled"
         private const val ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED = "isSkipButtonsEnabled"
-        private const val ARG_BUNDLE_LOCK_PAGE = "lockPage"
         private const val ARG_BUNDLE_PERMISSION_MAP = "permissionMap"
         private const val ARG_BUNDLE_RETAIN_IS_BUTTONS_ENABLED = "retainIsButtonsEnabled"
         private const val ARG_BUNDLE_SLIDES_NUMBER = "slidesNumber"
