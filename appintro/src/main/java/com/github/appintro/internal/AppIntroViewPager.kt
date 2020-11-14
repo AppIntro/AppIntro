@@ -12,28 +12,18 @@ import com.github.appintro.internal.viewpager.ViewPagerTransformer
 import kotlin.math.max
 
 /**
- * Class that controls the [AppIntro] of AppIntro.
+ * Class that controls the [ViewPager] of AppIntro.
  * This is responsible of handling of paging, managing touch and dispatching events.
  *
  * @property isFullPagingEnabled Enable or disable swiping at all.
  * @property isPermissionSlide If the current slide has permissions.
- * @property lockPage Set the page where the lock happened.
  * @property onNextPageRequestedListener Listener for Next Page events.
- * @property isNextPagingEnabled Enable or disable swiping to the next page.
  */
 internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPager(context, attrs) {
 
     var isFullPagingEnabled = true
     var isPermissionSlide = false
-    var lockPage = 0
     var onNextPageRequestedListener: AppIntroViewPagerListener? = null
-    var isNextPagingEnabled: Boolean = true
-        set(value) {
-            field = value
-            if (!value) {
-                lockPage = currentItem
-            }
-        }
 
     private var currentTouchDownX: Float = 0.toFloat()
     private var currentTouchDownY: Float = 0.toFloat()
