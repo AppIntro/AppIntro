@@ -35,6 +35,7 @@
         android:contentDescription="@string/app_intro_skip_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_skip" />
 
     <ImageButton
@@ -63,6 +64,7 @@
         android:contentDescription="@string/app_intro_next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_next" />
 
     <ImageButton
@@ -72,6 +74,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom"
         app:srcCompat="@drawable/ic_appintro_fab_done" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

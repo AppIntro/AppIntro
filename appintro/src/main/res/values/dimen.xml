@@ -22,4 +22,7 @@
     <dimen name="appintro_desc_padding">16dp</dimen>
     <dimen name="appintro_head_padding">8dp</dimen>
     <dimen name="appintro_headtext_size">28sp</dimen>
+    <dimen name="appintro_skiptext_size">14sp</dimen>
+    <dimen name="appintro_donetext_size">14sp</dimen>
+
 </resources>
