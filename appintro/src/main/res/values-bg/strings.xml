@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_intro_skip_button">ПРОПУСНИ</string>
+    <string name="app_intro_next_button">СЛЕДВАЩ</string>
+    <string name="app_intro_back_button">НАЗАД</string>
+    <string name="app_intro_done_button">ГОТОВО</string>
+    <string name="app_intro_image_content_description">графики</string>
+</resources>
