@@ -1,18 +1,33 @@
 package com.github.appintro.example.ui.default
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.github.appintro.AppIntro2
-import com.github.appintro.AppIntroFragment
-import com.github.appintro.AppIntroPageTransformerType
+import com.github.appintro.*
 import com.github.appintro.example.R
 import com.github.appintro.model.SliderPage
 
-class DefaultIntro2 : AppIntro2() {
+class DefaultIntro2 : AppCompatActivity(), AppIntroBase.OnAppIntroListener {
+    private lateinit var appIntro: AppIntro
+    private val appIntroTag: String = "AppIntro"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_frame)
 
-        addSlide(AppIntroFragment.newInstance(
+        if (savedInstanceState == null) {
+            appIntro = AppIntro.newInstance(true)
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.app_intro_container, appIntro, appIntroTag)
+                    .commitNow()
+        } else {
+            appIntro = supportFragmentManager.findFragmentByTag(appIntroTag) as AppIntro
+        }
+        appIntro.setAppIntroListener(this)
+    }
+
+    override fun onCreateAppIntro() {
+        appIntro.addSlide(SlidePageFragment.newInstance(
                 "Welcome!",
                 "This is a demo of the AppIntro library, using the second layout.",
                 imageDrawable = R.drawable.ic_slide1,
@@ -21,7 +36,7 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypefaceFontRes = R.font.lato
         ))
 
-        addSlide(AppIntroFragment.newInstance(SliderPage(
+        appIntro.addSlide(SlidePageFragment.newInstance(SliderPage(
                 "Gradients!",
                 "This text is written on a gradient background",
                 imageDrawable = R.drawable.ic_slide2,
@@ -30,7 +45,7 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypeface = "OpenSans-Light.ttf"
         )))
 
-        addSlide(AppIntroFragment.newInstance(
+        appIntro.addSlide(SlidePageFragment.newInstance(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3,
@@ -39,30 +54,29 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypefaceFontRes = R.font.opensans_regular
         ))
 
-        addSlide(AppIntroFragment.newInstance(
+        appIntro.addSlide(SlidePageFragment.newInstance(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4,
                 backgroundDrawable = R.drawable.back_slide4
         ))
 
-        addSlide(AppIntroFragment.newInstance(
+        appIntro.addSlide(SlidePageFragment.newInstance(
                 ":)",
                 "...gradients are awesome!",
                 imageDrawable = R.mipmap.ic_launcher,
                 backgroundDrawable = R.drawable.back_slide5
         ))
 
-
-        setTransformer(AppIntroPageTransformerType.Parallax())
+        appIntro.setTransformer(AppIntroPageTransformerType.Parallax())
     }
 
-    public override fun onSkipPressed(currentFragment: Fragment?) {
+    override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         finish()
     }
 
-    public override fun onDonePressed(currentFragment: Fragment?) {
+    override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         finish()
     }
