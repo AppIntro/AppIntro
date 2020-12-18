@@ -15,9 +15,9 @@ internal class PagerAdapter(
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val frament = super.instantiateItem(container, position)
-        fragments[position] = (frament as Fragment)
-        return frament
+        val fragment = super.instantiateItem(container, position)
+        fragments[position] = (fragment as Fragment)
+        return fragment
     }
 
     override fun getCount() = this.fragments.size

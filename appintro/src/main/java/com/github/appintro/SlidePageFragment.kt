@@ -6,14 +6,14 @@ import androidx.annotation.FontRes
 import com.github.appintro.model.SliderPage
 
 @Suppress("LongParameterList")
-class AppIntroFragment : AppIntroBaseFragment() {
+class SlidePageFragment : SlidePageBaseFragment() {
 
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
 
     companion object {
 
         /**
-         * Generates a new instance for [AppIntroFragment]
+         * Generates a new instance for [SlidePageFragment]
          *
          * @param title CharSequence which will be the slide title
          * @param description CharSequence which will be the slide description
@@ -28,7 +28,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
          *                             from Resources
          * @param backgroundDrawable @DrawableRes (Integer) custom background drawable
          *
-         * @return An [AppIntroFragment] created instance
+         * @return An [SlidePageFragment] created instance
          */
         @JvmOverloads
         @JvmStatic
@@ -42,7 +42,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int = 0,
             @FontRes descriptionTypefaceFontRes: Int = 0,
             @DrawableRes backgroundDrawable: Int = 0
-        ): AppIntroFragment {
+        ): SlidePageFragment {
             return newInstance(
                 SliderPage(
                     title = title,
@@ -59,16 +59,16 @@ class AppIntroFragment : AppIntroBaseFragment() {
         }
 
         /**
-         * Generates an [AppIntroFragment] from a given [SliderPage]
+         * Generates an [SlidePageFragment] from a given [SliderPage]
          *
          * @param sliderPage the [SliderPage] object which contains all attributes for
          * the current slide
          *
-         * @return An [AppIntroFragment] created instance
+         * @return An [SlidePageFragment] created instance
          */
         @JvmStatic
-        fun newInstance(sliderPage: SliderPage): AppIntroFragment {
-            val slide = AppIntroFragment()
+        fun newInstance(sliderPage: SliderPage): SlidePageFragment {
+            val slide = SlidePageFragment()
             slide.arguments = sliderPage.toBundle()
             return slide
         }

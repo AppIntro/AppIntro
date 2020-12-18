@@ -47,6 +47,7 @@ AppIntro is distributed through [JitPack](https://jitpack.io/#AppIntro/AppIntro)
 ### Adding a dependency
 
 To use it you need to add the following gradle dependency to your `build.gradle` file of the module where you want to use AppIntro (NOT the root file).
+THIS LIBRARY IS NOT UPLOADED YET. IN NEAR FUTURE IT COULD BE CALLED LIKE THIS:
 
 ```groovy
 repositories {
@@ -57,12 +58,12 @@ repositories {
 ```groovy
 dependencies {
     // AndroidX Capable version
-    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.github.AppIntro:AppIntroFragment:6.0.0'
     
     // *** OR ***
     
     // Latest version compatible with the old Support Library
-    implementation 'com.github.AppIntro:AppIntro:4.2.3'
+    implementation 'com.github.AppIntro:AppIntroFragment:4.2.3'
 }
 ```
 
@@ -73,51 +74,53 @@ Please note that since AppIntro 5.x, the library supports [Android X](https://de
 To use AppIntro, you simply have to create a new **Activity that extends AppIntro** like the following:
 
 ```kotlin
-class MyCustomAppIntro : AppIntro() {
+class CustomLayoutIntro : AppCompatActivity(), AppIntroBase.OnAppIntroListener {
+
+    private lateinit var appIntro: AppIntro
+    private val appIntroTag: String = "AppIntro"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Make sure you don't call setContentView!
+        setContentView(R.layout.activity_frame)
 
-        // Call addSlide passing your Fragments.
-        // You can use AppIntroFragment to use a pre-built fragment
-        addSlide(AppIntroFragment.newInstance(
-                title = "Welcome...",
-                description = "This is the first slide of the example"
-        ))
-        addSlide(AppIntroFragment.newInstance(
-                title = "...Let's get started!",
-                description = "This is the last slide, I won't annoy you more :)"
-        ))
+        if (savedInstanceState == null) {
+            appIntro = AppIntro.newInstance()
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.app_intro_container, appIntro, appIntroTag)
+                    .commitNow()
+        } else {
+            appIntro = supportFragmentManager.findFragmentByTag(appIntroTag) as AppIntro
+        }
+
+        appIntro.setAppIntroListener(this)
+    }
+
+    override fun onCreateAppIntro() {
+        appIntro.addSlide(newInstance(R.layout.intro_custom_layout1))
+        appIntro.addSlide(newInstance(R.layout.intro_custom_layout2))
+        appIntro.addSlide(newInstance(R.layout.intro_custom_layout3))
+        appIntro.addSlide(newInstance(R.layout.intro_custom_layout4))
+
+        appIntro.showStatusBar(true)
+        appIntro.setStatusBarColorRes(R.color.orange)
+        appIntro.setNavBarColorRes(R.color.orange)
+        appIntro.setProgressIndicator()
     }
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
-        // Decide what to do when the user clicks on "Skip"
         finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
-        // Decide what to do when the user clicks on "Done"
         finish()
     }
 }
 ```
 
-Please note that you **must NOT call** setContentView. The `AppIntro` superclass is taking care of it for you.
-
-Finally, declare the activity in your Manifest like so:
-
-``` xml
-<activity android:name="com.example.MyCustomAppIntro"
-    android:label="My Custom AppIntro" />
-```
-
-We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
-
-## Migrating 🚗
-
-If you're migrating **from AppIntro v5.x to v6.x**, please expect multiple breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
+Call `appIntro.setAppIntroListener(onAppIntroListener)`  and then the method `onCreateAppIntro()` to generate the content inside.
+Ideally you should show the AppIntro fragment only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
 
 ## Features 🧰
 
@@ -132,7 +135,7 @@ Don't forget to check the [changelog](CHANGELOG.md) to have a look at all the ch
 
 ## Creating Slides 👩‍🎨
 
-The entry point to add a new slide is the `addSlide(fragment: Fragment)` function on the `AppIntro` class.
+The entry point to add a new slide is the `appIntroFragment.addSlide(fragment: Fragment)` function on the `AppIntro` class.
 You can easily use it to add a new `Fragment` to the carousel.
 
 The library comes with several util classes to help you create your Slide with just a couple lines:
@@ -143,7 +146,7 @@ You can use the `AppIntroFragment` if you just want to customize title, descript
 That's the suggested approach if you want to create a quick intro:
 
 ```kotlin
-addSlide(AppIntroFragment.newInstance(
+appIntro.addSlide(AppIntroFragment.newInstance(
     title = "The title of your slide",
     description = "A description that will be shown on the bottom",
     imageDrawable = R.drawable.the_central_icon,
@@ -213,7 +216,7 @@ setTransformer(AppIntroPageTransformerType.Parallax(
 You can also provide your custom Slide Transformer (implementing the `ViewPager.PageTransformer` interface) with:
 
 ```kotlin
-setCustomTransformer(ViewPager.PageTransformer)
+appIntro.setCustomTransformer(ViewPager.PageTransformer)
 ```
 
 ### Color Transition
@@ -226,7 +229,7 @@ AppIntro offers the possibility to animate the **color transition** between two 
 This feature is disabled by default, and you need to enable it on your AppIntro with:
 
 ```kotlin
-isColorTransitionsEnabled = true
+appIntro.isColorTransitionsEnabled = true
 ```
 
 Once you enable it, the color will be animated between slides with a gradient.
@@ -238,10 +241,11 @@ the `SlideBackgroundColorHolder` interface.
 ### Multiple Windows Layout
 
 AppIntro is shipped with two top-level layouts that you can use.
-The default layout (`AppIntro`) has textual buttons, while the alternative
+The default layout has textual buttons, while the alternative
 layout has buttons with icons.
 
-To change the Window layout, you can simply change your superclass to `AppIntro2`.
+To change the Window layout, you can create the fragment of AppIntro using 
+AppIntro.newInstance(true) for buttons with icons.
 The methods to add and customize the AppIntro are unchanged.
 
 ```kotlin
@@ -250,7 +254,7 @@ class MyCustomAppIntro : AppIntro2() {
 }
 ```
 
-| Page | `AppIntro` | `AppIntro2` |
+| Page | `AppIntro.newInstance()` | `AppIntro.newInstance(true)` |
 | ---: | :--------: | :---------: |
 | standard page | <img src="assets/layout1-start.png" alt="layout1-start" width="50%"/> | <img src="assets/layout2-start.png" alt="layout2-start" width="50%"/> |
 | last page | <img src="assets/layout1-end.png" alt="layout1-end" width="50%"/> | <img src="assets/layout2-end.png" alt="layout2-end" width="50%"/> |
@@ -388,14 +392,14 @@ Please note that:
 
 ```kotlin
 // Ask for required CAMERA permission on the second slide. 
-askForPermissions(
+appIntro.askForPermissions(
     permissions = arrayOf(Manifest.permission.CAMERA),
     slideNumber = 2, 
     required = true)
 
 // Ask for both optional ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
 // permission on the third slide.
-askForPermissions(
+appIntro.askForPermissions(
     permissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -404,7 +408,7 @@ askForPermissions(
     required = false)
 ```
 
-Should you need further control on the permission request, you can override those two methods on the `AppIntro` class:
+Should you need further control on the permission request, you can override those two methods on the `AppIntro` interface onPermissionListener:
 
 ```kotlin
 override fun onUserDeniedPermission(permissionName: String) {
@@ -413,6 +417,8 @@ override fun onUserDeniedPermission(permissionName: String) {
 override fun onUserDisabledPermission(permissionName: String) {
     // User pressed "Deny" + "Don't ask again" on the permission dialog
 }
+
+// Call `setOnPermissionListener(onPermissionListener)` to set the listener.
 ```
 
 ### Slide Policy
@@ -487,7 +493,7 @@ repositories {
 
 ```gradle
 dependencies {
-  implementation "com.github.AppIntro:AppIntro:master-SNAPSHOT"
+  implementation "com.github.AppIntro:AppIntroFragment:master-SNAPSHOT"
 }
 ```
 
@@ -581,6 +587,5 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [PrezziBenzina](https://play.google.com/store/apps/details?id=org.vernazza.androidfuel&hl=it)
 * [LogViewer for openHAB](https://github.com/cyb3rko/logviewer-for-openhab-app)
 * [Firmo con CIE](https://play.google.com/store/apps/details?id=com.cyberneid.disigoncie)
-* [FoodTable](https://play.google.com/store/apps/details?id=at.foodtable.app)
 
 </details>
