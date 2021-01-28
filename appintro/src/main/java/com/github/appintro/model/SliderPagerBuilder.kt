@@ -18,8 +18,6 @@ class SliderPagerBuilder {
     @DrawableRes
     private var imageDrawable: Int = 0
 
-    private var startAnimation: Boolean = false
-
     @ColorInt
     private var backgroundColor: Int = 0
 
@@ -101,7 +99,6 @@ class SliderPagerBuilder {
         title = this.title,
         description = this.description,
         imageDrawable = this.imageDrawable,
-        startAnimation = this.startAnimation,
         backgroundColor = this.backgroundColor,
         titleColor = this.titleColor,
         descriptionColor = this.descriptionColor,

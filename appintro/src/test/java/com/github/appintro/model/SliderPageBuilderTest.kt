@@ -11,7 +11,6 @@ class SliderPageBuilderTest {
         val title = "Title"
         val description = "Description"
         val imageDrawable = 0x7f020000
-        val startAnimation = false
         val bgDrawable = 0x7f020000
         val bgColor = Color.GRAY
         val titleColor = Color.WHITE
@@ -39,7 +38,6 @@ class SliderPageBuilderTest {
         assertEquals(sliderPage.title, title)
         assertEquals(sliderPage.description, description)
         assertEquals(sliderPage.imageDrawable, imageDrawable)
-        assertEquals(sliderPage.startAnimation, startAnimation)
         assertEquals(sliderPage.backgroundColor, bgColor)
         assertEquals(sliderPage.backgroundDrawable, bgDrawable)
         assertEquals(sliderPage.titleColor, titleColor)
@@ -67,7 +65,6 @@ class SliderPageBuilderTest {
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
         assertEquals(sliderPage.imageDrawable, 0)
-        assertEquals(sliderPage.startAnimation, false)
         assertEquals(sliderPage.backgroundColor, 0)
         assertEquals(sliderPage.backgroundDrawable, 0)
         assertEquals(sliderPage.titleColor, 0)
