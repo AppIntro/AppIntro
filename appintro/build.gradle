@@ -1,10 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 apply plugin: 'io.gitlab.arturbosch.detekt'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 group = 'com.github.AppIntro'
+
+version = "6.0.0"
 
 android {
     compileSdkVersion 30
@@ -13,7 +15,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 30
         versionCode 20
-        versionName "6.0.0"
+        versionName version
 
         consumerProguardFiles 'consumer-proguard-rules.pro'
         vectorDrawables.useSupportLibrary = true
@@ -71,4 +73,51 @@ detekt {
 
 tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
     exclude("**/resources/**,**/build/**")
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts.archives(sourcesJar)
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifact sourcesJar
+                artifactId = project.name
+                pom {
+                    name = POM_NAME
+                    description = POM_DESCRIPTION
+                    url = POM_URL
+                    licenses {
+                        license {
+                            name = POM_LICENSE_NAME
+                            url = POM_LICENSE_URL
+                        }
+                    }
+                    scm {
+                        connection = POM_SCM_CONNECTION
+                        developerConnection = POM_SCM_CONNECTION
+                        url = POM_URL
+                    }
+                    developers {
+                        developer {
+                            id = 'paolorotolo'
+                            name = 'Paolo Rotolo'
+                            email = 'paolo@rotolo.dev'
+                        }
+                        developer {
+                            id = 'cortinico'
+                            name = 'Nicola Corti'
+                            email = 'corti.nico@gmail.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
