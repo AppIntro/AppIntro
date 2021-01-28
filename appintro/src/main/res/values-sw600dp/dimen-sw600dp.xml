@@ -3,6 +3,8 @@
 
     <dimen name="appintro_desctext_size">30sp</dimen>
     <dimen name="appintro_headtext_size">42sp</dimen>
+    <dimen name="appintro_min_text_size">24sp</dimen>
+    <dimen name="appintro_text_granularity_size">2sp</dimen>
 
     <dimen name="appintro_button_margin">12dp</dimen>
     <dimen name="appintro_button_minheight">92dp</dimen>

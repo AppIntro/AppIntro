@@ -24,5 +24,7 @@
     <dimen name="appintro_headtext_size">28sp</dimen>
     <dimen name="appintro_skiptext_size">14sp</dimen>
     <dimen name="appintro_donetext_size">14sp</dimen>
+    <dimen name="appintro_min_text_size">12sp</dimen>
+    <dimen name="appintro_text_granularity_size">2sp</dimen>
 
 </resources>

@@ -31,6 +31,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:padding">@dimen/appintro_head_padding</item>
         <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">@dimen/appintro_headtext_size</item>
+        <item name="autoSizeMinTextSize">@dimen/appintro_min_text_size</item>
+        <item name="autoSizeStepGranularity">@dimen/appintro_text_granularity_size</item>
     </style>
 
     <style name="AppIntroDefaultText" parent="TextAppearance.AppCompat.Body1">
@@ -38,6 +42,9 @@
         <item name="android:textSize">@dimen/appintro_desctext_size</item>
         <item name="android:padding">@dimen/appintro_desc_padding</item>
         <item name="android:gravity">center</item>
+        <item name="autoSizeMaxTextSize">@dimen/appintro_desctext_size</item>
+        <item name="autoSizeMinTextSize">@dimen/appintro_min_text_size</item>
+        <item name="autoSizeStepGranularity">@dimen/appintro_text_granularity_size</item>
     </style>
 
     <style name="AppIntroDefaultImage">
