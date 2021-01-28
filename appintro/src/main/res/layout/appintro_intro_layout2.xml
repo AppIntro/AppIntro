@@ -5,7 +5,6 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appintro_background_color"
     android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
@@ -56,7 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottom"
-        tools:background="@drawable/ic_appintro_indicator" />
+        tools:background="@drawable/ic_appintro_indicator"
+        tools:targetApi="jelly_bean_mr1" />
 
     <ImageButton
         android:id="@+id/next"

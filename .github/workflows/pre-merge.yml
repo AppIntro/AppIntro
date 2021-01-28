@@ -46,6 +46,25 @@ jobs:
       - name: Run detekt
         run: ./gradlew detekt
 
+  lint:
+    runs-on: [ubuntu-latest]
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
+
+      - name: Run lint
+        run: ./gradlew lint
+
   test:
     runs-on: [ubuntu-latest]
     env:
@@ -77,9 +96,9 @@ jobs:
           - agp: 4.2.+
             experimental: true
             name: AGP-4.2.+
-          - kotlin: 1.4.20+
+          - kotlin: 1.4.30+
             experimental: true
-            name: kotlin-EAP-1.4.20+
+            name: kotlin-EAP-1.4.30+
 
     runs-on: [ubuntu-latest]
     continue-on-error: ${{ matrix.experimental }}

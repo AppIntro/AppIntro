@@ -5,12 +5,12 @@ Any HTML comment like this will be stripped when rendering markdown, no need to 
 If an issue does not have the following template filled out, it will be closed without discussion.
 -->
 
-<!-- What version of AppIntro you're running, for example: 4.1.0 | 4.0.0
+<!-- What version of AppIntro you're running, for example: 6.0.0
 It's essentially the version number from your build.gradle: `dependencies { compile '...:x.y.z' }` -->
 **AppIntro Version**:
 
 <!-- What devices you managed to get the issue to come up on? For example:
-fails on Galaxy S4/GT-I9500 4.4.2, works fine on Nexus 6P 5.1 and Genymotion Nexus 5 5.0.1 -->
+fails on Galaxy S21, works fine on Pixel 5 -->
 **Device/Android Version**:
 
 <!-- Share the details of your issue in prose, detailing actual and expected behavior. It also helps if you give some info **why** you are trying to do something as opposed to **what** is not working. -->
@@ -23,7 +23,7 @@ fails on Galaxy S4/GT-I9500 4.4.2, works fine on Nexus 6P 5.1 and Genymotion Nex
 What is the error message that you got in the log?
 -->
 **Stack trace / LogCat**:
-```ruby
+```
 paste stack trace and/or log here
 ```
 

@@ -1,5 +1,6 @@
 package com.github.appintro.internal
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -115,6 +116,7 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
         return super.onInterceptTouchEvent(event)
     }
 
+    @SuppressLint("ClickableViewAccessibility") // performClick is called inside handleTouchEvent
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (!handleTouchEvent(event)) {
             return false
@@ -154,7 +156,7 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
                 // and also call onIllegallyRequestedNextPage if the threshold was too high
                 // (so the user can be informed).
                 if (!canRequestNextPage && isSwipeForward(currentTouchDownX, event.x)) {
-                    if (userIllegallyRequestNextPage(event)) {
+                    if (userIllegallyRequestNextPage()) {
                         onNextPageRequestedListener?.onIllegallyRequestedNextPage()
                     }
                     return false
@@ -180,7 +182,7 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
     /**
      * Util function to throttle illegallyRequestedNext to max one request per second.
      */
-    private fun userIllegallyRequestNextPage(event: MotionEvent): Boolean {
+    private fun userIllegallyRequestNextPage(): Boolean {
         if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >=
             ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL
         ) {

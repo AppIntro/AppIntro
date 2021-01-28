@@ -7,28 +7,35 @@ apply plugin: 'org.jlleitschuh.gradle.ktlint'
 group = 'com.github.AppIntro'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
-    buildToolsVersion "29.0.2"
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 20
         versionName "6.0.0"
 
         consumerProguardFiles 'consumer-proguard-rules.pro'
         vectorDrawables.useSupportLibrary = true
     }
+    lintOptions {
+        ignore 'MissingTranslation'
+        warningsAsErrors true
+        abortOnError true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.13.1'
-    testImplementation 'org.mockito:mockito-core:3.5.15'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    testImplementation 'org.mockito:mockito-core:3.6.28'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 }
 
 repositories {

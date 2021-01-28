@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@color/appintro_background_color</item>
+    </style>
 
     <style name="AppIntroButtonStyleCompat" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">?attr/selectableItemBackground</item>
