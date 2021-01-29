@@ -1,5 +1,67 @@
 # Change Log
 
+## Version 6.0.1 *(2021-01-29)*
+
+This is a new minor release of AppIntro. This library comes with several new features (see below) and several bugfixes.
+
+### Summary of Changes
+
+* Target SDK is now 30.
+* Text visualization has been improved with Autosizing TextViews and URL autolinking
+* AppIntro now offers better support for tablets (`sw600dp`)
+* Slide indicator has been improved with be
+* The AppIntro sample app has been completely rewritten with more examples (for Java, SlidePolicy and more).
+* 14 translations have been added or improved.
+
+### Enhancements 🎁
+
+* [#922] Add support for Autosizing TextViews
+* [#887] Added start/stop animation for `Animatable` images
+* [#883] Changing Visibility of Progress Bar when count of slide is one
+* [#878] Add sw600dp support
+* [#876] Single slide indicator condition
+* [#870] added URL autolinking in appintro_fragment_intro.xml
+* [#869] Allow to change skip and next arrow button color
+* [#857] Function for setting text appearance of Done and Skip buttons
+* [#825] Added ability to color back arrow and done button
+* [#796] Extend visibility of goToPreviousSlide to protected
+
+### Bugfixes 🐛
+
+* [#903] Deprecate the setNextPageSwipeLock method
+* [#896] Fix for crash on PagerAdapter when using SlidePolicy
+* [#891] Do not show back arrow on wizard mode on first slide
+* [#856] Fix blending of Indicator Colors
+* [#821] Fix bug with SetSwipeLock being reset to false
+* [#817] enabling backward sliding when slide policy not met
+* [#808] Fix isButtonsEnabled being reset to true after onCreate
+* [#802] Fix goToNextSlide default param for RTL
+* [#792] Remove reference to mainView in AppIntroBaseFragment
+* [#791] Clearing main layout in onDestroyView
+
+### Translations 🌍
+
+* [#919] Romanian (RO) translation
+* [#908] Added Bulgarian translation
+* [#895] Azerbaijan language support
+* [#880] add Ukrainian translation
+* [#877] Tamil translation added
+* [#874] added translation for bengali
+* [#872] added translation for yoruba
+* [#868] Translation for Gujarati language
+* [#862] Add Japanese translation
+* [#839] Complete the Chinese (Simplified) translation
+* [#834] Russian localization
+* [#831] Finish the French translation
+* [#829] Update Persian localization
+* [#812] Update strings.xml Spanish
+
+### Credits
+
+This release was possible thanks to the contribution of:
+
+[@CristianCardosoA](https://github.com/CristianCardosoA) [@Debanshu777](https://github.com/Debanshu777) [@Debanshu777](https://github.com/Debanshu777) [@Hoossayn](https://github.com/Hoossayn) [@Hoossayn](https://github.com/Hoossayn) [@JekRock](https://github.com/JekRock) [@LinX64](https://github.com/LinX64) [@NikolaGanchev](https://github.com/NikolaGanchev) [@RobertPal95](https://github.com/RobertPal95) [@WWCheng02](https://github.com/WWCheng02) [@ZakCodes](https://github.com/ZakCodes) [@beefsausage](https://github.com/beefsausage) [@ch22843](https://github.com/ch22843) [@cortinico](https://github.com/cortinico) [@ghost](https://github.com/ghost) [@idish](https://github.com/idish) [@kunal-ch](https://github.com/kunal-ch) [@manimaran96](https://github.com/manimaran96) [@paolorotolo](https://github.com/paolorotolo) [@siper](https://github.com/siper) [@sr01](https://github.com/sr01) [@tsumuchan](https://github.com/tsumuchan)
+
 ## Version 6.0.0 *(2020-05-04)*
 
 This is a new major release of AppIntro. Please note that this release contains multiple new features (see below), several bugfixes, as well as multiple breaking changes.
@@ -128,10 +190,9 @@ This release was possible thanks to the contribution of:
 
 Previous release notes can be found here: [releases]
 
-[releases]: https://github.com/AppIntro/AppIntro/releases?after=v5.0.0
-[#597]: https://github.com/AppIntro/AppIntro/pull/597
-[#590]: https://github.com/AppIntro/AppIntro/pull/590
 [#574]: https://github.com/AppIntro/AppIntro/pull/574
+[#590]: https://github.com/AppIntro/AppIntro/pull/590
+[#597]: https://github.com/AppIntro/AppIntro/pull/597
 [#600]: https://github.com/AppIntro/AppIntro/pull/600
 [#601]: https://github.com/AppIntro/AppIntro/pull/601
 [#602]: https://github.com/AppIntro/AppIntro/pull/602
@@ -202,4 +263,39 @@ Previous release notes can be found here: [releases]
 [#770]: https://github.com/AppIntro/AppIntro/pull/770
 [#773]: https://github.com/AppIntro/AppIntro/pull/773
 [#774]: https://github.com/AppIntro/AppIntro/pull/774
+[#791]: https://github.com/AppIntro/AppIntro/pull/791
+[#792]: https://github.com/AppIntro/AppIntro/pull/792
+[#796]: https://github.com/AppIntro/AppIntro/pull/796
+[#802]: https://github.com/AppIntro/AppIntro/pull/802
+[#808]: https://github.com/AppIntro/AppIntro/pull/808
+[#812]: https://github.com/AppIntro/AppIntro/pull/812
+[#817]: https://github.com/AppIntro/AppIntro/pull/817
+[#821]: https://github.com/AppIntro/AppIntro/pull/821
+[#825]: https://github.com/AppIntro/AppIntro/pull/825
+[#829]: https://github.com/AppIntro/AppIntro/pull/829
+[#831]: https://github.com/AppIntro/AppIntro/pull/831
+[#834]: https://github.com/AppIntro/AppIntro/pull/834
+[#839]: https://github.com/AppIntro/AppIntro/pull/839
+[#856]: https://github.com/AppIntro/AppIntro/pull/856
+[#857]: https://github.com/AppIntro/AppIntro/pull/857
+[#862]: https://github.com/AppIntro/AppIntro/pull/862
+[#868]: https://github.com/AppIntro/AppIntro/pull/868
+[#869]: https://github.com/AppIntro/AppIntro/pull/869
+[#870]: https://github.com/AppIntro/AppIntro/pull/870
+[#872]: https://github.com/AppIntro/AppIntro/pull/872
+[#874]: https://github.com/AppIntro/AppIntro/pull/874
+[#876]: https://github.com/AppIntro/AppIntro/pull/876
+[#877]: https://github.com/AppIntro/AppIntro/pull/877
+[#878]: https://github.com/AppIntro/AppIntro/pull/878
+[#880]: https://github.com/AppIntro/AppIntro/pull/880
+[#883]: https://github.com/AppIntro/AppIntro/pull/883
+[#887]: https://github.com/AppIntro/AppIntro/pull/887
+[#891]: https://github.com/AppIntro/AppIntro/pull/891
+[#895]: https://github.com/AppIntro/AppIntro/pull/895
+[#896]: https://github.com/AppIntro/AppIntro/pull/896
+[#903]: https://github.com/AppIntro/AppIntro/pull/903
+[#908]: https://github.com/AppIntro/AppIntro/pull/908
+[#919]: https://github.com/AppIntro/AppIntro/pull/919
+[#922]: https://github.com/AppIntro/AppIntro/pull/922
+[releases]: https://github.com/AppIntro/AppIntro/releases?after=v5.0.0
 

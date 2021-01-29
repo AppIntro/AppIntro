@@ -5,7 +5,7 @@ Any HTML comment like this will be stripped when rendering markdown, no need to 
 If an issue does not have the following template filled out, it will be closed without discussion.
 -->
 
-<!-- What version of AppIntro you're running, for example: 6.0.0
+<!-- What version of AppIntro you're running, for example: 6.0.0 | 6.1.0
 It's essentially the version number from your build.gradle: `dependencies { compile '...:x.y.z' }` -->
 **AppIntro Version**:
 
