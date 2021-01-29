@@ -1,5 +1,6 @@
 package com.github.appintro
 
+import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -123,6 +124,26 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        view?.findViewById<ImageView>(R.id.image).let {
+            if (it is Animatable) {
+                it.start()
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        view?.findViewById<ImageView>(R.id.image).let {
+            if (it is Animatable) {
+                it.start()
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
