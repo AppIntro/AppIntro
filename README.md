@@ -57,7 +57,7 @@ repositories {
 ```groovy
 dependencies {
     // AndroidX Capable version
-    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.github.AppIntro:AppIntro:6.1.0'
     
     // *** OR ***
     
