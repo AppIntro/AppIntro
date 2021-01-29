@@ -56,6 +56,13 @@ This is a new minor release of AppIntro. This library comes with several new fea
 * [#829] Update Persian localization
 * [#812] Update strings.xml Spanish
 
+### Dependency updates 📦
+
+* Kotlin to 1.4.21
+* AGP to 4.1.1
+* Androidx Appcompat to 1.2.0
+* Constraintlayout to 2.0.4
+
 ### Credits
 
 This release was possible thanks to the contribution of:
