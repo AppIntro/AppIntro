@@ -7,9 +7,9 @@ This is a new minor release of AppIntro. This library comes with several new fea
 ### Summary of Changes
 
 * Target SDK is now 30.
-* Text visualization has been improved with Autosizing TextViews and URL autolinking
-* AppIntro now offers better support for tablets (`sw600dp`)
-* Slide indicator has been improved with be
+* Text visualization has been improved with Autosizing TextViews and URL autolinking.
+* AppIntro now offers better support for tablets (`sw600dp`).
+* Slide indicator has been improved with better color blending and it won't be shown if you have only one slide.
 * The AppIntro sample app has been completely rewritten with more examples (for Java, SlidePolicy and more).
 * 14 translations have been added or improved.
 
