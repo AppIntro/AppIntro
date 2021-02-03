@@ -1,6 +1,6 @@
 # Change Log
 
-## Version 6.1.0 *(2021-01-29)*
+## Version 6.1.0 *(2021-02-03)*
 
 This is a new minor release of AppIntro. This library comes with several new features (see below) and several bugfixes.
 
