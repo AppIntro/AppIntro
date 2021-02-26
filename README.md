@@ -585,5 +585,6 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [iC-YOURLS](https://play.google.com/store/apps/details?id=net.inscomers.yourls)
 * [Secure File Manager](https://play.google.com/store/apps/details?id=com.securefilemanager.app)
 * [Noon Happen](https://play.google.com/store/apps/details?id=com.noonhappen.noonhappen)
+* [Alcapote](https://play.google.com/store/apps/details?id=com.casaconnex.alcapote)
 
 </details>
