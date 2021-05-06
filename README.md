@@ -113,7 +113,7 @@ Finally, declare the activity in your Manifest like so:
     android:label="My Custom AppIntro" />
 ```
 
-We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
+We suggest you don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
 
 ## Migrating 🚗
 
@@ -314,7 +314,7 @@ vibrateDuration = 50L
 </p>
 
 AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
-This comes handy if you're presenting a Wizard to your user with a set of skip they need to do,
+This comes handy if you're presenting a Wizard to your user with a set of steps they need to do,
 and they might frequently go back and forth.
 
 You can enable it with:
@@ -379,7 +379,7 @@ setNavBarColorRes(R.color.red)
 </p>
 
 AppIntro simplifies the process of requesting **runtime permissions** to your user.
-You can integrate one or more permission request inside a slide with the `askForPermissions` method inside your activity.
+You can integrate one or more permission requests inside a slide with the `askForPermissions` method inside your activity.
 
 Please note that:
 * `slideNumber` is in a **One-based numbering** (it starts from 1)
