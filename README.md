@@ -314,7 +314,7 @@ vibrateDuration = 50L
 </p>
 
 AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
-This comes handy if you're presenting a Wizard to your user with a set of steps they need to do,
+This comes in hand if you're presenting a Wizard to your user with a set of steps they need to do,
 and they might frequently go back and forth.
 
 You can enable it with:
