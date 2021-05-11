@@ -463,7 +463,7 @@ You can get a **debug APK** of the sample app from the **Pre Merge** Github Acti
 
 ## Translating 🌍
 
-Do you want to help AppIntro becoming international 🌍? We are more than happy!
+Do you want to help AppIntro become international 🌍? We are more than happy!
 AppIntro currently supports [the following languages](appintro/src/main/res).
 
 To add a new translation just add a pull request with a new `strings.xml` file inside a `values-xx` folder (where `xx` is a [two-letter ISO 639-1 language code](https://en.wikipedia.org/wiki/ISO_639-1)).
