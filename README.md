@@ -106,14 +106,24 @@ class MyCustomAppIntro : AppIntro() {
 
 Please note that you **must NOT call** setContentView. The `AppIntro` superclass is taking care of it for you.
 
+Next, define your app intro theme in res/values/styles.xml.
+```
+  <style name="AppIntroTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#F57C00</item>
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorAccent">#F57C00</item>
+    </style>
+```
+
 Finally, declare the activity in your Manifest like so:
 
 ``` xml
 <activity android:name="com.example.MyCustomAppIntro"
-    android:label="My Custom AppIntro" />
+    android:label="My Custom AppIntro"
+    android:theme="@style/AppIntroTheme"/>
 ```
 
-We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
+We suggest you don't declare `MyCustomAppIntro` as your first Activity unless you want the intro to launch every time your app starts. Ideally you should show the AppIntro activity only once to the user, and you should hide it once completed (you can use a flag in the `SharedPreferences`).
 
 ## Migrating 🚗
 
@@ -314,7 +324,7 @@ vibrateDuration = 50L
 </p>
 
 AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
-This comes handy if you're presenting a Wizard to your user with a set of skip they need to do,
+This comes in handy if you're presenting a Wizard to your user with a set of steps they need to do,
 and they might frequently go back and forth.
 
 You can enable it with:
@@ -379,7 +389,7 @@ setNavBarColorRes(R.color.red)
 </p>
 
 AppIntro simplifies the process of requesting **runtime permissions** to your user.
-You can integrate one or more permission request inside a slide with the `askForPermissions` method inside your activity.
+You can integrate one or more permission requests inside a slide with the `askForPermissions` method inside your activity.
 
 Please note that:
 * `slideNumber` is in a **One-based numbering** (it starts from 1)
@@ -453,7 +463,7 @@ You can get a **debug APK** of the sample app from the **Pre Merge** Github Acti
 
 ## Translating 🌍
 
-Do you want to help AppIntro becoming international 🌍? We are more than happy!
+Do you want to help AppIntro become international 🌍? We are more than happy!
 AppIntro currently supports [the following languages](appintro/src/main/res).
 
 To add a new translation just add a pull request with a new `strings.xml` file inside a `values-xx` folder (where `xx` is a [two-letter ISO 639-1 language code](https://en.wikipedia.org/wiki/ISO_639-1)).
