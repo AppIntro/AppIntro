@@ -105,7 +105,8 @@ class MyCustomAppIntro : AppIntro() {
 ```
 
 Please note that you **must NOT call** setContentView. The `AppIntro` superclass is taking care of it for you.
-Also confirm your signature of `onCreate(Bundle?)` only contains a single parameter as it will crash if it has a different signature. 
+
+Also confirm that you're overriding `onCreate` with **a single parameter** (`Bundle`) and you're not using another override (like `onCreate(Bundle, PersistableBundle)`) instead.
 
 Finally, declare the activity in your Manifest like so:
 
