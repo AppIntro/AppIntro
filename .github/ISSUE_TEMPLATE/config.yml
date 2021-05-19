@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions
+    url: https://github.com/AppIntro/AppIntro/discussions/new
+    about: Ask questions about AppIntro and get support for your problems.
+  - name: Slack Chat
+    url: https://kotlinlang.slack.com/archives/C019SH1RMBN
+    about: Join the 'appintro' channel on KotlinLang Slack to chat with other AppIntro developers.
