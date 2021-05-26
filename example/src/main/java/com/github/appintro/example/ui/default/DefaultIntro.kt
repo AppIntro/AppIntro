@@ -10,25 +10,25 @@ class DefaultIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Welcome!",
                 "This is a demo of the AppIntro library, with a custom background on each slide!",
                 imageDrawable = R.drawable.ic_slide1
         ))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Clean App Intros",
                 "This library offers developers the ability to add clean app intros at the start of their apps.",
                 imageDrawable = R.drawable.ic_slide2
         ))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3
         ))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4

@@ -10,14 +10,14 @@ class SlidePolicyIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Welcome",
                 "This is a demo of the AppIntro library, using the SlidePolicy feature."
         ))
 
         addSlide(CustomSlidePolicyFragment.newInstance())
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Policy Respected!",
                 "If the user arrived here, the SlidePolicy was respected."
         ))

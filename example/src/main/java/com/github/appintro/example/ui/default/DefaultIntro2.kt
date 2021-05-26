@@ -12,7 +12,7 @@ class DefaultIntro2 : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Welcome!",
                 "This is a demo of the AppIntro library, using the second layout.",
                 imageDrawable = R.drawable.ic_slide1,
@@ -30,7 +30,7 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypeface = "OpenSans-Light.ttf"
         )))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3,
@@ -39,14 +39,14 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypefaceFontRes = R.font.opensans_regular
         ))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4,
                 backgroundDrawable = R.drawable.back_slide4
         ))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 ":)",
                 "...gradients are awesome!",
                 imageDrawable = R.mipmap.ic_launcher,
