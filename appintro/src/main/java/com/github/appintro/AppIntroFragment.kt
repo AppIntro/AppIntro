@@ -36,7 +36,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
         @Deprecated(
             "`newInstance` is deprecated to support color resources with configuration " +
                     "changes",
-            ReplaceWith("newInstance2(title, description, imageDrawable, backgroundColor," +
+            ReplaceWith("newInstanceWithRes(title, description, imageDrawable, backgroundColor," +
                     " titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
                     "backgroundDrawable)")
         )
@@ -86,7 +86,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
          */
         @JvmOverloads
         @JvmStatic
-        fun newInstance2(
+        fun newInstanceWithRes(
             title: CharSequence? = null,
             description: CharSequence? = null,
             @DrawableRes imageDrawable: Int = 0,

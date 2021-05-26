@@ -11,22 +11,22 @@ class PermissionsIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Welcome!",
                 "This is a demo of the AppIntro library, with permissions being requested on a slide!",
                 imageDrawable = R.drawable.ic_slide1))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Permission Request",
                 "In order to access your camera, you must give permissions.",
                 imageDrawable = R.drawable.ic_slide2))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3))
 
-        addSlide(AppIntroFragment.newInstance2(
+        addSlide(AppIntroFragment.newInstanceWithRes(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4))
