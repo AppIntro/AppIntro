@@ -717,8 +717,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             if (currentSlide.isAdded && nextSlide.isAdded) {
                 val newColor = argbEvaluator.evaluate(
                     positionOffset,
-                        getSlideColor(currentSlide),
-                        getSlideColor(nextSlide)
+                    getSlideColor(currentSlide),
+                    getSlideColor(nextSlide)
                 ) as Int
                 currentSlide.setBackgroundColor(newColor)
                 nextSlide.setBackgroundColor(newColor)
