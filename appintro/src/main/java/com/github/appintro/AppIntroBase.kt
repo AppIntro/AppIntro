@@ -717,8 +717,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             if (currentSlide.isAdded && nextSlide.isAdded) {
                 val newColor = argbEvaluator.evaluate(
                     positionOffset,
-                    currentSlide.defaultBackgroundColor,
-                    nextSlide.defaultBackgroundColor
+                        getSlideColor(currentSlide),
+                        getSlideColor(nextSlide)
                 ) as Int
                 currentSlide.setBackgroundColor(newColor)
                 nextSlide.setBackgroundColor(newColor)
@@ -726,6 +726,16 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             error("Color transitions are only available if all slides implement SlideBackgroundColorHolder.")
         }
+    }
+
+    @ColorInt
+    @Suppress("DEPRECATION")
+    private fun getSlideColor(slide: SlideBackgroundColorHolder): Int {
+        if (slide.defaultBackgroundColorRes != 0) {
+            return ContextCompat.getColor(this, slide.defaultBackgroundColorRes)
+        }
+
+        return slide.defaultBackgroundColor
     }
 
     /**
