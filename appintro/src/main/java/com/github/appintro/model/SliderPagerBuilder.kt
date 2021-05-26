@@ -66,8 +66,8 @@ class SliderPagerBuilder {
     }
 
     @Deprecated(
-            "`backgroundColor(...)` has been deprecated to support configuration changes",
-            ReplaceWith("backgroundColorRes(backgroundColor)")
+        "`backgroundColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("backgroundColorRes(backgroundColor)")
     )
     fun backgroundColor(@ColorInt backgroundColor: Int): SliderPagerBuilder {
         this.backgroundColor = backgroundColor
@@ -80,8 +80,8 @@ class SliderPagerBuilder {
     }
 
     @Deprecated(
-            "`titleColor(...)` has been deprecated to support configuration changes",
-            ReplaceWith("titleColorRes(titleColor)")
+        "`titleColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("titleColorRes(titleColor)")
     )
     fun titleColor(@ColorInt titleColor: Int): SliderPagerBuilder {
         this.titleColor = titleColor
@@ -94,8 +94,8 @@ class SliderPagerBuilder {
     }
 
     @Deprecated(
-            "`descriptionColor(...)` has been deprecated to support configuration changes",
-            ReplaceWith("descriptionColorRes(descriptionColor)")
+        "`descriptionColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("descriptionColorRes(descriptionColor)")
     )
     fun descriptionColor(@ColorInt descriptionColor: Int): SliderPagerBuilder {
         this.descriptionColor = descriptionColor

@@ -26,39 +26,39 @@ import com.github.appintro.ARG_TITLE_TYPEFACE_RES
  * This data class represent a single page that can be visualized with AppIntro.
  */
 data class SliderPage @JvmOverloads constructor(
-        var title: CharSequence? = null,
-        var description: CharSequence? = null,
-        @DrawableRes var imageDrawable: Int = 0,
+    var title: CharSequence? = null,
+    var description: CharSequence? = null,
+    @DrawableRes var imageDrawable: Int = 0,
 
-        @ColorInt
-        @Deprecated(
-                "`backgroundColor` has been deprecated to support configuration changes",
-                ReplaceWith("backgroundColorRes")
-        )
-        var backgroundColor: Int = 0,
+    @ColorInt
+    @Deprecated(
+        "`backgroundColor` has been deprecated to support configuration changes",
+        ReplaceWith("backgroundColorRes")
+    )
+    var backgroundColor: Int = 0,
 
-        @ColorInt
-        @Deprecated(
-                "`titleColor` has been deprecated to support configuration changes",
-                ReplaceWith("titleColorRes")
-        )
-        var titleColor: Int = 0,
+    @ColorInt
+    @Deprecated(
+        "`titleColor` has been deprecated to support configuration changes",
+        ReplaceWith("titleColorRes")
+    )
+    var titleColor: Int = 0,
 
-        @ColorInt
-        @Deprecated(
-                "`descriptionColor` has been deprecated to support configuration changes",
-                ReplaceWith("descriptionColorRes")
-        )
-        var descriptionColor: Int = 0,
+    @ColorInt
+    @Deprecated(
+        "`descriptionColor` has been deprecated to support configuration changes",
+        ReplaceWith("descriptionColorRes")
+    )
+    var descriptionColor: Int = 0,
 
-        @ColorRes var backgroundColorRes: Int = 0,
-        @ColorRes var titleColorRes: Int = 0,
-        @ColorRes var descriptionColorRes: Int = 0,
-        @FontRes var titleTypefaceFontRes: Int = 0,
-        @FontRes var descriptionTypefaceFontRes: Int = 0,
-        var titleTypeface: String? = null,
-        var descriptionTypeface: String? = null,
-        @DrawableRes var backgroundDrawable: Int = 0
+    @ColorRes var backgroundColorRes: Int = 0,
+    @ColorRes var titleColorRes: Int = 0,
+    @ColorRes var descriptionColorRes: Int = 0,
+    @FontRes var titleTypefaceFontRes: Int = 0,
+    @FontRes var descriptionTypefaceFontRes: Int = 0,
+    var titleTypeface: String? = null,
+    var descriptionTypeface: String? = null,
+    @DrawableRes var backgroundDrawable: Int = 0
 ) {
     val titleString: String? get() = title?.toString()
     val descriptionString: String? get() = description?.toString()

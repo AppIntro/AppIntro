@@ -31,7 +31,6 @@ internal const val ARG_DESC_COLOR = "desc_color"
 internal const val ARG_DESC_COLOR_RES = "desc_color_res"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
-
 abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
