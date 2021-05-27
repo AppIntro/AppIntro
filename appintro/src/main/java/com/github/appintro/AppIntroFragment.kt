@@ -35,10 +35,12 @@ class AppIntroFragment : AppIntroBaseFragment() {
         @JvmStatic
         @Deprecated(
             "`newInstance` is deprecated to support color resources with configuration " +
-                    "changes",
-            ReplaceWith("newInstanceWithRes(title, description, imageDrawable, backgroundColor," +
-                    " titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
-                    "backgroundDrawable)")
+                "changes",
+            ReplaceWith(
+                "newInstanceWithRes(title, description, imageDrawable, backgroundColor, " +
+                    "titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
+                    "backgroundDrawable)"
+            )
         )
         fun newInstance(
             title: CharSequence? = null,
