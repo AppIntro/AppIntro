@@ -40,6 +40,33 @@ public class JavaIntro extends AppIntro {
 
         // Fade Transition
         setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
+        
+        // Show/hide status bar
+        showStatusBar(true);
+        
+        //Speed up or down scrolling
+        setScrollDurationFactor(2);
+        
+        //Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)
+        setColorTransitionsEnabled(true);
+        
+        //Prevent the back button from exiting the slides
+        setSystemBackButtonLocked(true);
+        
+        //Activate wizard mode (Some aesthetic changes)
+        setWizardMode(true);
+        
+        //Show/hide skip button
+        setSkipButtonEnabled(true);
+        
+        //Enable/disable immersive mode (no status and nav bar)
+        setImmersive(true);
+        
+        //Enable/disable page indicators
+        setIndicatorEnabled(true);
+        
+        //Dhow/hide ALL buttons
+        setButtonsEnabled(true);
     }
 
     @Override
