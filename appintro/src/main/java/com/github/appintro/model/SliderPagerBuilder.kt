@@ -1,6 +1,7 @@
 package com.github.appintro.model
 
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 
@@ -21,11 +22,20 @@ class SliderPagerBuilder {
     @ColorInt
     private var backgroundColor: Int = 0
 
+    @ColorRes
+    private var backgroundColorRes: Int = 0
+
     @ColorInt
     private var titleColor: Int = 0
 
+    @ColorRes
+    private var titleColorRes: Int = 0
+
     @ColorInt
     private var descriptionColor: Int = 0
+
+    @ColorRes
+    private var descriptionColorRes: Int = 0
 
     @FontRes
     private var titleTypefaceFontRes: Int = 0
@@ -55,18 +65,45 @@ class SliderPagerBuilder {
         return this
     }
 
+    @Deprecated(
+        "`backgroundColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("backgroundColorRes(backgroundColor)")
+    )
     fun backgroundColor(@ColorInt backgroundColor: Int): SliderPagerBuilder {
         this.backgroundColor = backgroundColor
         return this
     }
 
+    fun backgroundColorRes(@ColorRes backgroundColorRes: Int): SliderPagerBuilder {
+        this.backgroundColorRes = backgroundColorRes
+        return this
+    }
+
+    @Deprecated(
+        "`titleColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("titleColorRes(titleColor)")
+    )
     fun titleColor(@ColorInt titleColor: Int): SliderPagerBuilder {
         this.titleColor = titleColor
         return this
     }
 
+    fun titleColorRes(@ColorRes titleColorRes: Int): SliderPagerBuilder {
+        this.titleColorRes = titleColorRes
+        return this
+    }
+
+    @Deprecated(
+        "`descriptionColor(...)` has been deprecated to support configuration changes",
+        ReplaceWith("descriptionColorRes(descriptionColor)")
+    )
     fun descriptionColor(@ColorInt descriptionColor: Int): SliderPagerBuilder {
         this.descriptionColor = descriptionColor
+        return this
+    }
+
+    fun descriptionColorRes(@ColorRes descriptionColorRes: Int): SliderPagerBuilder {
+        this.descriptionColorRes = descriptionColorRes
         return this
     }
 
@@ -100,8 +137,11 @@ class SliderPagerBuilder {
         description = this.description,
         imageDrawable = this.imageDrawable,
         backgroundColor = this.backgroundColor,
+        backgroundColorRes = this.backgroundColorRes,
         titleColor = this.titleColor,
+        titleColorRes = this.titleColorRes,
         descriptionColor = this.descriptionColor,
+        descriptionColorRes = this.descriptionColorRes,
         titleTypefaceFontRes = this.titleTypefaceFontRes,
         descriptionTypeface = this.descriptionTypeface,
         titleTypeface = this.titleTypeface,
