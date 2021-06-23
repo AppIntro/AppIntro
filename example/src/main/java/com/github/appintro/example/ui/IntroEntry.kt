@@ -2,6 +2,7 @@ package com.github.appintro.example.ui
 
 import androidx.annotation.StringRes
 import com.github.appintro.example.R
+import com.github.appintro.example.ui.custom.AnimatedDrawableIntro
 import com.github.appintro.example.ui.custom.CustomBackgroundIntro
 import com.github.appintro.example.ui.custom.CustomLayoutIntro
 import com.github.appintro.example.ui.custom.SlidePolicyIntro
@@ -25,6 +26,7 @@ val defaultEntries = listOf(
         IntroEntry(R.string.slide_policy_intro_title, R.string.slide_policy_intro, SlidePolicyIntro::class.java),
         IntroEntry(R.string.perms_intro1_title, R.string.perms_intro1, PermissionsIntro::class.java),
         IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java),
+        IntroEntry(R.string.animated_drawable_intro_title, R.string.animated_drawable_intro, AnimatedDrawableIntro::class.java),
         IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java)
 )
 
