@@ -174,6 +174,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     }
 
     /** Moves the AppIntro to the next slide */
+    @JvmOverloads
     protected fun goToNextSlide(isLastSlide: Boolean = pager.isLastSlide(fragments.size)) {
         if (isLastSlide) {
             onIntroFinished()
