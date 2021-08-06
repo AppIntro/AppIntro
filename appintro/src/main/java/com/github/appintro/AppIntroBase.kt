@@ -99,6 +99,11 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * */
     protected var isVibrate = false
 
+    /**
+     * Read-only property with the total number of slides for this AppIntro.
+     */
+    protected val totalSlidesNumber: Int get() = slidesNumber
+
     // Private Fields
 
     private lateinit var pagerAdapter: PagerAdapter
