@@ -59,8 +59,8 @@ public class JavaIntro extends AppIntro {
         //Show/hide skip button
         setSkipButtonEnabled(true);
         
-        //Enable/disable immersive mode (no status and nav bar)
-        setImmersive(true);
+        //Enable immersive mode (no status and nav bar)
+        setImmersiveMode();
         
         //Enable/disable page indicators
         setIndicatorEnabled(true);
