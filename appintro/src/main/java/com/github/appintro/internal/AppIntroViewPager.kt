@@ -44,7 +44,7 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
             customScroller = ScrollerCustomDuration(context, interpolator.get(null) as Interpolator)
             scroller.set(this, customScroller)
         } catch (e: NoSuchFieldException) {
-            e.printStackTrace()
+            LogHelper.e(TAG, "Failed to access the viewpager interpolator", e)
         }
     }
 
@@ -199,5 +199,6 @@ internal class AppIntroViewPager(context: Context, attrs: AttributeSet) : ViewPa
 
     private companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
+        private val TAG = LogHelper.makeLogTag(AppIntroViewPager::class)
     }
 }

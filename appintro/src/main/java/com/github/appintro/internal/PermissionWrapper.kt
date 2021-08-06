@@ -33,4 +33,8 @@ internal data class PermissionWrapper(
         result = 31 * result + required.hashCode()
         return result
     }
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
 }

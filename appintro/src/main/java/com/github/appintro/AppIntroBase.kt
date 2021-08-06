@@ -246,6 +246,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         ReplaceWith("setSwipeLock"),
         DeprecationLevel.ERROR
     )
+    @Suppress("UnusedPrivateMember")
     protected fun setNextPageSwipeLock(lock: Boolean) {
         LogHelper.w(
             TAG,
@@ -786,7 +787,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             currentlySelectedItem = position
         }
 
-        override fun onPageScrollStateChanged(state: Int) {}
+        override fun onPageScrollStateChanged(state: Int) {
+            // no-op
+        }
     }
 
     private companion object {
