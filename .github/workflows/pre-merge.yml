@@ -24,6 +24,12 @@ jobs:
             ~/.gradle/wrapper/
           key: cache-gradle
 
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
       - name: Run ktlint
         run: ./gradlew ktlintCheck
 
@@ -42,6 +48,12 @@ jobs:
             ~/.gradle/caches/
             ~/.gradle/wrapper/
           key: cache-gradle
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
 
       - name: Run detekt
         run: ./gradlew detekt
@@ -62,6 +74,12 @@ jobs:
             ~/.gradle/wrapper/
           key: cache-gradle
 
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
       - name: Run lint
         run: ./gradlew lint
 
@@ -81,6 +99,12 @@ jobs:
             ~/.gradle/wrapper/
           key: cache-gradle
 
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
       - name: Run all the tests
         run: ./gradlew test
 
@@ -93,12 +117,15 @@ jobs:
         experimental: [false]
         name: ["stable"]
         include:
-          - agp: 4.2.+
+          - agp: 7.0.0
             experimental: true
-            name: AGP-4.2.+
-          - kotlin: 1.4.30+
+            name: AGP-7.0.+
+          - agp: 7.1.0-alpha06
             experimental: true
-            name: kotlin-EAP-1.4.30+
+            name: AGP-7.1.+
+          - kotlin: 1.5.30-M1
+            experimental: true
+            name: kotlin-EAP-1.5.3+
 
     runs-on: [ubuntu-latest]
     continue-on-error: ${{ matrix.experimental }}
@@ -111,6 +138,12 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
 
       - name: Cache Gradle Folders
         uses: actions/cache@v2

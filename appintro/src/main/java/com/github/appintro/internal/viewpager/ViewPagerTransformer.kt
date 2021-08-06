@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.R
+import com.github.appintro.internal.LogHelper
 
 private const val MIN_SCALE_DEPTH = 0.75f
 private const val MIN_SCALE_ZOOM = 0.85f
@@ -46,7 +47,7 @@ internal class ViewPagerTransformer(
             try {
                 applyParallax(page, position)
             } catch (e: IllegalStateException) {
-                e.printStackTrace()
+                LogHelper.e(TAG, "Failed to apply parallax effect", e)
             }
         }
     }
@@ -120,6 +121,10 @@ internal class ViewPagerTransformer(
         } else {
             page.transformDefaults()
         }
+    }
+
+    companion object {
+        private val TAG = LogHelper.makeLogTag(ViewPagerTransformer::class)
     }
 }
 

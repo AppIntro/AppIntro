@@ -30,6 +30,7 @@ class AppIntroCustomLayoutFragment : Fragment() {
 
     companion object {
         private const val ARG_LAYOUT_RES_ID = "layoutResId"
+
         @JvmStatic
         fun newInstance(layoutResId: Int): AppIntroCustomLayoutFragment {
             val customSlide = AppIntroCustomLayoutFragment()
