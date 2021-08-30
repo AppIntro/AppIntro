@@ -12,11 +12,14 @@
     <TextView
         android:id="@+id/title"
         style="@style/AppIntroDefaultHeading"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintHorizontal_weight="1"
+        android:gravity="center"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/description"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/landing_scroll_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/midline"
+        app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
         tools:text="Welcome" />
@@ -24,31 +27,41 @@
     <ImageView
         android:id="@+id/image"
         style="@style/AppIntroDefaultImage"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_intro_image_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/midline"
+        app:layout_constraintEnd_toStartOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/landing_scroll_description"
+        app:layout_constraintVertical_weight="2"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:fillViewport="true">
     <TextView
         android:id="@+id/description"
         style="@style/AppIntroDefaultText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoLink="web"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/midline"
-        app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="This is a demo of the AppIntro Library" />
+    </ScrollView>
 
+    <!-- The following guideline code is not used-->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/midline"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_begin="366dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
