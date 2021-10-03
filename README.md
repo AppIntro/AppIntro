@@ -120,7 +120,7 @@ We suggest to don't declare `MyCustomAppIntro` as your first Activity unless you
 
 ### Java users
 
-You can find many examples in java language in the [examples directory](/main/java/com/github/appintro/example/ui/java/JavaIntro.java)
+You can find many examples in java language in the [examples directory](example/src/main/java/com/github/appintro/example/ui/java/JavaIntro.java)
 
 ## Migrating 🚗
 
