@@ -127,7 +127,7 @@ To get a deeper overview of the breaking changes, please read the [migration doc
 
 ### Library Internals ⚙️
 
-* [#774] Move from Travis to Github Actions
+* [#774] Move from Travis to GitHub Actions
 * [#768] Refactor Transformers to use a sealed class
 * [#766] Add missing @Res annotations
 * [#765] Remove `I` prefix from interface names

@@ -14,7 +14,7 @@ this document might not completely cover your scenario.
 ## Package Change
 
 With the release of AppIntro 6.x we decided to updated the **project
-package** to reflect the coordinates of the Github Repo.
+package** to reflect the coordinates of the GitHub Repo.
 
 The package has been updated from:
 

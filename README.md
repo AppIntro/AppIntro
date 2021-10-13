@@ -452,7 +452,7 @@ You can find a full working example of `SlidePolicy` in the [example app - Custo
 
 AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/master/example).
 
-You can get a **debug APK** of the sample app from the **Pre Merge** Github Actions job as an [output artifact here](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22).
+You can get a **debug APK** of the sample app from the **Pre Merge** GitHub Actions job as an [output artifact here](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22).
 
 <p align="center">
     <img src="assets/sample-app.png" alt="appintro sample app" width="40%"/>
@@ -513,7 +513,7 @@ We're offering support for AppIntro on the [#appintro channel on KotlinLang Slac
 
 ### Maintainers
 
-AppIntro is currently developed and maintained by the [AppIntro Github Org](https://github.com/AppIntro). When submitting a new PR, please ping one of:
+AppIntro is currently developed and maintained by the [AppIntro GitHub Org](https://github.com/AppIntro). When submitting a new PR, please ping one of:
 
 - [@paolorotolo](https://github.com/paolorotolo)
 - [@cortinico](https://github.com/cortinico)
