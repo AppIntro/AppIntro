@@ -37,7 +37,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.11.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 }
 
 repositories {
@@ -45,7 +45,7 @@ repositories {
 }
 
 ktlint {
-    version = "0.42.0"
+    version = "0.42.1"
     debug = false
     verbose = true
     android = false

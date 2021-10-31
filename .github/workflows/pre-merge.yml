@@ -117,15 +117,15 @@ jobs:
         experimental: [false]
         name: ["stable"]
         include:
-          - agp: 7.0.0
-            experimental: true
-            name: AGP-7.0.+
-          - agp: 7.1.0-alpha06
+          - agp: 7.1.0-beta02
             experimental: true
             name: AGP-7.1.+
-          - kotlin: 1.5.30-M1
+          - agp: 7.2.0-alpha03
             experimental: true
-            name: kotlin-EAP-1.5.3+
+            name: AGP-7.2.+
+          - kotlin: 1.6.0-RC
+            experimental: true
+            name: Kotlin-EAP
 
     runs-on: [ubuntu-latest]
     continue-on-error: ${{ matrix.experimental }}
