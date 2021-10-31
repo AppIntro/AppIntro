@@ -1,5 +1,36 @@
 # Change Log
 
+## Version 6.2.0 *(2022-01-17)*
+
+This is a new minor release of AppIntro. This library comes with several new features (see below) and bugfixes.
+
+### Summary of Changes
+
+* We deprecated `AppIntroFragment.newInstance` in favor of `AppIntroFragment.createInstance`. This was needed in order
+to support passing color resources instead of color int, to tackle scenarios such as configuration changes and dark mode [#979].
+* Target SDK is now 31
+* We exposed a couple of properties/methods on the public API that were requested by the community ([#960] and [#959])
+* We added some Java examples for our Java users [#953]
+
+### Enhancements 🎁
+
+* [#959] Add @JvmOverloads on goToNextSlide
+* [#960] Expose a protected property for slidesNumber
+* [#979] Fix #926: Add color resource parameters
+* [#993] Make description scrollable
+
+### Bugfixes 🐛
+
+* [#934] Fix ProgressIndicatorController in RTL
+
+### Dependency updates 📦
+
+* Java version to 11
+* Kotlin to 1.6.10
+* AGP to 7.0.3
+* Androidx Appcompat to 1.4.0
+* ConstraintLayout to 2.1.2
+
 ## Version 6.1.0 *(2021-02-03)*
 
 This is a new minor release of AppIntro. This library comes with several new features (see below) and several bugfixes.
@@ -304,5 +335,11 @@ Previous release notes can be found here: [releases]
 [#908]: https://github.com/AppIntro/AppIntro/pull/908
 [#919]: https://github.com/AppIntro/AppIntro/pull/919
 [#922]: https://github.com/AppIntro/AppIntro/pull/922
+[#934]: https://github.com/AppIntro/AppIntro/pull/934
+[#953]: https://github.com/AppIntro/AppIntro/pull/953
+[#959]: https://github.com/AppIntro/AppIntro/pull/959
+[#960]: https://github.com/AppIntro/AppIntro/pull/960
+[#979]: https://github.com/AppIntro/AppIntro/pull/979
+[#993]: https://github.com/AppIntro/AppIntro/pull/993
 [releases]: https://github.com/AppIntro/AppIntro/releases?after=v5.0.0
 
