@@ -6,14 +6,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
-import androidx.annotation.IdRes
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
 
     override val layoutId = R.layout.appintro_intro_layout2
 
-    @IdRes
+    @DrawableRes
     var backgroundResource: Int? = null
         set(value) {
             field = value
