@@ -41,10 +41,17 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     private var drawable: Int = 0
     private var bgDrawable: Int = 0
 
-    @ColorInt private var titleColor: Int = 0
-    @ColorRes private var titleColorRes: Int = 0
-    @ColorInt private var descColor: Int = 0
-    @ColorRes private var descColorRes: Int = 0
+    @ColorInt
+    private var titleColor: Int = 0
+
+    @ColorRes
+    private var titleColorRes: Int = 0
+
+    @ColorInt
+    private var descColor: Int = 0
+
+    @ColorRes
+    private var descColorRes: Int = 0
 
     @ColorInt
     final override var defaultBackgroundColor: Int = 0
