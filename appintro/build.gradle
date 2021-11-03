@@ -45,7 +45,7 @@ repositories {
 }
 
 ktlint {
-    version = "0.42.0"
+    version = "0.42.1"
     debug = false
     verbose = true
     android = false
