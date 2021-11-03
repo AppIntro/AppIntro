@@ -35,7 +35,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
         @JvmStatic
         @Deprecated(
             "`newInstance` is deprecated to support color resources instead of color int " +
-                    "for configuration changes and dark theme support",
+                "for configuration changes and dark theme support",
             ReplaceWith(
                 "newInstanceWithRes(title, description, imageDrawable, backgroundColor, " +
                     "titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
@@ -88,7 +88,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
          */
         @JvmOverloads
         @JvmStatic
-        fun newInstanceWithRes(
+        fun createInstance(
             title: CharSequence? = null,
             description: CharSequence? = null,
             @DrawableRes imageDrawable: Int = 0,
@@ -99,7 +99,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes descriptionTypefaceFontRes: Int = 0,
             @DrawableRes backgroundDrawable: Int = 0
         ): AppIntroFragment {
-            return newInstance(
+            return createInstance(
                 SliderPage(
                     title = title,
                     description = description,
@@ -123,7 +123,25 @@ class AppIntroFragment : AppIntroBaseFragment() {
          * @return An [AppIntroFragment] created instance
          */
         @JvmStatic
-        fun newInstance(sliderPage: SliderPage): AppIntroFragment {
+        @Deprecated(
+            "`newInstance` is deprecated to support color resources instead of color int " +
+                "for configuration changes and dark theme support",
+            ReplaceWith(
+                "createInstance(sliderPage)"
+            )
+        )
+        fun newInstance(sliderPage: SliderPage) = createInstance(sliderPage)
+
+        /**
+         * Generates an [AppIntroFragment] from a given [SliderPage]
+         *
+         * @param sliderPage the [SliderPage] object which contains all attributes for
+         * the current slide
+         *
+         * @return An [AppIntroFragment] created instance
+         */
+        @JvmStatic
+        fun createInstance(sliderPage: SliderPage): AppIntroFragment {
             val slide = AppIntroFragment()
             slide.arguments = sliderPage.toBundle()
             return slide

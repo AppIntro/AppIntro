@@ -81,11 +81,11 @@ class MyCustomAppIntro : AppIntro() {
 
         // Call addSlide passing your Fragments.
         // You can use AppIntroFragment to use a pre-built fragment
-        addSlide(AppIntroFragment.newInstanceWithRes(
+        addSlide(AppIntroFragment.createInstance(
                 title = "Welcome...",
                 description = "This is the first slide of the example"
         ))
-        addSlide(AppIntroFragment.newInstanceWithRes(
+        addSlide(AppIntroFragment.createInstance(
                 title = "...Let's get started!",
                 description = "This is the last slide, I won't annoy you more :)"
         ))
@@ -150,7 +150,7 @@ You can use the `AppIntroFragment` if you just want to customize title, descript
 That's the suggested approach if you want to create a quick intro:
 
 ```kotlin
-addSlide(AppIntroFragment.newInstanceWithRes(
+addSlide(AppIntroFragment.createInstance(
     title = "The title of your slide",
     description = "A description that will be shown on the bottom",
     imageDrawable = R.drawable.the_central_icon,
@@ -166,7 +166,7 @@ addSlide(AppIntroFragment.newInstanceWithRes(
 All the parameters are optional, so you're free to customize your slide as you wish.
 
 If you need to programmatically create several slides you can also use the `SliderPage` class.
-This class can be passed to `AppIntroFragment.newInstance(sliderPage: SliderPage)` that will create
+This class can be passed to `AppIntroFragment.createInstance(sliderPage: SliderPage)` that will create
 a new slide starting from that instance.
 
 ### `AppIntroCustomLayoutFragment`
