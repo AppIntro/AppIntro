@@ -53,7 +53,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes descriptionTypefaceFontRes: Int = 0,
             @DrawableRes backgroundDrawable: Int = 0
         ): AppIntroFragment {
-            return newInstance(
+            return createInstance(
                 SliderPage(
                     title = title,
                     description = description,

@@ -67,6 +67,7 @@ data class SliderPage @JvmOverloads constructor(
      * Util method to convert a [SliderPage] into an Android [Bundle].
      * This method will be used to pass the [SliderPage] to [AppIntroBaseFragment] implementations.
      */
+    @Suppress("DEPRECATION")
     fun toBundle(): Bundle {
         val newBundle = Bundle()
         newBundle.putString(ARG_TITLE, this.titleString)
