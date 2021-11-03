@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.TypefaceContainer
@@ -22,8 +24,11 @@ internal const val ARG_DESC_TYPEFACE = "desc_typeface"
 internal const val ARG_DESC_TYPEFACE_RES = "desc_typeface_res"
 internal const val ARG_DRAWABLE = "drawable"
 internal const val ARG_BG_COLOR = "bg_color"
+internal const val ARG_BG_COLOR_RES = "bg_color_res"
 internal const val ARG_TITLE_COLOR = "title_color"
+internal const val ARG_TITLE_COLOR_RES = "title_color_res"
 internal const val ARG_DESC_COLOR = "desc_color"
+internal const val ARG_DESC_COLOR_RES = "desc_color_res"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
 abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
@@ -36,9 +41,24 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     private var drawable: Int = 0
     private var bgDrawable: Int = 0
 
+    @ColorInt
     private var titleColor: Int = 0
+
+    @ColorRes
+    private var titleColorRes: Int = 0
+
+    @ColorInt
     private var descColor: Int = 0
+
+    @ColorRes
+    private var descColorRes: Int = 0
+
+    @ColorInt
     final override var defaultBackgroundColor: Int = 0
+        private set
+
+    @ColorRes
+    final override var defaultBackgroundColorRes: Int = 0
         private set
 
     private var title: String? = null
@@ -64,9 +84,13 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
             titleTypeface = TypefaceContainer(argsTitleTypeface, argsTitleTypefaceRes)
             descTypeface = TypefaceContainer(argsDescTypeface, argsDescTypefaceRes)
 
+            @Suppress("DEPRECATION")
             defaultBackgroundColor = args.getInt(ARG_BG_COLOR)
+            defaultBackgroundColorRes = args.getInt(ARG_BG_COLOR_RES)
             titleColor = args.getInt(ARG_TITLE_COLOR, 0)
+            titleColorRes = args.getInt(ARG_TITLE_COLOR_RES, 0)
             descColor = args.getInt(ARG_DESC_COLOR, 0)
+            descColorRes = args.getInt(ARG_DESC_COLOR_RES, 0)
         }
     }
 
@@ -87,10 +111,14 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
                 savedInstanceState.getInt(ARG_DESC_TYPEFACE_RES, 0)
             )
 
+            @Suppress("DEPRECATION")
             defaultBackgroundColor = savedInstanceState.getInt(ARG_BG_COLOR)
+            defaultBackgroundColorRes = savedInstanceState.getInt(ARG_BG_COLOR_RES)
             bgDrawable = savedInstanceState.getInt(ARG_BG_DRAWABLE)
             titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR)
+            titleColorRes = savedInstanceState.getInt(ARG_TITLE_COLOR_RES)
             descColor = savedInstanceState.getInt(ARG_DESC_COLOR)
+            descColorRes = savedInstanceState.getInt(ARG_DESC_COLOR_RES)
         }
     }
 
@@ -107,20 +135,33 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         titleText.text = title
         descriptionText.text = description
-        if (titleColor != 0) {
+
+        if (titleColorRes != 0) {
+            titleText.setTextColor(ContextCompat.getColor(requireContext(), titleColorRes))
+        } else if (titleColor != 0) { // Fallback to deprecated static color
             titleText.setTextColor(titleColor)
         }
-        if (descColor != 0) {
+        if (descColorRes != 0) {
+            descriptionText.setTextColor(ContextCompat.getColor(requireContext(), descColorRes))
+        } else if (descColor != 0) { // Fallback to deprecated static color
             descriptionText.setTextColor(descColor)
         }
+
         titleTypeface?.applyTo(titleText)
         descTypeface?.applyTo(descriptionText)
 
         slideImage.setImageResource(drawable)
-        if (bgDrawable != 0) {
-            mainLayout?.setBackgroundResource(bgDrawable)
-        } else {
-            mainLayout?.setBackgroundColor(defaultBackgroundColor)
+        when {
+            bgDrawable != 0 -> {
+                mainLayout?.setBackgroundResource(bgDrawable)
+            }
+            defaultBackgroundColorRes != 0 -> {
+                mainLayout?.setBackgroundColor(ContextCompat.getColor(requireContext(), defaultBackgroundColorRes))
+            }
+            else -> {
+                @Suppress("DEPRECATION")
+                mainLayout?.setBackgroundColor(defaultBackgroundColor)
+            }
         }
 
         return view
@@ -151,9 +192,13 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         outState.putInt(ARG_BG_DRAWABLE, bgDrawable)
         outState.putString(ARG_TITLE, title)
         outState.putString(ARG_DESC, description)
+        @Suppress("DEPRECATION")
         outState.putInt(ARG_BG_COLOR, defaultBackgroundColor)
+        outState.putInt(ARG_BG_COLOR_RES, defaultBackgroundColorRes)
         outState.putInt(ARG_TITLE_COLOR, titleColor)
+        outState.putInt(ARG_TITLE_COLOR_RES, titleColorRes)
         outState.putInt(ARG_DESC_COLOR, descColor)
+        outState.putInt(ARG_DESC_COLOR_RES, descColorRes)
         if (titleTypeface != null) {
             outState.putString(ARG_TITLE_TYPEFACE, titleTypeface?.typeFaceUrl)
             outState.putInt(ARG_TITLE_TYPEFACE_RES, titleTypeface?.typeFaceResource ?: 0)
