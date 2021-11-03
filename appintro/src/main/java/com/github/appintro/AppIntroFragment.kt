@@ -34,8 +34,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
         @JvmOverloads
         @JvmStatic
         @Deprecated(
-            "`newInstance` is deprecated to support color resources with configuration " +
-                "changes",
+            "`newInstance` is deprecated to support color resources instead of color int " +
+                    "for configuration changes and dark theme support",
             ReplaceWith(
                 "newInstanceWithRes(title, description, imageDrawable, backgroundColor, " +
                     "titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
