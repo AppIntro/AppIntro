@@ -450,7 +450,7 @@ You can find a full working example of `SlidePolicy` in the [example app - Custo
 
 ## Example App 💡
 
-AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/master/example).
+AppIntro comes with a **sample app** full of examples and use case that you can use as inspiration for your project. You can find it inside the [/example folder](https://github.com/AppIntro/AppIntro/tree/main/example).
 
 You can get a **debug APK** of the sample app from the **Pre Merge** GitHub Actions job as an [output artifact here](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22).
 
@@ -484,7 +484,7 @@ If a translation in your language is already available, please check it and even
 
 ## Snapshots 📦
 
-Development of AppIntro happens on the [master](https://github.com/AppIntro/AppIntro/tree/master) branch. You can get `SNAPSHOT` versions directly from JitPack if needed.
+Development of AppIntro happens on the [main](https://github.com/AppIntro/AppIntro/tree/main) branch. You can get `SNAPSHOT` versions directly from JitPack if needed.
 
 ```gradle
 repositories {
@@ -494,7 +494,7 @@ repositories {
 
 ```gradle
 dependencies {
-  implementation "com.github.AppIntro:AppIntro:master-SNAPSHOT"
+  implementation "com.github.AppIntro:AppIntro:main-SNAPSHOT"
 }
 ```
 
