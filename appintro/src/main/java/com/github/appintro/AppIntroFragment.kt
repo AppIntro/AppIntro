@@ -37,7 +37,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             "`newInstance` is deprecated to support color resources instead of color int " +
                 "for configuration changes and dark theme support",
             ReplaceWith(
-                "newInstanceWithRes(title, description, imageDrawable, backgroundColor, " +
+                "createInstance(title, description, imageDrawable, backgroundColor, " +
                     "titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
                     "backgroundDrawable)"
             )
