@@ -16,19 +16,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Cache Gradle Folders
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/
-            ~/.gradle/wrapper/
-          key: cache-gradle
-
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
+          cache: 'gradle'
 
       - name: Run ktlint
         run: ./gradlew ktlintCheck
@@ -41,19 +34,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Cache Gradle Folders
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/
-            ~/.gradle/wrapper/
-          key: cache-gradle
-
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
+          cache: 'gradle'
 
       - name: Run detekt
         run: ./gradlew detekt
@@ -66,19 +52,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Cache Gradle Folders
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/
-            ~/.gradle/wrapper/
-          key: cache-gradle
-
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
+          cache: 'gradle'
 
       - name: Run lint
         run: ./gradlew lint
@@ -91,19 +70,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Cache Gradle Folders
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/
-            ~/.gradle/wrapper/
-          key: cache-gradle
-
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
+          cache: 'gradle'
 
       - name: Run all the tests
         run: ./gradlew test
@@ -144,14 +116,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-
-      - name: Cache Gradle Folders
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/
-            ~/.gradle/wrapper/
-          key: cache-gradle
+          cache: 'gradle'
 
       - name: Build the Debug APK
         run: ./gradlew assembleDebug
