@@ -1,8 +1,8 @@
 buildscript {
 
     ext {
-        kotlin_version = System.getenv("VERSION_KOTLIN") ?: '1.5.31'
-        agp_version = System.getenv("VERSION_AGP") ?: '7.0.3'
+        kotlin_version = System.getenv("VERSION_KOTLIN") ?: '1.6.10'
+        agp_version = System.getenv("VERSION_AGP") ?: '7.0.4'
     }
 
     repositories {
@@ -13,8 +13,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.18.1"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.0"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
     }
 }
 
