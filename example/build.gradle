@@ -20,7 +20,7 @@ android {
         }
     }
     lintOptions {
-        ignore 'MissingTranslation'
+        ignore 'MissingTranslation', 'OldTargetApi', 'GradleDependency'
     }
 
     compileOptions {

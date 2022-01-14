@@ -21,7 +21,7 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     lintOptions {
-        ignore 'MissingTranslation'
+        ignore 'MissingTranslation', 'OldTargetApi', 'GradleDependency'
         warningsAsErrors true
         abortOnError true
     }
