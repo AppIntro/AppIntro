@@ -149,9 +149,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         } else {
             fragments.add(fragment)
         }
-        if (isWizardMode) {
-            pager.offscreenPageLimit = fragments.size
-        }
+        pager.offscreenPageLimit = fragments.size
         pagerAdapter.notifyDataSetChanged()
     }
 
