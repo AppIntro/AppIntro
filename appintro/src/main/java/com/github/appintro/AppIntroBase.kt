@@ -486,7 +486,13 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             putBoolean(ARG_BUNDLE_IS_SKIP_BUTTON_ENABLED, isSkipButtonEnabled)
             putBoolean(ARG_BUNDLE_IS_INDICATOR_ENABLED, isIndicatorEnabled)
 
-            putInt(ARG_BUNDLE_CURRENT_ITEM, pager.currentItem)
+            // We can't use pager.currentItem as we need the current item that is RTL-invariant.
+            val currentItem = if (isRtl) {
+                fragments.size - pager.currentItem
+            } else {
+                pager.currentItem
+            }
+            putInt(ARG_BUNDLE_CURRENT_ITEM, currentItem)
             putBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED, pager.isFullPagingEnabled)
 
             putSerializable(ARG_BUNDLE_PERMISSION_MAP, permissionsMap)
