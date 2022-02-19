@@ -155,9 +155,9 @@ addSlide(AppIntroFragment.createInstance(
     description = "A description that will be shown on the bottom",
     imageDrawable = R.drawable.the_central_icon,
     backgroundDrawable = R.drawable.the_background_image,
-    titleColor = ContextCompat(context, R.color.yellow),
-    descriptionColor = ContextCompat(context, R.color.red),
-    backgroundColor = ContextCompat(context, R.color.blue),
+    titleColorRes = R.color.yellow,
+    descriptionColorRes = R.color.red,
+    backgroundColorRes = R.color.blue,
     titleTypefaceFontRes = R.font.opensans_regular,
     descriptionTypefaceFontRes = R.font.opensans_regular,
 ))
