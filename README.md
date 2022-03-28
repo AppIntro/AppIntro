@@ -594,6 +594,7 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [Alcapote](https://play.google.com/store/apps/details?id=com.casaconnex.alcapote)
 * [Weather Forecast](https://play.google.com/store/apps/details?id=com.ehlb.weatherapp)
 * [Zoned Pomodoro Timer](https://play.google.com/store/apps/details?id=com.just.five)
-    
+* [Path Finder](https://play.google.com/store/apps/details?id=softcare.game)
+* [A Note Editor](https://play.google.com/store/apps/details?id=com.softcare.raphnote)   
     
 </details>
