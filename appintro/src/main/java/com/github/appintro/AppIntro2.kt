@@ -81,4 +81,13 @@ abstract class AppIntro2 : AppIntroBase() {
         val skip = findViewById<ImageButton>(R.id.skip)
         skip.setColorFilter(colorSkipButton)
     }
+
+    /**
+     * Override done button drawable resource
+     *
+     * @param resource your drawable resource*/
+    fun setDoneResource (@DrawableRes resource: Int) {
+        val done = findViewById<ImageButton>(R.id.done)
+        done.setImageResource(resource)
+    }
 }
