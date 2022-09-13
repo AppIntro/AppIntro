@@ -5,17 +5,14 @@ apply plugin: 'io.gitlab.arturbosch.detekt'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 group = 'com.github.AppIntro'
-
 version = "6.2.0"
 
 android {
-    compileSdkVersion 31
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 31
-        versionCode 20
-        versionName version
+        minSdk 14
+        targetSdk 33
 
         consumerProguardFiles 'consumer-proguard-rules.pro'
         vectorDrawables.useSupportLibrary = true
@@ -25,19 +22,15 @@ android {
         warningsAsErrors true
         abortOnError true
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.annotation:annotation:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:3.11.2'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
 }
 
 repositories {
@@ -45,32 +38,15 @@ repositories {
 }
 
 ktlint {
-    version = "0.42.1"
     debug = false
     verbose = true
     android = false
     outputToConsole = true
-    reporters {
-        reporter "json"
-    }
     ignoreFailures = false
-    enableExperimentalRules = true
-    kotlinScriptAdditionalPaths {
-        include fileTree("scripts/")
-    }
-    filter {
-        exclude("**/generated/**")
-        include("**/kotlin/**")
-    }
 }
 
 detekt {
     config = files("./detekt-config.yml")
-    input = files("src/main/java")
-}
-
-tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
-    exclude("**/resources/**,**/build/**")
 }
 
 task sourcesJar(type: Jar) {
