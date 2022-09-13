@@ -1,20 +1,14 @@
 buildscript {
-
-    ext {
-        kotlin_version = System.getenv("VERSION_KOTLIN") ?: '1.6.10'
-        agp_version = System.getenv("VERSION_AGP") ?: '7.0.4'
-    }
-
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$agp_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
+        classpath "com.android.tools.build:gradle:7.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:11.0.0"
     }
 }
 
