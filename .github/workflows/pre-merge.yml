@@ -121,7 +121,7 @@ jobs:
       - name: Build the Debug APK
         run: ./gradlew assembleDebug
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: appintro-sample-app-${{ matrix.name }}.apk
           path: example/build/outputs/apk/debug/example-debug.apk
