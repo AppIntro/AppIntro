@@ -6,23 +6,22 @@ import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Bundle
-import android.os.Vibrator
-import android.view.KeyEvent
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
+import android.os.*
+import android.view.*
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.Type.systemBars
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.github.appintro.indicator.DotIndicatorController
@@ -191,23 +190,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Enable the Immersive Sticky Mode */
     protected fun setImmersiveMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                )
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            hide(systemBars())
         }
     }
 
     /** Customize the color of the Status Bar */
     protected fun setStatusBarColor(@ColorInt color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // We set the light status bar/translucent first via the WindowInsetsControllerCompat
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
             window.statusBarColor = color
         }
     }
@@ -233,13 +227,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Toggle the Status Bar visibility */
     protected fun showStatusBar(show: Boolean) {
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
         if (show) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            controller.show(systemBars())
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+            controller.hide(systemBars())
         }
     }
 
@@ -252,7 +245,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         ReplaceWith("setSwipeLock"),
         DeprecationLevel.ERROR
     )
-    @Suppress("UnusedPrivateMember")
+    @Suppress("UnusedPrivateMember", "UNUSED_PARAMETER")
     protected fun setNextPageSwipeLock(lock: Boolean) {
         LogHelper.w(
             TAG,
@@ -425,7 +418,13 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             backButton.scaleX = -1f
         }
 
-        vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            getSystemService(VIBRATOR_SERVICE) as Vibrator
+        }
 
         pagerAdapter = PagerAdapter(supportFragmentManager, fragments)
         pager = findViewById(R.id.view_pager)
@@ -501,6 +500,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         with(savedInstanceState) {
@@ -513,10 +513,14 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             savedCurrentItem = getInt(ARG_BUNDLE_CURRENT_ITEM)
             pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
 
-            permissionsMap = (
-                (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
-                    ?: hashMapOf()
-                )
+            val parsedPermissionMap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                getSerializable(ARG_BUNDLE_PERMISSION_MAP, HashMap::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                getSerializable(ARG_BUNDLE_PERMISSION_MAP)
+            }
+            @Suppress("UNCHECKED_CAST")
+            permissionsMap = parsedPermissionMap as? HashMap<Int, PermissionWrapper> ?: hashMapOf()
             isColorTransitionsEnabled = getBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED)
         }
     }
@@ -691,7 +695,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     @SuppressLint("MissingPermission")
     private fun dispatchVibration() {
         if (isVibrate) {
-            vibrator.vibrate(vibrateDuration)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(vibrateDuration,10))
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(vibrateDuration)
+            }
         }
     }
 
