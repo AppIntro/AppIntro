@@ -20,6 +20,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat.Type.systemBars
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.github.appintro.indicator.DotIndicatorController
@@ -187,23 +190,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Enable the Immersive Sticky Mode */
     protected fun setImmersiveMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                )
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            hide(systemBars())
         }
     }
 
     /** Customize the color of the Status Bar */
     protected fun setStatusBarColor(@ColorInt color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            // We set the light status bar/translucent first via the WindowInsetsControllerCompat
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
             window.statusBarColor = color
         }
     }
@@ -229,13 +227,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Toggle the Status Bar visibility */
     protected fun showStatusBar(show: Boolean) {
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
         if (show) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            controller.show(systemBars())
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+            controller.hide(systemBars())
         }
     }
 
