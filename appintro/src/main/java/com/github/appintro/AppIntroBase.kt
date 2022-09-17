@@ -3,12 +3,9 @@
 package com.github.appintro
 
 import android.animation.ArgbEvaluator
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Vibrator
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +29,7 @@ import com.github.appintro.internal.AppIntroViewPager
 import com.github.appintro.internal.LayoutUtil
 import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.PermissionWrapper
+import com.github.appintro.internal.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
 
@@ -128,8 +126,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     private var retainIsButtonsEnabled = true
 
-    // Android SDK
-    private lateinit var vibrator: Vibrator
     private val argbEvaluator = ArgbEvaluator()
 
     internal val isRtl: Boolean
@@ -425,8 +421,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             backButton.scaleX = -1f
         }
 
-        vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
         pagerAdapter = PagerAdapter(supportFragmentManager, fragments)
         pager = findViewById(R.id.view_pager)
 
@@ -687,11 +681,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
-    // You must grant vibration permissions on your AndroidManifest.xml file
-    @SuppressLint("MissingPermission")
     private fun dispatchVibration() {
         if (isVibrate) {
-            vibrator.vibrate(vibrateDuration)
+            VibrationHelper.vibrate(this, vibrateDuration)
         }
     }
 
