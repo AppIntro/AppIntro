@@ -1,6 +1,5 @@
 package com.github.appintro.model
 
-import android.graphics.Color
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -11,9 +10,9 @@ class SliderPageTest {
         val title = "Title"
         val description = "Description"
         val imageDrawable = 0x7f020000
-        val bgColor = Color.GRAY
-        val titleColor = Color.WHITE
-        val descColor = Color.BLACK
+        val bgColorRes = 0x7f020001
+        val titleColorRes = 0x7f020002
+        val descColorRes = 0x7f020003
         val titleTypeface = "robotobold.ttf"
         val descTypeface = "OpenSans-Light.ttf"
         val titleTypefaceRes = 0x12345678
@@ -23,9 +22,9 @@ class SliderPageTest {
             title = title,
             description = description,
             imageDrawable = imageDrawable,
-            backgroundColor = bgColor,
-            titleColor = titleColor,
-            descriptionColor = descColor,
+            backgroundColorRes = bgColorRes,
+            titleColorRes = titleColorRes,
+            descriptionColorRes = descColorRes,
             titleTypeface = titleTypeface,
             titleTypefaceFontRes = titleTypefaceRes,
             descriptionTypeface = descTypeface,
@@ -35,9 +34,9 @@ class SliderPageTest {
         assertEquals(sliderPage.title, title)
         assertEquals(sliderPage.description, description)
         assertEquals(sliderPage.imageDrawable, imageDrawable)
-        assertEquals(sliderPage.backgroundColor, bgColor)
-        assertEquals(sliderPage.titleColor, titleColor)
-        assertEquals(sliderPage.descriptionColor, descColor)
+        assertEquals(sliderPage.backgroundColorRes, bgColorRes)
+        assertEquals(sliderPage.titleColorRes, titleColorRes)
+        assertEquals(sliderPage.descriptionColorRes, descColorRes)
         assertEquals(sliderPage.titleTypeface, titleTypeface)
         assertEquals(sliderPage.descriptionTypeface, descTypeface)
         assertEquals(sliderPage.titleTypefaceFontRes, titleTypefaceRes)
@@ -51,9 +50,9 @@ class SliderPageTest {
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
         assertEquals(sliderPage.imageDrawable, 0)
-        assertEquals(sliderPage.backgroundColor, 0)
-        assertEquals(sliderPage.titleColor, 0)
-        assertEquals(sliderPage.descriptionColor, 0)
+        assertEquals(sliderPage.backgroundColorRes, 0)
+        assertEquals(sliderPage.titleColorRes, 0)
+        assertEquals(sliderPage.descriptionColorRes, 0)
         assertEquals(sliderPage.titleTypeface, null)
         assertEquals(sliderPage.descriptionTypeface, null)
         assertEquals(sliderPage.titleTypefaceFontRes, 0)
