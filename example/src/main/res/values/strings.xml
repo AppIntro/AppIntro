@@ -33,4 +33,14 @@
     <string name="slidepolicy_example_description">This slide won\'t allow the user to proceed till you click the following checkbox</string>
     <string name="please_check_to_continue">Please check to continue</string>
 
+    <!-- Custom Layouts -->
+    <string name="sample_layout_1">Sample Layout 1</string>
+    <string name="button_1">Button 1</string>
+    <string name="sample_layout_2">Sample Layout 2</string>
+    <string name="button_2">Button 2</string>
+    <string name="sample_layout_3">Sample Layout 3</string>
+    <string name="button_3">Button 3</string>
+    <string name="sample_layout_4">Sample Layout 4</string>
+    <string name="button_4">Button 4</string>
+
 </resources>
