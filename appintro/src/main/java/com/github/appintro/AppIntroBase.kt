@@ -244,7 +244,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         ReplaceWith("setSwipeLock"),
         DeprecationLevel.ERROR
     )
-    @Suppress("UnusedPrivateMember")
+    @Suppress("UnusedPrivateMember", "UNUSED_PARAMETER")
     protected fun setNextPageSwipeLock(lock: Boolean) {
         LogHelper.w(
             TAG,
@@ -452,18 +452,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
 
         pager.post {
-            val fragment = pagerAdapter.getItem(pager.currentItem)
-            // Fragment is null when no slides are passed to AppIntro
-            if (fragment != null) {
-                dispatchSlideChangedCallbacks(
-                    null,
-                    pagerAdapter
-                        .getItem(pager.currentItem)
-                )
-            } else {
-                // Close the intro if there are no slides to show
-                finish()
-            }
+            dispatchSlideChangedCallbacks(
+                null,
+                pagerAdapter.getItem(pager.currentItem)
+            )
         }
     }
 
@@ -503,10 +495,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             savedCurrentItem = getInt(ARG_BUNDLE_CURRENT_ITEM)
             pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
 
-            permissionsMap = (
+            @Suppress("UNCHECKED_CAST", "DEPRECATION")
+            permissionsMap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                (getSerializable(ARG_BUNDLE_PERMISSION_MAP, HashMap::class.java) as HashMap<Int, PermissionWrapper>?)
+                    ?: hashMapOf()
+            } else {
                 (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
                     ?: hashMapOf()
-                )
+            }
+
             isColorTransitionsEnabled = getBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED)
         }
     }
