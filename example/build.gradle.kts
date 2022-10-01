@@ -5,6 +5,7 @@ plugins {
 
 android {
     compileSdk = libs.versions.compile.sdk.version.get().toInt()
+    namespace = "com.github.appintro.example"
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
