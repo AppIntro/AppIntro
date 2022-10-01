@@ -1,10 +1,11 @@
 package com.github.appintro.indicator
 
 import android.content.Context
-import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ProgressBar
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import com.github.appintro.internal.LayoutUtil
 
 internal const val DEFAULT_COLOR = 1
@@ -24,13 +25,21 @@ class ProgressIndicatorController @JvmOverloads constructor(
     override var selectedIndicatorColor = DEFAULT_COLOR
         set(value) {
             field = value
-            progressDrawable.setColorFilter(value, PorterDuff.Mode.SRC_IN)
+            progressDrawable.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    value,
+                    BlendModeCompat.SRC_ATOP
+                )
         }
 
     override var unselectedIndicatorColor = DEFAULT_COLOR
         set(value) {
             field = value
-            indeterminateDrawable.setColorFilter(value, PorterDuff.Mode.SRC_IN)
+            progressDrawable.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    value,
+                    BlendModeCompat.SRC_ATOP
+                )
         }
 
     override fun newInstance(context: Context) = this
@@ -47,7 +56,11 @@ class ProgressIndicatorController @JvmOverloads constructor(
     }
 
     override fun selectPosition(index: Int) {
-        this.progress = if (isRtl) { max - index } else { index + 1 }
+        this.progress = if (isRtl) {
+            max - index
+        } else {
+            index + 1
+        }
     }
 
     private val isRtl: Boolean get() = LayoutUtil.isRtl(this.context)
