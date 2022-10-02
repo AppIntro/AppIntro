@@ -545,19 +545,22 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      =================================== */
 
     private fun addBackHandler() {
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // Do nothing if go back lock is enabled or slide has custom policy.
-                if (isSystemBackButtonLocked) {
-                    return
-                }
-                if (pager.isFirstSlide(fragments.size)) {
-                    finish()
-                } else {
-                    pager.goToPreviousSlide()
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Do nothing if go back lock is enabled or slide has custom policy.
+                    if (isSystemBackButtonLocked) {
+                        return
+                    }
+                    if (pager.isFirstSlide(fragments.size)) {
+                        finish()
+                    } else {
+                        pager.goToPreviousSlide()
+                    }
                 }
             }
-        })
+        )
     }
 
     /*
