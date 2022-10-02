@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
@@ -386,6 +387,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
 
+        // Add back handler
+        addBackHandler()
+
         // We default the indicator controller to the Dotted one.
         indicatorController = DotIndicatorController(this)
 
@@ -536,16 +540,27 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         return super.onKeyDown(code, event)
     }
 
-    override fun onBackPressed() {
-        // Do nothing if go back lock is enabled or slide has custom policy.
-        if (isSystemBackButtonLocked) {
-            return
-        }
-        if (pager.isFirstSlide(fragments.size)) {
-            super.onBackPressed()
-        } else {
-            pager.goToPreviousSlide()
-        }
+    /*
+     BACK HANDLER
+     =================================== */
+
+    private fun addBackHandler() {
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Do nothing if go back lock is enabled or slide has custom policy.
+                    if (isSystemBackButtonLocked) {
+                        return
+                    }
+                    if (pager.isFirstSlide(fragments.size)) {
+                        finish()
+                    } else {
+                        pager.goToPreviousSlide()
+                    }
+                }
+            }
+        )
     }
 
     /*
