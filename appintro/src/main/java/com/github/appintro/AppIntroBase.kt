@@ -452,10 +452,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
 
         pager.post {
-            dispatchSlideChangedCallbacks(
-                null,
-                pagerAdapter.getItem(pager.currentItem)
-            )
+            if (pager.currentItem < pagerAdapter.count) {
+                dispatchSlideChangedCallbacks(
+                    null,
+                    pagerAdapter.getItem(pager.currentItem)
+                )
+            } else {
+                // Close the intro if there are no slides to show
+                finish()
+            }
         }
     }
 
