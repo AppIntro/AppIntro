@@ -1,5 +1,5 @@
 [versions]
-agp = "7.4.1"
+agp = "7.4.2"
 appcompat = "1.6.1"
 annotation = "1.6.0"
 cardview = "1.0.0"
