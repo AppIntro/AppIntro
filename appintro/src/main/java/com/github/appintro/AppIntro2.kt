@@ -85,9 +85,11 @@ abstract class AppIntro2 : AppIntroBase() {
     /**
      * Override done button drawable resource
      *
-     * @param resource your drawable resource*/
-    fun setDoneResource (@DrawableRes resource: Int) {
+     * @param imageDoneButton your drawable resource
+     */
+    fun setImageDoneButton(imageDoneButton: Drawable) {
+
         val done = findViewById<ImageButton>(R.id.done)
-        done.setImageResource(resource)
+        done.setImageDrawable(imageDoneButton)
     }
 }
