@@ -88,7 +88,6 @@ abstract class AppIntro2 : AppIntroBase() {
      * @param imageDoneButton your drawable resource
      */
     fun setImageDoneButton(imageDoneButton: Drawable) {
-
         val done = findViewById<ImageButton>(R.id.done)
         done.setImageDrawable(imageDoneButton)
     }
