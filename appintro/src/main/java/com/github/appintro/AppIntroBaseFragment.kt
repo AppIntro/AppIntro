@@ -55,6 +55,10 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     private var descColorRes: Int = 0
 
     @ColorInt
+    @Deprecated(
+        "`defaultBackgroundColor` has been deprecated to support configuration changes",
+        ReplaceWith("defaultBackgroundColorRes")
+    )
     final override var defaultBackgroundColor: Int = 0
         private set
 

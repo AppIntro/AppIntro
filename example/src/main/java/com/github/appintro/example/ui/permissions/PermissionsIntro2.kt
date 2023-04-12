@@ -1,6 +1,7 @@
 package com.github.appintro.example.ui.permissions
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
@@ -36,9 +37,11 @@ class PermissionsIntro2 : AppIntro2() {
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION),
                 2, true)
 
-        // Request optional storage permission
-        askForPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                3, false)
+        // Request optional storage permission only on Android 13.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            askForPermissions(arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                    3, false)
+        }
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

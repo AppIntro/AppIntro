@@ -8,13 +8,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sample Layout 4"
+        android:text="@string/sample_layout_4"
         android:textSize="18sp"
         android:textColor="#0000ff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button 4" />
+        android:text="@string/button_4" />
 
 </LinearLayout>

@@ -3,18 +3,15 @@
 package com.github.appintro
 
 import android.animation.ArgbEvaluator
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Vibrator
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
@@ -23,6 +20,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat.Type.systemBars
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.github.appintro.indicator.DotIndicatorController
@@ -32,6 +32,7 @@ import com.github.appintro.internal.AppIntroViewPager
 import com.github.appintro.internal.LayoutUtil
 import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.PermissionWrapper
+import com.github.appintro.internal.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
 
@@ -128,8 +129,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     private var retainIsButtonsEnabled = true
 
-    // Android SDK
-    private lateinit var vibrator: Vibrator
     private val argbEvaluator = ArgbEvaluator()
 
     internal val isRtl: Boolean
@@ -191,23 +190,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Enable the Immersive Sticky Mode */
     protected fun setImmersiveMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                )
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            hide(systemBars())
         }
     }
 
     /** Customize the color of the Status Bar */
     protected fun setStatusBarColor(@ColorInt color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            // We set the light status bar/translucent first via the WindowInsetsControllerCompat
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
             window.statusBarColor = color
         }
     }
@@ -233,13 +227,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Toggle the Status Bar visibility */
     protected fun showStatusBar(show: Boolean) {
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
         if (show) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            controller.show(systemBars())
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+            controller.hide(systemBars())
         }
     }
 
@@ -252,7 +245,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         ReplaceWith("setSwipeLock"),
         DeprecationLevel.ERROR
     )
-    @Suppress("UnusedPrivateMember")
+    @Suppress("UnusedPrivateMember", "UNUSED_PARAMETER")
     protected fun setNextPageSwipeLock(lock: Boolean) {
         LogHelper.w(
             TAG,
@@ -390,9 +383,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      =================================== */
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
+
+        // Add back handler
+        addBackHandler()
 
         // We default the indicator controller to the Dotted one.
         indicatorController = DotIndicatorController(this)
@@ -424,8 +420,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             nextButton.scaleX = -1f
             backButton.scaleX = -1f
         }
-
-        vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         pagerAdapter = PagerAdapter(supportFragmentManager, fragments)
         pager = findViewById(R.id.view_pager)
@@ -462,13 +456,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
 
         pager.post {
-            val fragment = pagerAdapter.getItem(pager.currentItem)
-            // Fragment is null when no slides are passed to AppIntro
-            if (fragment != null) {
+            if (pager.currentItem < pagerAdapter.count) {
                 dispatchSlideChangedCallbacks(
                     null,
-                    pagerAdapter
-                        .getItem(pager.currentItem)
+                    pagerAdapter.getItem(pager.currentItem)
                 )
             } else {
                 // Close the intro if there are no slides to show
@@ -513,10 +504,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             savedCurrentItem = getInt(ARG_BUNDLE_CURRENT_ITEM)
             pager.isFullPagingEnabled = getBoolean(ARG_BUNDLE_IS_FULL_PAGING_ENABLED)
 
-            permissionsMap = (
+            @Suppress("UNCHECKED_CAST", "DEPRECATION")
+            permissionsMap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                (getSerializable(ARG_BUNDLE_PERMISSION_MAP, HashMap::class.java) as HashMap<Int, PermissionWrapper>?)
+                    ?: hashMapOf()
+            } else {
                 (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
                     ?: hashMapOf()
-                )
+            }
+
             isColorTransitionsEnabled = getBoolean(ARG_BUNDLE_COLOR_TRANSITIONS_ENABLED)
         }
     }
@@ -546,16 +542,27 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         return super.onKeyDown(code, event)
     }
 
-    override fun onBackPressed() {
-        // Do nothing if go back lock is enabled or slide has custom policy.
-        if (isSystemBackButtonLocked) {
-            return
-        }
-        if (pager.isFirstSlide(fragments.size)) {
-            super.onBackPressed()
-        } else {
-            pager.goToPreviousSlide()
-        }
+    /*
+     BACK HANDLER
+     =================================== */
+
+    private fun addBackHandler() {
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Do nothing if go back lock is enabled or slide has custom policy.
+                    if (isSystemBackButtonLocked) {
+                        return
+                    }
+                    if (pager.isFirstSlide(fragments.size)) {
+                        finish()
+                    } else {
+                        pager.goToPreviousSlide()
+                    }
+                }
+            }
+        )
     }
 
     /*
@@ -687,11 +694,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
-    // You must grant vibration permissions on your AndroidManifest.xml file
-    @SuppressLint("MissingPermission")
     private fun dispatchVibration() {
         if (isVibrate) {
-            vibrator.vibrate(vibrateDuration)
+            VibrationHelper.vibrate(this, vibrateDuration)
         }
     }
 

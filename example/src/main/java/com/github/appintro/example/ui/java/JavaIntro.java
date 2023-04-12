@@ -56,9 +56,6 @@ public class JavaIntro extends AppIntro {
         //Activate wizard mode (Some aesthetic changes)
         setWizardMode(true);
         
-        //Show/hide skip button
-        setSkipButtonEnabled(true);
-        
         //Enable immersive mode (no status and nav bar)
         setImmersiveMode();
         
@@ -67,6 +64,9 @@ public class JavaIntro extends AppIntro {
         
         //Dhow/hide ALL buttons
         setButtonsEnabled(true);
+
+        // Enable Vibration
+        setVibrate(true);
     }
 
     @Override

@@ -9,15 +9,15 @@ on:
 
 jobs:
   ktlint:
-    runs-on: [ubuntu-latest]
+    runs-on: 'ubuntu-latest'
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -27,15 +27,15 @@ jobs:
         run: ./gradlew ktlintCheck
 
   detekt:
-    runs-on: [ubuntu-latest]
+    runs-on: 'ubuntu-latest'
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -45,15 +45,15 @@ jobs:
         run: ./gradlew detekt
 
   lint:
-    runs-on: [ubuntu-latest]
+    runs-on: 'ubuntu-latest'
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -63,15 +63,15 @@ jobs:
         run: ./gradlew lint
 
   test:
-    runs-on: [ubuntu-latest]
+    runs-on: 'ubuntu-latest'
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -81,38 +81,17 @@ jobs:
         run: ./gradlew test
 
   build-debug-apk:
-    strategy:
-      fail-fast: false
-      matrix:
-        agp: [""]
-        kotlin: [""]
-        experimental: [false]
-        name: ["stable"]
-        include:
-          - agp: 7.1.0-beta02
-            experimental: true
-            name: AGP-7.1.+
-          - agp: 7.2.0-alpha03
-            experimental: true
-            name: AGP-7.2.+
-          - kotlin: 1.6.0-RC
-            experimental: true
-            name: Kotlin-EAP
-
-    runs-on: [ubuntu-latest]
-    continue-on-error: ${{ matrix.experimental }}
-    name: Build Debug APK - ${{ matrix.name }} - Experimental ${{ matrix.experimental }}
+    runs-on: 'ubuntu-latest'
+    name: Build Debug APK
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
-      VERSION_AGP: ${{ matrix.agp }}
-      VERSION_KOTLIN: ${{ matrix.kotlin }}
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -121,7 +100,7 @@ jobs:
       - name: Build the Debug APK
         run: ./gradlew assembleDebug
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: appintro-sample-app-${{ matrix.name }}.apk
           path: example/build/outputs/apk/debug/example-debug.apk
