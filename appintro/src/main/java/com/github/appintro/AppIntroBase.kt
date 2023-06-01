@@ -249,7 +249,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     protected fun setNextPageSwipeLock(lock: Boolean) {
         LogHelper.w(
             TAG,
-            "Calling setNextPageSwipeLock has not effect here. Please switch to setSwipeLock or SlidePolicy",
+            "Calling setNextPageSwipeLock has not effect here. Please switch to setSwipeLock or SlidePolicy"
         )
     }
 
