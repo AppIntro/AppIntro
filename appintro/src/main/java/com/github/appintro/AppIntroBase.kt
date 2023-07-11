@@ -132,7 +132,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private val argbEvaluator = ArgbEvaluator()
 
     internal val isRtl: Boolean
-        get() = LayoutUtil.isRtl(applicationContext)
+        get() = LayoutUtil.isRtl(this)
 
     /*
      PUBLIC API
