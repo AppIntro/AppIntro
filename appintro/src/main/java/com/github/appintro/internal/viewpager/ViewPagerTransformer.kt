@@ -53,9 +53,9 @@ internal class ViewPagerTransformer(
     }
 
     private fun applyParallax(page: View, position: Float) {
-        page.findViewById<TextView>(R.id.title).translationX = computeParallax(page, position, titlePF)
-        page.findViewById<ImageView>(R.id.image).translationX = computeParallax(page, position, imagePF)
-        page.findViewById<TextView>(R.id.description).translationX = computeParallax(page, position, descriptionPF)
+        page.findViewById<TextView>(R.id.title)?.translationX = computeParallax(page, position, titlePF)
+        page.findViewById<ImageView>(R.id.image)?.translationX = computeParallax(page, position, imagePF)
+        page.findViewById<TextView>(R.id.description)?.translationX = computeParallax(page, position, descriptionPF)
     }
 
     private fun computeParallax(page: View, position: Float, parallaxFactor: Double): Float {
