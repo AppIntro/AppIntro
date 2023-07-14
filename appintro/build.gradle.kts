@@ -15,7 +15,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         consumerProguardFiles("consumer-proguard-rules.pro")
         vectorDrawables.useSupportLibrary = true
@@ -66,7 +65,7 @@ ktlint {
 }
 
 detekt {
-    config = files("./detekt-config.yml")
+    config.setFrom(files("./detekt-config.yml"))
 }
 
 val POM_NAME: String by project
