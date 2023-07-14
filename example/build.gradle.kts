@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        targetSdk = libs.versions.target.sdk.version.get().toInt()
 
         vectorDrawables.useSupportLibrary = true
         applicationId = "com.github.appintro.example"
