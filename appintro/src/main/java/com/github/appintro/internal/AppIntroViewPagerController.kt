@@ -21,7 +21,8 @@ import kotlin.math.max
  */
 internal class AppIntroViewPagerController(
     private val viewPager: ViewPager2,
-    private val viewPagerGestureOverlay: GestureOverlayView){
+    private val viewPagerGestureOverlay: GestureOverlayView
+) {
 
     var isFullPagingEnabled = true
     var isPermissionSlide = false
@@ -37,12 +38,13 @@ internal class AppIntroViewPagerController(
     }
 
     fun goToNextSlide() {
-        with (viewPager) {
+        with(viewPager) {
             // avoid IllegalStateException when changing item while fake dragging
             endFakeDrag()
             setCurrentViewPagerItem(
-                position = if (!LayoutUtil.isRtl(context)) currentItem+1 else currentItem-1,
-                smoothScrool = true)
+                position = if (!LayoutUtil.isRtl(context)) currentItem + 1 else currentItem - 1,
+                smoothScrool = true
+            )
         }
     }
 
@@ -51,25 +53,26 @@ internal class AppIntroViewPagerController(
             // avoid IllegalStateException when changing item while fake dragging
             endFakeDrag()
             setCurrentViewPagerItem(
-                position = if (!LayoutUtil.isRtl(context)) currentItem-1 else currentItem+1,
-                smoothScrool = true)
+                position = if (!LayoutUtil.isRtl(context)) currentItem - 1 else currentItem + 1,
+                smoothScrool = true
+            )
         }
     }
 
     fun isFirstSlide(size: Int): Boolean {
-        with (viewPager) {
+        with(viewPager) {
             return if (LayoutUtil.isRtl(context)) (currentItem - size + 1 == 0) else (currentItem == 0)
         }
     }
 
     fun isLastSlide(size: Int): Boolean {
-        with (viewPager) {
+        with(viewPager) {
             return if (LayoutUtil.isRtl(context)) (currentItem == 0) else (currentItem - size + 1 == 0)
         }
     }
 
     fun getCurrentSlideNumber(size: Int): Int {
-        with (viewPager) {
+        with(viewPager) {
             return if (LayoutUtil.isRtl(context)) (size - currentItem) else (currentItem + 1)
         }
     }
@@ -79,7 +82,7 @@ internal class AppIntroViewPagerController(
      * This is needed to correctly handle progress button display after rotation on a locked first page.
      */
     fun setCurrentViewPagerItem(position: Int, smoothScrool: Boolean = false) {
-        with (viewPager) {
+        with(viewPager) {
             endFakeDrag()
 
             val oldItem = currentItem
@@ -180,7 +183,7 @@ internal class AppIntroViewPagerController(
      * The direction of forward is different in RTL mode.
      */
     private fun isSwipeForward(oldX: Float, newX: Float): Boolean {
-        with (viewPager) {
+        with(viewPager) {
             return (if (LayoutUtil.isRtl(context)) (newX > oldX) else (oldX > newX))
         }
     }
@@ -212,7 +215,7 @@ internal class AppIntroViewPagerController(
         // touch events will be fowarded by gesture overlay to check policies
         viewPager.isUserInputEnabled = false
 
-        viewPagerGestureOverlay.addOnGestureListener(object: OnGestureListener{
+        viewPagerGestureOverlay.addOnGestureListener(object : OnGestureListener {
             override fun onGestureStarted(overlayView: GestureOverlayView?, event: MotionEvent?) {
                 handleOnTouchEvent(event)
             }
@@ -236,7 +239,7 @@ internal class AppIntroViewPagerController(
         // We perform a page back and forward to recenter the ViewPager at the current position.
         // This is needed as we're interrupting the user Swipe due to Permissions.
         // If the user denies a permission, we want to recenter the slide.
-        with (viewPager) {
+        with(viewPager) {
             val item = currentItem
             setCurrentViewPagerItem(max(item - 1, 0), false)
             setCurrentViewPagerItem(item, false)
@@ -249,13 +252,13 @@ internal class AppIntroViewPagerController(
     }
 
     fun setAppIntroPageTransformer(appIntroTransformer: AppIntroPageTransformerType) {
-        with (viewPager) {
+        with(viewPager) {
             setPageTransformer(ViewPagerTransformer(appIntroTransformer))
         }
     }
 
     fun setPageTransformer(pageTransformer: ViewPager2.PageTransformer?) {
-        with (viewPager) {
+        with(viewPager) {
             setPageTransformer(pageTransformer)
         }
     }
@@ -276,6 +279,5 @@ internal class AppIntroViewPagerController(
 
     private companion object {
         private const val ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL = 1000
-        private val TAG = LogHelper.makeLogTag(AppIntroViewPagerController::class)
     }
 }
