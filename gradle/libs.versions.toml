@@ -13,6 +13,7 @@ ktlint_gradle = "11.5.0"
 min_sdk_version = "14"
 mockito_core = "5.4.0"
 recyclerview = "1.3.0"
+viewpager2 = "1.1.0-beta02"
 target_sdk_version = "33"
 
 [libraries]
@@ -22,6 +23,7 @@ androidx_cardview = { module = "androidx.cardview:cardview", version.ref = "card
 androidx_constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx_core_ktx = { module = "androidx.core:core-ktx", version.ref = "core.ktx" }
 androidx_recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx_viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2"}
 junit = { module = "junit:junit", version.ref = "junit" }
 mockito_core = { module = "org.mockito:mockito-core", version.ref = "mockito.core" }
 

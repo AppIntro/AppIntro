@@ -8,17 +8,22 @@
     android:fitsSystemWindows="false"
     android:theme="@style/AppIntroStyle">
 
-    <com.github.appintro.internal.AppIntroViewPager
-        android:id="@+id/view_pager"
+    <android.gesture.GestureOverlayView
+        android:id="@+id/pager_gesture_overlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="false"
-        android:overScrollMode="never"
+        android:gestureColor="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:fitsSystemWindows="false"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.gesture.GestureOverlayView>
     <View
         android:id="@+id/bottom"
         android:layout_width="0dp"

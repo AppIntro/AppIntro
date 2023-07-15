@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="orange">#EF6C00</color>
+    <color name="appintro_example_orange">#EF6C00</color>
+    <color name="appintro_example_lime">#CDDC39</color>
+    <color name="appintro_example_blue">#448AFF</color>
+    <color name="appintro_example_blue_gray">#607D8B</color>
 </resources>
