@@ -18,24 +18,29 @@ public class JavaIntro extends AppIntro {
 
         addSlide(AppIntroFragment.createInstance("Welcome!",
                 "This is a demo example in java of AppIntro library, with a custom background on each slide!",
-                R.drawable.ic_slide1));
+                R.drawable.ic_slide1,
+                R.color.appintro_example_orange
+        ));
 
         addSlide(AppIntroFragment.createInstance(
                 "Clean App Intros",
                 "This library offers developers the ability to add clean app intros at the start of their apps.",
-                R.drawable.ic_slide2
+                R.drawable.ic_slide2,
+                R.color.appintro_example_lime
         ));
 
         addSlide(AppIntroFragment.createInstance(
                 "Simple, yet Customizable",
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
-                R.drawable.ic_slide3
+                R.drawable.ic_slide3,
+                R.color.appintro_example_blue
         ));
 
         addSlide(AppIntroFragment.createInstance(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
-                R.drawable.ic_slide4
+                R.drawable.ic_slide4,
+                R.color.appintro_example_blue_gray
         ));
 
         // Fade Transition
@@ -43,10 +48,9 @@ public class JavaIntro extends AppIntro {
         
         // Show/hide status bar
         showStatusBar(true);
-        
         //Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)
         setColorTransitionsEnabled(true);
-        
+
         //Prevent the back button from exiting the slides
         setSystemBackButtonLocked(true);
         

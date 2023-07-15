@@ -1,24 +1,21 @@
 package com.github.appintro.internal.viewpager
 
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
 internal class PagerAdapter(
-    fragmentManager: FragmentManager,
+    fragmentActivity: FragmentActivity,
     private val fragments: MutableList<Fragment>
-) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+) : FragmentStateAdapter(fragmentActivity) {
+    override fun getItemCount() = this.fragments.size
 
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         return fragments[position]
     }
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val frament = super.instantiateItem(container, position)
-        fragments[position] = (frament as Fragment)
-        return frament
+    fun getItem(position: Int, fragmentManager: FragmentManager): Fragment? {
+        return fragmentManager.findFragmentByTag("f$position")
     }
-
-    override fun getCount() = this.fragments.size
 }
