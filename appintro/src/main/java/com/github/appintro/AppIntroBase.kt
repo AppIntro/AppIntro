@@ -417,7 +417,8 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         pagerAdapter = PagerAdapter(this@AppIntroBase, fragments)
         pagerController = AppIntroViewPagerController(
             viewPager = findViewById(R.id.view_pager),
-            viewPagerGestureOverlay = findViewById(R.id.pager_gesture_overlay))
+            viewPagerGestureOverlay = findViewById(R.id.pager_gesture_overlay)
+        )
 
         doneButton.setOnClickListener(NextSlideOnClickListener(isLastSlide = true))
         nextButton.setOnClickListener(NextSlideOnClickListener(isLastSlide = false))
@@ -800,8 +801,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             this@AppIntroBase.onPageSelected(position)
             if (slidesNumber > 0) {
                 if (currentlySelectedItem == -1) {
-                    dispatchSlideChangedCallbacks(null,
-                        getPagerItem(position))
+                    dispatchSlideChangedCallbacks(
+                        null,
+                        getPagerItem(position)
+                    )
                 } else {
                     dispatchSlideChangedCallbacks(
                         getPagerItem(currentlySelectedItem),
@@ -816,7 +819,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private companion object {
         private val TAG = LogHelper.makeLogTag(AppIntroBase::class.java)
 
-        private const val DEFAULT_SCROLL_DURATION_FACTOR = 1
         private const val DEFAULT_VIBRATE_DURATION = 20L
         private const val PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1
 
