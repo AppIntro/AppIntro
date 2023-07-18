@@ -17,13 +17,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
-            android:fitsSystemWindows="false"
-            android:overScrollMode="never"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
+            android:overScrollMode="never" />
     </android.gesture.GestureOverlayView>
+
     <View
         android:id="@+id/bottom"
         android:layout_width="0dp"

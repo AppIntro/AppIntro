@@ -12,19 +12,20 @@
         android:id="@+id/pager_gesture_overlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gestureColor="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gestureColor="@android:color/transparent">
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
-            android:overScrollMode="never"
-/>
+            android:overScrollMode="never" />
     </android.gesture.GestureOverlayView>
+
     <View
         android:id="@+id/bottom_separator"
         android:layout_width="0dp"
@@ -48,8 +49,8 @@
         style="@style/AppIntroButtonStyleCompat"
         android:labelFor="@string/app_intro_skip_button"
         android:text="@string/app_intro_skip_button"
-        android:textSize="@dimen/appintro_skiptext_size"
         android:textColor="@color/appintro_icon_tint"
+        android:textSize="@dimen/appintro_skiptext_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -89,8 +90,8 @@
         style="@style/AppIntroButtonStyleCompat"
         android:labelFor="@string/app_intro_done_button"
         android:text="@string/app_intro_done_button"
-        android:textSize="@dimen/appintro_donetext_size"
         android:textColor="@color/appintro_icon_tint"
+        android:textSize="@dimen/appintro_donetext_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
