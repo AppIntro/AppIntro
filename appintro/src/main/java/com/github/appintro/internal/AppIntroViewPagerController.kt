@@ -212,7 +212,7 @@ internal class AppIntroViewPagerController(
      */
     private fun addPagerTouchInterceptor() {
         // disable ViewPager swipe
-        // touch events will be fowarded by gesture overlay to check policies
+        // touch events will be forwarded to gesture overlay to check policies
         viewPager.isUserInputEnabled = false
 
         viewPagerGestureOverlay.addOnGestureListener(object : OnGestureListener {
