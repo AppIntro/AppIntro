@@ -52,3 +52,5 @@ captures/
 !/example/example-release-v7.apk
 !/example/proguard-rules.pro
 .idea/
+
+.DS_Store
