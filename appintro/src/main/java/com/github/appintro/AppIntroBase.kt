@@ -302,6 +302,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * multiply duration
      * @param factor the new factor that will be applied to the scroll - default: 1
      */
+    @Deprecated(
+        """
+        Newer versions of ViewPager do not support customizing scroll duration anymore.
+        Expect this method to be removed on future versions of AppIntro.
+    """
+    )
     protected fun setScrollDurationFactor(factor: Int) {
         pager.setScrollDurationFactor(factor.toDouble())
     }
@@ -382,6 +388,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      LIFECYCLE
      =================================== */
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)

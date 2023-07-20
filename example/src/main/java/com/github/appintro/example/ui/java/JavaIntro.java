@@ -44,9 +44,6 @@ public class JavaIntro extends AppIntro {
         // Show/hide status bar
         showStatusBar(true);
         
-        //Speed up or down scrolling
-        setScrollDurationFactor(2);
-        
         //Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)
         setColorTransitionsEnabled(true);
         
