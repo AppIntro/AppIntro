@@ -1,5 +1,29 @@
 # Change Log
 
+## Version 6.3.0 *(2023-07-23)*
+This is a new minor release of AppIntro. This library comes with several new features (see below) and bugfixes.
+
+### Summary of Changes
+* We deprecated `setScrollDurationFactor` since customizing scroll duration will not be supported anymore in upcoming releases of AppIntro based on ViewPager2
+* Target SDK is now 33
+
+### Enhancements 🎁
+* [#1030] AppIntro now internally uses Gradle KTS and Version Catalog
+* [#1080] Add ability to change done button background color
+* [#1049] Handle onBackPressed deprecation
+* [#1051] Register callback on onBackPressedDispatcher
+
+### Bugfixes 🐛
+* [#1002] Fix RTL bug on wrongly retained currentItem
+* [#1108] Fix RTL detection
+* [#1109] Fix unexpected crash when using custom layouts with wrong ids with Parallax effect
+
+### Dependency updates 📦
+* Kotlin to 1.9.0
+* AGP to 8.0.2
+* AppCompat to 1.6.1
+* ConstraintLayout to 2.1.4
+
 ## Version 6.2.0 *(2022-01-17)*
 
 This is a new minor release of AppIntro. This library comes with several new features (see below) and bugfixes.
