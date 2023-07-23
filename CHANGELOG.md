@@ -365,5 +365,12 @@ Previous release notes can be found here: [releases]
 [#960]: https://github.com/AppIntro/AppIntro/pull/960
 [#979]: https://github.com/AppIntro/AppIntro/pull/979
 [#993]: https://github.com/AppIntro/AppIntro/pull/993
+[#1030]: https://github.com/AppIntro/AppIntro/pull/1030
+[#1080]: https://github.com/AppIntro/AppIntro/pull/1080
+[#1049]: https://github.com/AppIntro/AppIntro/pull/1049
+[#1051]: https://github.com/AppIntro/AppIntro/pull/1051
+[#1002]: https://github.com/AppIntro/AppIntro/pull/1002
+[#1108]: https://github.com/AppIntro/AppIntro/pull/1108
+[#1109]: https://github.com/AppIntro/AppIntro/pull/1109
 [releases]: https://github.com/AppIntro/AppIntro/releases?after=v5.0.0
 
