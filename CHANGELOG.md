@@ -1,4 +1,6 @@
 # Change Log
+## Version 6.3.1 *(2023-07-24)*
+This release of AppIntro is identical to 6.3.0. An outdated JitPack configuration caused 6.3.0 not to build correctly.
 
 ## Version 6.3.0 *(2023-07-23)*
 This is a new minor release of AppIntro. This library comes with several new features (see below) and bugfixes.
