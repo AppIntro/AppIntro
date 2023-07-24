@@ -1,7 +1,7 @@
 # Change Log
 
 ## Version 7.0.0 *(YYYY-MM-DD)*
-This is a new major release of AppIntro. This library comes with several new features (see below) and bugfixes.
+This is a new major release of AppIntro. Please note that this release contains multiple new features (see below), several bugfixes, as well as multiple breaking changes.
 
 ### Summary of Changes
 * [#1112] We migrated AppIntro from ViewPager to ViewPager2
@@ -9,6 +9,9 @@ This is a new major release of AppIntro. This library comes with several new fea
 ### Breaking Changes
 * We removed `setScrollDurationFactor` since customizing scroll duration is supported anymore on ViewPager2
 * `setCustomTransformer` accepts a `ViewPager2.PageTransformer` instead of `ViewPager.PageTransformer`
+
+## Version 6.3.1 *(2023-07-24)*
+This release of AppIntro is identical to 6.3.0. An outdated JitPack configuration caused 6.3.0 not to build correctly.
 
 ## Version 6.3.0 *(2023-07-23)*
 This is a new minor release of AppIntro. This library comes with several new features (see below) and bugfixes.
