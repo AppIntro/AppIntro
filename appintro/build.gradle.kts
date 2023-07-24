@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.AppIntro"
-version = "6.3.0"
+version = "7.0.0-beta01"
 
 android {
     namespace = "com.github.appintro"
