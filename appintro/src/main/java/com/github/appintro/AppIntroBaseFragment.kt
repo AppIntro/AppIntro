@@ -66,8 +66,8 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     final override var defaultBackgroundColorRes: Int = 0
         private set
 
-    private var title: String? = null
-    private var description: String? = null
+    private var title: CharSequence? = null
+    private var description: CharSequence? = null
     private var titleTypeface: TypefaceContainer? = null
     private var descTypeface: TypefaceContainer? = null
 
@@ -78,8 +78,8 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         val args = arguments
         if (args != null && args.size() != 0) {
             drawable = args.getInt(ARG_DRAWABLE)
-            title = args.getString(ARG_TITLE)
-            description = args.getString(ARG_DESC)
+            title = args.getCharSequence(ARG_TITLE)
+            description = args.getCharSequence(ARG_DESC)
             bgDrawable = args.getInt(ARG_BG_DRAWABLE)
 
             val argsTitleTypeface = args.getString(ARG_TITLE_TYPEFACE)
@@ -104,8 +104,8 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         if (savedInstanceState != null) {
             drawable = savedInstanceState.getInt(ARG_DRAWABLE)
-            title = savedInstanceState.getString(ARG_TITLE)
-            description = savedInstanceState.getString(ARG_DESC)
+            title = savedInstanceState.getCharSequence(ARG_TITLE)
+            description = savedInstanceState.getCharSequence(ARG_DESC)
 
             titleTypeface = TypefaceContainer(
                 savedInstanceState.getString(ARG_TITLE_TYPEFACE),
@@ -198,8 +198,8 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(ARG_DRAWABLE, drawable)
         outState.putInt(ARG_BG_DRAWABLE, bgDrawable)
-        outState.putString(ARG_TITLE, title)
-        outState.putString(ARG_DESC, description)
+        outState.putCharSequence(ARG_TITLE, title)
+        outState.putCharSequence(ARG_DESC, description)
         @Suppress("DEPRECATION")
         outState.putInt(ARG_BG_COLOR, defaultBackgroundColor)
         outState.putInt(ARG_BG_COLOR_RES, defaultBackgroundColorRes)

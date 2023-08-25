@@ -60,8 +60,8 @@ data class SliderPage @JvmOverloads constructor(
     var descriptionTypeface: String? = null,
     @DrawableRes var backgroundDrawable: Int = 0
 ) {
-    val titleString: String? get() = title?.toString()
-    val descriptionString: String? get() = description?.toString()
+    val titleString: CharSequence? get() = title
+    val descriptionString: CharSequence? get() = description
 
     /**
      * Util method to convert a [SliderPage] into an Android [Bundle].
@@ -70,12 +70,12 @@ data class SliderPage @JvmOverloads constructor(
     @Suppress("DEPRECATION")
     fun toBundle(): Bundle {
         val newBundle = Bundle()
-        newBundle.putString(ARG_TITLE, this.titleString)
+        newBundle.putCharSequence(ARG_TITLE, this.titleString)
         newBundle.putString(ARG_TITLE_TYPEFACE, this.titleTypeface)
         newBundle.putInt(ARG_TITLE_TYPEFACE_RES, this.titleTypefaceFontRes)
         newBundle.putInt(ARG_TITLE_COLOR, this.titleColor)
         newBundle.putInt(ARG_TITLE_COLOR_RES, this.titleColorRes)
-        newBundle.putString(ARG_DESC, this.descriptionString)
+        newBundle.putCharSequence(ARG_DESC, this.descriptionString)
         newBundle.putString(ARG_DESC_TYPEFACE, this.descriptionTypeface)
         newBundle.putInt(ARG_DESC_TYPEFACE_RES, this.descriptionTypefaceFontRes)
         newBundle.putInt(ARG_DESC_COLOR, this.descriptionColor)
