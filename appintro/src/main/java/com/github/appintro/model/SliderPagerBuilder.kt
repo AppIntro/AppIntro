@@ -17,38 +17,38 @@ class SliderPagerBuilder {
     private var description: CharSequence? = null
 
     @DrawableRes
-    private var imageDrawable: Int = 0
+    private var imageDrawable: Int? = null
 
     @ColorInt
-    private var backgroundColor: Int = 0
+    private var backgroundColor: Int? = null
 
     @ColorRes
-    private var backgroundColorRes: Int = 0
+    private var backgroundColorRes: Int? = null
 
     @ColorInt
-    private var titleColor: Int = 0
+    private var titleColor: Int? = null
 
     @ColorRes
-    private var titleColorRes: Int = 0
+    private var titleColorRes: Int? = null
 
     @ColorInt
-    private var descriptionColor: Int = 0
+    private var descriptionColor: Int? = null
 
     @ColorRes
-    private var descriptionColorRes: Int = 0
+    private var descriptionColorRes: Int? = null
 
     @FontRes
-    private var titleTypefaceFontRes: Int = 0
+    private var titleTypefaceFontRes: Int? = null
 
     @FontRes
-    private var descriptionTypefaceFontRes: Int = 0
+    private var descriptionTypefaceFontRes: Int? = null
 
     private var titleTypeface: String? = null
 
     private var descriptionTypeface: String? = null
 
     @DrawableRes
-    private var backgroundDrawable: Int = 0
+    private var backgroundDrawable: Int? = null
 
     fun title(title: CharSequence): SliderPagerBuilder {
         this.title = title
