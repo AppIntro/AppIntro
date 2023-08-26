@@ -45,13 +45,13 @@ class AppIntroFragment : AppIntroBaseFragment() {
         fun newInstance(
             title: CharSequence? = null,
             description: CharSequence? = null,
-            @DrawableRes imageDrawable: Int = 0,
-            @ColorInt backgroundColor: Int = 0,
-            @ColorInt titleColor: Int = 0,
-            @ColorInt descriptionColor: Int = 0,
-            @FontRes titleTypefaceFontRes: Int = 0,
-            @FontRes descriptionTypefaceFontRes: Int = 0,
-            @DrawableRes backgroundDrawable: Int = 0
+            @DrawableRes imageDrawable: Int? = null,
+            @ColorInt backgroundColor: Int? = null,
+            @ColorInt titleColor: Int? = null,
+            @ColorInt descriptionColor: Int? = null,
+            @FontRes titleTypefaceFontRes: Int? = null,
+            @FontRes descriptionTypefaceFontRes: Int? = null,
+            @DrawableRes backgroundDrawable: Int? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -91,13 +91,13 @@ class AppIntroFragment : AppIntroBaseFragment() {
         fun createInstance(
             title: CharSequence? = null,
             description: CharSequence? = null,
-            @DrawableRes imageDrawable: Int = 0,
-            @ColorRes backgroundColorRes: Int = 0,
-            @ColorRes titleColorRes: Int = 0,
-            @ColorRes descriptionColorRes: Int = 0,
-            @FontRes titleTypefaceFontRes: Int = 0,
-            @FontRes descriptionTypefaceFontRes: Int = 0,
-            @DrawableRes backgroundDrawable: Int = 0
+            @DrawableRes imageDrawable: Int? = null,
+            @ColorRes backgroundColorRes: Int? = null,
+            @ColorRes titleColorRes: Int? = null,
+            @ColorRes descriptionColorRes: Int? = null,
+            @FontRes titleTypefaceFontRes: Int? = null,
+            @FontRes descriptionTypefaceFontRes: Int? = null,
+            @DrawableRes backgroundDrawable: Int? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(

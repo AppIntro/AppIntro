@@ -49,14 +49,14 @@ class SliderPageTest {
 
         assertEquals(sliderPage.title, null)
         assertEquals(sliderPage.description, null)
-        assertEquals(sliderPage.imageDrawable, 0)
-        assertEquals(sliderPage.backgroundColorRes, 0)
-        assertEquals(sliderPage.titleColorRes, 0)
-        assertEquals(sliderPage.descriptionColorRes, 0)
+        assertEquals(sliderPage.imageDrawable, null)
+        assertEquals(sliderPage.backgroundColorRes, null)
+        assertEquals(sliderPage.titleColorRes, null)
+        assertEquals(sliderPage.descriptionColorRes, null)
         assertEquals(sliderPage.titleTypeface, null)
         assertEquals(sliderPage.descriptionTypeface, null)
-        assertEquals(sliderPage.titleTypefaceFontRes, 0)
-        assertEquals(sliderPage.descriptionTypefaceFontRes, 0)
+        assertEquals(sliderPage.titleTypefaceFontRes, null)
+        assertEquals(sliderPage.descriptionTypefaceFontRes, null)
     }
 
     @Test

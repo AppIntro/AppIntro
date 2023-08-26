@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.viewpager2)
+    implementation(libs.androidx.fragment)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)

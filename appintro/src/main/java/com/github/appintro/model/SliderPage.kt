@@ -11,14 +11,14 @@ import com.github.appintro.ARG_BG_DRAWABLE
 import com.github.appintro.ARG_DESC
 import com.github.appintro.ARG_DESC_COLOR
 import com.github.appintro.ARG_DESC_COLOR_RES
-import com.github.appintro.ARG_DESC_TYPEFACE
 import com.github.appintro.ARG_DESC_TYPEFACE_RES
+import com.github.appintro.ARG_DESC_TYPEFACE_URL
 import com.github.appintro.ARG_DRAWABLE
 import com.github.appintro.ARG_TITLE
 import com.github.appintro.ARG_TITLE_COLOR
 import com.github.appintro.ARG_TITLE_COLOR_RES
-import com.github.appintro.ARG_TITLE_TYPEFACE
 import com.github.appintro.ARG_TITLE_TYPEFACE_RES
+import com.github.appintro.ARG_TITLE_TYPEFACE_URL
 
 /**
  * Slide Page Model.
@@ -28,37 +28,37 @@ import com.github.appintro.ARG_TITLE_TYPEFACE_RES
 data class SliderPage @JvmOverloads constructor(
     var title: CharSequence? = null,
     var description: CharSequence? = null,
-    @DrawableRes var imageDrawable: Int = 0,
+    @DrawableRes var imageDrawable: Int? = null,
 
     @ColorInt
     @Deprecated(
         "`backgroundColor` has been deprecated to support configuration changes",
         ReplaceWith("backgroundColorRes")
     )
-    var backgroundColor: Int = 0,
+    var backgroundColor: Int? = null,
 
     @ColorInt
     @Deprecated(
         "`titleColor` has been deprecated to support configuration changes",
         ReplaceWith("titleColorRes")
     )
-    var titleColor: Int = 0,
+    var titleColor: Int? = null,
 
     @ColorInt
     @Deprecated(
         "`descriptionColor` has been deprecated to support configuration changes",
         ReplaceWith("descriptionColorRes")
     )
-    var descriptionColor: Int = 0,
+    var descriptionColor: Int? = null,
 
-    @ColorRes var backgroundColorRes: Int = 0,
-    @ColorRes var titleColorRes: Int = 0,
-    @ColorRes var descriptionColorRes: Int = 0,
-    @FontRes var titleTypefaceFontRes: Int = 0,
-    @FontRes var descriptionTypefaceFontRes: Int = 0,
+    @ColorRes var backgroundColorRes: Int? = null,
+    @ColorRes var titleColorRes: Int? = null,
+    @ColorRes var descriptionColorRes: Int? = null,
+    @FontRes var titleTypefaceFontRes: Int? = null,
+    @FontRes var descriptionTypefaceFontRes: Int? = null,
     var titleTypeface: String? = null,
     var descriptionTypeface: String? = null,
-    @DrawableRes var backgroundDrawable: Int = 0
+    @DrawableRes var backgroundDrawable: Int? = null
 ) {
     val titleString: CharSequence? get() = title
     val descriptionString: CharSequence? get() = description
@@ -71,19 +71,21 @@ data class SliderPage @JvmOverloads constructor(
     fun toBundle(): Bundle {
         val newBundle = Bundle()
         newBundle.putCharSequence(ARG_TITLE, this.titleString)
-        newBundle.putString(ARG_TITLE_TYPEFACE, this.titleTypeface)
-        newBundle.putInt(ARG_TITLE_TYPEFACE_RES, this.titleTypefaceFontRes)
-        newBundle.putInt(ARG_TITLE_COLOR, this.titleColor)
-        newBundle.putInt(ARG_TITLE_COLOR_RES, this.titleColorRes)
+        newBundle.putString(ARG_TITLE_TYPEFACE_URL, this.titleTypeface)
         newBundle.putCharSequence(ARG_DESC, this.descriptionString)
-        newBundle.putString(ARG_DESC_TYPEFACE, this.descriptionTypeface)
-        newBundle.putInt(ARG_DESC_TYPEFACE_RES, this.descriptionTypefaceFontRes)
-        newBundle.putInt(ARG_DESC_COLOR, this.descriptionColor)
-        newBundle.putInt(ARG_DESC_COLOR_RES, this.descriptionColorRes)
-        newBundle.putInt(ARG_DRAWABLE, this.imageDrawable)
-        newBundle.putInt(ARG_BG_COLOR, this.backgroundColor)
-        newBundle.putInt(ARG_BG_COLOR_RES, this.backgroundColorRes)
-        newBundle.putInt(ARG_BG_DRAWABLE, this.backgroundDrawable)
+        newBundle.putString(ARG_DESC_TYPEFACE_URL, this.descriptionTypeface)
+
+        this.titleTypefaceFontRes?.let { newBundle.putInt(ARG_TITLE_TYPEFACE_RES, it) }
+        this.titleColor?.let { newBundle.putInt(ARG_TITLE_COLOR, it) }
+        this.titleColorRes?.let { newBundle.putInt(ARG_TITLE_COLOR_RES, it) }
+        this.descriptionTypefaceFontRes?.let { newBundle.putInt(ARG_DESC_TYPEFACE_RES, it) }
+        this.descriptionColor?.let { newBundle.putInt(ARG_DESC_COLOR, it) }
+        this.descriptionColorRes?.let { newBundle.putInt(ARG_DESC_COLOR_RES, it) }
+        this.imageDrawable?.let { newBundle.putInt(ARG_DRAWABLE, it) }
+        this.backgroundColor?.let { newBundle.putInt(ARG_BG_COLOR, it) }
+        this.backgroundColorRes?.let { newBundle.putInt(ARG_BG_COLOR_RES, it) }
+        this.backgroundDrawable?.let { newBundle.putInt(ARG_BG_DRAWABLE, it) }
+
         return newBundle
     }
 }
