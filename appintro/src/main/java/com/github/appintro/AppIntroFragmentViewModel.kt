@@ -22,7 +22,7 @@ internal const val ARG_DESC_COLOR = "desc_color"
 internal const val ARG_DESC_COLOR_RES = "desc_color_res"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
 
-class AppIntroFragmentViewModel(state: SavedStateHandle) : ViewModel() {
+internal class AppIntroFragmentViewModel(state: SavedStateHandle) : ViewModel() {
     internal var title by state.delegate<CharSequence?>(ARG_TITLE)
     internal var description by state.delegate<CharSequence?>(ARG_DESC)
     internal var drawable by state.delegate<Int?>(ARG_DRAWABLE)
