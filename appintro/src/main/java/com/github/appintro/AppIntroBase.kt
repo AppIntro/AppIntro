@@ -673,18 +673,18 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             // Permission is denied for the first time (never ask again box is not checked).
             // Ask again explaining the usage of the permission (Show an AlertDialog or Snackbar)
             onUserDeniedPermission(permission)
-
-            // If the permission was not required, we can remove it from the App and let the user proceed.
-            permissionsMap[currentSlideNumber]?.let { requestedPermission ->
-                if (!requestedPermission.required) {
-                    permissionsMap.remove(requestedPermission.position)
-                    goToNextSlide()
-                }
-            }
         } else {
             // Permission is disabled (never ask again is checked)
             // Ask the user to go to settings to enable permission.
             onUserDisabledPermission(permission)
+        }
+
+        // If the permission was not required, we can remove it from the App and let the user proceed.
+        permissionsMap[currentSlideNumber]?.let { requestedPermission ->
+            if (!requestedPermission.required) {
+                permissionsMap.remove(requestedPermission.position)
+                goToNextSlide()
+            }
         }
     }
 
