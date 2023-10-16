@@ -51,7 +51,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorInt descriptionColor: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null
+            @DrawableRes backgroundDrawable: Int? = null,
+            slideTag: String? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -63,7 +64,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColor = descriptionColor,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable
+                    backgroundDrawable = backgroundDrawable,
+                    slideTag = slideTag
                 )
             )
         }
@@ -97,7 +99,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorRes descriptionColorRes: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null
+            @DrawableRes backgroundDrawable: Int? = null,
+            slideTag: String? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -109,7 +112,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColorRes = descriptionColorRes,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable
+                    backgroundDrawable = backgroundDrawable,
+                    slideTag = slideTag
                 )
             )
         }

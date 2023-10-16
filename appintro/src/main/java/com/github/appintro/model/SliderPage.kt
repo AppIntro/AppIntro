@@ -14,6 +14,7 @@ import com.github.appintro.ARG_DESC_COLOR_RES
 import com.github.appintro.ARG_DESC_TYPEFACE_RES
 import com.github.appintro.ARG_DESC_TYPEFACE_URL
 import com.github.appintro.ARG_DRAWABLE
+import com.github.appintro.ARG_SLIDE_TAG
 import com.github.appintro.ARG_TITLE
 import com.github.appintro.ARG_TITLE_COLOR
 import com.github.appintro.ARG_TITLE_COLOR_RES
@@ -58,7 +59,8 @@ data class SliderPage @JvmOverloads constructor(
     @FontRes var descriptionTypefaceFontRes: Int? = null,
     var titleTypeface: String? = null,
     var descriptionTypeface: String? = null,
-    @DrawableRes var backgroundDrawable: Int? = null
+    @DrawableRes var backgroundDrawable: Int? = null,
+    var slideTag: String? = null
 ) {
     val titleString: CharSequence? get() = title
     val descriptionString: CharSequence? get() = description
@@ -85,6 +87,7 @@ data class SliderPage @JvmOverloads constructor(
         this.backgroundColor?.let { newBundle.putInt(ARG_BG_COLOR, it) }
         this.backgroundColorRes?.let { newBundle.putInt(ARG_BG_COLOR_RES, it) }
         this.backgroundDrawable?.let { newBundle.putInt(ARG_BG_DRAWABLE, it) }
+        this.slideTag?.let { newBundle.putString(ARG_SLIDE_TAG, it) }
 
         return newBundle
     }

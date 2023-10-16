@@ -27,12 +27,22 @@ class PermissionsIntro : AppIntro() {
                 imageDrawable = R.drawable.ic_slide3))
 
         addSlide(AppIntroFragment.createInstance(
+            "Permission Request",
+            "This time we used a tag to attach the permission!",
+            imageDrawable = R.drawable.ic_slide3,
+            slideTag = "yourCoolTag"))
+
+
+        addSlide(AppIntroFragment.createInstance(
                 "Explore",
                 "Feel free to explore the rest of the library demo!",
                 imageDrawable = R.drawable.ic_slide4))
 
         // Here we ask for camera permission on slide 2
         askForPermissions(arrayOf(Manifest.permission.CAMERA), 2)
+
+        // Here we ask for Calendar permission on slide 2
+        askForPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), "yourCoolTag")
     }
 
 
