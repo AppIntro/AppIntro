@@ -5,11 +5,14 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import com.github.appintro.model.SliderPage
+import java.util.UUID
 
 @Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {
 
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
+
+    var slideId: String? = null
 
     companion object {
 
@@ -52,7 +55,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
             @DrawableRes backgroundDrawable: Int? = null,
-            slideTag: String? = null
+            id: String? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -64,9 +67,9 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColor = descriptionColor,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable,
-                    slideTag = slideTag
-                )
+                    backgroundDrawable = backgroundDrawable
+                ),
+                id
             )
         }
 
@@ -100,7 +103,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
             @DrawableRes backgroundDrawable: Int? = null,
-            slideTag: String? = null
+            id: String? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -112,9 +115,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColorRes = descriptionColorRes,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable,
-                    slideTag = slideTag
-                )
+                    backgroundDrawable = backgroundDrawable
+                ), id
             )
         }
 
@@ -145,9 +147,12 @@ class AppIntroFragment : AppIntroBaseFragment() {
          * @return An [AppIntroFragment] created instance
          */
         @JvmStatic
-        fun createInstance(sliderPage: SliderPage): AppIntroFragment {
+        fun createInstance(sliderPage: SliderPage, id: String? = null): AppIntroFragment {
             val slide = AppIntroFragment()
             slide.arguments = sliderPage.toBundle()
+            if(id != null) {
+                slide.slideId = id
+            }
             return slide
         }
     }

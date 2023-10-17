@@ -21,7 +21,6 @@ internal const val ARG_TITLE_COLOR_RES = "title_color_res"
 internal const val ARG_DESC_COLOR = "desc_color"
 internal const val ARG_DESC_COLOR_RES = "desc_color_res"
 internal const val ARG_BG_DRAWABLE = "bg_drawable"
-internal const val ARG_SLIDE_TAG = "tag"
 
 internal class AppIntroFragmentViewModel(state: SavedStateHandle) : ViewModel() {
     internal var title by state.delegate<CharSequence?>(ARG_TITLE)
@@ -54,6 +53,4 @@ internal class AppIntroFragmentViewModel(state: SavedStateHandle) : ViewModel() 
     @get:FontRes
     internal var descTypefaceRes by state.delegate<Int?>(ARG_DESC_TYPEFACE_RES)
     internal var descTypefaceUrl by state.delegate<String?>(ARG_DESC_TYPEFACE_URL)
-
-    internal var tag by state.delegate<String?>(ARG_SLIDE_TAG)
 }

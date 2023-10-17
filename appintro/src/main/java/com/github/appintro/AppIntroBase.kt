@@ -6,7 +6,6 @@ import android.animation.ArgbEvaluator
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +35,7 @@ import com.github.appintro.internal.PermissionWrapper
 import com.github.appintro.internal.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+import java.util.UUID
 
 /**
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
@@ -126,10 +126,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private val currentSlideNumber: Int
         get() = pagerController.getCurrentSlideNumber(fragments.size)
 
-    fun getCurrentSlideTag(): String {
+    fun getCurrentSlideIdentifier(): String {
         if(getPagerItem(pagerController.getCurrentItem()) != null) {
             var currentItem = (getPagerItem(pagerController.getCurrentItem()) as AppIntroFragment)
-            return currentItem.arguments?.getString(ARG_SLIDE_TAG) ?: currentSlideNumber.toString()
+            return currentItem.slideId ?: currentSlideNumber.toString()
         }
         return currentSlideNumber.toString()
     }
@@ -174,6 +174,23 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * @param required - Whether the user can change this slide without granting the permissions.
      */
     @JvmOverloads
+    protected fun askForPermissions(permissions: Array<String>, slide: AppIntroFragment, required: Boolean = true) {
+        var id = slide.slideId
+        if(id == null) {
+            id = UUID.randomUUID().toString()
+            slide.slideId = id
+        }
+        askForPermissions(permissions, id, required)
+    }
+
+    /**
+     * Called by the user to associate permissions with slides.
+     *
+     * @param permissions - Array of permissions
+     * @param slideNumber - The slide at which permission is to be asked.
+     * @param required - Whether the user can change this slide without granting the permissions.
+     */
+    @JvmOverloads
     protected fun askForPermissions(permissions: Array<String>, slideNumber: Int, required: Boolean = true) {
         askForPermissions(permissions, slideNumber.toString(), required)
     }
@@ -182,16 +199,16 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * Called by the user to associate permissions with slides.
      *
      * @param permissions - Array of permissions
-     * @param slideTag - The slide at which permission is to be asked.
+     * @param slideId - The slide at which permission is to be asked.
      * @param required - Whether the user can change this slide without granting the permissions.
      */
     @JvmOverloads
-    protected fun askForPermissions(permissions: Array<String>, slideTag: String, required: Boolean = true) {
+    protected fun askForPermissions(permissions: Array<String>, slideId: String, required: Boolean = true) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (slideTag == "") {
-                error("Invalid Slide Tag: $slideTag")
+            if (slideId == "") {
+                error("Invalid Slide Tag: $slideId")
             } else {
-                permissionsMap[slideTag] = PermissionWrapper(permissions, 0, required)
+                permissionsMap[slideId] = PermissionWrapper(permissions, 0, required)
             }
         }
     }
@@ -638,12 +655,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      PERMISSION
      =================================== */
 
-    private fun shouldRequestPermission() = permissionsMap.containsKey(getCurrentSlideTag())
+    private fun shouldRequestPermission() = permissionsMap.containsKey(getCurrentSlideIdentifier())
 
     // Request one or more permission to the Android SDK.
     private fun requestPermissions() {
         setSwipeLock(true)
-        var permissionToRequest = permissionsMap[getCurrentSlideTag()]
+        var permissionToRequest = permissionsMap[getCurrentSlideIdentifier()]
         permissionToRequest?.let {
             ActivityCompat.requestPermissions(
                 this,
@@ -677,7 +694,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         if (deniedPermissions.isEmpty()) {
             // If the permission request was a success, we remove
             // the permission from the permissionsMap.
-            permissionsMap.remove(getCurrentSlideTag())
+            permissionsMap.remove(getCurrentSlideIdentifier())
             goToNextSlide()
         } else {
             // At least one or all of the permissions have been denied.
@@ -703,9 +720,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
 
         // If the permission was not required, we can remove it from the App and let the user proceed.
-        permissionsMap[getCurrentSlideTag()]?.let { requestedPermission ->
+        permissionsMap[getCurrentSlideIdentifier()]?.let { requestedPermission ->
             if (!requestedPermission.required) {
-                permissionsMap.remove(getCurrentSlideTag())
+                permissionsMap.remove(getCurrentSlideIdentifier())
                 goToNextSlide()
             }
         }
@@ -722,7 +739,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * has permissions attached to it.
      */
     private val isPermissionSlide: Boolean
-        get() = getCurrentSlideTag() in permissionsMap
+        get() = getCurrentSlideIdentifier() in permissionsMap
 
     /** Takes care of calling all the necessary callbacks on Slide Changing. */
     private fun dispatchSlideChangedCallbacks(oldFragment: Fragment?, newFragment: Fragment?) {
