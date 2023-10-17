@@ -121,12 +121,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     private lateinit var backButton: View
     private lateinit var indicatorContainer: ViewGroup
 
-    // Asks the ViewPager for the current slide number. Useful to query the [permissionsMap]
-    @Deprecated("Use currentSlideTag")
+    // Asks the ViewPager for the current slide number. Dont use it to query the [permissionsMap]
     private val currentSlideNumber: Int
         get() = pagerController.getCurrentSlideNumber(fragments.size)
 
-    fun getCurrentSlideIdentifier(): String {
+    // Use this to query the permissionMap or identify the current slide
+    protected fun getCurrentSlideIdentifier(): String {
         if(getPagerItem(pagerController.getCurrentItem()) != null) {
             var currentItem = (getPagerItem(pagerController.getCurrentItem()) as AppIntroFragment)
             return currentItem.slideId ?: currentSlideNumber.toString()
@@ -358,7 +358,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * [.checkAndRequestPermissions] is called to request permissions from the user.
      */
     override fun onUserRequestedPermissionsDialog() {
-        LogHelper.d(TAG, "Requesting Permissions on $currentSlideNumber")
+        LogHelper.d(TAG, "Requesting Permissions on $currentSlideNumber with identifier ${getCurrentSlideIdentifier()}")
         requestPermissions()
     }
 
