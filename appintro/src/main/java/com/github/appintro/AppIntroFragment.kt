@@ -5,7 +5,6 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import com.github.appintro.model.SliderPage
-import java.util.UUID
 
 @Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {
