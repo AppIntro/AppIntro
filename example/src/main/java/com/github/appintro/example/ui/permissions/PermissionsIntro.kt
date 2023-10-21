@@ -45,6 +45,8 @@ class PermissionsIntro : AppIntro() {
         // Here we ask for Calendar permission on slide 4, but we use the fragment instead of
         // slideNumber
         askForPermissions(arrayOf(Manifest.permission.READ_CALENDAR), calendarPermissionFragment)
+        // you can also use addSlideWithPermissionRequest(fragment: Fragment, permissions: Array<String>, required: Boolean = true)
+        // to achieve the same, without having to remember the fragment yourself
     }
 
 
