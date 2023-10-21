@@ -26,12 +26,6 @@ class PermissionsIntro : AppIntro() {
                 "The library offers a lot of customization, while keeping it simple for those that like simple.",
                 imageDrawable = R.drawable.ic_slide3))
 
-        addSlide(AppIntroFragment.createInstance(
-            "Permission Request",
-            "This time we used a tag to attach the permission!",
-            imageDrawable = R.drawable.ic_slide3,
-            id = "yourCoolId"))
-
         val calendarPermissionFragment = AppIntroFragment.createInstance(
             "Explore",
             "Feel free to explore the rest of the library demo!",
@@ -48,10 +42,8 @@ class PermissionsIntro : AppIntro() {
         // Here we ask for camera permission on slide 2
         askForPermissions(arrayOf(Manifest.permission.CAMERA), 2)
 
-        // Here we ask for Location permission on slide 4
-        askForPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), "yourCoolId")
-
-        // Here we ask for Calendar permission on slide 5
+        // Here we ask for Calendar permission on slide 4, but we use the fragment instead of
+        // slideNumber
         askForPermissions(arrayOf(Manifest.permission.READ_CALENDAR), calendarPermissionFragment)
     }
 

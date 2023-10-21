@@ -12,8 +12,6 @@ class AppIntroFragment : AppIntroBaseFragment() {
 
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
 
-    var slideId: String? = null
-
     companion object {
 
         /**
@@ -54,8 +52,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorInt descriptionColor: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null,
-            id: String? = null
+            @DrawableRes backgroundDrawable: Int? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -68,8 +65,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
                     backgroundDrawable = backgroundDrawable
-                ),
-                id
+                )
             )
         }
 
@@ -102,8 +98,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorRes descriptionColorRes: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null,
-            id: String? = null
+            @DrawableRes backgroundDrawable: Int? = null
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -116,7 +111,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
                     backgroundDrawable = backgroundDrawable
-                ), id
+                )
             )
         }
 
@@ -147,12 +142,9 @@ class AppIntroFragment : AppIntroBaseFragment() {
          * @return An [AppIntroFragment] created instance
          */
         @JvmStatic
-        fun createInstance(sliderPage: SliderPage, id: String? = null): AppIntroFragment {
+        fun createInstance(sliderPage: SliderPage): AppIntroFragment {
             val slide = AppIntroFragment()
             slide.arguments = sliderPage.toBundle()
-            if(id != null) {
-                slide.slideId = id
-            }
             return slide
         }
     }
