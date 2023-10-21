@@ -177,8 +177,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      */
     @JvmOverloads
     protected fun askForPermissions(permissions: Array<String>, slide: Fragment, required: Boolean = true) {
-        val slideNumber = fragments.indexOf(slide)+1
-        askForPermissions(permissions, slideNumber, required)
+        if(fragments.contains(slide)) {
+            val slideNumber = fragments.indexOf(slide)+1
+            askForPermissions(permissions, slideNumber, required)
+        } else {
+            LogHelper.w(
+                TAG,
+                "The fragment you wanted to attach the permission was not added beforehand!"
+            )
+        }
     }
 
     /**
