@@ -35,7 +35,6 @@ import com.github.appintro.internal.PermissionWrapper
 import com.github.appintro.internal.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
-import java.util.UUID
 
 /**
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
