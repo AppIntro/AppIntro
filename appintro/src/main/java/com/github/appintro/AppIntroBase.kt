@@ -155,18 +155,6 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         }
     }
 
-
-    /**
-     * Adds a new slide at the end of the Intro and associates the permissions with it
-     * @param fragment Instance of Fragment which should be added as slide.
-     * @param permissions - Array of permissions
-     * @param required - Whether the user can change this slide without granting the permissions.
-     */
-    protected fun addSlideWithPermissionRequest(fragment: Fragment, permissions: Array<String>, required: Boolean = true) {
-        addSlide(fragment)
-        askForPermissions(permissions, fragment, required)
-    }
-
     /**
      * Called by the user to associate permissions with slides.
      *
