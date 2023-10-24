@@ -7,7 +7,7 @@ import androidx.annotation.FontRes
 import com.github.appintro.model.SliderPage
 
 @Suppress("LongParameterList")
-class AppIntroFragment : AppIntroBaseFragment() {
+open class AppIntroFragment : AppIntroBaseFragment() {
 
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
 
