@@ -33,8 +33,8 @@ android {
                 listOf(
                     "MissingTranslation",
                     "OldTargetApi",
-                    "GradleDependency"
-                )
+                    "GradleDependency",
+                ),
             )
         }
     }
@@ -70,12 +70,12 @@ detekt {
     config.setFrom(files("./detekt-config.yml"))
 }
 
-val POM_NAME: String by project
-val POM_DESCRIPTION: String by project
-val POM_LICENSE_NAME: String by project
-val POM_LICENSE_URL: String by project
-val POM_SCM_CONNECTION: String by project
-val POM_URL: String by project
+val pomName: String by project
+val pomDescription: String by project
+val pomLicenseName: String by project
+val pomLicenseUrl: String by project
+val pomScmConnection: String by project
+val pomUrl: String by project
 
 publishing {
     publications {
@@ -84,19 +84,19 @@ publishing {
                 from(components["release"])
             }
             pom {
-                name.set(POM_NAME)
-                description.set(POM_DESCRIPTION)
-                url.set(POM_URL)
+                name.set(pomName)
+                description.set(pomDescription)
+                url.set(pomUrl)
                 licenses {
                     license {
-                        name.set(POM_LICENSE_NAME)
-                        url.set(POM_LICENSE_URL)
+                        name.set(pomLicenseName)
+                        url.set(pomLicenseUrl)
                     }
                 }
                 scm {
-                    connection.set(POM_SCM_CONNECTION)
-                    developerConnection.set(POM_SCM_CONNECTION)
-                    url.set(POM_URL)
+                    connection.set(pomScmConnection)
+                    developerConnection.set(pomScmConnection)
+                    url.set(pomUrl)
                 }
                 developers {
                     developer {

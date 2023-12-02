@@ -14,9 +14,8 @@ import androidx.core.content.res.ResourcesCompat
  */
 internal data class TypefaceContainer(
     var typeFaceUrl: String? = null,
-    @FontRes var typeFaceResource: Int = 0
+    @FontRes var typeFaceResource: Int = 0,
 ) {
-
     /**
      * Applies typeface to a given TextView object.
      * If there is no typeface (either URL or resource) set, this method is a no-op.
@@ -32,14 +31,16 @@ internal data class TypefaceContainer(
         }
 
         // Callback to font retrieval
-        val callback = object : ResourcesCompat.FontCallback() {
-            override fun onFontRetrievalFailed(reason: Int) {
-                // Don't be panic, just do nothing.
+        val callback =
+            object : ResourcesCompat.FontCallback() {
+                override fun onFontRetrievalFailed(reason: Int) {
+                    // Don't be panic, just do nothing.
+                }
+
+                override fun onFontRetrieved(typeface: Typeface) {
+                    textView.typeface = typeface
+                }
             }
-            override fun onFontRetrieved(typeface: Typeface) {
-                textView.typeface = typeface
-            }
-        }
 
         // We give priority to the FontRes here.
         if (typeFaceResource != 0) {

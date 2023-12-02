@@ -10,7 +10,6 @@ import androidx.annotation.ColorInt
  * [AppIntro2.setCustomIndicator]
  */
 interface IndicatorController {
-
     @get:ColorInt
     var selectedIndicatorColor: Int
 

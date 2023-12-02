@@ -1,7 +1,6 @@
 package com.github.appintro
 
 interface SlidePolicy {
-
     /**
      * Whether the user has fulfilled the slides policy and should be allowed to navigate through the intro further.
      * If false is returned, [.onUserIllegallyRequestedNextPage] will be called.

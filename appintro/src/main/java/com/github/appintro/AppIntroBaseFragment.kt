@@ -19,7 +19,6 @@ import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.TypefaceContainer
 
 abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
-
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
@@ -30,7 +29,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     @ColorInt
     @Deprecated(
         "`defaultBackgroundColor` has been deprecated to support configuration changes",
-        ReplaceWith("defaultBackgroundColorRes")
+        ReplaceWith("defaultBackgroundColorRes"),
     )
     final override var defaultBackgroundColor: Int = 0
         private set
@@ -84,7 +83,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(layoutId, container, false)
         val titleText = view.findViewById<TextView>(R.id.title)
@@ -115,12 +114,12 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         TypefaceContainer(
             typeFaceUrl = viewModel.titleTypefaceUrl,
-            typeFaceResource = viewModel.titleTypefaceRes ?: 0
+            typeFaceResource = viewModel.titleTypefaceRes ?: 0,
         ).applyTo(titleText)
 
         TypefaceContainer(
             typeFaceUrl = viewModel.descTypefaceUrl,
-            typeFaceResource = viewModel.descTypefaceRes ?: 0
+            typeFaceResource = viewModel.descTypefaceRes ?: 0,
         ).applyTo(descriptionText)
 
         viewModel.drawable?.let {
@@ -176,7 +175,9 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         LogHelper.d(logTAG, "Slide ${viewModel.title} has been selected.")
     }
 
-    override fun setBackgroundColor(@ColorInt backgroundColor: Int) {
+    override fun setBackgroundColor(
+        @ColorInt backgroundColor: Int,
+    ) {
         view?.findViewById<ConstraintLayout>(R.id.main)?.setBackgroundColor(backgroundColor)
     }
 }
