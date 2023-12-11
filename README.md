@@ -320,8 +320,8 @@ vibrateDuration = 50L
     <img src="assets/wizard1.png" alt="appintro wizard1" width="30%"/> <img src="assets/wizard2.png" alt="appintro wizard2" width="30%"/>
 </p>
 
-AppIntro supports a _wizards_ mode where the Skip button will be replaced with the back arrow.
-This comes handy if you're presenting a Wizard to your user with a set of skip they need to do,
+AppIntro supports a _Wizard_ mode where the Skip button will be replaced with the back arrow.
+This comes handy if you're presenting a Wizard to your users with a set of steps they need to do,
 and they might frequently go back and forth.
 
 You can enable it with:
@@ -336,8 +336,8 @@ isWizardMode = true
     <img src="assets/immersive1.png" alt="appintro immersive1" width="30%"/> <img src="assets/immersive2.png" alt="appintro immersive2" width="30%"/>
 </p>
 
-If you want to display your Intro with a fullscreen experience, you can enable the _Immersive mode_. This will
-hide both the Status Bar and the Navigation bar and the user will have to scroll from the top of the screen to
+If you want to display your Intro with a fullscreen experience, you can enable the _Immersive_ mode. This will
+hide both the _Status Bar_ and the _Navigation Bar_ and the user will have to scroll from the top of the screen to
 show them again.
 
 This allows you to have more space for your Intro content and graphics.
