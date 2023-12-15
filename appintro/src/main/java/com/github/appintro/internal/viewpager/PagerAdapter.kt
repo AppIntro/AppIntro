@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 internal class PagerAdapter(
     fragmentActivity: FragmentActivity,
-    private val fragments: MutableList<Fragment>
+    private val fragments: MutableList<Fragment>,
 ) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = this.fragments.size
 
@@ -15,7 +15,10 @@ internal class PagerAdapter(
         return fragments[position]
     }
 
-    fun getItem(position: Int, fragmentManager: FragmentManager): Fragment? {
+    fun getItem(
+        position: Int,
+        fragmentManager: FragmentManager,
+    ): Fragment? {
         return fragmentManager.findFragmentByTag("f$position")
     }
 }

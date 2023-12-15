@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
  * to your AppIntro.
  */
 class AppIntroCustomLayoutFragment : Fragment() {
-
     private var layoutResId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +24,7 @@ class AppIntroCustomLayoutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? = inflater.inflate(layoutResId, container, false)
 
     companion object {

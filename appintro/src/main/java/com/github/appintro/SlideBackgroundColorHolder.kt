@@ -4,7 +4,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 
 interface SlideBackgroundColorHolder {
-
     /**
      * Returns the default background color of the slide
      *
@@ -13,7 +12,7 @@ interface SlideBackgroundColorHolder {
     @get:ColorInt
     @Deprecated(
         "`defaultBackgroundColor` has been deprecated to support configuration changes",
-        ReplaceWith("defaultBackgroundColorRes")
+        ReplaceWith("defaultBackgroundColorRes"),
     )
     val defaultBackgroundColor: Int
 
@@ -31,5 +30,7 @@ interface SlideBackgroundColorHolder {
      *
      * @param backgroundColor New actual background color.
      */
-    fun setBackgroundColor(@ColorInt backgroundColor: Int)
+    fun setBackgroundColor(
+        @ColorInt backgroundColor: Int,
+    )
 }

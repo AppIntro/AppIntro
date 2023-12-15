@@ -15,7 +15,6 @@ import com.github.appintro.R
  * Use this when the number of page you're dealing with is not too high.
  */
 class DotIndicatorController(context: Context) : IndicatorController, LinearLayout(context) {
-
     override var selectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_selected_color)
         set(value) {
             field = value
@@ -32,10 +31,11 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
     private var slideCount = 0
 
     override fun newInstance(context: Context): View {
-        val newLayoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.MATCH_PARENT
-        )
+        val newLayoutParams =
+            LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.MATCH_PARENT,
+            )
         newLayoutParams.gravity = Gravity.CENTER_VERTICAL
         layoutParams = newLayoutParams
         orientation = HORIZONTAL
@@ -48,12 +48,13 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
-                ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator)
+                ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator),
             )
-            val params = LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT
-            )
+            val params =
+                LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT,
+                )
             if (slideCount == 1) {
                 dot.visibility = View.INVISIBLE
             }
@@ -65,11 +66,12 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
     override fun selectPosition(index: Int) {
         currentPosition = index
         for (i in 0 until slideCount) {
-            val tint = if (i == index) {
-                selectedIndicatorColor
-            } else {
-                unselectedIndicatorColor
-            }
+            val tint =
+                if (i == index) {
+                    selectedIndicatorColor
+                } else {
+                    unselectedIndicatorColor
+                }
             (getChildAt(i) as ImageView).let { DrawableCompat.setTint(it.drawable, tint) }
         }
     }

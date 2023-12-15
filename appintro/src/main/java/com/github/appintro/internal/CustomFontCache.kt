@@ -9,11 +9,14 @@ import androidx.core.content.res.ResourcesCompat
  * Prevent(s) memory leaks due to Typeface objects
  */
 internal object CustomFontCache {
-
     private val TAG = LogHelper.makeLogTag(CustomFontCache::class)
     private val cache = hashMapOf<String, Typeface>()
 
-    fun getFont(ctx: Context, path: String?, fontCallback: ResourcesCompat.FontCallback) {
+    fun getFont(
+        ctx: Context,
+        path: String?,
+        fontCallback: ResourcesCompat.FontCallback,
+    ) {
         if (path.isNullOrEmpty()) {
             LogHelper.w(TAG, "Empty typeface path provided!")
             return

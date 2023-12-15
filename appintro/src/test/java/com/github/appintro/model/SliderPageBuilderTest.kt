@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class SliderPageBuilderTest {
-
     @Test
     fun sliderPageBuilder_correctParametersAssignment() {
         val title = "Title"

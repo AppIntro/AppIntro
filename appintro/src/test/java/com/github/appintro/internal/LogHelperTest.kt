@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class LogHelperTest {
-
     @Test
     fun testMakeLogTag_withJavaClass() {
         val logTag = LogHelper.makeLogTag(Object::class.java)

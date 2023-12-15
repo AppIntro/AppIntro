@@ -10,7 +10,6 @@ import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 
 abstract class AppIntro2 : AppIntroBase() {
-
     override val layoutId = R.layout.appintro_intro_layout2
 
     @DrawableRes
@@ -50,7 +49,9 @@ abstract class AppIntro2 : AppIntroBase() {
      * Override viewpager bar color
      * @param color your color resource
      */
-    fun setBarColor(@ColorInt color: Int) {
+    fun setBarColor(
+        @ColorInt color: Int,
+    ) {
         bottomBar.setBackgroundColor(color)
     }
 
@@ -67,7 +68,9 @@ abstract class AppIntro2 : AppIntroBase() {
      *
      * @param color your color
      */
-    fun setNextArrowColor(@ColorInt color: Int) {
+    fun setNextArrowColor(
+        @ColorInt color: Int,
+    ) {
         val nextButton = findViewById<ImageButton>(R.id.next)
         nextButton.setColorFilter(color)
     }
@@ -77,7 +80,9 @@ abstract class AppIntro2 : AppIntroBase() {
      *
      * @param colorSkipButton your color resource
      */
-    fun setSkipArrowColor(@ColorInt colorSkipButton: Int) {
+    fun setSkipArrowColor(
+        @ColorInt colorSkipButton: Int,
+    ) {
         val skip = findViewById<ImageButton>(R.id.skip)
         skip.setColorFilter(colorSkipButton)
     }

@@ -8,11 +8,9 @@ import com.github.appintro.model.SliderPage
 
 @Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {
-
     override val layoutId: Int get() = R.layout.appintro_fragment_intro
 
     companion object {
-
         /**
          * Generates a new instance for [AppIntroFragment]
          *
@@ -39,8 +37,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             ReplaceWith(
                 "createInstance(title, description, imageDrawable, backgroundColor, " +
                     "titleColor, descriptionColor, titleTypefaceFontRes, descriptionTypefaceFontRes, " +
-                    "backgroundDrawable)"
-            )
+                    "backgroundDrawable)",
+            ),
         )
         fun newInstance(
             title: CharSequence? = null,
@@ -51,7 +49,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorInt descriptionColor: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null
+            @DrawableRes backgroundDrawable: Int? = null,
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -63,8 +61,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColor = descriptionColor,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable
-                )
+                    backgroundDrawable = backgroundDrawable,
+                ),
             )
         }
 
@@ -97,7 +95,7 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @ColorRes descriptionColorRes: Int? = null,
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
-            @DrawableRes backgroundDrawable: Int? = null
+            @DrawableRes backgroundDrawable: Int? = null,
         ): AppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -109,8 +107,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     descriptionColorRes = descriptionColorRes,
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
-                    backgroundDrawable = backgroundDrawable
-                )
+                    backgroundDrawable = backgroundDrawable,
+                ),
             )
         }
 
@@ -127,8 +125,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             "`newInstance` is deprecated to support color resources instead of color int " +
                 "for configuration changes and dark theme support",
             ReplaceWith(
-                "createInstance(sliderPage)"
-            )
+                "createInstance(sliderPage)",
+            ),
         )
         fun newInstance(sliderPage: SliderPage) = createInstance(sliderPage)
 

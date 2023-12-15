@@ -16,14 +16,16 @@ private const val MIN_ALPHA_SLIDE = 0.35f
 private const val FLOW_ROTATION_ANGLE = -30f
 
 internal class ViewPagerTransformer(
-    private val transformType: AppIntroPageTransformerType
+    private val transformType: AppIntroPageTransformerType,
 ) : ViewPager2.PageTransformer {
-
     private var titlePF: Double = 0.0
     private var imagePF: Double = 0.0
     private var descriptionPF: Double = 0.0
 
-    override fun transformPage(page: View, position: Float) {
+    override fun transformPage(
+        page: View,
+        position: Float,
+    ) {
         when (transformType) {
             AppIntroPageTransformerType.Flow -> {
                 page.rotationY = position * FLOW_ROTATION_ANGLE
@@ -41,7 +43,7 @@ internal class ViewPagerTransformer(
                     page,
                     transformType.titleViewId,
                     transformType.imageViewId,
-                    transformType.descriptionViewId
+                    transformType.descriptionViewId,
                 )
             }
         }
@@ -52,7 +54,7 @@ internal class ViewPagerTransformer(
         page: View,
         titleViewId: Int,
         imageViewId: Int,
-        descriptionViewId: Int
+        descriptionViewId: Int,
     ) {
         if (position > -1 && position < 1) {
             try {
@@ -70,7 +72,7 @@ internal class ViewPagerTransformer(
         position: Float,
         viewId: Int,
         parallaxFactor: Double,
-        logLabel: String
+        logLabel: String,
     ) {
         page.findViewById<View>(viewId)?.let {
             it.translationX = computeParallax(page, position, parallaxFactor)
@@ -78,16 +80,23 @@ internal class ViewPagerTransformer(
             LogHelper.e(
                 TAG,
                 "Could not parallax animate view '$logLabel' as " +
-                    "the provided view ID can't be found in the layout"
+                    "the provided view ID can't be found in the layout",
             )
         }
     }
 
-    private fun computeParallax(page: View, position: Float, parallaxFactor: Double): Float {
+    private fun computeParallax(
+        page: View,
+        position: Float,
+        parallaxFactor: Double,
+    ): Float {
         return (-position * (page.width / parallaxFactor)).toFloat()
     }
 
-    private fun transformFade(position: Float, page: View) {
+    private fun transformFade(
+        position: Float,
+        page: View,
+    ) {
         if (position <= -1.0f || position >= 1.0f) {
             page.translationX = page.width.toFloat()
             page.alpha = 0.0f
@@ -103,7 +112,10 @@ internal class ViewPagerTransformer(
         }
     }
 
-    private fun transformZoom(position: Float, page: View) {
+    private fun transformZoom(
+        position: Float,
+        page: View,
+    ) {
         if (position >= -1 && position <= 1) {
             page.scaleXY = max(MIN_SCALE_ZOOM, 1 - abs(position))
             page.alpha = MIN_ALPHA_ZOOM + (page.scaleXY - MIN_SCALE_ZOOM) /
@@ -120,7 +132,10 @@ internal class ViewPagerTransformer(
         }
     }
 
-    private fun transformDepth(position: Float, page: View) {
+    private fun transformDepth(
+        position: Float,
+        page: View,
+    ) {
         if (position > 0 && position < 1) {
             // moving to the right
             page.alpha = 1 - position
@@ -131,7 +146,10 @@ internal class ViewPagerTransformer(
         }
     }
 
-    private fun transformSlideOver(position: Float, page: View) {
+    private fun transformSlideOver(
+        position: Float,
+        page: View,
+    ) {
         if (position < 0 && position > -1) {
             // this is the page to the left
             page.scaleXY = abs(abs(position) - 1) * (1.0f - SCALE_FACTOR_SLIDE) + SCALE_FACTOR_SLIDE
