@@ -28,6 +28,7 @@ AppIntro is an Android Library that helps you build a **cool carousel intro** fo
      * [Immersive Mode](#immersive-mode)
      * [System Back button](#system-back-button)
      * [System UI (Status Bar and Navigation Bar)](#system-ui-status-bar-and-navigation-bar)
+     * [Bottom Margin](#bottom-margin)
   * [Permission <g-emoji class="g-emoji" alias="lock" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f512.png">🔒</g-emoji>](#permission-)
      * [Slide Policy](#slide-policy)
   * [Example App <g-emoji class="g-emoji" alias="bulb" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png">💡</g-emoji>](#example-app-)
@@ -378,6 +379,17 @@ setStatusBarColorRes(R.color.green)
 setNavBarColor(Color.RED)
 setNavBarColorRes(R.color.red)
 ``` 
+
+### Bottom margin
+
+By default, the slides use the whole size available in the screen, so it might happen that the
+bottom bar overlaps the content of the slide if you have set the background color to a
+non-transparent one.
+If you want to make sure that the bar doesn't overlap the content, use the `setBarPadding` function
+as follows:
+```kotlin
+setBarPadding(true)
+```
 
 ## Permission 🔒
 
