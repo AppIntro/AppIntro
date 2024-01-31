@@ -44,6 +44,9 @@
             android:name=".ui.custom.SlidePolicyIntro"
             android:theme="@style/AppIntroTheme"/>
         <activity
+            android:name=".ui.custom.MarginsIntro"
+            android:theme="@style/AppIntroTheme"/>
+        <activity
             android:name=".ui.permissions.PermissionsIntro"
             android:theme="@style/AppIntroTheme"/>
         <activity
