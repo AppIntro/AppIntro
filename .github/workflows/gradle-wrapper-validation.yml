@@ -15,4 +15,4 @@ jobs:
       - name: Checkout latest code
         uses: actions/checkout@v3
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v2
