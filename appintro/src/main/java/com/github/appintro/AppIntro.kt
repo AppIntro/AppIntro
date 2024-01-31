@@ -209,7 +209,7 @@ abstract class AppIntro : AppIntroBase() {
      * @param setBarMargin Set : true for margin. false for no margin.
      */
     fun setBarMargin(setBarMargin: Boolean) {
-        val bottomBar = findViewById<View>(R.id.bottom)
+        val bottomBar = findViewById<View>(R.id.pager_gesture_overlay)
         val margin = if (setBarMargin)
             resources.getDimension(R.dimen.appintro_bottombar_height).toInt()
         else
