@@ -206,11 +206,11 @@ abstract class AppIntro : AppIntroBase() {
      * For situations where the bar is not transparent, and you want the content of the slide to
      * be intractable.
      *
-     * @param setBarPadding Set : true for margin. false for no margin.
+     * @param setBarMargin Set : true for margin. false for no margin.
      */
-    fun setBarPadding(setBarPadding: Boolean) {
+    fun setBarMargin(setBarMargin: Boolean) {
         val bottomBar = findViewById<View>(R.id.bottom)
-        val margin = if (setBarPadding)
+        val margin = if (setBarMargin)
             resources.getDimension(R.dimen.appintro_bottombar_height).toInt()
         else
             0
