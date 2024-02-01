@@ -4,22 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.github.appintro.AppIntro
 import com.github.appintro.example.R
 
 class MarginsSlideFragment : Fragment() {
-
-    @StringRes
-    private var text: Int? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        text = arguments?.getInt(ATTR_TEXT)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,17 +23,15 @@ class MarginsSlideFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textView = view.findViewById<TextView>(R.id.text)
-        textView.text = text?.let { getString(it) }
+        val checkbox = view.findViewById<CheckBox>(R.id.margin_checkbox)
+        checkbox.setOnCheckedChangeListener { _, checked ->
+            (requireActivity() as AppIntro).setBarMargin(checked)
+        }
     }
 
     companion object {
-        private const val ATTR_TEXT = "text"
-
-        fun newInstance(@StringRes text: Int) : MarginsSlideFragment {
-            return MarginsSlideFragment().apply {
-                arguments = bundleOf(ATTR_TEXT to text)
-            }
+        fun newInstance() : MarginsSlideFragment {
+            return MarginsSlideFragment()
         }
     }
 }

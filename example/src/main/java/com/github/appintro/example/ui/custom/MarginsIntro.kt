@@ -23,19 +23,8 @@ class MarginsIntro : AppIntro() {
         )
 
         addSlide(
-            MarginsSlideFragment.newInstance(R.string.margins_hide)
+            MarginsSlideFragment.newInstance()
         )
-
-        addSlide(
-            MarginsSlideFragment.newInstance(R.string.margins_no_hide)
-        )
-    }
-
-    override fun onPageSelected(position: Int) {
-        super.onPageSelected(position)
-
-        // Enable the margin only on the last page
-        setBarMargin(position == 2)
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

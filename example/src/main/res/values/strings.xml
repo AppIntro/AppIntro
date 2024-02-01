@@ -36,9 +36,8 @@
     <string name="please_check_to_continue">Please check to continue</string>
 
     <!-- Margins Example -->
-    <string name="margins_visible">This is fine, centered doesn\'t cause any problems.</string>
+    <string name="margins_checkbox">Enable / Disable margin</string>
     <string name="margins_hide">This is not visible since the bar overlaps.</string>
-    <string name="margins_no_hide">This is now visible since the margin is enabled.</string>
 
     <!-- Custom Layouts -->
     <string name="sample_layout_1">Sample Layout 1</string>
