@@ -2,6 +2,7 @@ package com.github.appintro
 
 import android.graphics.drawable.Drawable
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -198,5 +199,24 @@ abstract class AppIntro : AppIntroBase() {
         } else {
             bottomSeparator.visibility = View.INVISIBLE
         }
+    }
+
+    /**
+     * Adds a margin to the bottom of the content of the slide equal to the bottom bar.
+     * For situations where the bar is not transparent, and you want the content of the slide to
+     * be intractable.
+     *
+     * @param setBarMargin Set : true for margin. false for no margin.
+     */
+    fun setBarMargin(setBarMargin: Boolean) {
+        val bottomBar = findViewById<View>(R.id.pager_gesture_overlay)
+        val margin = if (setBarMargin) {
+            resources.getDimension(R.dimen.appintro_bottombar_height).toInt()
+        } else {
+            0
+        }
+        (bottomBar.layoutParams as? ViewGroup.MarginLayoutParams)
+            ?.setMargins(0, 0, 0, margin)
+            ?.also { bottomBar.requestLayout() }
     }
 }

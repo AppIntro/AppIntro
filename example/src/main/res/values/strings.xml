@@ -11,6 +11,7 @@
     <string name="default_intro2_title">Default Intro 2</string>
     <string name="custom_layout_intro_title">Custom Layout Intro</string>
     <string name="custom_background_intro_title">Custom Background Intro</string>
+    <string name="custom_margins_intro_title">Set Bar Margin</string>
     <string name="slide_policy_intro_title">Slide Policy Intro</string>
     <string name="perms_intro1_title">Permissions Intro</string>
     <string name="perms_intro2_title">Permissions Intro 2</string>
@@ -22,6 +23,7 @@
     <string name="custom_layout_intro">This demonstrates the ability to pass a custom layout to the library for added customization.</string>
     <string name="custom_background_intro">This demonstrates the ability to set custom backgrounds for different slides. Useful if you want images vs. colors in your backgrounds.</string>
     <string name="slide_policy_intro">This demonstrates the SlidePolicy feature, with the possibility to block a user during a Intro.</string>
+    <string name="custom_margins_intro">This demonstrates the possibility to add some padding to the bottom of the slide to that it doesn\'t overlap with the bottom bar.</string>
 
     <!-- 2nd Tab Group -->
     <string name="perms_intro1">This demonstrates the ability to request runtime permission on any desired slide.</string>
@@ -32,6 +34,10 @@
     <string name="slidepolicy_example_heading">SlidePolicy Example</string>
     <string name="slidepolicy_example_description">This slide won\'t allow the user to proceed till you click the following checkbox</string>
     <string name="please_check_to_continue">Please check to continue</string>
+
+    <!-- Margins Example -->
+    <string name="margins_checkbox">Enable / Disable margin</string>
+    <string name="margins_hide">This is not visible since the bar overlaps.</string>
 
     <!-- Custom Layouts -->
     <string name="sample_layout_1">Sample Layout 1</string>
