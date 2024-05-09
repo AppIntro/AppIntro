@@ -51,7 +51,10 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
             viewModel.drawable = args.getInt(ARG_DRAWABLE)
             viewModel.title = args.getCharSequence(ARG_TITLE)
             viewModel.description = args.getCharSequence(ARG_DESC)
-            viewModel.bgDrawable = args.getInt(ARG_BG_DRAWABLE)
+
+            if (args.containsKey(ARG_BG_DRAWABLE)) {
+                viewModel.bgDrawable = args.getInt(ARG_BG_DRAWABLE)
+            }
 
             viewModel.titleTypefaceUrl = args.getString(ARG_TITLE_TYPEFACE_URL)
             viewModel.titleTypefaceRes = args.getInt(ARG_TITLE_TYPEFACE_RES)
