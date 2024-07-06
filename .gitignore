@@ -54,3 +54,6 @@ captures/
 .idea/
 
 .DS_Store
+
+# Kotlin
+.kotlin
