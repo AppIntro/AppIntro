@@ -26,9 +26,7 @@ abstract class AppIntro2 : AppIntroBase() {
         set(value) {
             field = value
             if (field != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    backgroundFrame.background = field
-                }
+                backgroundFrame.background = field
             }
         }
 
