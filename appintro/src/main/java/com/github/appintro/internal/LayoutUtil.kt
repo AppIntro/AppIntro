@@ -1,7 +1,6 @@
 package com.github.appintro.internal
 
 import android.content.Context
-import android.os.Build
 import android.view.View
 
 /**
