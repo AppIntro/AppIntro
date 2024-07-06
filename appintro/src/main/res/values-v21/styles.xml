@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="AppIntroStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/appintro_statusbar_color</item>
-        <item name="android:navigationBarColor">@color/appintro_navbar_color</item>
-    </style>
-
-</resources>
