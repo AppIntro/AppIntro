@@ -200,11 +200,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Customize the color of the Status Bar */
     protected fun setStatusBarColor(@ColorInt color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // We set the light status bar/translucent first via the WindowInsetsControllerCompat
-            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
-            window.statusBarColor = color
-        }
+        // We set the light status bar/translucent first via the WindowInsetsControllerCompat
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+        window.statusBarColor = color
     }
 
     /** Customize the color of the Status Bar */
@@ -214,16 +212,12 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
 
     /** Customize the color of the Navigation Bar */
     protected fun setNavBarColor(@ColorInt color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = color
-        }
+        window.navigationBarColor = color
     }
 
     /** Customize the color of the Navigation Bar */
     protected fun setNavBarColorRes(@ColorRes color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = ContextCompat.getColor(this, color)
-        }
+        window.navigationBarColor = ContextCompat.getColor(this, color)
     }
 
     /** Toggle the Status Bar visibility */

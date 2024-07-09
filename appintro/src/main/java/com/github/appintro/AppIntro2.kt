@@ -1,7 +1,6 @@
 package com.github.appintro
 
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -26,9 +25,7 @@ abstract class AppIntro2 : AppIntroBase() {
         set(value) {
             field = value
             if (field != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    backgroundFrame.background = field
-                }
+                backgroundFrame.background = field
             }
         }
 
