@@ -226,7 +226,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         if (show) {
             controller.show(systemBars())
         } else {
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_DEFAULT
             controller.hide(systemBars())
         }
     }
