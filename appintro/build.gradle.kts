@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
-    `maven-publish`
-    signing
+    id("maven-publish")
+    id("signing")
 }
 
 group = "dev.appintro"
