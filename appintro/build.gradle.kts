@@ -80,8 +80,8 @@ val POM_URL: String by project
 
 publishing {
     publications {
-        afterEvaluate {
-            register<MavenPublication>("release") {
+        register<MavenPublication>("release") {
+            afterEvaluate {
                 from(components["release"])
 
                 pom {
