@@ -7,7 +7,6 @@ import androidx.annotation.IdRes
  * offered by AppIntro.
  */
 sealed class AppIntroPageTransformerType {
-
     /** Sets the animation of the intro to a flow animation */
     object Flow : AppIntroPageTransformerType()
 
@@ -38,6 +37,6 @@ sealed class AppIntroPageTransformerType {
         val descriptionParallaxFactor: Double = 2.0,
         @IdRes val titleViewId: Int = R.id.title,
         @IdRes val imageViewId: Int = R.id.image,
-        @IdRes val descriptionViewId: Int = R.id.description
+        @IdRes val descriptionViewId: Int = R.id.description,
     ) : AppIntroPageTransformerType()
 }
