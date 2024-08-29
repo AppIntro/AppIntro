@@ -11,7 +11,6 @@ import androidx.annotation.FontRes
  * a [SliderPage] directly.
  */
 class SliderPagerBuilder {
-
     private var title: CharSequence? = null
 
     private var description: CharSequence? = null
@@ -60,59 +59,77 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun imageDrawable(@DrawableRes imageDrawable: Int): SliderPagerBuilder {
+    fun imageDrawable(
+        @DrawableRes imageDrawable: Int,
+    ): SliderPagerBuilder {
         this.imageDrawable = imageDrawable
         return this
     }
 
     @Deprecated(
         "`backgroundColor(...)` has been deprecated to support configuration changes",
-        ReplaceWith("backgroundColorRes(backgroundColor)")
+        ReplaceWith("backgroundColorRes(backgroundColor)"),
     )
-    fun backgroundColor(@ColorInt backgroundColor: Int): SliderPagerBuilder {
+    fun backgroundColor(
+        @ColorInt backgroundColor: Int,
+    ): SliderPagerBuilder {
         this.backgroundColor = backgroundColor
         return this
     }
 
-    fun backgroundColorRes(@ColorRes backgroundColorRes: Int): SliderPagerBuilder {
+    fun backgroundColorRes(
+        @ColorRes backgroundColorRes: Int,
+    ): SliderPagerBuilder {
         this.backgroundColorRes = backgroundColorRes
         return this
     }
 
     @Deprecated(
         "`titleColor(...)` has been deprecated to support configuration changes",
-        ReplaceWith("titleColorRes(titleColor)")
+        ReplaceWith("titleColorRes(titleColor)"),
     )
-    fun titleColor(@ColorInt titleColor: Int): SliderPagerBuilder {
+    fun titleColor(
+        @ColorInt titleColor: Int,
+    ): SliderPagerBuilder {
         this.titleColor = titleColor
         return this
     }
 
-    fun titleColorRes(@ColorRes titleColorRes: Int): SliderPagerBuilder {
+    fun titleColorRes(
+        @ColorRes titleColorRes: Int,
+    ): SliderPagerBuilder {
         this.titleColorRes = titleColorRes
         return this
     }
 
     @Deprecated(
         "`descriptionColor(...)` has been deprecated to support configuration changes",
-        ReplaceWith("descriptionColorRes(descriptionColor)")
+        ReplaceWith("descriptionColorRes(descriptionColor)"),
     )
-    fun descriptionColor(@ColorInt descriptionColor: Int): SliderPagerBuilder {
+    fun descriptionColor(
+        @ColorInt descriptionColor: Int,
+    ): SliderPagerBuilder {
         this.descriptionColor = descriptionColor
         return this
     }
 
-    fun descriptionColorRes(@ColorRes descriptionColorRes: Int): SliderPagerBuilder {
+    fun descriptionColorRes(
+        @ColorRes descriptionColorRes: Int,
+    ): SliderPagerBuilder {
         this.descriptionColorRes = descriptionColorRes
         return this
     }
 
-    fun titleTypefaceFontRes(@FontRes titleTypefaceFontRes: Int): SliderPagerBuilder {
+    fun titleTypefaceFontRes(
+        @FontRes titleTypefaceFontRes: Int,
+    ): SliderPagerBuilder {
         this.titleTypefaceFontRes = titleTypefaceFontRes
         return this
     }
 
-    fun descriptionTypefaceFontRes(@FontRes descriptionTypefaceFontRes: Int): SliderPagerBuilder {
+    fun descriptionTypefaceFontRes(
+        @FontRes descriptionTypefaceFontRes: Int,
+    ): SliderPagerBuilder {
         this.descriptionTypefaceFontRes = descriptionTypefaceFontRes
         return this
     }
@@ -127,25 +144,28 @@ class SliderPagerBuilder {
         return this
     }
 
-    fun backgroundDrawable(@DrawableRes backgroundDrawable: Int): SliderPagerBuilder {
+    fun backgroundDrawable(
+        @DrawableRes backgroundDrawable: Int,
+    ): SliderPagerBuilder {
         this.backgroundDrawable = backgroundDrawable
         return this
     }
 
-    fun build() = SliderPage(
-        title = this.title,
-        description = this.description,
-        imageDrawable = this.imageDrawable,
-        backgroundColor = this.backgroundColor,
-        backgroundColorRes = this.backgroundColorRes,
-        titleColor = this.titleColor,
-        titleColorRes = this.titleColorRes,
-        descriptionColor = this.descriptionColor,
-        descriptionColorRes = this.descriptionColorRes,
-        titleTypefaceFontRes = this.titleTypefaceFontRes,
-        descriptionTypeface = this.descriptionTypeface,
-        titleTypeface = this.titleTypeface,
-        descriptionTypefaceFontRes = this.descriptionTypefaceFontRes,
-        backgroundDrawable = this.backgroundDrawable
-    )
+    fun build() =
+        SliderPage(
+            title = this.title,
+            description = this.description,
+            imageDrawable = this.imageDrawable,
+            backgroundColor = this.backgroundColor,
+            backgroundColorRes = this.backgroundColorRes,
+            titleColor = this.titleColor,
+            titleColorRes = this.titleColorRes,
+            descriptionColor = this.descriptionColor,
+            descriptionColorRes = this.descriptionColorRes,
+            titleTypefaceFontRes = this.titleTypefaceFontRes,
+            descriptionTypeface = this.descriptionTypeface,
+            titleTypeface = this.titleTypeface,
+            descriptionTypefaceFontRes = this.descriptionTypefaceFontRes,
+            backgroundDrawable = this.backgroundDrawable,
+        )
 }

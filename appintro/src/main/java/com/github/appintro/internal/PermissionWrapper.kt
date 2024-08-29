@@ -11,9 +11,8 @@ import java.io.Serializable
 internal data class PermissionWrapper(
     var permissions: Array<String>,
     var position: Int,
-    var required: Boolean = true
+    var required: Boolean = true,
 ) : Serializable {
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class SliderPageTest {
-
     @Test
     fun sliderPage_correctParametersAreAssigned() {
         val title = "Title"
@@ -18,18 +17,19 @@ class SliderPageTest {
         val titleTypefaceRes = 0x12345678
         val descTypefaceRes = 0x789abcdf
 
-        val sliderPage = SliderPage(
-            title = title,
-            description = description,
-            imageDrawable = imageDrawable,
-            backgroundColorRes = bgColorRes,
-            titleColorRes = titleColorRes,
-            descriptionColorRes = descColorRes,
-            titleTypeface = titleTypeface,
-            titleTypefaceFontRes = titleTypefaceRes,
-            descriptionTypeface = descTypeface,
-            descriptionTypefaceFontRes = descTypefaceRes
-        )
+        val sliderPage =
+            SliderPage(
+                title = title,
+                description = description,
+                imageDrawable = imageDrawable,
+                backgroundColorRes = bgColorRes,
+                titleColorRes = titleColorRes,
+                descriptionColorRes = descColorRes,
+                titleTypeface = titleTypeface,
+                titleTypefaceFontRes = titleTypefaceRes,
+                descriptionTypeface = descTypeface,
+                descriptionTypefaceFontRes = descTypefaceRes,
+            )
 
         assertEquals(sliderPage.title, title)
         assertEquals(sliderPage.description, description)

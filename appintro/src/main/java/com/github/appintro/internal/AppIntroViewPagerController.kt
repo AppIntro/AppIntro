@@ -21,9 +21,8 @@ import kotlin.math.max
  */
 internal class AppIntroViewPagerController(
     private val viewPager: ViewPager2,
-    private val viewPagerGestureOverlay: GestureOverlayView
+    private val viewPagerGestureOverlay: GestureOverlayView,
 ) {
-
     var isFullPagingEnabled = true
     var isPermissionSlide = false
     var onNextPageRequestedListener: AppIntroViewPagerListener? = null
@@ -43,7 +42,7 @@ internal class AppIntroViewPagerController(
             endFakeDrag()
             setCurrentViewPagerItem(
                 position = if (!LayoutUtil.isRtl(context)) currentItem + 1 else currentItem - 1,
-                smoothScrool = true
+                smoothScrool = true,
             )
         }
     }
@@ -54,7 +53,7 @@ internal class AppIntroViewPagerController(
             endFakeDrag()
             setCurrentViewPagerItem(
                 position = if (!LayoutUtil.isRtl(context)) currentItem - 1 else currentItem + 1,
-                smoothScrool = true
+                smoothScrool = true,
             )
         }
     }
@@ -81,7 +80,10 @@ internal class AppIntroViewPagerController(
      * Override is required to trigger [AppIntroBase.OnPageChangeCallback.onPageSelected] for the first page.
      * This is needed to correctly handle progress button display after rotation on a locked first page.
      */
-    fun setCurrentViewPagerItem(position: Int, smoothScrool: Boolean = false) {
+    fun setCurrentViewPagerItem(
+        position: Int,
+        smoothScrool: Boolean = false,
+    ) {
         with(viewPager) {
             endFakeDrag()
 
@@ -182,7 +184,10 @@ internal class AppIntroViewPagerController(
      * Util function to check if the user swiped forward.
      * The direction of forward is different in RTL mode.
      */
-    private fun isSwipeForward(oldX: Float, newX: Float): Boolean {
+    private fun isSwipeForward(
+        oldX: Float,
+        newX: Float,
+    ): Boolean {
         with(viewPager) {
             return (if (LayoutUtil.isRtl(context)) (newX > oldX) else (oldX > newX))
         }
@@ -215,23 +220,37 @@ internal class AppIntroViewPagerController(
         // touch events will be forwarded to gesture overlay to check policies
         viewPager.isUserInputEnabled = false
 
-        viewPagerGestureOverlay.addOnGestureListener(object : OnGestureListener {
-            override fun onGestureStarted(overlayView: GestureOverlayView?, event: MotionEvent?) {
-                handleOnTouchEvent(event)
-            }
+        viewPagerGestureOverlay.addOnGestureListener(
+            object : OnGestureListener {
+                override fun onGestureStarted(
+                    overlayView: GestureOverlayView?,
+                    event: MotionEvent?,
+                ) {
+                    handleOnTouchEvent(event)
+                }
 
-            override fun onGesture(overlayView: GestureOverlayView?, event: MotionEvent?) {
-                handleOnTouchEvent(event)
-            }
+                override fun onGesture(
+                    overlayView: GestureOverlayView?,
+                    event: MotionEvent?,
+                ) {
+                    handleOnTouchEvent(event)
+                }
 
-            override fun onGestureEnded(overlayView: GestureOverlayView?, event: MotionEvent?) {
-                handleOnTouchEvent(event)
-            }
+                override fun onGestureEnded(
+                    overlayView: GestureOverlayView?,
+                    event: MotionEvent?,
+                ) {
+                    handleOnTouchEvent(event)
+                }
 
-            override fun onGestureCancelled(overlayView: GestureOverlayView?, event: MotionEvent?) {
-                handleOnTouchEvent(event)
-            }
-        })
+                override fun onGestureCancelled(
+                    overlayView: GestureOverlayView?,
+                    event: MotionEvent?,
+                ) {
+                    handleOnTouchEvent(event)
+                }
+            },
+        )
     }
 
     internal fun reCenterCurrentSlide() {
