@@ -511,8 +511,10 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
             @Suppress("UNCHECKED_CAST", "DEPRECATION")
             permissionsMap =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    (getSerializable(ARG_BUNDLE_PERMISSION_MAP, HashMap::class.java) as HashMap<Int, PermissionWrapper>?)
-                        ?: hashMapOf()
+                    (
+                        getSerializable(ARG_BUNDLE_PERMISSION_MAP, HashMap::class.java)
+                            as HashMap<Int, PermissionWrapper>?
+                    ) ?: hashMapOf()
                 } else {
                     (getSerializable(ARG_BUNDLE_PERMISSION_MAP) as HashMap<Int, PermissionWrapper>?)
                         ?: hashMapOf()
