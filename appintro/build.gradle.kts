@@ -4,10 +4,11 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
     id("maven-publish")
+    id("signing")
 }
 
-group = "com.github.AppIntro"
-version = "7.0.0-beta02"
+group = "dev.appintro"
+version = "7.0.0-SNAPSHOT"
 
 android {
     namespace = "com.github.appintro"
@@ -82,35 +83,54 @@ publishing {
         register<MavenPublication>("release") {
             afterEvaluate {
                 from(components["release"])
-            }
-            pom {
-                name.set(POM_NAME)
-                description.set(POM_DESCRIPTION)
-                url.set(POM_URL)
-                licenses {
-                    license {
-                        name.set(POM_LICENSE_NAME)
-                        url.set(POM_LICENSE_URL)
-                    }
-                }
-                scm {
-                    connection.set(POM_SCM_CONNECTION)
-                    developerConnection.set(POM_SCM_CONNECTION)
+
+                pom {
+                    name.set(POM_NAME)
+                    description.set(POM_DESCRIPTION)
                     url.set(POM_URL)
-                }
-                developers {
-                    developer {
-                        id.set("paolorotolo")
-                        name.set("Paolo Rotolo")
-                        email.set("paolo@rotolo.dev")
+                    licenses {
+                        license {
+                            name.set(POM_LICENSE_NAME)
+                            url.set(POM_LICENSE_URL)
+                        }
                     }
-                    developer {
-                        id.set("cortinico")
-                        name.set("Nicola Corti")
-                        email.set("corti.nico@gmail.com")
+                    scm {
+                        connection.set(POM_SCM_CONNECTION)
+                        developerConnection.set(POM_SCM_CONNECTION)
+                        url.set(POM_URL)
+                    }
+                    developers {
+                        developer {
+                            id.set("paolorotolo")
+                            name.set("Paolo Rotolo")
+                            email.set("rotolopao@gmail.com")
+                        }
+                        developer {
+                            id.set("cortinico")
+                            name.set("Nicola Corti")
+                            email.set("corti.nico@gmail.com")
+                        }
                     }
                 }
             }
         }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+
+            credentials {
+                username = project.findProperty("OSS_USERNAME") as String?
+                password = project.findProperty("OSS_PASSWORD") as String?
+            }
+        }
+    }
+}
+
+signing {
+    afterEvaluate {
+        sign(publishing.publications["release"])
     }
 }
