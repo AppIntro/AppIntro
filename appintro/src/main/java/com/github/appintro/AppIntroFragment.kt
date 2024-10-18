@@ -8,7 +8,7 @@ import com.github.appintro.model.SliderPage
 
 @Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {
-    override val layoutId: Int get() = R.layout.appintro_fragment_intro
+    override val layoutId: Int get() = R.layout.appintro_intro_layout
 
     companion object {
         /**

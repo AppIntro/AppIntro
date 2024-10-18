@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">بگذر</string>
+    <string name="app_intro_next_button">بعدی</string>
+    <string name="app_intro_back_button">بازگشت</string>
+    <string name="app_intro_done_button">پایان</string>
+    <string name="app_intro_image_content_description">تصویر</string>
+</resources>
+

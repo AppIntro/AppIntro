@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="appintro_statusbar_height">24dp</dimen>
+
+    <dimen name="appintro_bottombar_height">70dp</dimen>
+    <dimen name="appintro2_bottombar_height">90dp</dimen>
+
+    <dimen name="appintro2_fab_inset">16dp</dimen>
+    <dimen name="appintro2_fab_size">88dp</dimen>
+    <dimen name="appintro2_fab_bg_size">56dp</dimen>
+    <dimen name="appintro2_fab_margin">1dp</dimen>
+
+    <dimen name="appintro_button_margin">12dp</dimen>
+    <dimen name="appintro_button_minheight">48dp</dimen>
+    <dimen name="appintro_button_minwidth">48dp</dimen>
+
+    <dimen name="appintro_indicator_inset">3dp</dimen>
+    <dimen name="appintro_indicator_size">10dp</dimen>
+    <dimen name="appintro_indicator_margin">12dp</dimen>
+
+    <dimen name="appintro_desctext_size">16sp</dimen>
+    <dimen name="appintro_desc_padding">16dp</dimen>
+    <dimen name="appintro_head_padding">8dp</dimen>
+    <dimen name="appintro_headtext_size">28sp</dimen>
+    <dimen name="appintro_skiptext_size">14sp</dimen>
+    <dimen name="appintro_donetext_size">14sp</dimen>
+    <dimen name="appintro_min_text_size">12sp</dimen>
+    <dimen name="appintro_text_granularity_size">2sp</dimen>
+
+</resources>

@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 
 include(":appintro", ":example")
+include(":core")

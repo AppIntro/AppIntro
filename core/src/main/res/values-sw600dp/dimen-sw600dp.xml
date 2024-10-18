@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="appintro_desctext_size">30sp</dimen>
+    <dimen name="appintro_headtext_size">42sp</dimen>
+    <dimen name="appintro_min_text_size">24sp</dimen>
+    <dimen name="appintro_text_granularity_size">2sp</dimen>
+
+    <dimen name="appintro_button_margin">12dp</dimen>
+    <dimen name="appintro_button_minheight">92dp</dimen>
+    <dimen name="appintro_button_minwidth">92dp</dimen>
+
+    <dimen name="appintro2_fab_inset">24dp</dimen>
+    <dimen name="appintro2_fab_size">98dp</dimen>
+    <dimen name="appintro2_fab_bg_size">80dp</dimen>
+
+    <dimen name="appintro_skiptext_size">24sp</dimen>
+    <dimen name="appintro_donetext_size">24sp</dimen>
+    <dimen name="appintro_bottombar_height">100dp</dimen>
+    <dimen name="appintro2_bottombar_height">100dp</dimen>
+
+</resources>

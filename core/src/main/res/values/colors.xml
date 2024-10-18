@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="appintro_statusbar_color">#22000000</color>
+    <color name="appintro_background_color">#222222</color>
+    <color name="appintro_title_color">#FFFFFF</color>
+    <color name="appintro_desc_color">#FFFFFF</color>
+    <color name="appintro_separator_color">#22000000</color>
+    <color name="appintro_bar_color">@android:color/transparent</color>
+    <color name="appintro_default_fab_background_color">#59000000</color>
+    <color name="appintro_icon_tint">#FFFFFF</color>
+    <color name="appintro_default_unselected_color">#22000000</color>
+    <color name="appintro_default_selected_color">#FFFFFF</color>
+    <color name="appintro_navbar_color">#000000</color>
+    <color name="appintro_ripple_color">#1FFFFFFF</color>
+</resources>

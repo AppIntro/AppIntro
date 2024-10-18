@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">건너뛰기</string>
+    <string name="app_intro_next_button">다음</string>
+    <string name="app_intro_back_button">이전</string>
+    <string name="app_intro_done_button">완료</string>
+    <string name="app_intro_image_content_description">그래픽</string>
+</resources>

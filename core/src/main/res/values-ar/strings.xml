@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">تخطي</string>
+    <string name="app_intro_done_button">إنهاء</string>
+    <string name="app_intro_next_button" >التالي</string>
+    <string name="app_intro_back_button" >السابق</string>
+    <string name="app_intro_image_content_description" >رسومات</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_intro_skip_button">OVERSLAAN</string>
+    <string name="app_intro_next_button">VOLGENDE</string>
+    <string name="app_intro_back_button">TERUG</string>
+    <string name="app_intro_done_button">VOLTOOIEN</string>
+    <string name="app_intro_image_content_description">afbeelding</string>
+</resources>

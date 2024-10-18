@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.constraintlayout)

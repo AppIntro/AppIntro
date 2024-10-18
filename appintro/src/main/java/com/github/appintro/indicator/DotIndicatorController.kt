@@ -48,7 +48,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
-                ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator),
+                ContextCompat.getDrawable(this.context, com.appintro.core.R.drawable.ic_appintro_indicator),
             )
             val params =
                 LayoutParams(

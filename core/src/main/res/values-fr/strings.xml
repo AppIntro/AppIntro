@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_intro_skip_button">PASSER</string>
+    <string name="app_intro_next_button">SUIVANT</string>
+    <string name="app_intro_back_button">PRÉCÉDENT</string>
+    <string name="app_intro_done_button">TERMINER</string>
+    <string name="app_intro_image_content_description">graphiques</string>
+</resources>
