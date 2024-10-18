@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.github.appintro.SlidePolicy
+import com.appintro.core.contracts.SlidePolicy
 import com.github.appintro.example.R
 
-class CustomSlidePolicyFragment : Fragment(), SlidePolicy {
+class CustomSlidePolicyFragment : Fragment(), com.appintro.core.contracts.SlidePolicy {
 
     private lateinit var checkBox: CheckBox
 

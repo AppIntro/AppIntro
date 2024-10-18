@@ -15,10 +15,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.github.appintro.internal.LogHelper
-import com.github.appintro.internal.TypefaceContainer
+import com.appintro.core.contracts.SlideBackgroundColorHolder
+import com.appintro.core.contracts.SlideSelectionListener
+import com.appintro.core.utils.LogHelper
+import com.appintro.core.utils.TypefaceContainer
 
-abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
+abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
+    SlideBackgroundColorHolder {
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
