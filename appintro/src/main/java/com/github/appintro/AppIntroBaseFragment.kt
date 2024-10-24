@@ -3,6 +3,7 @@ package com.github.appintro
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.github.appintro.internal.LogHelper
-import com.github.appintro.internal.TypefaceContainer
+import com.appintro.core.contracts.SlideBackgroundColorHolder
+import com.appintro.core.contracts.SlideSelectionListener
+import com.appintro.core.utils.LogHelper
+import com.appintro.core.utils.TypefaceContainer
 
-abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
+abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
+    SlideBackgroundColorHolder {
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
@@ -88,15 +92,17 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
         val view = inflater.inflate(layoutId, container, false)
-        val titleText = view.findViewById<TextView>(R.id.title)
+        val titleText = view.findViewById<TextView>(com.github.appintro.R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
         val slideImage = view.findViewById<ImageView>(R.id.image)
         val mainLayout = view.findViewById<ConstraintLayout>(R.id.main)
+        Log.d(logTAG, "onCreateView${viewModel.title}")
+        LogHelper.d(logTAG, "onCreateView${view.tag}")
 
         titleText.text = viewModel.title
         descriptionText.text = viewModel.description
-
         val titleColorRes = viewModel.titleColorRes
         val titleColor = viewModel.titleColor
 

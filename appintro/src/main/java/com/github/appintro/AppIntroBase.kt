@@ -25,14 +25,18 @@ import androidx.core.view.WindowInsetsCompat.Type.systemBars
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.appintro.core.contracts.AppIntroViewPagerListener
+import com.appintro.core.contracts.SlideBackgroundColorHolder
+import com.appintro.core.contracts.SlidePolicy
+import com.appintro.core.contracts.SlideSelectionListener
 import com.github.appintro.indicator.DotIndicatorController
 import com.github.appintro.indicator.IndicatorController
 import com.github.appintro.indicator.ProgressIndicatorController
 import com.github.appintro.internal.AppIntroViewPagerController
-import com.github.appintro.internal.LayoutUtil
-import com.github.appintro.internal.LogHelper
-import com.github.appintro.internal.PermissionWrapper
-import com.github.appintro.internal.VibrationHelper
+import com.appintro.core.utils.LayoutUtil
+import com.appintro.core.utils.LogHelper
+import com.appintro.core.utils.PermissionWrapper
+import com.appintro.core.utils.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
 
@@ -406,15 +410,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         skipButton = findViewById(R.id.skip) ?: error("Missing Skip button: R.id.skip")
         backButton = findViewById(R.id.back) ?: error("Missing Back button: R.id.back")
 
-        setTooltipText(nextButton, getString(R.string.app_intro_next_button))
+        setTooltipText(nextButton, getString(com.appintro.core.R.string.app_intro_next_button))
         if (skipButton is ImageButton) {
-            setTooltipText(skipButton, getString(R.string.app_intro_skip_button))
+            setTooltipText(skipButton, getString(com.appintro.core.R.string.app_intro_skip_button))
         }
         if (doneButton is ImageButton) {
-            setTooltipText(doneButton, getString(R.string.app_intro_done_button))
+            setTooltipText(doneButton, getString(com.appintro.core.R.string.app_intro_done_button))
         }
         if (backButton is ImageButton) {
-            setTooltipText(backButton, getString(R.string.app_intro_back_button))
+            setTooltipText(backButton, getString(com.appintro.core.R.string.app_intro_back_button))
         }
 
         if (isRtl) {

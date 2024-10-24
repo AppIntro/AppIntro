@@ -3,7 +3,7 @@ package com.github.appintro.internal.viewpager
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.github.appintro.AppIntroPageTransformerType
-import com.github.appintro.internal.LogHelper
+import com.appintro.core.utils.LogHelper
 import kotlin.math.abs
 import kotlin.math.max
 
