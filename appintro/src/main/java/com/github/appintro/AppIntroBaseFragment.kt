@@ -94,12 +94,10 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
     ): View? {
 
         val view = inflater.inflate(layoutId, container, false)
-        val titleText = view.findViewById<TextView>(com.github.appintro.R.id.title)
+        val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
         val slideImage = view.findViewById<ImageView>(R.id.image)
         val mainLayout = view.findViewById<ConstraintLayout>(R.id.main)
-        Log.d(logTAG, "onCreateView${viewModel.title}")
-        LogHelper.d(logTAG, "onCreateView${view.tag}")
 
         titleText.text = viewModel.title
         descriptionText.text = viewModel.description
