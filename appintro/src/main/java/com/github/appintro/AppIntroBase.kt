@@ -10,6 +10,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+//import android.view.WindowInsetsController.BEHAVIOR_DEFAULT
+
 import android.widget.ImageButton
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorInt
@@ -35,6 +37,7 @@ import com.github.appintro.internal.PermissionWrapper
 import com.github.appintro.internal.VibrationHelper
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+
 
 /**
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
@@ -237,7 +240,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         if (show) {
             controller.show(systemBars())
         } else {
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_DEFAULT
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
             controller.hide(systemBars())
         }
     }
