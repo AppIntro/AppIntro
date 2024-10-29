@@ -29,14 +29,14 @@ import com.appintro.core.contracts.AppIntroViewPagerListener
 import com.appintro.core.contracts.SlideBackgroundColorHolder
 import com.appintro.core.contracts.SlidePolicy
 import com.appintro.core.contracts.SlideSelectionListener
-import com.github.appintro.indicator.DotIndicatorController
-import com.github.appintro.indicator.IndicatorController
-import com.github.appintro.indicator.ProgressIndicatorController
-import com.github.appintro.internal.AppIntroViewPagerController
 import com.appintro.core.utils.LayoutUtil
 import com.appintro.core.utils.LogHelper
 import com.appintro.core.utils.PermissionWrapper
 import com.appintro.core.utils.VibrationHelper
+import com.github.appintro.indicator.DotIndicatorController
+import com.github.appintro.indicator.IndicatorController
+import com.github.appintro.indicator.ProgressIndicatorController
+import com.github.appintro.internal.AppIntroViewPagerController
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
 

@@ -3,7 +3,6 @@ package com.github.appintro
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,9 @@ import com.appintro.core.contracts.SlideSelectionListener
 import com.appintro.core.utils.LogHelper
 import com.appintro.core.utils.TypefaceContainer
 
-abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
+abstract class AppIntroBaseFragment :
+    Fragment(),
+    SlideSelectionListener,
     SlideBackgroundColorHolder {
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
@@ -65,7 +66,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
             viewModel.descTypefaceUrl = args.getString(ARG_DESC_TYPEFACE_URL)
             viewModel.descTypefaceRes = args.getInt(ARG_DESC_TYPEFACE_RES)
 
-            @Suppress("DEPRECATION")
             viewModel.defaultBackgroundColor = args.getInt(ARG_BG_COLOR)
             viewModel.defaultBackgroundColorRes = args.getInt(ARG_BG_COLOR_RES)
 
@@ -92,7 +92,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
         val view = inflater.inflate(layoutId, container, false)
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
