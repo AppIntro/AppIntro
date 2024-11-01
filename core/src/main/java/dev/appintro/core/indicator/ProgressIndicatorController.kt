@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import com.appintro.core.utils.LayoutUtil
+import dev.appintro.core.utils.LayoutUtil
 
 internal const val DEFAULT_COLOR = 1
 

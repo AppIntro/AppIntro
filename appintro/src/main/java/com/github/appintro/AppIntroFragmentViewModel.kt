@@ -5,7 +5,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.FontRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.appintro.core.utils.delegate
+import dev.appintro.core.utils.delegate
 
 internal const val ARG_TITLE = "title"
 internal const val ARG_TITLE_TYPEFACE_URL = "title_typeface"

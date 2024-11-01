@@ -1,4 +1,4 @@
-package com.appintro.core.contracts
+package dev.appintro.core.contracts
 
 /**
  * Register an instance of AppIntroViewPagerListener.

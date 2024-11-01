@@ -1,4 +1,4 @@
-package com.appintro.core.models
+package dev.appintro.core.models
 
 import android.os.Bundle
 import androidx.annotation.ColorInt

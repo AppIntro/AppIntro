@@ -15,10 +15,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.appintro.core.contracts.SlideBackgroundColorHolder
-import com.appintro.core.contracts.SlideSelectionListener
-import com.appintro.core.utils.LogHelper
-import com.appintro.core.utils.TypefaceContainer
+import dev.appintro.core.contracts.SlideBackgroundColorHolder
+import dev.appintro.core.contracts.SlideSelectionListener
+import dev.appintro.core.utils.LogHelper
+import dev.appintro.core.utils.TypefaceContainer
 
 abstract class AppIntroBaseFragment :
     Fragment(),

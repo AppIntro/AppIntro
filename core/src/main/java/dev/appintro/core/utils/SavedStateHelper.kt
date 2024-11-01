@@ -1,4 +1,4 @@
-package com.appintro.core.utils
+package dev.appintro.core.utils
 
 import androidx.lifecycle.SavedStateHandle
 import kotlin.properties.ReadWriteProperty

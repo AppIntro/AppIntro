@@ -1,4 +1,4 @@
-package com.appintro.core.contracts
+package dev.appintro.core.contracts
 
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
