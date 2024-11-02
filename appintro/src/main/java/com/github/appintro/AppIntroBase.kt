@@ -33,7 +33,7 @@ import dev.appintro.core.utils.LayoutUtil
 import dev.appintro.core.utils.LogHelper
 import dev.appintro.core.utils.PermissionWrapper
 import dev.appintro.core.utils.VibrationHelper
-import dev.appintro.core.indicator.DotIndicatorController
+import com.github.appintro.indicator.DotIndicatorController
 import dev.appintro.core.indicator.IndicatorController
 import dev.appintro.core.indicator.ProgressIndicatorController
 import com.github.appintro.internal.AppIntroViewPagerController

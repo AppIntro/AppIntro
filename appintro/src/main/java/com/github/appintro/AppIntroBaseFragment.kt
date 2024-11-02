@@ -18,7 +18,7 @@ import androidx.fragment.app.viewModels
 import dev.appintro.core.contracts.SlideBackgroundColorHolder
 import dev.appintro.core.contracts.SlideSelectionListener
 import dev.appintro.core.utils.LogHelper
-import dev.appintro.core.utils.TypefaceContainer
+import com.github.appintro.utils.TypefaceContainer
 
 abstract class AppIntroBaseFragment :
     Fragment(),

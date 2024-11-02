@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat
  * Custom Font Cache Implementation.
  * Prevent(s) memory leaks due to Typeface objects
  */
-internal object CustomFontCache {
+object CustomFontCache {
     private val TAG = LogHelper.makeLogTag(CustomFontCache::class)
     private val cache = hashMapOf<String, Typeface>()
 

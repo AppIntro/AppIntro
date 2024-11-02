@@ -11,7 +11,7 @@ import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import androidx.core.widget.TextViewCompat
-import dev.appintro.core.utils.TypefaceContainer
+import com.github.appintro.utils.TypefaceContainer
 import dev.appintro.core.R as CoreR
 
 abstract class AppIntro : AppIntroBase() {

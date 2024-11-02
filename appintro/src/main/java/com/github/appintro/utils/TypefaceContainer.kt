@@ -1,9 +1,10 @@
-package dev.appintro.core.utils
+package com.github.appintro.utils
 
 import android.graphics.Typeface
 import android.widget.TextView
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
+import dev.appintro.core.utils.CustomFontCache
 
 /**
  * Class for containing the Typefaces that can be used with AppIntro.
