@@ -25,20 +25,20 @@ import androidx.core.view.WindowInsetsCompat.Type.systemBars
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.github.appintro.indicator.DotIndicatorController
+import com.github.appintro.internal.AppIntroViewPagerController
+import com.github.appintro.internal.viewpager.PagerAdapter
+import com.github.appintro.internal.viewpager.ViewPagerTransformer
 import dev.appintro.core.contracts.AppIntroViewPagerListener
 import dev.appintro.core.contracts.SlideBackgroundColorHolder
 import dev.appintro.core.contracts.SlidePolicy
 import dev.appintro.core.contracts.SlideSelectionListener
+import dev.appintro.core.indicator.IndicatorController
+import dev.appintro.core.indicator.ProgressIndicatorController
 import dev.appintro.core.utils.LayoutUtil
 import dev.appintro.core.utils.LogHelper
 import dev.appintro.core.utils.PermissionWrapper
 import dev.appintro.core.utils.VibrationHelper
-import com.github.appintro.indicator.DotIndicatorController
-import dev.appintro.core.indicator.IndicatorController
-import dev.appintro.core.indicator.ProgressIndicatorController
-import com.github.appintro.internal.AppIntroViewPagerController
-import com.github.appintro.internal.viewpager.PagerAdapter
-import com.github.appintro.internal.viewpager.ViewPagerTransformer
 import dev.appintro.core.R as CoreR
 
 /**

@@ -4,12 +4,12 @@ import android.gesture.GestureOverlayView
 import android.gesture.GestureOverlayView.OnGestureListener
 import android.view.MotionEvent
 import androidx.viewpager2.widget.ViewPager2
-import dev.appintro.core.contracts.AppIntroViewPagerListener
-import dev.appintro.core.utils.LayoutUtil
 import com.github.appintro.AppIntroBase
 import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+import dev.appintro.core.contracts.AppIntroViewPagerListener
+import dev.appintro.core.utils.LayoutUtil
 import kotlin.math.max
 
 /**
