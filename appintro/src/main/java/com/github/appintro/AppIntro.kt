@@ -12,6 +12,7 @@ import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import androidx.core.widget.TextViewCompat
 import dev.appintro.core.utils.TypefaceContainer
+import dev.appintro.core.R as CoreR
 
 abstract class AppIntro : AppIntroBase() {
     override val layoutId = R.layout.appintro_intro_layout
@@ -236,7 +237,7 @@ abstract class AppIntro : AppIntroBase() {
         val bottomBar = findViewById<View>(R.id.pager_gesture_overlay)
         val margin =
             if (setBarMargin) {
-                resources.getDimension(dev.appintro.core.R.dimen.appintro_bottombar_height).toInt()
+                resources.getDimension(CoreR.dimen.appintro_bottombar_height).toInt()
             } else {
                 0
             }

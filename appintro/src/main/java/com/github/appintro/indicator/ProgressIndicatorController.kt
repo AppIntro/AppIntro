@@ -1,4 +1,4 @@
-package com.github.appintro.indicator
+package dev.appintro.core.indicator
 
 import android.content.Context
 import android.util.AttributeSet
@@ -22,7 +22,8 @@ class ProgressIndicatorController
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = android.R.attr.progressBarStyleHorizontal,
-    ) : IndicatorController, ProgressBar(context, attrs, defStyleAttr) {
+    ) : ProgressBar(context, attrs, defStyleAttr),
+        IndicatorController {
         override var selectedIndicatorColor = DEFAULT_COLOR
             set(value) {
                 field = value

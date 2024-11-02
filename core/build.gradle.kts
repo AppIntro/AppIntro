@@ -4,8 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.appintro.core"
-    compileSdk = 34
+    namespace = "dev.appintro.core"
+    compileSdk =
+        libs.versions.compile.sdk.version
+            .get()
+            .toInt()
 
     defaultConfig {
         minSdk = 21

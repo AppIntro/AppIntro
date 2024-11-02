@@ -34,11 +34,12 @@ import dev.appintro.core.utils.LogHelper
 import dev.appintro.core.utils.PermissionWrapper
 import dev.appintro.core.utils.VibrationHelper
 import com.github.appintro.indicator.DotIndicatorController
-import com.github.appintro.indicator.IndicatorController
-import com.github.appintro.indicator.ProgressIndicatorController
+import dev.appintro.core.indicator.IndicatorController
+import dev.appintro.core.indicator.ProgressIndicatorController
 import com.github.appintro.internal.AppIntroViewPagerController
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+import dev.appintro.core.R as CoreR
 
 /**
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
@@ -410,15 +411,15 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         skipButton = findViewById(R.id.skip) ?: error("Missing Skip button: R.id.skip")
         backButton = findViewById(R.id.back) ?: error("Missing Back button: R.id.back")
 
-        setTooltipText(nextButton, getString(com.appintro.core.R.string.app_intro_next_button))
+        setTooltipText(nextButton, getString(CoreR.string.app_intro_next_button))
         if (skipButton is ImageButton) {
-            setTooltipText(skipButton, getString(com.appintro.core.R.string.app_intro_skip_button))
+            setTooltipText(skipButton, getString(CoreR.string.app_intro_skip_button))
         }
         if (doneButton is ImageButton) {
-            setTooltipText(doneButton, getString(com.appintro.core.R.string.app_intro_done_button))
+            setTooltipText(doneButton, getString(CoreR.string.app_intro_done_button))
         }
         if (backButton is ImageButton) {
-            setTooltipText(backButton, getString(com.appintro.core.R.string.app_intro_back_button))
+            setTooltipText(backButton, getString(CoreR.string.app_intro_back_button))
         }
 
         if (isRtl) {

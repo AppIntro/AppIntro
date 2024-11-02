@@ -1,4 +1,4 @@
-package com.github.appintro.indicator
+package dev.appintro.core.indicator
 
 import android.content.Context
 import android.view.View

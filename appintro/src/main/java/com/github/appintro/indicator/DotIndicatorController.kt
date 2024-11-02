@@ -8,19 +8,21 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import dev.appintro.core.R
+import dev.appintro.core.indicator.IndicatorController
 
 /**
  * An [IndicatorController] that shows a list of dots and highlight the selected dot.
  * Use this when the number of page you're dealing with is not too high.
  */
 class DotIndicatorController(context: Context) : IndicatorController, LinearLayout(context) {
-    override var selectedIndicatorColor = ContextCompat.getColor(context, com.appintro.core.R.color.appintro_default_selected_color)
+    override var selectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_selected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
         }
 
-    override var unselectedIndicatorColor = ContextCompat.getColor(context, com.appintro.core.R.color.appintro_default_unselected_color)
+    override var unselectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_unselected_color)
         set(value) {
             field = value
             selectPosition(currentPosition)
@@ -47,7 +49,7 @@ class DotIndicatorController(context: Context) : IndicatorController, LinearLayo
         for (i in 0 until slideCount) {
             val dot = ImageView(this.context)
             dot.setImageDrawable(
-                ContextCompat.getDrawable(this.context, com.appintro.core.R.drawable.ic_appintro_indicator),
+                ContextCompat.getDrawable(this.context, R.drawable.ic_appintro_indicator),
             )
             val params =
                 LayoutParams(
