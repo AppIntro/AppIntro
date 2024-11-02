@@ -1,4 +1,4 @@
-package com.github.appintro.indicator
+package dev.appintro.core.indicator
 
 import android.content.Context
 import android.view.Gravity
@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import dev.appintro.core.R
-import dev.appintro.core.indicator.IndicatorController
 
 /**
  * An [IndicatorController] that shows a list of dots and highlight the selected dot.
