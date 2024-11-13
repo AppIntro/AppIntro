@@ -1,4 +1,4 @@
-package dev.appintro.core.indicator
+package com.github.appintro.indicator
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import dev.appintro.core.contracts.IndicatorController
 import dev.appintro.core.utils.LayoutUtil
 
 internal const val DEFAULT_COLOR = 1

@@ -1,4 +1,4 @@
-package dev.appintro.core.indicator
+package dev.appintro.core.contracts
 
 import android.content.Context
 import android.view.View
