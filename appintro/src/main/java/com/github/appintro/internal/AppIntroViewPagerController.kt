@@ -6,9 +6,10 @@ import android.view.MotionEvent
 import androidx.viewpager2.widget.ViewPager2
 import com.github.appintro.AppIntroBase
 import com.github.appintro.AppIntroPageTransformerType
-import com.github.appintro.AppIntroViewPagerListener
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+import dev.appintro.core.contracts.AppIntroViewPagerListener
+import dev.appintro.core.utils.LayoutUtil
 import kotlin.math.max
 
 /**

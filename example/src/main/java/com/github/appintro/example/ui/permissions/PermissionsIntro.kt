@@ -7,6 +7,7 @@ import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.example.R
 
+
 class PermissionsIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,11 +2,11 @@ package com.github.appintro.example.ui.default
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import dev.appintro.core.models.SliderPage
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.example.R
-import com.github.appintro.model.SliderPage
 
 class DefaultIntro2 : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,14 +21,16 @@ class DefaultIntro2 : AppIntro2() {
                 descriptionTypefaceFontRes = R.font.lato
         ))
 
-        addSlide(AppIntroFragment.createInstance(SliderPage(
+        addSlide(AppIntroFragment.createInstance(
+            SliderPage(
                 "Gradients!",
                 "This text is written on a gradient background",
                 imageDrawable = R.drawable.ic_slide2,
                 backgroundDrawable = R.drawable.back_slide2,
                 titleTypeface = "OpenSans-Light.ttf",
                 descriptionTypeface = "OpenSans-Light.ttf"
-        )))
+        )
+        ))
 
         addSlide(AppIntroFragment.createInstance(
                 "Simple, yet Customizable",

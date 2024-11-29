@@ -4,7 +4,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
-import com.github.appintro.model.SliderPage
+import dev.appintro.core.models.SliderPage
 
 @Suppress("LongParameterList")
 class AppIntroFragment : AppIntroBaseFragment() {

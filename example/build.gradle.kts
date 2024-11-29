@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(":appintro"))
+    implementation(project(":core"))
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.cardview)

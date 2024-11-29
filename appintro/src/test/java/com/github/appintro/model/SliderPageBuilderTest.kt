@@ -1,5 +1,6 @@
 package com.github.appintro.model
 
+import dev.appintro.core.models.SliderPagerBuilder
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,5 +1,6 @@
 package com.github.appintro.internal
 
+import dev.appintro.core.utils.LogHelper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
