@@ -17,6 +17,7 @@ viewpager2 = "1.1.0"
 target_sdk_version = "34"
 fragment = "1.8.5"
 
+
 [libraries]
 androidx_annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx_appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }

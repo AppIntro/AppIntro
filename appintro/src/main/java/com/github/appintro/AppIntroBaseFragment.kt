@@ -15,10 +15,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.github.appintro.internal.LogHelper
-import com.github.appintro.internal.TypefaceContainer
+import com.github.appintro.utils.TypefaceContainer
+import dev.appintro.core.contracts.SlideBackgroundColorHolder
+import dev.appintro.core.contracts.SlideSelectionListener
+import dev.appintro.core.utils.LogHelper
 
-abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
+abstract class AppIntroBaseFragment :
+    Fragment(),
+    SlideSelectionListener,
+    SlideBackgroundColorHolder {
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)
@@ -61,7 +66,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
             viewModel.descTypefaceUrl = args.getString(ARG_DESC_TYPEFACE_URL)
             viewModel.descTypefaceRes = args.getInt(ARG_DESC_TYPEFACE_RES)
 
-            @Suppress("DEPRECATION")
             viewModel.defaultBackgroundColor = args.getInt(ARG_BG_COLOR)
             viewModel.defaultBackgroundColorRes = args.getInt(ARG_BG_COLOR_RES)
 
@@ -96,7 +100,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
 
         titleText.text = viewModel.title
         descriptionText.text = viewModel.description
-
         val titleColorRes = viewModel.titleColorRes
         val titleColor = viewModel.titleColor
 

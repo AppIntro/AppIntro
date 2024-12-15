@@ -6,7 +6,8 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import com.github.appintro.internal.LayoutUtil
+import dev.appintro.core.contracts.IndicatorController
+import dev.appintro.core.utils.LayoutUtil
 
 internal const val DEFAULT_COLOR = 1
 
@@ -22,7 +23,8 @@ class ProgressIndicatorController
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = android.R.attr.progressBarStyleHorizontal,
-    ) : IndicatorController, ProgressBar(context, attrs, defStyleAttr) {
+    ) : ProgressBar(context, attrs, defStyleAttr),
+        IndicatorController {
         override var selectedIndicatorColor = DEFAULT_COLOR
             set(value) {
                 field = value

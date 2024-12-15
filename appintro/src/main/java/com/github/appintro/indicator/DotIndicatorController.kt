@@ -8,7 +8,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import com.github.appintro.R
+import dev.appintro.core.R
+import dev.appintro.core.contracts.IndicatorController
 
 /**
  * An [IndicatorController] that shows a list of dots and highlight the selected dot.
