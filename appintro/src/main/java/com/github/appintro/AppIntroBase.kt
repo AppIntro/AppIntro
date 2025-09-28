@@ -20,9 +20,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsCompat.Type.systemBars
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.github.appintro.indicator.DotIndicatorController
@@ -102,7 +105,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
     /**
      * Read-only property with the total number of slides for this AppIntro.
      */
-    protected val totalSlidesNumber: Int get() = slidesNumber
+    protected val totalSlidesNumber: Int get() = fragments.size
 
     // Private Fields
 
@@ -440,6 +443,19 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         pagerController.setAdapter(this.pagerAdapter)
         pagerController.registerOnPageChangeCallback(OnPageChangeCallback())
         pagerController.onNextPageRequestedListener = this
+
+        // Make sure we account for navigation bar if any, assuming it is never at the top
+        val contentView = findViewById<View>(R.id.bottom)
+        ViewCompat.setOnApplyWindowInsetsListener(contentView) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                leftMargin = bars.left
+                rightMargin = bars.right
+                //topMargin = bars.top
+                bottomMargin = bars.bottom
+            }
+            insets
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
