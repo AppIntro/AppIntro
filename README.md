@@ -1,6 +1,6 @@
 # AppIntro
 
-[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Join the chat at https://kotlinlang.slack.com](https://img.shields.io/badge/slack-@kotlinlang/appintro-yellow.svg?logo=slack)](https://kotlinlang.slack.com/archives/C019SH1RMBN) [![Pre Merge Checks](https://github.com/AppIntro/AppIntro/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppIntro-green.svg?style=flat)](https://android-arsenal.com/details/1/1939) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![](https://jitpack.io/v/AppIntro/AppIntro.svg)](https://jitpack.io/#AppIntro/appintro) [![Join the chat at https://kotlinlang.slack.com](https://img.shields.io/badge/slack-@kotlinlang/appintro-yellow.svg?logo=slack)](https://kotlinlang.slack.com/archives/C019SH1RMBN) [![Pre Merge Checks](https://github.com/AppIntro/AppIntro/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/AppIntro/AppIntro/actions?query=workflow%3A%22Pre+Merge+Checks%22) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 AppIntro is an Android Library that helps you build a **cool carousel intro** for your App. AppIntro has support for **requesting permissions** and helps you create a great onboarding experience in just a couple of minutes.
 
