@@ -399,7 +399,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         indicatorController = DotIndicatorController(this)
 
         // We default to don't show the Status Bar. User can override this.
-        showStatusBar(true)
+        showStatusBar(false)
 
         setContentView(layoutId)
 
