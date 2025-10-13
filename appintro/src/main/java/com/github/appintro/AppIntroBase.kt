@@ -10,6 +10,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorInt
@@ -20,9 +21,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.TooltipCompat.setTooltipText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsCompat.Type.systemBars
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.github.appintro.indicator.DotIndicatorController
@@ -395,7 +399,7 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         indicatorController = DotIndicatorController(this)
 
         // We default to don't show the Status Bar. User can override this.
-        showStatusBar(false)
+        showStatusBar(true)
 
         setContentView(layoutId)
 
@@ -440,6 +444,17 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
         pagerController.setAdapter(this.pagerAdapter)
         pagerController.registerOnPageChangeCallback(OnPageChangeCallback())
         pagerController.onNextPageRequestedListener = this
+
+        val contentView = findViewById<FrameLayout>(R.id.bottom)
+        ViewCompat.setOnApplyWindowInsetsListener(contentView) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                leftMargin = bars.left
+                rightMargin = bars.right
+                bottomMargin = bars.bottom
+            }
+            insets
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

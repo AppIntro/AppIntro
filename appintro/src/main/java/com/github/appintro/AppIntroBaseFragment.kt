@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -13,6 +14,9 @@ import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.appintro.internal.LogHelper
@@ -92,7 +96,7 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         val titleText = view.findViewById<TextView>(R.id.title)
         val descriptionText = view.findViewById<TextView>(R.id.description)
         val slideImage = view.findViewById<ImageView>(R.id.image)
-        val mainLayout = view.findViewById<ConstraintLayout>(R.id.main)
+        val mainLayout = view.findViewById<FrameLayout>(R.id.main)
 
         titleText.text = viewModel.title
         descriptionText.text = viewModel.description
@@ -147,6 +151,17 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
         titleText.movementMethod = ScrollingMovementMethod()
         descriptionText.movementMethod = ScrollingMovementMethod()
 
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.intro_container)) { view, insets ->
+            val statusBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            (view as? ViewGroup)?.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                topMargin = statusBars.top
+                bottomMargin = statusBars.bottom
+                leftMargin = statusBars.left
+                rightMargin = statusBars.right
+            }
+            insets
+        }
+
         return view
     }
 
@@ -181,6 +196,6 @@ abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideB
     override fun setBackgroundColor(
         @ColorInt backgroundColor: Int,
     ) {
-        view?.findViewById<ConstraintLayout>(R.id.main)?.setBackgroundColor(backgroundColor)
+        view?.findViewById<FrameLayout>(R.id.main)?.setBackgroundColor(backgroundColor)
     }
 }
