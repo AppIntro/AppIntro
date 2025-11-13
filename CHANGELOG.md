@@ -3,12 +3,40 @@
 ## Version 7.0.0 *(YYYY-MM-DD)*
 This is a new major release of AppIntro. Please note that this release contains multiple new features (see below), several bugfixes, as well as multiple breaking changes.
 
+Visit our for [6.x to 7.x Migration Guide](migrating-from-6.0.md) for more information.
+
 ### Summary of Changes
 * [#1112] We migrated AppIntro from ViewPager to ViewPager2
+* [#1139] Target SDK is now 34
+* [#1216] Min SDK is now 21
 
 ### Breaking Changes
 * We removed `setScrollDurationFactor` since customizing scroll duration is supported anymore on ViewPager2
 * `setCustomTransformer` accepts a `ViewPager2.PageTransformer` instead of `ViewPager.PageTransformer`
+* [#1216] Min SDK bumped from 14 to 21. This [is required](https://developer.android.com/jetpack/androidx/versions/all-channel) to keep receiving JetPack libraries updates.
+
+### Enhancements 🎁
+* [#1133] Added support for spannable text in SliderPage
+* [#1179] Added `setBarMargin` API
+
+### Translations 🌍
+* [#1170] Updated Hungarian translation
+* [#1148] Updated Brazilian Portuguese translation
+
+### Dependency updates 📦
+* Kotlin to 2.0.0
+* AGP to 8.5.0
+* AppCompat to 1.6.1
+* ConstraintLayout to 2.1.4
+* Viewpager2 to 1.1.0
+
+### Bugfixes 🐛
+* [#1143] Fix askForPermission's not required permissions on API>=30
+* [#1202] Do not read background drawable if it is has not been set
+
+### Credits
+This release was possible thanks to the contribution of:
+[@fejese](https://github.com/fejese) [@ArnyminerZ](https://github.com/ArnyminerZ) [@guifxb](https://github.com/guifxb) [@vernazza](https://github.com/vernazza) [@cortinico](https://github.com/cortinico) [@paolorotolo](https://github.com/paolorotolo)
 
 ## Version 6.3.1 *(2023-07-24)*
 This release of AppIntro is identical to 6.3.0. An outdated JitPack configuration caused 6.3.0 not to build correctly.
@@ -33,7 +61,7 @@ This is a new minor release of AppIntro. This library comes with several new fea
 
 ### Dependency updates 📦
 * Kotlin to 1.9.0
-* AGP to 8.0.2
+* AGP to 8.3.2
 * AppCompat to 1.6.1
 * ConstraintLayout to 2.1.4
 

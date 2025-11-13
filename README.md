@@ -59,7 +59,7 @@ repositories {
 ```groovy
 dependencies {
     // AndroidX Capable version
-    implementation 'com.github.AppIntro:AppIntro:6.3.1'
+    implementation 'com.github.AppIntro:AppIntro:7.0.0'
     
     // *** OR ***
     
@@ -125,7 +125,7 @@ You can find many examples in java language in the [examples directory](example/
 
 ## Migrating 🚗
 
-If you're migrating **from AppIntro v5.x to v6.x**, please expect multiple breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
+If you're migrating between major versions, please expect breaking changes. You can find documentation on how to update your code on this other [migration guide](/docs/migrating-from-5.0.md).
 
 ## Features 🧰
 
