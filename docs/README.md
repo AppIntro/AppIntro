@@ -9,5 +9,5 @@ The full changelog is available in the [CHANGELOG](/CHANGELOG.md) page. Please v
 ## Migration guides
 
 If you need support migrating from older versions please read:
-
+* [Migrating from 6.x to 7.x](migrating-from-6.0.md)
 * [Migrating from 5.x to 6.x](migrating-from-5.0.md)
