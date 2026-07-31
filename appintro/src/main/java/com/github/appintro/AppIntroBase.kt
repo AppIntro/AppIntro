@@ -158,6 +158,26 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * Called by the user to associate permissions with slides.
      *
      * @param permissions - Array of permissions
+     * @param slide - The Fragment at which permission is to be asked.
+     * @param required - Whether the user can change this slide without granting the permissions.
+     */
+    @JvmOverloads
+    protected fun askForPermissions(permissions: Array<String>, slide: Fragment, required: Boolean = true) {
+        if(fragments.contains(slide)) {
+            val slideNumber = fragments.indexOf(slide)+1
+            askForPermissions(permissions, slideNumber, required)
+        } else {
+            LogHelper.w(
+                TAG,
+                "The fragment you wanted to attach the permission was not added beforehand!"
+            )
+        }
+    }
+
+    /**
+     * Called by the user to associate permissions with slides.
+     *
+     * @param permissions - Array of permissions
      * @param slideNumber - The slide at which permission is to be asked.
      * @param required - Whether the user can change this slide without granting the permissions.
      */
