@@ -40,7 +40,9 @@ import com.github.appintro.internal.viewpager.ViewPagerTransformer
  * The AppIntro Base Class. This class is the Activity that is responsible of handling
  * the lifecycle and all the event callbacks for AppIntro.
  */
-abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
+abstract class AppIntroBase :
+    AppCompatActivity(),
+    AppIntroViewPagerListener {
     /** The layout ID that will be used during inflation. */
     @get:LayoutRes
     protected abstract val layoutId: Int
@@ -776,7 +778,9 @@ abstract class AppIntroBase : AppCompatActivity(), AppIntroViewPagerListener {
      * Onclick listener for the Next/Done button.
      * @param isLastSlide True if you're using this for the DONE button.
      */
-    private inner class NextSlideOnClickListener(var isLastSlide: Boolean) : View.OnClickListener {
+    private inner class NextSlideOnClickListener(
+        var isLastSlide: Boolean,
+    ) : View.OnClickListener {
         override fun onClick(view: View) {
             dispatchVibration()
             // Check if changing to the next slide is allowed

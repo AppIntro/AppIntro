@@ -8,7 +8,5 @@ import android.view.View
  */
 internal object LayoutUtil {
     @JvmStatic
-    fun isRtl(ctx: Context): Boolean {
-        return ctx.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
-    }
+    fun isRtl(ctx: Context): Boolean = ctx.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 }

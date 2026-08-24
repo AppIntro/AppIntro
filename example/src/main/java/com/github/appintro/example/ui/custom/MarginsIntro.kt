@@ -18,12 +18,12 @@ class MarginsIntro : AppIntro() {
         addSlide(
             AppIntroFragment.createInstance(
                 "Welcome",
-                "This is a demo of the AppIntro library, with setBarMargin set to true."
-            )
+                "This is a demo of the AppIntro library, with setBarMargin set to true.",
+            ),
         )
 
         addSlide(
-            MarginsSlideFragment.newInstance()
+            MarginsSlideFragment.newInstance(),
         )
     }
 

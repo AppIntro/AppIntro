@@ -9,23 +9,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.appintro.example.R
 
 class IntroAdapter(
-        private val entries: List<IntroEntry>
+    private val entries: List<IntroEntry>,
 ) : RecyclerView.Adapter<IntroAdapter.IntroAdapterViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroAdapterViewHolder {
-        val root = LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): IntroAdapterViewHolder {
+        val root =
+            LayoutInflater
+                .from(parent.context)
                 .inflate(R.layout.item_intro, parent, false)
         return IntroAdapterViewHolder(root)
     }
 
     override fun getItemCount() = entries.size
 
-    override fun onBindViewHolder(holder: IntroAdapterViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: IntroAdapterViewHolder,
+        position: Int,
+    ) {
         holder.bind(entries[position])
     }
 
     inner class IntroAdapterViewHolder(
-            private val root: View
+        private val root: View,
     ) : RecyclerView.ViewHolder(root) {
         private val title: TextView = root.findViewById(R.id.item_title)
         private val description: TextView = root.findViewById(R.id.item_description)

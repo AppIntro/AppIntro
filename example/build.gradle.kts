@@ -3,12 +3,21 @@ plugins {
 }
 
 android {
-    compileSdk = libs.versions.compile.sdk.version.get().toInt()
+    compileSdk =
+        libs.versions.compile.sdk.version
+            .get()
+            .toInt()
     namespace = "com.github.appintro.example"
 
     defaultConfig {
-        minSdk = libs.versions.min.sdk.version.get().toInt()
-        targetSdk = libs.versions.target.sdk.version.get().toInt()
+        minSdk =
+            libs.versions.min.sdk.version
+                .get()
+                .toInt()
+        targetSdk =
+            libs.versions.target.sdk.version
+                .get()
+                .toInt()
 
         vectorDrawables.useSupportLibrary = true
         applicationId = "com.github.appintro.example"
@@ -24,8 +33,8 @@ android {
             listOf(
                 "MissingTranslation",
                 "OldTargetApi",
-                "GradleDependency"
-            )
+                "GradleDependency",
+            ),
         )
     }
     compileOptions {

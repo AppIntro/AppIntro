@@ -50,8 +50,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
             @DrawableRes backgroundDrawable: Int? = null,
-        ): AppIntroFragment {
-            return createInstance(
+        ): AppIntroFragment =
+            createInstance(
                 SliderPage(
                     title = title,
                     description = description,
@@ -64,7 +64,6 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     backgroundDrawable = backgroundDrawable,
                 ),
             )
-        }
 
         /**
          * Generates a new instance for [AppIntroFragment]
@@ -96,8 +95,8 @@ class AppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int? = null,
             @FontRes descriptionTypefaceFontRes: Int? = null,
             @DrawableRes backgroundDrawable: Int? = null,
-        ): AppIntroFragment {
-            return createInstance(
+        ): AppIntroFragment =
+            createInstance(
                 SliderPage(
                     title = title,
                     description = description,
@@ -110,7 +109,6 @@ class AppIntroFragment : AppIntroBaseFragment() {
                     backgroundDrawable = backgroundDrawable,
                 ),
             )
-        }
 
         /**
          * Generates an [AppIntroFragment] from a given [SliderPage]

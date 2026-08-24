@@ -11,14 +11,10 @@ internal class PagerAdapter(
 ) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = this.fragments.size
 
-    override fun createFragment(position: Int): Fragment {
-        return fragments[position]
-    }
+    override fun createFragment(position: Int): Fragment = fragments[position]
 
     fun getItem(
         position: Int,
         fragmentManager: FragmentManager,
-    ): Fragment? {
-        return fragmentManager.findFragmentByTag("f$position")
-    }
+    ): Fragment? = fragmentManager.findFragmentByTag("f$position")
 }

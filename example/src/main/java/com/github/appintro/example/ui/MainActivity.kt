@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.appintro.example.R
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

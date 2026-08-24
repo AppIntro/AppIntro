@@ -14,7 +14,10 @@ import com.github.appintro.R
  * An [IndicatorController] that shows a list of dots and highlight the selected dot.
  * Use this when the number of page you're dealing with is not too high.
  */
-class DotIndicatorController(context: Context) : IndicatorController, LinearLayout(context) {
+class DotIndicatorController(
+    context: Context,
+) : LinearLayout(context),
+    IndicatorController {
     override var selectedIndicatorColor = ContextCompat.getColor(context, R.color.appintro_default_selected_color)
         set(value) {
             field = value
