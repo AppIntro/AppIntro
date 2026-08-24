@@ -3,5 +3,17 @@
   "extends": [
     "config:base",
     ":automergeMinor"
+  ],
+  "packageRules": [
+    {
+      "description": "appcompat 1.8.0+ requires minSdk 23; AppIntro still supports minSdk 21.",
+      "matchPackageNames": ["androidx.appcompat:appcompat"],
+      "allowedVersions": "<1.8.0"
+    },
+    {
+      "description": "fragment 1.9.0+ requires minSdk 23; AppIntro still supports minSdk 21.",
+      "matchPackageNames": ["androidx.fragment:fragment-ktx"],
+      "allowedVersions": "<1.9.0"
+    }
   ]
 }
