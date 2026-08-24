@@ -18,7 +18,10 @@ import androidx.fragment.app.viewModels
 import com.github.appintro.internal.LogHelper
 import com.github.appintro.internal.TypefaceContainer
 
-abstract class AppIntroBaseFragment : Fragment(), SlideSelectionListener, SlideBackgroundColorHolder {
+abstract class AppIntroBaseFragment :
+    Fragment(),
+    SlideSelectionListener,
+    SlideBackgroundColorHolder {
     private val viewModel: AppIntroFragmentViewModel by viewModels()
 
     private val logTAG = LogHelper.makeLogTag(AppIntroBaseFragment::class.java)

@@ -10,10 +10,16 @@ version = "7.0.0-beta02"
 
 android {
     namespace = "com.github.appintro"
-    compileSdk = libs.versions.compile.sdk.version.get().toInt()
+    compileSdk =
+        libs.versions.compile.sdk.version
+            .get()
+            .toInt()
 
     defaultConfig {
-        minSdk = libs.versions.min.sdk.version.get().toInt()
+        minSdk =
+            libs.versions.min.sdk.version
+                .get()
+                .toInt()
 
         consumerProguardFiles("consumer-proguard-rules.pro")
         vectorDrawables.useSupportLibrary = true

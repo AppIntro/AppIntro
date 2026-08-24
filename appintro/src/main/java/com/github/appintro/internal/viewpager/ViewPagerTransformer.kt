@@ -89,9 +89,7 @@ internal class ViewPagerTransformer(
         page: View,
         position: Float,
         parallaxFactor: Double,
-    ): Float {
-        return (-position * (page.width / parallaxFactor)).toFloat()
-    }
+    ): Float = (-position * (page.width / parallaxFactor)).toFloat()
 
     private fun transformFade(
         position: Float,

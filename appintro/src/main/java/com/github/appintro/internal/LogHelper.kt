@@ -31,13 +31,12 @@ internal object LogHelper {
     private fun cutTagLength(
         tag: String,
         length: Int,
-    ): String {
-        return if (tag.length > length) {
+    ): String =
+        if (tag.length > length) {
             tag.substring(0, length - 1)
         } else {
             tag
         }
-    }
 
     @JvmStatic
     fun d(

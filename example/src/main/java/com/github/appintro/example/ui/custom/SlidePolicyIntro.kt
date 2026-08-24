@@ -10,17 +10,21 @@ class SlidePolicyIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addSlide(AppIntroFragment.createInstance(
+        addSlide(
+            AppIntroFragment.createInstance(
                 "Welcome",
-                "This is a demo of the AppIntro library, using the SlidePolicy feature."
-        ))
+                "This is a demo of the AppIntro library, using the SlidePolicy feature.",
+            ),
+        )
 
         addSlide(CustomSlidePolicyFragment.newInstance())
 
-        addSlide(AppIntroFragment.createInstance(
+        addSlide(
+            AppIntroFragment.createInstance(
                 "Policy Respected!",
-                "If the user arrived here, the SlidePolicy was respected."
-        ))
+                "If the user arrived here, the SlidePolicy was respected.",
+            ),
+        )
     }
 
     public override fun onSkipPressed(currentFragment: Fragment?) {

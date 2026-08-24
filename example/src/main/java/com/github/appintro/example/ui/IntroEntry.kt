@@ -13,12 +13,13 @@ import com.github.appintro.example.ui.permissions.PermissionsIntro
 import com.github.appintro.example.ui.permissions.PermissionsIntro2
 
 data class IntroEntry(
-        @StringRes val title: Int,
-        @StringRes val description: Int,
-        val activityClass: Class<*>
+    @StringRes val title: Int,
+    @StringRes val description: Int,
+    val activityClass: Class<*>,
 )
 
-val defaultEntries = listOf(
+val defaultEntries =
+    listOf(
         IntroEntry(R.string.default_intro_title, R.string.default_intro, DefaultIntro::class.java),
         IntroEntry(R.string.default_intro2_title, R.string.default_intro2, DefaultIntro2::class.java),
         IntroEntry(R.string.custom_layout_intro_title, R.string.custom_layout_intro, CustomLayoutIntro::class.java),
@@ -27,6 +28,5 @@ val defaultEntries = listOf(
         IntroEntry(R.string.perms_intro1_title, R.string.perms_intro1, PermissionsIntro::class.java),
         IntroEntry(R.string.perms_intro2_title, R.string.perms_intro2, PermissionsIntro2::class.java),
         IntroEntry(R.string.default_java_intro_title, R.string.default_java_intro, JavaIntro::class.java),
-        IntroEntry(R.string.custom_margins_intro_title, R.string.custom_margins_intro, MarginsIntro::class.java)
-)
-
+        IntroEntry(R.string.custom_margins_intro_title, R.string.custom_margins_intro, MarginsIntro::class.java),
+    )
