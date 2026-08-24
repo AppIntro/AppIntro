@@ -1,5 +1,5 @@
 [versions]
-agp = "8.13.2"
+agp = "9.3.2"
 appcompat = "1.7.1"
 annotation = "1.10.0"
 cardview = "1.0.0"
@@ -8,7 +8,7 @@ constraintlayout = "2.2.2"
 core_ktx = "1.13.1"
 detekt = "1.23.8"
 junit = "4.13.2"
-kotlin = "2.2.21"
+kotlin = "2.4.10"
 ktlint_gradle = "12.3.0"
 min_sdk_version = "21"
 mockito_core = "5.23.0"
@@ -27,11 +27,11 @@ androidx_recyclerview = { module = "androidx.recyclerview:recyclerview", version
 androidx_viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2"}
 androidx_fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment"}
 junit = { module = "junit:junit", version.ref = "junit" }
+kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 mockito_core = { module = "org.mockito:mockito-core", version.ref = "mockito.core" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "agp" }
-kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 library = { id = "com.android.library", version.ref = "agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint.gradle" }
