@@ -600,4 +600,4 @@ If you are using AppIntro in your app and would like to be listed here, please o
 * [PocketMark - MarkDown Editor](https://play.google.com/store/apps/details?id=com.ZetaDev.PocketMark)
 * [AIRSOFT SPOTTER](https://play.google.com/store/apps/details?id=io.github.precisionmarks.spotter)
     
-</details>
+</detail's my parsonal ai assistant(girl)gf 
