@@ -1,7 +1,7 @@
 [versions]
 agp = "9.4.1"
 appcompat = "1.7.1"
-annotation = "1.10.0"
+annotation = "1.11.0"
 cardview = "1.0.0"
 compile_sdk_version = "36"
 constraintlayout = "2.2.2"
