@@ -26,61 +26,53 @@
             android:overScrollMode="never" />
     </android.gesture.GestureOverlayView>
 
-    <View
+    <FrameLayout
         android:id="@+id/bottom"
         android:layout_width="0dp"
         android:layout_height="@dimen/appintro2_bottombar_height"
         android:background="@color/appintro_bar_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/skip"
-        style="@style/AppIntro2ButtonStyleCompat"
-        android:contentDescription="@string/app_intro_skip_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        app:srcCompat="@drawable/ic_appintro_fab_skip" />
+        <ImageButton
+            android:id="@+id/skip"
+            style="@style/AppIntro2ButtonStyleCompat"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="@string/app_intro_skip_button"
+            app:srcCompat="@drawable/ic_appintro_fab_skip" />
 
-    <ImageButton
-        android:id="@+id/back"
-        style="@style/AppIntro2ButtonStyleCompat"
-        android:contentDescription="@string/app_intro_back_button"
-        android:rotation="180"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_appintro_fab_next" />
+        <ImageButton
+            android:id="@+id/back"
+            style="@style/AppIntro2ButtonStyleCompat"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="@string/app_intro_back_button"
+            android:rotation="180"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_appintro_fab_next" />
 
-    <FrameLayout
-        android:id="@+id/indicator_container"
-        style="@style/AppIntroIndicatorContainer"
-        android:layoutDirection="ltr"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        tools:background="@drawable/ic_appintro_indicator" />
+        <FrameLayout
+            android:id="@+id/indicator_container"
+            style="@style/AppIntroIndicatorContainer"
+            android:layout_gravity="center"
+            android:layoutDirection="ltr"
+            tools:background="@drawable/ic_appintro_indicator" />
 
-    <ImageButton
-        android:id="@+id/next"
-        style="@style/AppIntro2ButtonStyleCompat"
-        android:contentDescription="@string/app_intro_next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        app:srcCompat="@drawable/ic_appintro_fab_next" />
+        <ImageButton
+            android:id="@+id/next"
+            style="@style/AppIntro2ButtonStyleCompat"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@string/app_intro_next_button"
+            app:srcCompat="@drawable/ic_appintro_fab_next" />
 
-    <ImageButton
-        android:id="@+id/done"
-        style="@style/AppIntro2ButtonStyleCompat"
-        android:contentDescription="@string/app_intro_done_button"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        app:srcCompat="@drawable/ic_appintro_fab_done" />
+        <ImageButton
+            android:id="@+id/done"
+            style="@style/AppIntro2ButtonStyleCompat"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@string/app_intro_done_button"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_appintro_fab_done" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
