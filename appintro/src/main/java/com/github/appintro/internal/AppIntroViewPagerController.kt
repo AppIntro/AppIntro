@@ -3,12 +3,14 @@ package com.github.appintro.internal
 import android.gesture.GestureOverlayView
 import android.gesture.GestureOverlayView.OnGestureListener
 import android.view.MotionEvent
+import android.view.ViewConfiguration
 import androidx.viewpager2.widget.ViewPager2
 import com.github.appintro.AppIntroBase
 import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.AppIntroViewPagerListener
 import com.github.appintro.internal.viewpager.PagerAdapter
 import com.github.appintro.internal.viewpager.ViewPagerTransformer
+import kotlin.math.abs
 import kotlin.math.max
 
 /**
@@ -102,6 +104,9 @@ internal class AppIntroViewPagerController(
      * Checks for illegal sliding attempts.
      * Every time the user presses the screen, the respective coordinates are stored.
      * Once the user swipes/stops pressing, the new coordinates are checked against the stored ones.
+     * A forward swipe counts only when horizontal travel exceeds touch slop and dominates
+     * vertical travel, so a button tap with slight jitter is not a swipe. Action cancel is not
+     * treated as a swipe.
      * Therefore [userIllegallyRequestNextPage] is called. If this call detects an illegal swipe,
      * the respective listener [onNextPageRequestedListener] gets called.
      */
@@ -112,33 +117,35 @@ internal class AppIntroViewPagerController(
             return false
         }
 
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                currentTouchDownX = event.x
-                currentTouchDownY = event.y
-            }
-            else -> {
-                if (event.action == MotionEvent.ACTION_UP) {
-                    viewPager.performClick()
-                }
-                val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            currentTouchDownX = event.x
+            currentTouchDownY = event.y
+        }
+        // Cancellation coordinates are not a user swipe. The next gesture starts at its own down point.
+        if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_CANCEL) {
+            return isFullPagingEnabled
+        }
 
-                // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
-                // We need to return false if we detect that the user swipes forward,
-                // and also call onIllegallyRequestedNextPage if the threshold was too high
-                // (so the user can be informed).
-                if (!canRequestNextPage && isSwipeForward(currentTouchDownX, event.x)) {
-                    if (userIllegallyRequestNextPage()) {
-                        onNextPageRequestedListener?.onIllegallyRequestedNextPage()
-                    }
-                    return false
-                }
+        if (event.action == MotionEvent.ACTION_UP) {
+            viewPager.performClick()
+        }
+        val canRequestNextPage = onNextPageRequestedListener?.onCanRequestNextPage() ?: true
+        val swipedForward = isSwipeForward(event)
 
-                // If the slide contains permissions, check for forward swipe.
-                if (isPermissionSlide && isSwipeForward(currentTouchDownX, event.x)) {
-                    onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
-                }
+        // If user can't request the page, we shortcircuit the ACTION_MOVE logic here.
+        // We need to return false if we detect that the user swipes forward,
+        // and also call onIllegallyRequestedNextPage if the threshold was too high
+        // (so the user can be informed).
+        if (!canRequestNextPage && swipedForward) {
+            if (userIllegallyRequestNextPage()) {
+                onNextPageRequestedListener?.onIllegallyRequestedNextPage()
             }
+            return false
+        }
+
+        // If the slide contains permissions, check for forward swipe.
+        if (isPermissionSlide && swipedForward) {
+            onNextPageRequestedListener?.onUserRequestedPermissionsDialog()
         }
 
         return isFullPagingEnabled
@@ -151,12 +158,22 @@ internal class AppIntroViewPagerController(
      * We need this to eventually block user touches in forward if policy is not respected
      */
     private fun handleOnTouchEvent(event: MotionEvent?): Boolean {
-        if (!canPerformTouchEvent(event)) {
+        val canPerform = canPerformTouchEvent(event)
+        val action = event?.action
+
+        // Policy rejection skips drag updates, but finger-up and cancellation still have to
+        // finish an in-progress fake drag. Otherwise setCurrentItem throws and the slide does not advance.
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            viewPager.endFakeDrag()
+            return canPerform
+        }
+
+        if (!canPerform || event == null) {
             return false
         }
 
         // allow the slider to "work" left and right.
-        when (event?.action) {
+        when (action) {
             MotionEvent.ACTION_DOWN -> {
                 lastTouchValue = event.x
                 if (!viewPager.isFakeDragging) {
@@ -172,24 +189,29 @@ internal class AppIntroViewPagerController(
                 lastTouchValue = value
                 return true
             }
-
-            MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                viewPager.endFakeDrag()
-            }
         }
         return true
     }
 
     /**
      * Util function to check if the user swiped forward.
+     * Forward requires horizontal travel beyond touch slop that dominates vertical travel,
+     * so a tap that jitters a few pixels is not a swipe.
      * The direction of forward is different in RTL mode.
      */
-    private fun isSwipeForward(
-        oldX: Float,
-        newX: Float,
-    ): Boolean {
-        with(viewPager) {
-            return (if (LayoutUtil.isRtl(context)) (newX > oldX) else (oldX > newX))
+    private fun isSwipeForward(event: MotionEvent): Boolean {
+        val horizontalDelta = event.x - currentTouchDownX
+        val verticalDelta = event.y - currentTouchDownY
+        val absHorizontal = abs(horizontalDelta)
+        val absVertical = abs(verticalDelta)
+        val touchSlop = ViewConfiguration.get(viewPager.context).scaledTouchSlop.toFloat()
+        if (absHorizontal <= touchSlop || absHorizontal <= absVertical) {
+            return false
+        }
+        return if (LayoutUtil.isRtl(viewPager.context)) {
+            horizontalDelta > 0
+        } else {
+            horizontalDelta < 0
         }
     }
 
