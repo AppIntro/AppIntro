@@ -35,64 +35,57 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
+    <FrameLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/appintro_bottombar_height"
         android:background="@color/appintro_bar_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/skip"
-        style="@style/AppIntroButtonStyleCompat"
-        android:labelFor="@string/app_intro_skip_button"
-        android:text="@string/app_intro_skip_button"
-        android:textColor="@color/appintro_icon_tint"
-        android:textSize="@dimen/appintro_skiptext_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/skip"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_gravity="start|center_vertical"
+            android:labelFor="@string/app_intro_skip_button"
+            android:text="@string/app_intro_skip_button"
+            android:textColor="@color/appintro_icon_tint"
+            android:textSize="@dimen/appintro_skiptext_size" />
 
-    <ImageButton
-        android:id="@+id/back"
-        style="@style/AppIntroButtonStyleCompat"
-        android:contentDescription="@string/app_intro_back_button"
-        android:rotation="180"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        app:srcCompat="@drawable/ic_appintro_next" />
+        <ImageButton
+            android:id="@+id/back"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="@string/app_intro_back_button"
+            android:rotation="180"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_appintro_next" />
 
-    <FrameLayout
-        android:id="@+id/indicator_container"
-        style="@style/AppIntroIndicatorContainer"
-        android:layoutDirection="ltr"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        tools:background="@drawable/ic_appintro_indicator" />
+        <FrameLayout
+            android:id="@+id/indicator_container"
+            style="@style/AppIntroIndicatorContainer"
+            android:layout_gravity="center"
+            android:layoutDirection="ltr"
+            tools:background="@drawable/ic_appintro_indicator" />
 
-    <ImageButton
-        android:id="@+id/next"
-        style="@style/AppIntroButtonStyleCompat"
-        android:contentDescription="@string/app_intro_next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottom"
-        app:srcCompat="@drawable/ic_appintro_next" />
+        <ImageButton
+            android:id="@+id/next"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@string/app_intro_next_button"
+            app:srcCompat="@drawable/ic_appintro_next" />
 
-    <Button
-        android:id="@+id/done"
-        style="@style/AppIntroButtonStyleCompat"
-        android:labelFor="@string/app_intro_done_button"
-        android:text="@string/app_intro_done_button"
-        android:textColor="@color/appintro_icon_tint"
-        android:textSize="@dimen/appintro_donetext_size"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <Button
+            android:id="@+id/done"
+            style="@style/AppIntroButtonStyleCompat"
+            android:layout_gravity="end|center_vertical"
+            android:labelFor="@string/app_intro_done_button"
+            android:text="@string/app_intro_done_button"
+            android:textColor="@color/appintro_icon_tint"
+            android:textSize="@dimen/appintro_donetext_size"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
